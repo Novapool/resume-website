@@ -24,7 +24,7 @@ export default function Projects() {
       description: "Unity-based ML agent that dynamically adapts to player fighting style, switching between aggression and defense based on learned patterns.",
       tags: ["Unity", "ML-Agents", "C#", "AI"],
       color: { primary: 205, secondary: 245 }, // Bluish
-      github: "https://github.com/Novapool/AdaptiveCombatAI",
+      github: "https://github.com/Novapool/ai-game",
       icon: "🎮",
     },
     {
@@ -32,7 +32,7 @@ export default function Projects() {
       description: "Web application using Firebase, OCR, and AI to help students track and predict academic performance by analyzing documents.",
       tags: ["React", "Firebase", "OpenAI API", "TypeScript"],
       color: { primary: 80, secondary: 120 }, // Greenish
-      github: "https://github.com/Novapool/AcademicPredictor",
+      github: "https://github.com/Novapool/grading-calendar-ai",
       icon: "📚",
     },
     {
