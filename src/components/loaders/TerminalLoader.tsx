@@ -4,6 +4,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/components/theme/theme-provider";
+import { TypeAnimation } from "react-type-animation";
 
 interface TerminalLoaderProps {
   onLoadingComplete: () => void;
@@ -18,123 +19,16 @@ export default function TerminalLoader({
   
   // Animation state
   const [isVisible, setIsVisible] = useState(true);
-  const [displayedText, setDisplayedText] = useState("");
   const [progress, setProgress] = useState(0);
   const [isExpanding, setIsExpanding] = useState(false);
   const [showCascade, setShowCascade] = useState(false);
-  const [animationPhase, setAnimationPhase] = useState(0);
   const [animationComplete, setAnimationComplete] = useState(false);
+  const [typingComplete, setTypingComplete] = useState(false);
   
-  // Messages to display with improved timing
-  const messages = [
-    "Initializing portfolio...",
-    "Loading components...",
-    "Verifying credentials...",
-    "Access granted."
-  ];
-  
-  // Use refs to track timers and animation state
-  const typingTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const phaseTimerRef = useRef<NodeJS.Timeout | null>(null);
+  // Animation sequence reference
   const animationStartedRef = useRef<boolean>(false);
-  const currentPhaseRef = useRef<number>(0);
   
-  // Single effect to handle the entire animation sequence
-  useEffect(() => {
-    console.log(`Progress: ${progress}, Animation started: ${animationStartedRef.current}`);
-    
-    // Function to type out a message character by character
-    const typeMessage = (message: string, delay: number = 30): Promise<void> => {
-      return new Promise((resolve) => {
-        console.log(`Starting to type message: "${message}"`);
-        setDisplayedText("");
-        
-        let i = 0;
-        
-        const typeChar = () => {
-          if (i <= message.length) {
-            const newText = message.substring(0, i);
-            setDisplayedText(newText);
-            i++;
-            typingTimerRef.current = setTimeout(typeChar, delay);
-          } else {
-            resolve();
-          }
-        };
-        
-        typeChar();
-      });
-    };
-    
-    // Function to handle the entire animation sequence
-    const runAnimation = async () => {
-      // Wait for progress to reach threshold
-      if (progress < 99 || animationComplete) return;
-      
-      // Only run the animation once
-      if (animationStartedRef.current) return;
-      animationStartedRef.current = true;
-      
-      console.log("Starting animation sequence");
-      
-      // Type each message in sequence
-      for (let i = 0; i < messages.length; i++) {
-        currentPhaseRef.current = i;
-        console.log(`Phase ${i}: ${messages[i]}`);
-        
-        // Type the current message
-        await typeMessage(messages[i]);
-        
-        // Pause between messages (except after the last one)
-        if (i < messages.length - 1) {
-          await new Promise(resolve => {
-            phaseTimerRef.current = setTimeout(resolve, 500);
-          });
-        }
-      }
-      
-      // Final phase - expand terminal
-      console.log("Final phase: expanding terminal");
-      setIsExpanding(true);
-      
-      // Then show cascade
-      await new Promise(resolve => {
-        setTimeout(() => {
-          console.log("Showing cascade effect");
-          setShowCascade(true);
-          resolve(null);
-        }, 700);
-      });
-      
-      // Finally complete the animation
-      await new Promise(resolve => {
-        setTimeout(() => {
-          console.log("Animation complete, hiding terminal");
-          setAnimationComplete(true);
-          setIsVisible(false);
-          onLoadingComplete();
-          resolve(null);
-        }, 1000);
-      });
-    };
-    
-    // Start the animation
-    runAnimation();
-    
-    // Clean up function
-    return () => {
-      if (typingTimerRef.current) {
-        clearTimeout(typingTimerRef.current);
-        typingTimerRef.current = null;
-      }
-      if (phaseTimerRef.current) {
-        clearTimeout(phaseTimerRef.current);
-        phaseTimerRef.current = null;
-      }
-    };
-  }, [progress, messages, onLoadingComplete, animationComplete]);
-  
-  // Progress bar animation
+  // Handle progress bar animation
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress(prev => {
@@ -146,20 +40,46 @@ export default function TerminalLoader({
     return () => clearInterval(interval);
   }, [minDisplayTime]);
   
+  // Handle animation sequence after typing is complete
+  useEffect(() => {
+    if (!typingComplete) return;
+    
+    console.log("All messages typed, expanding terminal");
+    
+    // Expand the terminal
+    setIsExpanding(true);
+    
+    // Show cascade effect after a delay
+    const cascadeTimer = setTimeout(() => {
+      console.log("Showing cascade effect");
+      setShowCascade(true);
+      
+      // Complete the animation after another delay
+      const completeTimer = setTimeout(() => {
+        console.log("Animation complete, hiding terminal");
+        setAnimationComplete(true);
+        setIsVisible(false);
+        onLoadingComplete();
+      }, 1000);
+      
+      return () => clearTimeout(completeTimer);
+    }, 700);
+    
+    return () => clearTimeout(cascadeTimer);
+  }, [typingComplete, onLoadingComplete]);
+  
+  // Handle animation start when progress reaches 100%
+  useEffect(() => {
+    if (progress < 100 || animationComplete || animationStartedRef.current) return;
+    animationStartedRef.current = true;
+    console.log("Progress reached 100%, animation can start");
+  }, [progress, animationComplete]);
+  
   // Skip button component
   const SkipButton = () => (
     <button
       onClick={() => {
-        // Clean up any timers with proper nullification
-        if (typingTimerRef.current) {
-          clearTimeout(typingTimerRef.current);
-          typingTimerRef.current = null;
-        }
-        if (phaseTimerRef.current) {
-          clearTimeout(phaseTimerRef.current);
-          phaseTimerRef.current = null;
-        }
-        
+        console.log("Skip button clicked");
         setAnimationComplete(true);
         setIsVisible(false);
         onLoadingComplete();
@@ -228,10 +148,36 @@ export default function TerminalLoader({
               </div>
               
               <div className="mt-6">
-                <p className="text-green-500">
-                  {displayedText}
-                  <span className="animate-pulse ml-1 inline-block">|</span>
-                </p>
+                {progress === 100 && !animationComplete && (
+                  <TypeAnimation
+                    sequence={[
+                      // First message
+                      "Initializing portfolio...",
+                      1000,
+                      // Clear and show second message
+                      "",
+                      "Loading components...",
+                      1000,
+                      // Clear and show third message
+                      "",
+                      "Verifying credentials...",
+                      1000,
+                      // Clear and show final message
+                      "",
+                      "Access granted.",
+                      1000,
+                      // Trigger next animation phase
+                      () => {
+                        console.log("Typing animation complete");
+                        setTypingComplete(true);
+                      },
+                    ]}
+                    wrapper="p"
+                    cursor={true}
+                    speed={50}
+                    className="text-green-500"
+                  />
+                )}
               </div>
             </div>
             
