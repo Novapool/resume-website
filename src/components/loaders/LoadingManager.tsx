@@ -16,29 +16,39 @@ const LoadingManager: FC<LoadingManagerProps> = ({ children }) => {
   const [showCascade, setShowCascade] = useState(false);
   const [showContent, setShowContent] = useState(false);
   
-  // Handle the terminal animation completion
+  // Handle the terminal animation completion with debugging
   const handleTerminalComplete = () => {
+    console.log("Terminal animation complete callback triggered");
     setLoading(false);
     setShowCascade(true);
   };
   
-  // Handle the cascade animation completion
+  // Handle the cascade animation completion with debugging
   const handleCascadeComplete = () => {
+    console.log("Cascade animation complete callback triggered");
     setShowCascade(false);
     setShowContent(true);
   };
   
   // Skip the loading animation if the user has already seen it in this session
   useEffect(() => {
-    const hasSeenLoading = sessionStorage.getItem("hasSeenLoading");
+    console.log("LoadingManager mounted");
     
-    if (hasSeenLoading === "true") {
-      // Skip the animation if the user has seen it
-      setLoading(false);
-      setShowContent(true);
-    } else {
-      // Mark that the user has seen the loading animation
-      sessionStorage.setItem("hasSeenLoading", "true");
+    try {
+      const hasSeenLoading = sessionStorage.getItem("hasSeenLoading");
+      console.log(`hasSeenLoading from sessionStorage: ${hasSeenLoading}`);
+      
+      if (hasSeenLoading === "true") {
+        console.log("User has seen loading animation before, skipping");
+        setLoading(false);
+        setShowContent(true);
+      } else {
+        console.log("First visit, showing loading animation");
+        // For debugging purposes, let's temporarily disable this to always show the animation
+        // sessionStorage.setItem("hasSeenLoading", "true");
+      }
+    } catch (error) {
+      console.error("Error accessing sessionStorage:", error);
     }
   }, []);
 

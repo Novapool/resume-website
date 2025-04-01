@@ -5,136 +5,192 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/components/theme/theme-provider";
 
-// Types for our component props
 interface TerminalLoaderProps {
   onLoadingComplete: () => void;
-  minDisplayTime?: number; // Minimum time to display the loader in ms
+  minDisplayTime?: number;
 }
 
-// Type for the loading messages
-interface LoadingStep {
-  message: string;
-  duration: number;
-}
-
-// Make sure there's a proper default export
 export default function TerminalLoader({
   onLoadingComplete,
-  minDisplayTime = 4000, // Default to 4 seconds minimum display time
+  minDisplayTime = 2000,
 }: TerminalLoaderProps) {
   const { theme } = useTheme();
   
-  // Animation states
+  // Animation state
   const [isVisible, setIsVisible] = useState(true);
-  const [currentStep, setCurrentStep] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [progress, setProgress] = useState(0);
   const [isExpanding, setIsExpanding] = useState(false);
   const [showCascade, setShowCascade] = useState(false);
+  const [animationPhase, setAnimationPhase] = useState(0);
+  const [animationComplete, setAnimationComplete] = useState(false);
   
-  // Track when the page is actually loaded
-  const [pageLoaded, setPageLoaded] = useState(false);
-  const startTimeRef = useRef(Date.now());
-  
-  // Define the loading steps and their durations
-  const loadingSteps: LoadingStep[] = [
-    { message: "Initializing portfolio...", duration: 1000 },
-    { message: "Loading components...", duration: 1000 },
-    { message: "Verifying credentials...", duration: 1000 },
-    { message: "Access granted.", duration: 500 },
+  // Messages to display with improved timing
+  const messages = [
+    "Initializing portfolio...",
+    "Loading components...",
+    "Verifying credentials...",
+    "Access granted."
   ];
-
-  // Effect to handle the typing animation for each step
-  useEffect(() => {
-    if (currentStep >= loadingSteps.length) return;
-    
-    const currentMessage = loadingSteps[currentStep].message;
-    let charIndex = 0;
-    
-    const typingInterval = setInterval(() => {
-      if (charIndex <= currentMessage.length) {
-        setDisplayedText(currentMessage.substring(0, charIndex));
-        charIndex++;
-      } else {
-        clearInterval(typingInterval);
-        
-        // Move to next step after this message is fully displayed
-        const timer = setTimeout(() => {
-          if (currentStep < loadingSteps.length - 1) {
-            setCurrentStep(currentStep + 1);
-          } else {
-            // If it's the last step, start the terminal expansion
-            setTimeout(() => {
-              setIsExpanding(true);
-              
-              // After expansion, show the cascade effect
-              setTimeout(() => {
-                setShowCascade(true);
-                
-                // After cascade, complete the loading
-                setTimeout(() => {
-                  setIsVisible(false);
-                  onLoadingComplete();
-                }, 1500);
-              }, 1000);
-            }, 1000);
-          }
-        }, loadingSteps[currentStep].duration);
-        
-        return () => clearTimeout(timer);
-      }
-    }, 40); // Speed of typing animation
-    
-    return () => clearInterval(typingInterval);
-  }, [currentStep, loadingSteps, onLoadingComplete]);
   
-  // Handle progress bar advancement
+  // Use refs to track timers and animation state
+  const typingTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const phaseTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const animationStartedRef = useRef<boolean>(false);
+  const currentPhaseRef = useRef<number>(0);
+  
+  // Single effect to handle the entire animation sequence
+  useEffect(() => {
+    console.log(`Progress: ${progress}, Animation started: ${animationStartedRef.current}`);
+    
+    // Function to type out a message character by character
+    const typeMessage = (message: string, delay: number = 30): Promise<void> => {
+      return new Promise((resolve) => {
+        console.log(`Starting to type message: "${message}"`);
+        setDisplayedText("");
+        
+        let i = 0;
+        
+        const typeChar = () => {
+          if (i <= message.length) {
+            const newText = message.substring(0, i);
+            setDisplayedText(newText);
+            i++;
+            typingTimerRef.current = setTimeout(typeChar, delay);
+          } else {
+            resolve();
+          }
+        };
+        
+        typeChar();
+      });
+    };
+    
+    // Function to handle the entire animation sequence
+    const runAnimation = async () => {
+      // Wait for progress to reach threshold
+      if (progress < 99 || animationComplete) return;
+      
+      // Only run the animation once
+      if (animationStartedRef.current) return;
+      animationStartedRef.current = true;
+      
+      console.log("Starting animation sequence");
+      
+      // Type each message in sequence
+      for (let i = 0; i < messages.length; i++) {
+        currentPhaseRef.current = i;
+        console.log(`Phase ${i}: ${messages[i]}`);
+        
+        // Type the current message
+        await typeMessage(messages[i]);
+        
+        // Pause between messages (except after the last one)
+        if (i < messages.length - 1) {
+          await new Promise(resolve => {
+            phaseTimerRef.current = setTimeout(resolve, 500);
+          });
+        }
+      }
+      
+      // Final phase - expand terminal
+      console.log("Final phase: expanding terminal");
+      setIsExpanding(true);
+      
+      // Then show cascade
+      await new Promise(resolve => {
+        setTimeout(() => {
+          console.log("Showing cascade effect");
+          setShowCascade(true);
+          resolve(null);
+        }, 700);
+      });
+      
+      // Finally complete the animation
+      await new Promise(resolve => {
+        setTimeout(() => {
+          console.log("Animation complete, hiding terminal");
+          setAnimationComplete(true);
+          setIsVisible(false);
+          onLoadingComplete();
+          resolve(null);
+        }, 1000);
+      });
+    };
+    
+    // Start the animation
+    runAnimation();
+    
+    // Clean up function
+    return () => {
+      if (typingTimerRef.current) {
+        clearTimeout(typingTimerRef.current);
+        typingTimerRef.current = null;
+      }
+      if (phaseTimerRef.current) {
+        clearTimeout(phaseTimerRef.current);
+        phaseTimerRef.current = null;
+      }
+    };
+  }, [progress, messages, onLoadingComplete, animationComplete]);
+  
+  // Progress bar animation
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        const newProgress = prev + 1;
+      setProgress(prev => {
+        const newProgress = prev + 2;
         return newProgress <= 100 ? newProgress : 100;
       });
-    }, minDisplayTime / 100);
+    }, minDisplayTime / 50);
     
     return () => clearInterval(interval);
   }, [minDisplayTime]);
   
-  // Check if the page has loaded and we've displayed the loader for the minimum time
-  useEffect(() => {
-    // Check if the page has loaded
-    if (document.readyState === "complete") {
-      setPageLoaded(true);
-    } else {
-      const handleLoad = () => setPageLoaded(true);
-      window.addEventListener("load", handleLoad);
-      return () => window.removeEventListener("load", handleLoad);
-    }
-  }, []);
+  // Skip button component
+  const SkipButton = () => (
+    <button
+      onClick={() => {
+        // Clean up any timers with proper nullification
+        if (typingTimerRef.current) {
+          clearTimeout(typingTimerRef.current);
+          typingTimerRef.current = null;
+        }
+        if (phaseTimerRef.current) {
+          clearTimeout(phaseTimerRef.current);
+          phaseTimerRef.current = null;
+        }
+        
+        setAnimationComplete(true);
+        setIsVisible(false);
+        onLoadingComplete();
+      }}
+      className="absolute top-4 right-4 text-green-500 text-xs border border-green-500 rounded px-2 py-1 hover:bg-green-500 hover:text-black transition-colors"
+    >
+      Skip
+    </button>
+  );
   
-  // Matrix digital rain effect component
-  const DigitalRain = () => {
-    return (
-      <div className="absolute inset-0 overflow-hidden">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <div 
-            key={i} 
-            className="absolute top-0 text-green-500 text-sm font-mono opacity-0"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animation: `fall 1.5s linear ${Math.random() * 1}s forwards`,
-            }}
-          >
-            {Array.from({ length: Math.floor(Math.random() * 20) + 5 }).map((_, j) => (
-              <div key={j} style={{ opacity: Math.random() * 0.9 + 0.1 }}>
-                {String.fromCharCode(Math.floor(Math.random() * 93) + 33)}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    );
-  };
+  // Digital rain effect
+  const DigitalRain = () => (
+    <div className="absolute inset-0 overflow-hidden">
+      {Array.from({ length: 50 }).map((_, i) => (
+        <div 
+          key={i} 
+          className="absolute top-0 text-green-500 text-sm font-mono opacity-0"
+          style={{
+            left: `${Math.random() * 100}%`,
+            animation: `fall 1.5s linear ${Math.random() * 0.5}s forwards`,
+          }}
+        >
+          {Array.from({ length: Math.floor(Math.random() * 20) + 5 }).map((_, j) => (
+            <div key={j} style={{ opacity: Math.random() * 0.9 + 0.1 }}>
+              {String.fromCharCode(Math.floor(Math.random() * 93) + 33)}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
 
   if (!isVisible) return null;
 
@@ -146,6 +202,8 @@ export default function TerminalLoader({
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
+        <SkipButton />
+        
         {/* Terminal window */}
         <motion.div 
           className={`bg-black border border-green-500 text-green-500 font-mono overflow-hidden relative ${isExpanding ? 'w-full h-full' : 'w-[600px] rounded-md'}`}
@@ -157,7 +215,7 @@ export default function TerminalLoader({
           }}
           transition={{ duration: 0.5 }}
         >
-          {/* Digital rain effect (shown after terminal expands) */}
+          {/* Digital rain effect */}
           {showCascade && <DigitalRain />}
           
           {/* Terminal content */}
@@ -172,7 +230,7 @@ export default function TerminalLoader({
               <div className="mt-6">
                 <p className="text-green-500">
                   {displayedText}
-                  <span className="animate-pulse ml-1">▋</span>
+                  <span className="animate-pulse ml-1 inline-block">|</span>
                 </p>
               </div>
             </div>
