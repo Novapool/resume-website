@@ -156,10 +156,6 @@ export default function TerminalLoader({
                       700, // Reduced from 1000ms
                       // Clear and show second message
                       "",
-                      "Loading components...",
-                      700, // Reduced from 1000ms
-                      // Clear and show third message
-                      "",
                       "Access granted.",
                       700, // Reduced from 1000ms
                       // Trigger next animation phase

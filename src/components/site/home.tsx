@@ -27,12 +27,12 @@ export default function Home() {
 
   const skills = [
     { name: "Python", level: 90 },
-    { name: "C++", level: 75 },
-    { name: "TensorFlow", level: 85 },
-    { name: "OpenCV", level: 80 },
-    { name: "Flutter", level: 70 },
+    { name: "C++", level: 70 },
+    { name: "TensorFlow", level: 70 },
+    { name: "OpenCV", level: 65 },
+    { name: "Flutter", level: 65 },
     { name: "Firebase", level: 75 },
-    { name: "Unity", level: 65 },
+    { name: "Github", level: 70 },
   ];
 
   return (
