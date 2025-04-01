@@ -44,8 +44,8 @@ const LoadingManager: FC<LoadingManagerProps> = ({ children }) => {
         setShowContent(true);
       } else {
         console.log("First visit, showing loading animation");
-        // For debugging purposes, let's temporarily disable this to always show the animation
-        // sessionStorage.setItem("hasSeenLoading", "true");
+        // Mark that user has seen the animation for future visits
+        sessionStorage.setItem("hasSeenLoading", "true");
       }
     } catch (error) {
       console.error("Error accessing sessionStorage:", error);
@@ -54,16 +54,16 @@ const LoadingManager: FC<LoadingManagerProps> = ({ children }) => {
 
   return (
     <>
-      {/* Terminal Loading Screen */}
+      {/* Terminal Loading Screen - now with shorter minimum display time */}
       {loading && (
-        <TerminalLoader onLoadingComplete={handleTerminalComplete} minDisplayTime={4000} />
+        <TerminalLoader onLoadingComplete={handleTerminalComplete} minDisplayTime={5000} />
       )}
       
-      {/* Digital Cascade Effect */}
+      {/* Digital Cascade Effect - now with shorter duration */}
       <DigitalCascade 
         isActive={showCascade} 
         onComplete={handleCascadeComplete} 
-        duration={1500}
+        duration={1000} // Reduced from 1500ms
       />
       
       {/* Actual Content */}

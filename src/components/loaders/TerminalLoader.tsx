@@ -13,7 +13,7 @@ interface TerminalLoaderProps {
 
 export default function TerminalLoader({
   onLoadingComplete,
-  minDisplayTime = 2000,
+  minDisplayTime = 1500, // Reduced from 2000ms to 1500ms
 }: TerminalLoaderProps) {
   const { theme } = useTheme();
   
@@ -28,14 +28,14 @@ export default function TerminalLoader({
   // Animation sequence reference
   const animationStartedRef = useRef<boolean>(false);
   
-  // Handle progress bar animation
+  // Handle progress bar animation - faster progression
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress(prev => {
-        const newProgress = prev + 2;
+        const newProgress = prev + 4; // Increased from 2 to 4 for faster progress
         return newProgress <= 100 ? newProgress : 100;
       });
-    }, minDisplayTime / 50);
+    }, minDisplayTime / 75); // Reduced interval time for faster updates
     
     return () => clearInterval(interval);
   }, [minDisplayTime]);
@@ -49,21 +49,21 @@ export default function TerminalLoader({
     // Expand the terminal
     setIsExpanding(true);
     
-    // Show cascade effect after a delay
+    // Show cascade effect after a delay - reduced delay
     const cascadeTimer = setTimeout(() => {
       console.log("Showing cascade effect");
       setShowCascade(true);
       
-      // Complete the animation after another delay
+      // Complete the animation after another delay - reduced delay
       const completeTimer = setTimeout(() => {
         console.log("Animation complete, hiding terminal");
         setAnimationComplete(true);
         setIsVisible(false);
         onLoadingComplete();
-      }, 1000);
+      }, 800); // Reduced from 1000ms
       
       return () => clearTimeout(completeTimer);
-    }, 700);
+    }, 500); // Reduced from 700ms
     
     return () => clearTimeout(cascadeTimer);
   }, [typingComplete, onLoadingComplete]);
@@ -153,19 +153,15 @@ export default function TerminalLoader({
                     sequence={[
                       // First message
                       "Initializing portfolio...",
-                      1000,
+                      700, // Reduced from 1000ms
                       // Clear and show second message
                       "",
                       "Loading components...",
-                      1000,
+                      700, // Reduced from 1000ms
                       // Clear and show third message
                       "",
-                      "Verifying credentials...",
-                      1000,
-                      // Clear and show final message
-                      "",
                       "Access granted.",
-                      1000,
+                      700, // Reduced from 1000ms
                       // Trigger next animation phase
                       () => {
                         console.log("Typing animation complete");
@@ -174,8 +170,8 @@ export default function TerminalLoader({
                     ]}
                     wrapper="p"
                     cursor={true}
-                    speed={50}
-                    className="text-green-500"
+                    speed={70} // Increased from 50 to 80 (higher is faster)
+                    className="text-green-500 terminal-cursor" // Added a custom class for styling the cursor
                   />
                 )}
               </div>
