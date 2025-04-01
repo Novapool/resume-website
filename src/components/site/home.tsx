@@ -30,7 +30,7 @@ export default function Home() {
     { name: "C++", level: 70 },
     { name: "TensorFlow", level: 70 },
     { name: "OpenCV", level: 65 },
-    { name: "Flutter", level: 65 },
+    { name: "Flutter", level: 40 },
     { name: "Firebase", level: 75 },
     { name: "Github", level: 70 },
   ];
