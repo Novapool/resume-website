@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Github, ExternalLink } from "lucide-react";
@@ -8,10 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export default function Projects() {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [lastScrollY, setLastScrollY] = useState<number>(0);
-  
-  // Create ref array with the correct type
+  // Create ref array with the correct type (keeping for potential future use)
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const projects = [
@@ -57,58 +54,10 @@ export default function Projects() {
     }
   ];
 
-  // Initialize cardRefs array to match projects length
+  // Initialize cardRefs array to match projects length (keeping for potential future use)
   useEffect(() => {
     cardRefs.current = Array(projects.length).fill(null);
   }, [projects.length]);
-
-  // Add an effect to handle scroll and calculate which card should be active
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setLastScrollY(currentScrollY);
-      
-      // Find which card is most visible in the viewport
-      const viewportHeight = window.innerHeight;
-      const viewportMiddle = currentScrollY + viewportHeight / 2;
-      
-      let bestVisibleIndex = activeIndex;
-      let bestVisibleScore = -1;
-      
-      cardRefs.current.forEach((cardRef, index) => {
-        if (!cardRef) return;
-        
-        const rect = cardRef.getBoundingClientRect();
-        const cardTop = rect.top + window.scrollY;
-        const cardBottom = rect.bottom + window.scrollY;
-        const cardMiddle = (cardTop + cardBottom) / 2;
-        
-        // Calculate how close this card is to the middle of the viewport
-        // Lower score is better (closer to middle)
-        const score = Math.abs(viewportMiddle - cardMiddle);
-        
-        // Add a threshold to prevent frequent switching
-        const threshold = 50; // pixels
-        if (score < bestVisibleScore || bestVisibleScore === -1) {
-          // Only change if the new card is significantly better positioned
-          if (bestVisibleScore === -1 || score < bestVisibleScore - threshold) {
-            bestVisibleScore = score;
-            bestVisibleIndex = index;
-          }
-        }
-      });
-      
-      if (bestVisibleIndex !== activeIndex) {
-        setActiveIndex(bestVisibleIndex);
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    // Initial check to set the active card on component mount
-    handleScroll();
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeIndex]);
 
   const hue = (h: number) => `hsl(${h}, 85%, 55%)`;
 
@@ -233,7 +182,7 @@ export default function Projects() {
             key={project.title}
             className="relative mx-auto mb-12 sm:mb-24 px-4"
             initial="offscreen"
-            animate={activeIndex === i ? "onscreen" : "inactive"}
+            animate="inactive"
             whileHover="hover"
             variants={cardVariants}
             ref={(el) => setCardRef(el, i)}
@@ -251,7 +200,8 @@ export default function Projects() {
                 bottom: "-2rem",
               }}
               variants={splashVariants}
-              animate={activeIndex === i ? "onscreen" : "inactive"}
+              animate="inactive"
+              whileHover="hover"
             />
 
             {/* Card content */}
