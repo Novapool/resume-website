@@ -1,8 +1,12 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "../styles/animations.css"; // Import our animation styles
 import Navbar from "@/components/site/navbar";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+// Import from the index file instead of directly
+import { LoadingManager } from "@/components/loaders";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,8 +34,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <Navbar />
-          {children}
+          <LoadingManager>
+            <Navbar />
+            {children}
+          </LoadingManager>
         </ThemeProvider>
       </body>
     </html>
