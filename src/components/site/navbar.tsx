@@ -35,7 +35,7 @@ export default function Navbar() {
                             <NavigationMenuItem>
                                 <Link href="/about" legacyBehavior passHref>
                                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                        About
+                                        About/Contact
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
@@ -44,14 +44,6 @@ export default function Navbar() {
                                 <Link href="/projects" legacyBehavior passHref>
                                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                         Projects
-                                    </NavigationMenuLink>
-                                </Link>
-                            </NavigationMenuItem>
-                            
-                            <NavigationMenuItem>
-                                <Link href="/contact" legacyBehavior passHref>
-                                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                        Contact
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
