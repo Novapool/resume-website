@@ -5,26 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Github, Linkedin, BookOpen, Code, Brain, Cpu } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Code, Brain, Cpu } from "lucide-react";
 import ContentRevealer from "@/components/loaders/ContentRevealer";
 
 export default function Home() {
-  // Animation variants
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
-  };
-
   const skills = [
     { name: "Python", level: 90 },
     { name: "C++", level: 70 },
@@ -59,7 +43,7 @@ export default function Home() {
             </Link>
           </div>
           <p className="max-w-2xl text-muted-foreground mb-8">
-            I'm a Computer Science student at Michigan State University with a passion for artificial intelligence, 
+            I&apos;m a Computer Science student at Michigan State University with a passion for artificial intelligence, 
             machine learning, and backend development. Currently working on innovative projects involving AI agents,
             computer vision, and application development.
           </p>

@@ -100,7 +100,7 @@ export default function DigitalCascade({
     return () => {
       cancelAnimationFrame(animationFrame);
     };
-  }, [isActive, duration, onComplete]);
+  }, [isActive, duration, onComplete, isCompleted]);
   
   if (!isActive) return null;
   

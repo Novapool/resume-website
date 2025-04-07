@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "@/components/theme/theme-provider";
+// import { useTheme } from "@/components/theme/theme-provider"; // Removed unused import
 import { TypeAnimation } from "react-type-animation";
 
 interface TerminalLoaderProps {
@@ -15,7 +15,7 @@ export default function TerminalLoader({
   onLoadingComplete,
   minDisplayTime = 1500, // Reduced from 2000ms to 1500ms
 }: TerminalLoaderProps) {
-  const { theme } = useTheme();
+  // const { theme } = useTheme(); // Commented out as it's not used
   
   // Animation state
   const [isVisible, setIsVisible] = useState(true);

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -39,7 +38,7 @@ export default function AboutContact() {
     {
       title: "Taking Leadership",
       date: "2025",
-      description: "<ul class='list-disc pl-5 space-y-1'><li>Began Academic Performance Predictor project</li><li>Appointed to AI Club board as Workshop Coordinator</li><li>Designed and presented 'Your Place in the AI Industry' workshop</li></ul>"
+      description: "<ul class='list-disc pl-5 space-y-1'><li>Began Academic Performance Predictor project</li><li>Appointed to AI Club board as Workshop Coordinator</li><li>Designed and presented &apos;Your Place in the AI Industry&apos; workshop</li></ul>"
     },
     {
       title: "Future Aspirations",
@@ -75,10 +74,10 @@ export default function AboutContact() {
             <Card className="mb-4">
               <CardContent className="p-6">
                 <p className="mb-3">
-                  Hi, I'm Laith Assaf, a Computer Science student at Michigan State University with a passion for artificial intelligence and machine learning. I'm currently working to become a more well-rounded full-stack developer, combining my ML expertise with modern web development skills.
+                  Hi, I&apos;m Laith Assaf, a Computer Science student at Michigan State University with a passion for artificial intelligence and machine learning. I&apos;m currently working to become a more well-rounded full-stack developer, combining my ML expertise with modern web development skills.
                 </p>
                 <p>
-                  My journey in tech started with Python and C++ programming, but I've since expanded into mobile app development with Flutter and now web development with Next.js and React. I'm driven by the challenge of creating intelligent, responsive applications that solve real-world problems.
+                  My journey in tech started with Python and C++ programming, but I&apos;ve since expanded into mobile app development with Flutter and now web development with Next.js and React. I&apos;m driven by the challenge of creating intelligent, responsive applications that solve real-world problems.
                 </p>
               </CardContent>
             </Card>
@@ -124,7 +123,6 @@ export default function AboutContact() {
         </section>
       </ContentRevealer>
 
-      {/* Rest of the code remains unchanged */}
       {/* Professional Values & Working Style */}
       <ContentRevealer delay={0.6}>
         <section className="mb-20">
@@ -142,7 +140,7 @@ export default function AboutContact() {
               <CardContent className="p-6">
                 <h3 className="font-semibold mb-3">Problem-Solving Approach</h3>
                 <p>
-                  When tackling complex problems, I break them down into manageable components, research thoroughly, and test continuously. I'm not afraid to dive deep into documentation or explore new technologies when needed to find the best solution.
+                  When tackling complex problems, I break them down into manageable components, research thoroughly, and test continuously. I&apos;m not afraid to dive deep into documentation or explore new technologies when needed to find the best solution.
                 </p>
               </CardContent>
             </Card>
@@ -160,13 +158,13 @@ export default function AboutContact() {
                 <div>
                   <h3 className="font-semibold mb-3">Hobbies & Interests</h3>
                   <p>
-                    Outside of programming, I enjoy hiking, photography, and playing chess. I'm also an avid reader, particularly of science fiction and books on emerging technologies.
+                    Outside of programming, I enjoy hiking, photography, and playing chess. I&apos;m also an avid reader, particularly of science fiction and books on emerging technologies.
                   </p>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-3">Inspiration</h3>
                   <p>
-                    My interest in AI was sparked by reading about neural networks and their potential to solve complex problems. I'm fascinated by how technology can be used to enhance human capabilities and improve lives.
+                    My interest in AI was sparked by reading about neural networks and their potential to solve complex problems. I&apos;m fascinated by how technology can be used to enhance human capabilities and improve lives.
                   </p>
                 </div>
                 <div>
@@ -241,7 +239,7 @@ export default function AboutContact() {
       {/* Final Call to Action */}
       <ContentRevealer delay={1.4}>
         <section className="text-center py-10">
-          <h2 className="text-xl font-semibold mb-4">Want to see what I've built?</h2>
+          <h2 className="text-xl font-semibold mb-4">Want to see what I&apos;ve built?</h2>
           <Link href="/projects">
             <Button className="gap-2">
               View My Projects

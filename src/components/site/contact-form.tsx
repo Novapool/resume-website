@@ -27,7 +27,7 @@ export default function ContactForm() {
       setEmail("");
       setSubject("");
       setMessage("");
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -41,7 +41,7 @@ export default function ContactForm() {
         {submitStatus === "success" ? (
           <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded-lg text-center">
             <p className="text-green-700 dark:text-green-300 font-medium">
-              Thanks for reaching out! I'll get back to you soon.
+              Thanks for reaching out! I&apos;ll get back to you soon.
             </p>
           </div>
         ) : (
