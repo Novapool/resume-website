@@ -74,10 +74,10 @@ export default function AboutContact() {
             <Card className="mb-4">
               <CardContent className="p-6">
                 <p className="mb-3">
-                  Hi, I&apos;m Laith Assaf, a Computer Science student at Michigan State University with a passion for artificial intelligence and machine learning. I&apos;m currently working to become a more well-rounded full-stack developer, combining my ML expertise with modern web development skills.
+                  Hi, I&apos;m Laith Assaf, a Junior in Computer Science student at Michigan State University with a passion for artificial intelligence and machine learning. I&apos;m currently working to become a more well-rounded full-stack developer, combining my ML expertise with modern web development skills.
                 </p>
                 <p>
-                  My journey in tech started with Python and C++ programming, but I&apos;ve since expanded into mobile app development with Flutter and now web development with Next.js and React. I&apos;m driven by the challenge of creating intelligent, responsive applications that solve real-world problems.
+                My journey in tech started with Python and and a drive to create and test my own AI. Since then I&apos;ve since expanded into mobile app development with Flutter, WebSockets with Go, and now web development with Next.js and React. I&apos;m driven by the challenge of creating intelligent, responsive applications that are user-friendly.
                 </p>
               </CardContent>
             </Card>
@@ -158,19 +158,19 @@ export default function AboutContact() {
                 <div>
                   <h3 className="font-semibold mb-3">Hobbies & Interests</h3>
                   <p>
-                    Outside of programming, I enjoy hiking, photography, and playing chess. I&apos;m also an avid reader, particularly of science fiction and books on emerging technologies.
+                  Outside of programming, I enjoy traveling, video games, and tinkering with hardware. I'm also an avid cook, preferring to try ingredients and techniques I've never encountered before—this curiosity even inspired me to develop an app that creates fusion recipes by blending elements from different cuisines.
                   </p>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-3">Inspiration</h3>
                   <p>
-                    My interest in AI was sparked by reading about neural networks and their potential to solve complex problems. I&apos;m fascinated by how technology can be used to enhance human capabilities and improve lives.
+                  My interest in AI was sparked by my initial fascination with DALL-E and later deepened through my exploration of ChatGPT. I'm captivated by how these transformative technologies can tackle complex problems and create new possibilities across various domains.
                   </p>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-3">Community</h3>
                   <p>
-                    I actively participate in campus hackathons and tech meetups. I also volunteer as a mentor for younger students interested in computer science, helping them navigate their early programming challenges.
+                  I actively participate in hackathons across Michigan to challenge my skills and collaborate with fellow developers. As a Workshop Coordinator on the AI club board, I dedicate much of my time to creating educational presentations on various AI topics, helping members develop their understanding of artificial intelligence concepts and applications.
                   </p>
                 </div>
               </div>
