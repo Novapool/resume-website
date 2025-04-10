@@ -5,13 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Github, Linkedin, Mail, FileText, ArrowRight, ArrowDown } from "lucide-react";
+import { Github, Linkedin, Mail, FileText, ArrowRight, ArrowDown, Maximize2 } from "lucide-react";
 import { Timeline, TimelineItem } from "@/components/ui/timeline";
 import ContactForm from "@/components/site/contact-form";
 import ContentRevealer from "@/components/loaders/ContentRevealer";
 
 export default function AboutContact() {
   const [showFullTimeline, setShowFullTimeline] = useState(false);
+  const [isResumeFullscreen, setIsResumeFullscreen] = useState(false);
 
   // Timeline data with bullet points
   const timelineItems: TimelineItem[] = [
@@ -77,7 +78,7 @@ export default function AboutContact() {
                   Hi, I&apos;m Laith Assaf, a Junior in Computer Science student at Michigan State University with a passion for artificial intelligence and machine learning. I&apos;m currently working to become a more well-rounded full-stack developer, combining my ML expertise with modern web development skills.
                 </p>
                 <p>
-                My journey in tech started with Python and and a drive to create and test my own AI. Since then I&apos;ve since expanded into mobile app development with Flutter, WebSockets with Go, and now web development with Next.js and React. I&apos;m driven by the challenge of creating intelligent, responsive applications that are user-friendly.
+                My journey in tech started with Python and a drive to create and test my own AI. Since then I&apos;ve expanded into mobile app development with Flutter, WebSockets with Go, and now web development with Next.js and React. I&apos;m driven by the challenge of creating intelligent, responsive applications that are user-friendly.
                 </p>
               </CardContent>
             </Card>
@@ -184,7 +185,16 @@ export default function AboutContact() {
         <section className="mb-20">
           <h2 className="text-2xl font-bold mb-6 text-center">Resume</h2>
           <div className="flex flex-col items-center">
-            <div className="w-full max-w-3xl h-96 bg-card rounded-xl border-2 border-primary/20 p-4 mb-6 overflow-hidden">
+            {/* Improved PDF viewer with fullscreen toggle */}
+            <div className={`relative w-full max-w-3xl ${isResumeFullscreen ? 'h-screen fixed inset-0 z-50 max-w-none p-4 bg-background' : 'h-[600px]'} bg-card rounded-xl border-2 border-primary/20 p-4 mb-6 overflow-hidden transition-all duration-300`}>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="absolute top-4 right-4 z-10"
+                onClick={() => setIsResumeFullscreen(!isResumeFullscreen)}
+              >
+                <Maximize2 className="h-4 w-4" />
+              </Button>
               <iframe 
                 src="/documents/resume.pdf" 
                 width="100%" 
@@ -208,30 +218,39 @@ export default function AboutContact() {
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-6 text-center">Get In Touch</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <Card>
-              <CardContent className="p-6 flex flex-col items-center text-center">
-                <Mail className="h-8 w-8 mb-2 text-primary" />
-                <h3 className="font-semibold">Email</h3>
-                <p className="text-sm text-muted-foreground">assaflai@msu.edu</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6 flex flex-col items-center text-center">
-                <Linkedin className="h-8 w-8 mb-2 text-primary" />
-                <h3 className="font-semibold">LinkedIn</h3>
-                <p className="text-sm text-muted-foreground">Connect professionally</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6 flex flex-col items-center text-center">
-                <Github className="h-8 w-8 mb-2 text-primary" />
-                <h3 className="font-semibold">GitHub</h3>
-                <p className="text-sm text-muted-foreground">Check out my code</p>
-              </CardContent>
-            </Card>
+            {/* Made cards clickable with Link component */}
+            <Link href="mailto:assaflai@msu.edu" className="block">
+              <Card className="h-full transition-all hover:shadow-md hover:scale-105">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <Mail className="h-8 w-8 mb-2 text-primary" />
+                  <h3 className="font-semibold">Email</h3>
+                  <p className="text-sm text-muted-foreground">assaflai@msu.edu</p>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="https://www.linkedin.com/in/laith-assaf-/" target="_blank" rel="noopener noreferrer" className="block">
+              <Card className="h-full transition-all hover:shadow-md hover:scale-105">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <Linkedin className="h-8 w-8 mb-2 text-primary" />
+                  <h3 className="font-semibold">LinkedIn</h3>
+                  <p className="text-sm text-muted-foreground">Connect professionally</p>
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="https://github.com/Novapool" target="_blank" rel="noopener noreferrer" className="block">
+              <Card className="h-full transition-all hover:shadow-md hover:scale-105">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <Github className="h-8 w-8 mb-2 text-primary" />
+                  <h3 className="font-semibold">GitHub</h3>
+                  <p className="text-sm text-muted-foreground">Check out my code</p>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
           
-          {/* Contact Form */}
+          {/* Updated Contact Form - we'll create a new version of the ContactForm component */}
           <ContactForm />
         </section>
       </ContentRevealer>
