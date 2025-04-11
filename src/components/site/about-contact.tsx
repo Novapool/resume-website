@@ -159,13 +159,13 @@ export default function AboutContact() {
                 <div>
                   <h3 className="font-semibold mb-3">Hobbies & Interests</h3>
                   <p>
-                  Outside of programming, I enjoy traveling, video games, and tinkering with hardware. I'm also an avid cook, preferring to try ingredients and techniques I've never encountered before—this curiosity even inspired me to develop an app that creates fusion recipes by blending elements from different cuisines.
+                  Outside of programming, I enjoy traveling, video games, and tinkering with hardware. I&apos;m also an avid cook, preferring to try ingredients and techniques I&apos;ve never encountered before—this curiosity even inspired me to develop an app that creates fusion recipes by blending elements from different cuisines.
                   </p>
                 </div>
                 <div>
                   <h3 className="font-semibold mb-3">Inspiration</h3>
                   <p>
-                  My interest in AI was sparked by my initial fascination with DALL-E and later deepened through my exploration of ChatGPT. I'm captivated by how these transformative technologies can tackle complex problems and create new possibilities across various domains.
+                  My interest in AI was sparked by my initial fascination with DALL-E and later deepened through my exploration of ChatGPT. I&apos;m captivated by how these transformative technologies can tackle complex problems and create new possibilities across various domains.
                   </p>
                 </div>
                 <div>
