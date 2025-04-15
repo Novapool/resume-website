@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Github, ExternalLink } from "lucide-react";
@@ -11,9 +11,6 @@ export default function Projects() {
   // State to track if we're on mobile
   const [isMobile, setIsMobile] = useState(false);
   
-  // Create ref array with the correct type
-  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
-
   // Function to detect if we're on mobile
   useEffect(() => {
     const checkIfMobile = () => {
@@ -72,11 +69,6 @@ export default function Projects() {
       icon: "📱",
     }
   ];
-
-  // Initialize cardRefs array to match projects length
-  useEffect(() => {
-    cardRefs.current = Array(projects.length).fill(null);
-  }, [projects.length]);
 
   const hue = (h: number) => `hsl(${h}, 85%, 55%)`;
 
@@ -168,11 +160,6 @@ export default function Projects() {
     }
   };
 
-  // Function to set ref that works with TypeScript
-  const setCardRef = (el: HTMLDivElement | null, index: number) => {
-    cardRefs.current[index] = el;
-  };
-
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Header Section */}
@@ -196,71 +183,72 @@ export default function Projects() {
         initial="hidden"
         animate="visible"
       >
-        {projects.map((project, i) => (
-          <motion.div
-            key={project.title}
-            className="relative mx-auto mb-12 sm:mb-24 px-4"
-            initial="offscreen"
-            // On mobile, we'll use the viewport trigger for animation
-            // On desktop, we'll keep the hover animations
-            whileInView={isMobile ? "onscreen" : undefined}
-            animate={!isMobile ? "inactive" : undefined}
-            whileHover={!isMobile ? "hover" : undefined}
-            variants={cardVariants}
-            ref={(el) => setCardRef(el, i)}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            {/* Background splash */}
-            <motion.div 
-              className="absolute inset-0 rounded-3xl"
-              style={{
-                background: `linear-gradient(306deg, ${hue(project.color.primary)}, ${hue(project.color.secondary)})`,
-                clipPath: "path('M 0 303.5 C 0 292.454 8.995 285.101 20 283.5 L 460 219.5 C 470.085 218.033 480 228.454 480 239.5 L 500 430 C 500 441.046 491.046 450 480 450 L 20 450 C 8.954 450 0 441.046 0 430 Z')",
-                zIndex: -1,
-                top: "-2rem",
-                left: "-1rem",
-                right: "-1rem",
-                bottom: "-2rem",
-              }}
-              variants={splashVariants}
+        {projects.map((project) => {
+          return (
+            <motion.div
+              key={project.title}
+              className="relative mx-auto mb-12 sm:mb-24 px-4"
+              initial="offscreen"
+              // Use whileInView for mobile devices with the once property set to false
+              whileInView={isMobile ? "onscreen" : undefined}
+              // For desktop, use the inactive/hover states
               animate={!isMobile ? "inactive" : undefined}
               whileHover={!isMobile ? "hover" : undefined}
-              whileInView={isMobile ? "onscreen" : undefined}
-              viewport={{ once: true, margin: "-100px" }}
-            />
-
-            {/* Card content */}
-            <motion.div 
-              className="bg-card shadow-lg rounded-xl p-6 sm:p-8"
+              variants={cardVariants}
+              viewport={isMobile ? { once: false, amount: 0.3, margin: "-100px" } : undefined}
             >
-              <div className="flex justify-between items-start">
-                <div className="text-4xl mb-4">{project.icon}</div>
+              {/* Background splash */}
+              <motion.div 
+                className="absolute inset-0 rounded-3xl"
+                style={{
+                  background: `linear-gradient(306deg, ${hue(project.color.primary)}, ${hue(project.color.secondary)})`,
+                  clipPath: "path('M 0 303.5 C 0 292.454 8.995 285.101 20 283.5 L 460 219.5 C 470.085 218.033 480 228.454 480 239.5 L 500 430 C 500 441.046 491.046 450 480 450 L 20 450 C 8.954 450 0 441.046 0 430 Z')",
+                  zIndex: -1,
+                  top: "-2rem",
+                  left: "-1rem",
+                  right: "-1rem",
+                  bottom: "-2rem",
+                }}
+                variants={splashVariants}
+                whileInView={isMobile ? "onscreen" : undefined}
+                animate={!isMobile ? "inactive" : undefined}
+                whileHover={!isMobile ? "hover" : undefined}
+                viewport={isMobile ? { once: false, amount: 0.3, margin: "-100px" } : undefined}
+              />
+
+              {/* Card content */}
+              <motion.div 
+                className="bg-card shadow-lg rounded-xl p-6 sm:p-8"
+              >
+                <div className="flex justify-between items-start">
+                  <div className="text-4xl mb-4">{project.icon}</div>
+                  <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                    <Button variant="ghost" size="icon">
+                      <Github className="h-5 w-5" />
+                    </Button>
+                  </Link>
+                </div>
+                
+                <h3 className="text-xl sm:text-2xl font-bold mb-2">{project.title}</h3>
+                <p className="text-muted-foreground mb-4">
+                  {project.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map(tag => (
+                    <Badge key={tag} variant="secondary">{tag}</Badge>
+                  ))}
+                </div>
+                
                 <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost" size="icon">
-                    <Github className="h-5 w-5" />
+                  <Button className="w-full">
+                    View Project <ExternalLink className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-              </div>
-              
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">{project.title}</h3>
-              <p className="text-muted-foreground mb-4">
-                {project.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map(tag => (
-                  <Badge key={tag} variant="secondary">{tag}</Badge>
-                ))}
-              </div>
-              
-              <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                <Button className="w-full">
-                  View Project <ExternalLink className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
+          );
+        })}
       </motion.div>
     </div>
   );
