@@ -45,7 +45,7 @@ export default function Projects() {
       icon: "🎮",
     },
     {
-      title: "Academic Performance Predictor",
+      title: "GradeScape",
       description: "Web application using Firebase, OCR, and AI to help students track and predict academic performance by analyzing documents.",
       tags: ["React", "Firebase", "OpenAI API", "TypeScript"],
       color: { primary: 80, secondary: 120 }, // Greenish
