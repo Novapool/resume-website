@@ -1,3 +1,4 @@
+// src/components/site/about-contact.tsx
 "use client";
 
 import { useState } from "react";
@@ -53,60 +54,65 @@ export default function AboutContact() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      {/* Hero Section with Photo and Intro */}
+      {/* Hero Section with Photo and Intro - FIXED LAYOUT */}
       <ContentRevealer delay={0.2}>
-        <section className="mb-20 relative">
-          {/* Photo Area - Moved to absolute positioning in the left corner */}
-          <div className="absolute left-0 top-0 w-64 h-64">
-            <div className="relative w-full h-full rounded-xl overflow-hidden border-4 border-primary">
-              <Image 
-                src="/images/profile.jpg" 
-                alt="Profile photo" 
-                fill 
-                style={{ objectFit: "cover" }}
-                priority
-              />
+        <section className="mb-20">
+          {/* Revised layout to be responsive */}
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-8">
+            {/* Photo Area - Now in a flexbox layout, not absolute */}
+            <div className="w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
+              <div className="relative w-full h-full rounded-xl overflow-hidden border-4 border-primary">
+                <Image 
+                  src="/images/profile.jpg" 
+                  alt="Profile photo" 
+                  fill 
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
+              </div>
+            </div>
+            
+            {/* Intro Text - Now in a flexbox layout */}
+            <div className="flex-grow">
+              <h1 className="text-4xl font-bold mb-4 text-center md:text-left">About Me</h1>
+              <Card className="mb-4">
+                <CardContent className="p-6">
+                  <p className="mb-3">
+                    Hi, I&apos;m Laith Assaf, a Junior in Computer Science student at Michigan State University with a passion for artificial intelligence and machine learning. I&apos;m currently working to become a more well-rounded full-stack developer, combining my ML expertise with modern web development skills.
+                  </p>
+                  <p>
+                  My journey in tech started with Python and a drive to create and test my own AI. Since then I&apos;ve expanded into mobile app development with Flutter, WebSockets with Go, and now web development with Next.js and React. I&apos;m driven by the challenge of creating intelligent, responsive applications that are user-friendly.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
           
-          {/* Intro Text - Centered */}
-          <div className="max-w-2xl mx-auto text-center pt-10">
-            <h1 className="text-4xl font-bold mb-4">About Me</h1>
-            <Card className="mb-4">
-              <CardContent className="p-6">
-                <p className="mb-3">
-                  Hi, I&apos;m Laith Assaf, a Junior in Computer Science student at Michigan State University with a passion for artificial intelligence and machine learning. I&apos;m currently working to become a more well-rounded full-stack developer, combining my ML expertise with modern web development skills.
-                </p>
-                <p>
-                My journey in tech started with Python and a drive to create and test my own AI. Since then I&apos;ve expanded into mobile app development with Flutter, WebSockets with Go, and now web development with Next.js and React. I&apos;m driven by the challenge of creating intelligent, responsive applications that are user-friendly.
-                </p>
-              </CardContent>
-            </Card>
-            <div className="flex justify-center gap-4">
-              <Link href="https://github.com/Novapool" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="gap-2">
-                  <Github className="h-4 w-4" />
-                  GitHub
-                </Button>
-              </Link>
-              <Link href="https://www.linkedin.com/in/laith-assaf-/" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="gap-2">
-                  <Linkedin className="h-4 w-4" />
-                  LinkedIn
-                </Button>
-              </Link>
-              <Link href="mailto:assaflai@msu.edu">
-                <Button variant="outline" className="gap-2">
-                  <Mail className="h-4 w-4" />
-                  Email
-                </Button>
-              </Link>
-            </div>
+          {/* Social links - Moved outside the flexbox */}
+          <div className="flex justify-center gap-4">
+            <Link href="https://github.com/Novapool" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" className="gap-2">
+                <Github className="h-4 w-4" />
+                GitHub
+              </Button>
+            </Link>
+            <Link href="https://www.linkedin.com/in/laith-assaf-/" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" className="gap-2">
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
+              </Button>
+            </Link>
+            <Link href="mailto:assaflai@msu.edu">
+              <Button variant="outline" className="gap-2">
+                <Mail className="h-4 w-4" />
+                Email
+              </Button>
+            </Link>
           </div>
         </section>
       </ContentRevealer>
 
-      {/* Timeline Section */}
+      {/* Rest of the component remains unchanged */}
       <ContentRevealer delay={0.4}>
         <section className="mb-20">
           <h2 className="text-2xl font-bold mb-6 text-center">My Journey</h2>
@@ -124,7 +130,6 @@ export default function AboutContact() {
         </section>
       </ContentRevealer>
 
-      {/* Professional Values & Working Style */}
       <ContentRevealer delay={0.6}>
         <section className="mb-20">
           <h2 className="text-2xl font-bold mb-6 text-center">Professional Profile</h2>
@@ -149,7 +154,6 @@ export default function AboutContact() {
         </section>
       </ContentRevealer>
 
-      {/* Background & Personal Interests */}
       <ContentRevealer delay={0.8}>
         <section className="mb-20">
           <h2 className="text-2xl font-bold mb-6 text-center">Beyond Tech</h2>
@@ -180,7 +184,6 @@ export default function AboutContact() {
         </section>
       </ContentRevealer>
 
-      {/* Resume Section */}
       <ContentRevealer delay={1.0}>
         <section className="mb-20">
           <h2 className="text-2xl font-bold mb-6 text-center">Resume</h2>
@@ -213,7 +216,6 @@ export default function AboutContact() {
         </section>
       </ContentRevealer>
 
-      {/* Contact Section */}
       <ContentRevealer delay={1.2}>
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-6 text-center">Get In Touch</h2>
@@ -255,7 +257,6 @@ export default function AboutContact() {
         </section>
       </ContentRevealer>
 
-      {/* Final Call to Action */}
       <ContentRevealer delay={1.4}>
         <section className="text-center py-10">
           <h2 className="text-xl font-semibold mb-4">Want to see what I&apos;ve built?</h2>

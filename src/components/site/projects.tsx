@@ -1,15 +1,34 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 import Link from "next/link";
 import { Github, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export default function Projects() {
-  // Create ref array with the correct type (keeping for potential future use)
+  // State to track if we're on mobile
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Create ref array with the correct type
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  // Function to detect if we're on mobile
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768); // 768px is a common breakpoint for mobile
+    };
+    
+    // Check initially
+    checkIfMobile();
+    
+    // Add listener for window resize
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   const projects = [
     {
@@ -54,7 +73,7 @@ export default function Projects() {
     }
   ];
 
-  // Initialize cardRefs array to match projects length (keeping for potential future use)
+  // Initialize cardRefs array to match projects length
   useEffect(() => {
     cardRefs.current = Array(projects.length).fill(null);
   }, [projects.length]);
@@ -182,10 +201,14 @@ export default function Projects() {
             key={project.title}
             className="relative mx-auto mb-12 sm:mb-24 px-4"
             initial="offscreen"
-            animate="inactive"
-            whileHover="hover"
+            // On mobile, we'll use the viewport trigger for animation
+            // On desktop, we'll keep the hover animations
+            whileInView={isMobile ? "onscreen" : undefined}
+            animate={!isMobile ? "inactive" : undefined}
+            whileHover={!isMobile ? "hover" : undefined}
             variants={cardVariants}
             ref={(el) => setCardRef(el, i)}
+            viewport={{ once: true, margin: "-100px" }}
           >
             {/* Background splash */}
             <motion.div 
@@ -200,8 +223,10 @@ export default function Projects() {
                 bottom: "-2rem",
               }}
               variants={splashVariants}
-              animate="inactive"
-              whileHover="hover"
+              animate={!isMobile ? "inactive" : undefined}
+              whileHover={!isMobile ? "hover" : undefined}
+              whileInView={isMobile ? "onscreen" : undefined}
+              viewport={{ once: true, margin: "-100px" }}
             />
 
             {/* Card content */}

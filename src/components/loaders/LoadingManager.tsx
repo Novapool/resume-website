@@ -2,6 +2,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 // Use named imports to avoid potential issues with default imports
 import type { FC, ReactNode } from 'react';
 import TerminalLoader from "./TerminalLoader";
@@ -12,6 +13,7 @@ interface LoadingManagerProps {
 }
 
 const LoadingManager: FC<LoadingManagerProps> = ({ children }) => {
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [showCascade, setShowCascade] = useState(false);
   const [showContent, setShowContent] = useState(false);
@@ -27,7 +29,15 @@ const LoadingManager: FC<LoadingManagerProps> = ({ children }) => {
   const handleCascadeComplete = () => {
     console.log("Cascade animation complete callback triggered");
     setShowCascade(false);
-    setShowContent(true);
+    
+    // Check if we're not already on the homepage, redirect to it
+    const isHomePage = window.location.pathname === "/";
+    if (!isHomePage) {
+      router.push("/");
+    } else {
+      // If we're already on the homepage, just show the content
+      setShowContent(true);
+    }
   };
   
   // Skip the loading animation if the user has already seen it in this session
