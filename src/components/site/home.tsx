@@ -2,6 +2,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -9,15 +10,12 @@ import { ArrowRight, Github, Linkedin, Code, Brain, Cpu } from "lucide-react";
 import ContentRevealer from "@/components/loaders/ContentRevealer";
 
 export default function Home() {
-  // Skills with space-themed neon colors
-  const skills = [
-    { name: "Python", level: 90, color: "from-[oklch(0.72_0.28_290)] to-[oklch(0.65_0.30_280)]" }, // Purple
-    { name: "C++", level: 70, color: "from-[oklch(0.75_0.25_350)] to-[oklch(0.70_0.28_340)]" }, // Pink
-    { name: "TensorFlow", level: 70, color: "from-[oklch(0.82_0.32_145)] to-[oklch(0.75_0.28_155)]" }, // Green
-    { name: "OpenCV", level: 65, color: "from-[oklch(0.88_0.24_85)] to-[oklch(0.82_0.26_95)]" }, // Yellow
-    { name: "Flutter", level: 40, color: "from-[oklch(0.75_0.26_35)] to-[oklch(0.70_0.28_45)]" }, // Orange
-    { name: "Firebase", level: 75, color: "from-[oklch(0.72_0.28_290)] to-[oklch(0.75_0.25_350)]" }, // Purple to Pink
-    { name: "Github", level: 70, color: "from-[oklch(0.82_0.32_145)] to-[oklch(0.88_0.24_85)]" }, // Green to Yellow
+  // Skills organized by category
+  const skillCategories = [
+    { category: "Languages", skills: ["Python", "C++", "C#", "SQL", "TypeScript"] },
+    { category: "AI/ML", skills: ["PyTorch", "TensorFlow", "OpenAI API", "ML-Agents", "YAMNet", "OpenCV", "Ollama"] },
+    { category: "Web & Backend", skills: ["FastAPI", "Flask", "React", "REST APIs", "WebSockets", "Firebase", "Supabase"] },
+    { category: "Infrastructure", skills: ["Unity", "Git", "Linux", "Docker", "SSH", "AsyncIO", "Streamlit"] }
   ];
 
   return (
@@ -29,7 +27,7 @@ export default function Home() {
             Laith Assaf
           </h1>
           <h2 className="text-xl md:text-2xl text-muted-foreground mb-6">
-            Computer Science Student & AI Enthusiast
+            CS Student | MHacks Winner | AI Club Workshop Coordinator
           </h2>
           <div className="flex gap-4 mb-8">
             <Link href="https://github.com/Novapool" target="_blank" rel="noopener noreferrer">
@@ -44,9 +42,8 @@ export default function Home() {
             </Link>
           </div>
           <p className="max-w-2xl text-muted-foreground mb-8">
-            I&apos;m a Computer Science student at Michigan State University with a passion for artificial intelligence, 
-            machine learning, and backend development. Currently working on innovative projects involving AI agents,
-            computer vision, and application development.
+            I&apos;m a Computer Science student at Michigan State University, MHacks 2025 winner, and Workshop Coordinator
+            for MSU AI Club. I specialize in real-time AI systems and high-performance backend development with FastAPI and WebSockets.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/projects">
@@ -83,7 +80,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Experience with TensorFlow, PyTorch, and OpenCV for developing intelligent systems and computer vision solutions.
+                    Building real-time inference systems with PyTorch, YAMNet, and OpenAI API. Specialized in sub-50ms latency ML pipelines.
                   </p>
                 </CardContent>
               </Card>
@@ -101,7 +98,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Proficient in building robust backend systems with Python, Firebase, and API integration.
+                    Architecting high-performance backends with FastAPI, WebSockets, and AsyncIO. Expert in real-time streaming with sub-10ms response times.
                   </p>
                 </CardContent>
               </Card>
@@ -114,12 +111,12 @@ export default function Home() {
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <Cpu className="mr-2 h-5 w-5" /> App & Game Development
+                    <Cpu className="mr-2 h-5 w-5" /> Systems & Infrastructure
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Creating mobile applications with Flutter and interactive experiences with Unity.
+                    Building server management platforms with Docker, SSH, and Linux. Automating infrastructure and reducing admin overhead.
                   </p>
                 </CardContent>
               </Card>
@@ -142,13 +139,13 @@ export default function Home() {
             >
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle>AIForge - AI Development Assistant</CardTitle>
-                  <CardDescription>Streamlit-based application for AI model development</CardDescription>
+                  <CardTitle>SoundSense - MHacks 2025 Winner</CardTitle>
+                  <CardDescription>Real-Time Audio Classification for Accessibility</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="mb-4">
-                    A web application that simplifies the AI model development process with intuitive interfaces for data management, 
-                    model development, and training visualization.
+                    Award-winning hackathon project (300+ participants) providing real-time hazard detection for hearing-impaired users.
+                    YAMNet CNN with 95% accuracy and &lt;50ms latency, Flask backend with WebSocket streaming.
                   </p>
                   <Link href="/projects">
                     <Button variant="outline" size="sm">
@@ -165,13 +162,13 @@ export default function Home() {
             >
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle>Adaptive ML Combat AI</CardTitle>
-                  <CardDescription>Unity-based machine learning system</CardDescription>
+                  <CardTitle>Nexus - AI Server Management</CardTitle>
+                  <CardDescription>WebSocket-based SSH platform with GPT integration</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="mb-4">
-                    An ML agent AI that dynamically adapts to player fighting style, switching tactics between aggression
-                    and defense based on learned patterns during gameplay.
+                    Web-based SSH terminal using FastAPI and AsyncSSH. Real-time WebSocket streaming with sub-10ms latency,
+                    GPT-powered command assistance, reducing server admin time by 70%.
                   </p>
                   <Link href="/projects">
                     <Button variant="outline" size="sm">
@@ -191,27 +188,26 @@ export default function Home() {
           <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center color-transition">
             Technical Skills
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 max-w-3xl mx-auto">
-            {skills.map((skill, index) => (
-              <motion.div 
-                key={skill.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.3 + index * 0.1, duration: 0.5 }}
-                className="mb-4"
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {skillCategories.map((category, categoryIndex) => (
+              <motion.div
+                key={category.category}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.3 + categoryIndex * 0.1, duration: 0.5 }}
               >
-                <div className="flex justify-between mb-1">
-                  <span className="font-medium">{skill.name}</span>
-                  <span className="text-muted-foreground">{skill.level}%</span>
-                </div>
-                <div className="w-full bg-muted h-2">
-                  <motion.div
-                    className={`h-2 bg-gradient-to-r ${skill.color}`}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.level}%` }}
-                    transition={{ delay: 1.4 + index * 0.1, duration: 1 }}
-                  />
-                </div>
+                <Card className="h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg">{category.category}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill) => (
+                        <Badge key={skill} variant="secondary">{skill}</Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>

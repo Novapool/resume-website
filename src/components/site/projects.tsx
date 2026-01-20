@@ -38,10 +38,26 @@ export default function Projects() {
 
   const projects = [
     {
+      title: "SoundSense",
+      description: "MHacks 2025 Winner (300+ participants). Real-time audio classification for hearing-impaired users. YAMNet CNN with 95% accuracy, <50ms latency, Flask/WebSocket backend.",
+      tags: ["Python", "YAMNet", "Flask", "WebSocket", "ML"],
+      color: spaceColors.purple,
+      github: "https://github.com/Novapool/sound_sense",
+      icon: "🏆",
+    },
+    {
+      title: "Nexus",
+      description: "AI-powered server management with web-based SSH terminal. FastAPI, AsyncSSH, WebSocket streaming with sub-10ms latency. Reduced admin time by 70%.",
+      tags: ["FastAPI", "GPT", "SSH", "AsyncIO", "Python"],
+      color: spaceColors.pink,
+      github: "https://github.com/Novapool/Nexus",
+      icon: "🖥️",
+    },
+    {
       title: "AIForge",
       description: "AI Development Assistant that simplifies the model development process with intuitive interfaces for data management, training, and visualization.",
       tags: ["Python", "Streamlit", "PyTorch", "Pandas"],
-      color: spaceColors.pink, // Hot pink
+      color: spaceColors.green,
       github: "https://github.com/Novapool/AIForge",
       icon: "🧠",
     },
@@ -49,7 +65,7 @@ export default function Projects() {
       title: "Adaptive ML Combat AI",
       description: "Unity-based ML agent that dynamically adapts to player fighting style, switching between aggression and defense based on learned patterns.",
       tags: ["Unity", "ML-Agents", "C#", "AI"],
-      color: spaceColors.purple, // Neon purple
+      color: spaceColors.yellow,
       github: "https://github.com/Novapool/ai-game",
       icon: "🎮",
     },
@@ -57,7 +73,7 @@ export default function Projects() {
       title: "GradeScape",
       description: "Web application using Firebase, OCR, and AI to help students track and predict academic performance by analyzing documents.",
       tags: ["React", "Firebase", "OpenAI API", "TypeScript"],
-      color: spaceColors.green, // Matrix green
+      color: spaceColors.orange,
       github: "https://github.com/Novapool/grading-calendar-ai",
       icon: "📚",
     },
@@ -65,7 +81,7 @@ export default function Projects() {
       title: "Sign Language Detector",
       description: "Real-time Python application utilizing TensorFlow and OpenCV to recognize hand landmarks and interpret sign language shapes.",
       tags: ["Python", "TensorFlow", "OpenCV", "ML"],
-      color: spaceColors.yellow, // Neon yellow
+      color: spaceColors.purple,
       github: "https://github.com/Novapool/SignLanguageDetector",
       icon: "👋",
     },
@@ -73,7 +89,7 @@ export default function Projects() {
       title: "LifeQuest App",
       description: "Gamified task management application using Flutter, enabling users to complete tasks, set goals, and progress through levels.",
       tags: ["Flutter", "Dart", "Firebase", "Mobile"],
-      color: spaceColors.orange, // Neon orange
+      color: spaceColors.pink,
       github: "https://github.com/Novapool/LifeQuest",
       icon: "📱",
     }
@@ -178,8 +194,8 @@ export default function Projects() {
       >
         <h1 className="text-4xl md:text-5xl font-bold mb-4">My Projects</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          A collection of my work in AI, machine learning, game development, and web applications.
-          These projects showcase my technical skills and passion for solving complex problems.
+          A collection of my work in real-time AI systems, backend infrastructure, and machine learning.
+          Featuring award-winning hackathon projects and production-ready applications.
         </p>
       </motion.div>
 

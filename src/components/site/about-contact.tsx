@@ -40,7 +40,7 @@ export default function AboutContact() {
     {
       title: "Taking Leadership",
       date: "2025",
-      description: "<ul class='list-disc pl-5 space-y-1'><li>Began Academic Performance Predictor project</li><li>Appointed to AI Club board as Workshop Coordinator</li><li>Designed and presented &apos;Your Place in the AI Industry&apos; workshop</li></ul>"
+      description: "<ul class='list-disc pl-5 space-y-1'><li>Won MHacks 2025 with SoundSense (300+ participants)</li><li>Built Nexus server management platform with FastAPI and WebSockets</li><li>Appointed to AI Club board as Workshop Coordinator</li><li>Led 8+ workshops reaching 500+ attendees</li></ul>"
     },
     {
       title: "Future Aspirations",
@@ -78,10 +78,10 @@ export default function AboutContact() {
               <Card className="mb-4">
                 <CardContent className="p-6">
                   <p className="mb-3">
-                    Hi, I&apos;m Laith Assaf, a Junior in Computer Science student at Michigan State University with a passion for artificial intelligence and machine learning. I&apos;m currently working to become a more well-rounded full-stack developer, combining my ML expertise with modern web development skills.
+                    Hi, I&apos;m Laith Assaf, a Computer Science student at Michigan State University, MHacks 2025 winner, and Workshop Coordinator for MSU AI Club. I specialize in building real-time AI systems and high-performance backend infrastructure.
                   </p>
                   <p>
-                  My journey in tech started with Python and a drive to create and test my own AI. Since then I&apos;ve expanded into mobile app development with Flutter, WebSockets with Go, and now web development with Next.js and React. I&apos;m driven by the challenge of creating intelligent, responsive applications that are user-friendly.
+                  My journey started with Python and AI experimentation. I&apos;ve since focused on real-time systems with FastAPI and WebSockets, ML inference pipelines, and server infrastructure. I build intelligent applications that operate at scale with minimal latency.
                   </p>
                 </CardContent>
               </Card>
@@ -175,7 +175,7 @@ export default function AboutContact() {
                 <div>
                   <h3 className="font-semibold mb-3">Community</h3>
                   <p>
-                  I actively participate in hackathons across Michigan to challenge my skills and collaborate with fellow developers. As a Workshop Coordinator on the AI club board, I dedicate much of my time to creating educational presentations on various AI topics, helping members develop their understanding of artificial intelligence concepts and applications.
+                  I actively participate in hackathons across Michigan—winning MHacks 2025 with SoundSense among 300+ participants. As Workshop Coordinator for MSU AI Club, I&apos;ve led 8+ workshops reaching 500+ attendees, helping members develop practical AI skills and build real projects.
                   </p>
                 </div>
               </div>
