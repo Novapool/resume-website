@@ -9,14 +9,15 @@ import { ArrowRight, Github, Linkedin, Code, Brain, Cpu } from "lucide-react";
 import ContentRevealer from "@/components/loaders/ContentRevealer";
 
 export default function Home() {
+  // Skills with space-themed neon colors
   const skills = [
-    { name: "Python", level: 90 },
-    { name: "C++", level: 70 },
-    { name: "TensorFlow", level: 70 },
-    { name: "OpenCV", level: 65 },
-    { name: "Flutter", level: 40 },
-    { name: "Firebase", level: 75 },
-    { name: "Github", level: 70 },
+    { name: "Python", level: 90, color: "from-[oklch(0.72_0.28_290)] to-[oklch(0.65_0.30_280)]" }, // Purple
+    { name: "C++", level: 70, color: "from-[oklch(0.75_0.25_350)] to-[oklch(0.70_0.28_340)]" }, // Pink
+    { name: "TensorFlow", level: 70, color: "from-[oklch(0.82_0.32_145)] to-[oklch(0.75_0.28_155)]" }, // Green
+    { name: "OpenCV", level: 65, color: "from-[oklch(0.88_0.24_85)] to-[oklch(0.82_0.26_95)]" }, // Yellow
+    { name: "Flutter", level: 40, color: "from-[oklch(0.75_0.26_35)] to-[oklch(0.70_0.28_45)]" }, // Orange
+    { name: "Firebase", level: 75, color: "from-[oklch(0.72_0.28_290)] to-[oklch(0.75_0.25_350)]" }, // Purple to Pink
+    { name: "Github", level: 70, color: "from-[oklch(0.82_0.32_145)] to-[oklch(0.88_0.24_85)]" }, // Green to Yellow
   ];
 
   return (
@@ -203,9 +204,9 @@ export default function Home() {
                   <span className="font-medium">{skill.name}</span>
                   <span className="text-muted-foreground">{skill.level}%</span>
                 </div>
-                <div className="w-full bg-muted rounded-full h-2">
+                <div className="w-full bg-muted h-2">
                   <motion.div
-                    className="bg-primary h-2 rounded-full"
+                    className={`h-2 bg-gradient-to-r ${skill.color}`}
                     initial={{ width: 0 }}
                     animate={{ width: `${skill.level}%` }}
                     transition={{ delay: 1.4 + index * 0.1, duration: 1 }}

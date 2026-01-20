@@ -12,9 +12,9 @@ import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export default function Navbar() {
     return (
-        <header className="bg-background border-b">
+        <header className="bg-background/80 backdrop-blur-sm border-b-2 border-primary/30">
             <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-                <Link href="/" className="text-2xl font-bold text-foreground">
+                <Link href="/" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
                     My Resume
                 </Link>
                 

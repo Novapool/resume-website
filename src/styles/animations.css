@@ -27,3 +27,155 @@
 .terminal-progress-bar {
   transition: width 300ms ease-in-out;
 }
+
+/* ============================================
+   STARFIELD BACKGROUND ANIMATIONS
+   ============================================ */
+
+/* Starfield drift animation - slow movement */
+@keyframes starfield-drift {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    transform: translateY(-100px) translateX(-50px);
+  }
+}
+
+/* Twinkle animation for stars */
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Starfield container */
+.starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Small white stars - dense field */
+.stars-small {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: transparent;
+  animation: starfield-drift 120s linear infinite;
+  box-shadow:
+    /* Row 1 */
+    50px 80px 1px 0px rgba(255, 255, 255, 0.8),
+    150px 120px 1px 0px rgba(255, 255, 255, 0.6),
+    280px 60px 1px 0px rgba(255, 255, 255, 0.7),
+    400px 200px 1px 0px rgba(255, 255, 255, 0.5),
+    520px 150px 1px 0px rgba(255, 255, 255, 0.8),
+    680px 90px 1px 0px rgba(255, 255, 255, 0.6),
+    800px 240px 1px 0px rgba(255, 255, 255, 0.7),
+    920px 180px 1px 0px rgba(255, 255, 255, 0.5),
+    /* Row 2 */
+    100px 320px 1px 0px rgba(255, 255, 255, 0.7),
+    220px 380px 1px 0px rgba(255, 255, 255, 0.5),
+    350px 300px 1px 0px rgba(255, 255, 255, 0.8),
+    480px 420px 1px 0px rgba(255, 255, 255, 0.6),
+    600px 350px 1px 0px rgba(255, 255, 255, 0.7),
+    750px 400px 1px 0px rgba(255, 255, 255, 0.5),
+    880px 320px 1px 0px rgba(255, 255, 255, 0.8),
+    1000px 380px 1px 0px rgba(255, 255, 255, 0.6),
+    /* Row 3 */
+    70px 520px 1px 0px rgba(255, 255, 255, 0.6),
+    180px 580px 1px 0px rgba(255, 255, 255, 0.8),
+    320px 500px 1px 0px rgba(255, 255, 255, 0.5),
+    450px 620px 1px 0px rgba(255, 255, 255, 0.7),
+    580px 550px 1px 0px rgba(255, 255, 255, 0.6),
+    700px 600px 1px 0px rgba(255, 255, 255, 0.8),
+    850px 520px 1px 0px rgba(255, 255, 255, 0.5),
+    980px 580px 1px 0px rgba(255, 255, 255, 0.7),
+    /* Row 4 */
+    130px 720px 1px 0px rgba(255, 255, 255, 0.5),
+    260px 780px 1px 0px rgba(255, 255, 255, 0.7),
+    400px 700px 1px 0px rgba(255, 255, 255, 0.6),
+    530px 820px 1px 0px rgba(255, 255, 255, 0.8),
+    650px 750px 1px 0px rgba(255, 255, 255, 0.5),
+    780px 800px 1px 0px rgba(255, 255, 255, 0.7),
+    920px 720px 1px 0px rgba(255, 255, 255, 0.6);
+}
+
+/* Medium colored stars - space theme colors */
+.stars-medium {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: transparent;
+  animation: starfield-drift 90s linear infinite, star-twinkle 4s ease-in-out infinite;
+  box-shadow:
+    /* Purple stars */
+    200px 100px 2px 1px oklch(0.72 0.28 290 / 0.7),
+    600px 300px 2px 1px oklch(0.72 0.28 290 / 0.6),
+    1000px 500px 2px 1px oklch(0.72 0.28 290 / 0.8),
+    /* Pink stars */
+    350px 250px 2px 1px oklch(0.75 0.25 350 / 0.7),
+    750px 450px 2px 1px oklch(0.75 0.25 350 / 0.6),
+    /* Green stars */
+    450px 150px 2px 1px oklch(0.82 0.32 145 / 0.6),
+    850px 350px 2px 1px oklch(0.82 0.32 145 / 0.7),
+    /* Yellow stars */
+    550px 550px 2px 1px oklch(0.88 0.24 85 / 0.6),
+    950px 750px 2px 1px oklch(0.88 0.24 85 / 0.7);
+}
+
+/* Large bright stars */
+.stars-large {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: transparent;
+  animation: starfield-drift 60s linear infinite, star-twinkle 6s ease-in-out infinite alternate;
+  box-shadow:
+    300px 200px 3px 2px rgba(255, 255, 255, 0.9),
+    700px 400px 3px 2px oklch(0.72 0.28 290 / 0.9),
+    500px 600px 3px 2px oklch(0.75 0.25 350 / 0.9),
+    900px 150px 3px 2px oklch(0.82 0.32 145 / 0.9);
+}
+
+/* Light mode - more subtle stars */
+:root .starfield {
+  opacity: 0.3;
+}
+
+/* Dark mode - vibrant stars */
+.dark .starfield {
+  opacity: 1;
+}
+
+/* ============================================
+   PIXEL/RETRO GLOW EFFECTS
+   ============================================ */
+
+/* Neon text glow for headings */
+.pixel-glow {
+  text-shadow:
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 20px currentColor;
+}
+
+/* Subtle glow for interactive elements */
+.hover-glow:hover {
+  box-shadow:
+    0 0 10px oklch(0.72 0.28 290 / 0.5),
+    0 0 20px oklch(0.72 0.28 290 / 0.3);
+}
+
+/* Pixel shadow effect */
+.pixel-shadow {
+  box-shadow: 4px 4px 0 0 currentColor;
+}

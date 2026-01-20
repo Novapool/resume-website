@@ -27,12 +27,21 @@ export default function Projects() {
     return () => window.removeEventListener('resize', checkIfMobile);
   }, []);
 
+  // Space-themed color palette using OKLCH for vibrant neon colors
+  const spaceColors = {
+    purple: { primary: "oklch(0.72 0.28 290)", secondary: "oklch(0.65 0.30 280)" },
+    pink: { primary: "oklch(0.75 0.25 350)", secondary: "oklch(0.70 0.28 340)" },
+    green: { primary: "oklch(0.82 0.32 145)", secondary: "oklch(0.75 0.28 155)" },
+    yellow: { primary: "oklch(0.88 0.24 85)", secondary: "oklch(0.82 0.26 95)" },
+    orange: { primary: "oklch(0.75 0.26 35)", secondary: "oklch(0.70 0.28 45)" },
+  };
+
   const projects = [
     {
       title: "AIForge",
       description: "AI Development Assistant that simplifies the model development process with intuitive interfaces for data management, training, and visualization.",
       tags: ["Python", "Streamlit", "PyTorch", "Pandas"],
-      color: { primary: 340, secondary: 10 }, // Reddish
+      color: spaceColors.pink, // Hot pink
       github: "https://github.com/Novapool/AIForge",
       icon: "🧠",
     },
@@ -40,7 +49,7 @@ export default function Projects() {
       title: "Adaptive ML Combat AI",
       description: "Unity-based ML agent that dynamically adapts to player fighting style, switching between aggression and defense based on learned patterns.",
       tags: ["Unity", "ML-Agents", "C#", "AI"],
-      color: { primary: 205, secondary: 245 }, // Bluish
+      color: spaceColors.purple, // Neon purple
       github: "https://github.com/Novapool/ai-game",
       icon: "🎮",
     },
@@ -48,7 +57,7 @@ export default function Projects() {
       title: "GradeScape",
       description: "Web application using Firebase, OCR, and AI to help students track and predict academic performance by analyzing documents.",
       tags: ["React", "Firebase", "OpenAI API", "TypeScript"],
-      color: { primary: 80, secondary: 120 }, // Greenish
+      color: spaceColors.green, // Matrix green
       github: "https://github.com/Novapool/grading-calendar-ai",
       icon: "📚",
     },
@@ -56,7 +65,7 @@ export default function Projects() {
       title: "Sign Language Detector",
       description: "Real-time Python application utilizing TensorFlow and OpenCV to recognize hand landmarks and interpret sign language shapes.",
       tags: ["Python", "TensorFlow", "OpenCV", "ML"],
-      color: { primary: 260, secondary: 290 }, // Purplish
+      color: spaceColors.yellow, // Neon yellow
       github: "https://github.com/Novapool/SignLanguageDetector",
       icon: "👋",
     },
@@ -64,13 +73,11 @@ export default function Projects() {
       title: "LifeQuest App",
       description: "Gamified task management application using Flutter, enabling users to complete tasks, set goals, and progress through levels.",
       tags: ["Flutter", "Dart", "Firebase", "Mobile"],
-      color: { primary: 20, secondary: 40 }, // Orange
+      color: spaceColors.orange, // Neon orange
       github: "https://github.com/Novapool/LifeQuest",
       icon: "📱",
     }
   ];
-
-  const hue = (h: number) => `hsl(${h}, 85%, 55%)`;
 
   // Variants for the container
   const containerVariants = {
@@ -198,10 +205,10 @@ export default function Projects() {
               viewport={isMobile ? { once: false, amount: 0.3, margin: "-100px" } : undefined}
             >
               {/* Background splash */}
-              <motion.div 
-                className="absolute inset-0 rounded-3xl"
+              <motion.div
+                className="absolute inset-0"
                 style={{
-                  background: `linear-gradient(306deg, ${hue(project.color.primary)}, ${hue(project.color.secondary)})`,
+                  background: `linear-gradient(306deg, ${project.color.primary}, ${project.color.secondary})`,
                   clipPath: "path('M 0 303.5 C 0 292.454 8.995 285.101 20 283.5 L 460 219.5 C 470.085 218.033 480 228.454 480 239.5 L 500 430 C 500 441.046 491.046 450 480 450 L 20 450 C 8.954 450 0 441.046 0 430 Z')",
                   zIndex: -1,
                   top: "-2rem",
@@ -217,8 +224,8 @@ export default function Projects() {
               />
 
               {/* Card content */}
-              <motion.div 
-                className="bg-card shadow-lg rounded-xl p-6 sm:p-8"
+              <motion.div
+                className="bg-card shadow-[4px_4px_0_0_oklch(0.72_0.28_290/0.3)] border-2 border-primary/30 p-6 sm:p-8"
               >
                 <div className="flex justify-between items-start">
                   <div className="text-4xl mb-4">{project.icon}</div>

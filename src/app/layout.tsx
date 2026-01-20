@@ -1,6 +1,6 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 import "../styles/animations.css"; // Import our animation styles
 import Navbar from "@/components/site/navbar";
@@ -18,6 +18,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const pressStart2P = Press_Start_2P({
+  variable: "--font-pixel",
+  weight: "400",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "My Resume Website",
   description: "Personal resume and portfolio",
@@ -31,9 +37,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable} antialiased`}
       >
         <ThemeProvider>
+          {/* Starfield background */}
+          <div className="starfield">
+            <div className="stars-small" />
+            <div className="stars-medium" />
+            <div className="stars-large" />
+          </div>
           <LoadingManager>
             <Navbar />
             {children}
