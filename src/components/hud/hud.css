@@ -1,0 +1,971 @@
+/* src/components/hud/hud.css
+   The shared nav-computer visual system: chrome, dossier panels and the
+   typography used by the Space Navigator landing *and* every section page.
+   Everything is scoped under .hud-root (or .sn-root, for the shared planet
+   renderer) so none of it leaks into the rest of the site. */
+
+/* HUD pages are always deep space, whatever the site theme is set to — this
+   keeps overscroll and the area behind the fixed scene from flashing light. */
+html:has(.hud-root),
+body:has(.hud-root) {
+  background: #06070e;
+}
+
+.hud-root {
+  /* overridden per page with the focused planet's theme colour */
+  --planet: #57e6c4;
+  --planet-rgb: 87, 230, 196;
+
+  --hud-accent: #57e6c4;
+  --hud-accent-rgb: 87, 230, 196;
+  --hud-amber: #ffb35c;
+  --hud-text: #f2f5fc;
+  --hud-muted: rgba(213, 224, 240, 0.72);
+  --hud-label: rgba(150, 168, 190, 0.7);
+  --hud-panel: rgba(10, 14, 24, 0.55);
+  --hud-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --hud-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+
+  position: relative;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: #06070e;
+  color: #eaf0fb;
+  font-family: var(--hud-mono);
+}
+
+/* ── shared keyframes (also used by the landing scene) ─────────────────── */
+
+@keyframes sn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* bioluminescent breathing — the contact moon's lichen */
+@keyframes hud-bio {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes hud-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* ══ BACKGROUND LAYERS ══════════════════════════════════════════════════ */
+
+.hud-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hud-stars {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(234, 240, 251, 0.55), transparent),
+    radial-gradient(1px 1px at 34% 62%, rgba(234, 240, 251, 0.4), transparent),
+    radial-gradient(1.6px 1.6px at 68% 24%, rgba(234, 240, 251, 0.6), transparent),
+    radial-gradient(1px 1px at 82% 71%, rgba(234, 240, 251, 0.45), transparent),
+    radial-gradient(1.4px 1.4px at 52% 88%, rgba(234, 240, 251, 0.5), transparent),
+    radial-gradient(1px 1px at 91% 40%, rgba(234, 240, 251, 0.35), transparent),
+    radial-gradient(1px 1px at 22% 84%, rgba(234, 240, 251, 0.4), transparent),
+    radial-gradient(1.2px 1.2px at 6% 52%, rgba(234, 240, 251, 0.5), transparent);
+  background-size: 620px 620px;
+}
+
+.hud-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(87, 230, 196, 0.022) 0 1px,
+      transparent 1px 74px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(87, 230, 196, 0.022) 0 1px,
+      transparent 1px 74px
+    );
+}
+
+.hud-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 95% at 50% 45%,
+    transparent 52%,
+    rgba(3, 4, 10, 0.9) 100%
+  );
+}
+
+.hud-wash {
+  position: absolute;
+  inset: 0;
+}
+
+/* The planet you've landed on, as a horizon arc across the lower viewport. */
+.hud-limb {
+  position: absolute;
+  left: 50%;
+  width: 220vmax;
+  height: 220vmax;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hud-limb-rim {
+  position: absolute;
+  left: 50%;
+  width: 220vmax;
+  height: 220vmax;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ── corner brackets ──────────────────────────────────────────────────── */
+
+.hud-corners {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.hud-corner {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 0 solid rgba(87, 230, 196, 0.45);
+}
+
+.hud-corner-tl {
+  top: 18px;
+  left: 18px;
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+}
+.hud-corner-tr {
+  top: 18px;
+  right: 18px;
+  border-top-width: 1.5px;
+  border-right-width: 1.5px;
+}
+.hud-corner-bl {
+  bottom: 18px;
+  left: 18px;
+  border-bottom-width: 1.5px;
+  border-left-width: 1.5px;
+}
+.hud-corner-br {
+  bottom: 18px;
+  right: 18px;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+}
+
+/* ══ TOP BAR ════════════════════════════════════════════════════════════ */
+
+.hud-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 40px;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 7, 14, 0.92) 0%,
+    rgba(6, 7, 14, 0.72) 62%,
+    rgba(6, 7, 14, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.hud-topbar > * {
+  pointer-events: auto;
+}
+
+.hud-ident {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.hud-diamond {
+  flex: none;
+  width: 13px;
+  height: 13px;
+  background: var(--hud-accent);
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px rgba(87, 230, 196, 0.7);
+}
+
+.hud-ident-name {
+  font-family: var(--hud-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  color: var(--hud-text);
+  line-height: 1.2;
+}
+
+.hud-ident-sub {
+  margin-top: 2px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: rgba(87, 230, 196, 0.8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hud-topright {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hud-sys {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: rgba(87, 230, 196, 0.75);
+  white-space: nowrap;
+}
+
+.hud-dossier {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--hud-amber);
+  border: 1px solid rgba(255, 179, 92, 0.5);
+  background: rgba(255, 179, 92, 0.07);
+  padding: 9px 16px;
+  border-radius: 2px;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.hud-dossier:hover {
+  background: rgba(255, 179, 92, 0.16);
+  color: #ffd6a5;
+}
+
+/* ── waypoint pills (return control + section rail) ───────────────────── */
+
+.hud-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 12px;
+  border: 1px solid rgba(120, 140, 170, 0.18);
+  border-radius: 2px;
+  background: rgba(10, 14, 24, 0.5);
+  backdrop-filter: blur(6px);
+  color: rgba(210, 225, 240, 0.55);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.hud-pill:hover {
+  color: var(--hud-accent);
+  border-color: rgba(87, 230, 196, 0.5);
+  background: rgba(87, 230, 196, 0.08);
+}
+
+.hud-pill-index {
+  opacity: 0.6;
+}
+
+.hud-tick {
+  width: 7px;
+  height: 7px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  flex: none;
+}
+
+.hud-pill-on {
+  color: var(--planet);
+  border-color: rgba(var(--planet-rgb), 0.6);
+  background: rgba(var(--planet-rgb), 0.1);
+}
+
+.hud-pill-on .hud-tick {
+  background: var(--planet);
+  box-shadow: 0 0 12px var(--planet);
+}
+
+.hud-rail {
+  position: fixed;
+  top: 50%;
+  right: 34px;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hud-rail .hud-pill {
+  min-width: 158px;
+  justify-content: flex-end;
+}
+
+/* the same rail, inlined at the end of the content on small screens */
+.hud-rail-inline {
+  display: none;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+/* ══ BOTTOM STRIP ═══════════════════════════════════════════════════════ */
+
+.hud-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.hud-telemetry {
+  display: flex;
+  justify-content: center;
+  padding: 0 40px 18px;
+}
+
+.hud-telemetry-bar {
+  display: flex;
+  align-items: stretch;
+  gap: 26px;
+  padding: 10px 24px;
+  border: 1px solid rgba(var(--planet-rgb), 0.22);
+  border-radius: 3px;
+  background: rgba(10, 14, 24, 0.55);
+  backdrop-filter: blur(8px);
+  pointer-events: auto;
+}
+
+.hud-readout-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  color: var(--hud-label);
+  white-space: nowrap;
+}
+
+.hud-readout-value {
+  margin-top: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--hud-text);
+  white-space: nowrap;
+}
+
+.hud-readout-value.hud-accented {
+  color: var(--planet);
+}
+
+.hud-divider {
+  width: 1px;
+  background: rgba(120, 140, 170, 0.2);
+}
+
+.hud-scrolltrack {
+  height: 2px;
+  background: rgba(87, 230, 196, 0.1);
+}
+
+.hud-scrollfill {
+  height: 100%;
+  width: 0%;
+  background: var(--planet);
+  box-shadow: 0 0 10px var(--planet);
+}
+
+/* ══ CONTENT ════════════════════════════════════════════════════════════ */
+
+.hud-content {
+  position: relative;
+  z-index: 20;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 128px 40px 132px;
+}
+
+/* landing pad: the page title block over the planet's horizon */
+.hud-hero {
+  min-height: 46vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 56px;
+}
+
+.hud-hero-title {
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: clamp(38px, 7vw, 68px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--hud-text);
+  margin: 12px 0 0;
+}
+
+.hud-hero-teaser {
+  max-width: 46ch;
+  margin-top: 18px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--hud-muted);
+}
+
+.hud-hero-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-width: 0;
+}
+
+.hud-hero-planet {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex: none;
+}
+
+.hud-eyebrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--planet);
+}
+
+.hud-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--planet);
+  box-shadow: 0 0 10px var(--planet);
+  flex: none;
+}
+
+.hud-section {
+  margin-top: 64px;
+}
+
+.hud-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(var(--planet-rgb), 0.18);
+}
+
+.hud-h2 {
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: 0.01em;
+  color: var(--hud-text);
+  margin: 0;
+}
+
+.hud-h3 {
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: var(--hud-text);
+  margin: 0;
+}
+
+.hud-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  color: var(--hud-label);
+  text-transform: uppercase;
+}
+
+.hud-body {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--hud-muted);
+}
+
+.hud-body p + p {
+  margin-top: 12px;
+}
+
+.hud-body ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hud-body li {
+  position: relative;
+  padding-left: 18px;
+  margin-top: 7px;
+}
+
+.hud-body li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: rgba(var(--planet-rgb), 0.7);
+}
+
+/* one-shot entrance for top-level blocks; killed under reduced motion */
+.hud-reveal {
+  animation: hud-reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes hud-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── dossier panels ───────────────────────────────────────────────────── */
+
+.hud-panel {
+  position: relative;
+  padding: 22px 24px;
+  border: 1px solid rgba(var(--planet-rgb), 0.26);
+  border-radius: 4px;
+  background: var(--hud-panel);
+  backdrop-filter: blur(10px);
+}
+
+/* panel corner ticks, echoing the HUD brackets */
+.hud-panel::before,
+.hud-panel::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 0 solid rgba(var(--planet-rgb), 0.6);
+  pointer-events: none;
+}
+
+.hud-panel::before {
+  top: -1px;
+  left: -1px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.hud-panel::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+.hud-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.hud-grid2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+/* personnel file: portrait beside the bio */
+.hud-identity {
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .hud-identity {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.hud-grid3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+/* ── project catalogue ────────────────────────────────────────────────── */
+
+.hud-catalogue {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.hud-project {
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.hud-project:hover {
+  border-color: rgba(var(--planet-rgb), 0.6);
+  transform: translateY(-3px);
+}
+
+/* push the source button to the bottom so cards line up */
+.hud-project > :last-child {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+@media (max-width: 700px) {
+  .hud-catalogue {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── comms ────────────────────────────────────────────────────────────── */
+
+.hud-channel {
+  height: 100%;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+a:hover > .hud-channel {
+  border-color: rgba(var(--planet-rgb), 0.65);
+  background: rgba(var(--planet-rgb), 0.07);
+}
+
+.hud-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hud-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.hud-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ── mission log rail ─────────────────────────────────────────────────── */
+
+.hud-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hud-log-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 16px;
+  padding-bottom: 22px;
+}
+
+/* connecting line down the rail */
+.hud-log-entry::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 18px;
+  bottom: 0;
+  width: 1px;
+  background: rgba(var(--planet-rgb), 0.28);
+}
+
+.hud-log-entry:last-child::before {
+  display: none;
+}
+
+.hud-log-marker {
+  position: absolute;
+  left: 2px;
+  top: 8px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid var(--planet);
+  background: rgba(var(--planet-rgb), 0.25);
+  box-shadow: 0 0 10px rgba(var(--planet-rgb), 0.55);
+}
+
+.hud-log-date {
+  padding-left: 26px;
+  padding-top: 9px;
+}
+
+@media (max-width: 700px) {
+  .hud-log-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    padding-left: 26px;
+  }
+
+  .hud-log-date {
+    padding-left: 0;
+    padding-top: 8px;
+  }
+}
+
+/* ── controls ─────────────────────────────────────────────────────────── */
+
+.hud-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid rgba(var(--planet-rgb), 0.45);
+  border-radius: 2px;
+  background: rgba(var(--planet-rgb), 0.07);
+  color: var(--planet);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.hud-btn:hover:not(:disabled) {
+  background: rgba(var(--planet-rgb), 0.16);
+  color: var(--hud-text);
+}
+
+.hud-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hud-btn-solid {
+  background: var(--planet);
+  border-color: var(--planet);
+  color: #06070e;
+}
+
+.hud-btn-solid:hover:not(:disabled) {
+  background: #fff;
+  border-color: #fff;
+  color: #06070e;
+}
+
+.hud-tag {
+  display: inline-block;
+  padding: 4px 9px;
+  border: 1px solid rgba(var(--planet-rgb), 0.3);
+  border-radius: 2px;
+  background: rgba(var(--planet-rgb), 0.06);
+  color: rgba(226, 234, 248, 0.8);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.hud-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.hud-link {
+  color: var(--planet);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.hud-link:hover {
+  color: var(--hud-text);
+}
+
+.hud-field {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(120, 140, 170, 0.24);
+  border-radius: 2px;
+  background: rgba(4, 6, 12, 0.55);
+  color: var(--hud-text);
+  font-family: var(--hud-mono);
+  font-size: 13px;
+}
+
+.hud-field:focus {
+  outline: none;
+  border-color: rgba(var(--planet-rgb), 0.7);
+  box-shadow: 0 0 0 1px rgba(var(--planet-rgb), 0.35);
+}
+
+.hud-field::placeholder {
+  color: rgba(150, 168, 190, 0.45);
+}
+
+/* focus-visible ring for every interactive HUD element */
+.hud-root a:focus-visible,
+.hud-root button:focus-visible {
+  outline: 2px solid var(--planet);
+  outline-offset: 3px;
+}
+
+/* ══ RESPONSIVE ═════════════════════════════════════════════════════════ */
+
+/* keep the content column clear of the waypoint rail before it drops out */
+@media (min-width: 981px) and (max-width: 1420px) {
+  .hud-content {
+    padding-right: 210px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .hud-rail {
+    right: 18px;
+  }
+
+  .hud-rail .hud-pill {
+    min-width: 132px;
+  }
+
+  .hud-content {
+    padding-right: 176px;
+  }
+}
+
+@media (max-width: 980px) {
+  .hud-rail {
+    display: none;
+  }
+
+  .hud-rail-inline {
+    display: flex;
+  }
+
+  .hud-content {
+    padding: 112px 24px 124px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hud-topbar {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .hud-ident {
+    gap: 10px;
+  }
+
+  .hud-ident-name {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  .hud-ident-sub,
+  .hud-sys {
+    display: none;
+  }
+
+  /* "◂ RETURN TO NAV" collapses to "◂ NAV" so the bar still fits */
+  .hud-return-long {
+    display: none;
+  }
+
+  .hud-topright {
+    gap: 8px;
+  }
+
+  .hud-topright .hud-pill {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .hud-dossier {
+    padding: 8px 10px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+
+  .hud-hero-row {
+    gap: 14px;
+  }
+
+  .hud-hero-planet {
+    width: 64px;
+    height: 64px;
+  }
+
+  .hud-telemetry {
+    padding: 0 16px 14px;
+  }
+
+  .hud-telemetry-bar {
+    gap: 16px;
+    padding: 8px 14px;
+  }
+
+  .hud-content {
+    padding: 104px 18px 116px;
+  }
+
+  .hud-hero {
+    min-height: 40vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-root *,
+  .hud-root *::before,
+  .hud-root *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,5 +1,5 @@
-import Home from "@/components/site/home";
+import SpaceNavigator from "@/components/site/space-navigator";
 
-export default function HomePage() {
-  return <Home />;
+export default function LandingPage() {
+  return <SpaceNavigator />;
 }

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin:0; padding:0; background:#06070e; overflow-x:hidden; }
+  a { color:#57e6c4; text-decoration:none; }
+  a:hover { color:#8ff3dc; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes tw { 0%,100% { opacity:.12; transform:scale(.6); } 50% { opacity:1; transform:scale(1.25); } }
+  @keyframes chev { 0%,100% { transform:translateY(0); opacity:.45; } 50% { transform:translateY(7px); opacity:1; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+  @media (max-width:760px) {
+    [data-hud="nav"] { display:none !important; }
+    [data-topsub] { display:none !important; }
+    [data-resume] { padding:8px 12px !important; font-size:10px !important; }
+    [data-target] { left:16px !important; right:16px !important; width:auto !important; bottom:120px !important; }
+  }
+</style>
+</helmet>
+
+<div data-role="root" ref="{{ rootRef }}" style="position:relative; background:#06070e; color:#eaf0fb; font-family:'IBM Plex Mono', monospace; min-height:640vh; width:100%;">
+
+  <!-- ═══ FIXED FLIGHT STAGE ═══ -->
+  <div style="position:fixed; inset:0; z-index:5; overflow:hidden;">
+
+    <!-- STAR LAYERS -->
+    <div data-star-layer data-rate="0.35" style="position:absolute; inset:0; will-change:transform; transform-origin:50% 45%;"></div>
+    <div data-star-layer data-rate="0.7" style="position:absolute; inset:0; will-change:transform; transform-origin:50% 45%;"></div>
+    <div data-star-layer data-rate="1.2" style="position:absolute; inset:0; will-change:transform; transform-origin:50% 45%;"></div>
+
+    <!-- HUD GRID + VIGNETTE -->
+    <div style="position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(0deg, rgba(87,230,196,.022) 0 1px, transparent 1px 74px), repeating-linear-gradient(90deg, rgba(87,230,196,.022) 0 1px, transparent 1px 74px);"></div>
+    <div style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(120% 95% at 50% 45%, transparent 52%, rgba(3,4,10,.9) 100%);"></div>
+
+    <!-- FLIGHT ROUTE (recomputed each frame) -->
+    <svg data-route viewBox="0 0 1920 1080" preserveAspectRatio="none" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;">
+      <path data-route-bg d="" fill="none" stroke="rgba(87,230,196,0.16)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path data-route-fg d="" fill="none" stroke="#57e6c4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 5px rgba(87,230,196,.8));"></path>
+    </svg>
+
+    <!-- TARGETING RETICLE (follows focused planet) -->
+    <div data-reticle style="position:absolute; top:0; left:0; width:0; height:0; pointer-events:none; opacity:0; will-change:transform,opacity;">
+      <div style="position:absolute; top:-2px; left:-2px; width:22px; height:22px; border-top:2px solid #57e6c4; border-left:2px solid #57e6c4;"></div>
+      <div style="position:absolute; top:-2px; right:-2px; width:22px; height:22px; border-top:2px solid #57e6c4; border-right:2px solid #57e6c4;"></div>
+      <div style="position:absolute; bottom:-2px; left:-2px; width:22px; height:22px; border-bottom:2px solid #57e6c4; border-left:2px solid #57e6c4;"></div>
+      <div style="position:absolute; bottom:-2px; right:-2px; width:22px; height:22px; border-bottom:2px solid #57e6c4; border-right:2px solid #57e6c4;"></div>
+    </div>
+
+    <!-- PLANET 1 · ABOUT -->
+    <a data-planet data-index="0" href="#" onClick="{{ enter }}" style="position:absolute; top:50%; left:50%; width:330px; height:330px; transform:translate(-50%,-50%) scale(.35); opacity:0; will-change:transform,opacity;">
+      <span style="position:absolute; inset:-30%; border-radius:50%; background:radial-gradient(circle, rgba(217,138,82,.5), rgba(217,138,82,0) 70%); filter:blur(4px);"></span>
+      <span style="position:absolute; inset:0; border-radius:50%; overflow:hidden; background:#c47a45; box-shadow: inset -30px -26px 70px rgba(0,0,0,.72), inset 20px 17px 46px rgba(255,224,190,.20), 0 0 46px rgba(217,138,82,.35);">
+        <span data-spin style="position:absolute; inset:-30%; background:repeating-linear-gradient(122deg, rgba(92,46,20,.38) 0 15px, rgba(255,215,170,.10) 15px 32px, rgba(58,28,12,.28) 32px 50px); animation:spin 95s linear infinite;"></span>
+        <span data-spin style="position:absolute; inset:-30%; background:radial-gradient(circle at 34% 30%, rgba(255,232,200,.28), rgba(0,0,0,0) 44%); mix-blend-mode:screen; animation:spin 150s linear infinite reverse;"></span>
+      </span>
+    </a>
+
+    <!-- PLANET 2 · PROJECTS -->
+    <a data-planet data-index="1" href="#" onClick="{{ enter }}" style="position:absolute; top:50%; left:50%; width:340px; height:340px; transform:translate(-50%,-50%) scale(.25); opacity:0; will-change:transform,opacity;">
+      <span style="position:absolute; inset:-30%; border-radius:50%; background:radial-gradient(circle, rgba(57,194,207,.5), rgba(57,194,207,0) 70%); filter:blur(4px);"></span>
+      <span style="position:absolute; inset:0; border-radius:50%; overflow:hidden; background:#2f9fb0; box-shadow: inset -30px -26px 70px rgba(0,0,0,.7), inset 20px 17px 46px rgba(190,246,255,.22), 0 0 46px rgba(57,194,207,.38);">
+        <span data-spin style="position:absolute; inset:-30%; background:repeating-linear-gradient(38deg, rgba(10,60,72,.42) 0 11px, rgba(150,240,255,.10) 11px 22px, rgba(6,44,54,.3) 22px 36px); animation:spin 80s linear infinite;"></span>
+        <span data-spin style="position:absolute; inset:-30%; background:radial-gradient(circle at 36% 32%, rgba(210,250,255,.3), rgba(0,0,0,0) 46%); mix-blend-mode:screen; animation:spin 130s linear infinite reverse;"></span>
+      </span>
+    </a>
+
+    <!-- PLANET 3 · EXPERIENCE (gas giant + ring) -->
+    <a data-planet data-index="2" href="#" onClick="{{ enter }}" style="position:absolute; top:50%; left:50%; width:360px; height:360px; transform:translate(-50%,-50%) scale(.2); opacity:0; will-change:transform,opacity;">
+      <span style="position:absolute; inset:-32%; border-radius:50%; background:radial-gradient(circle, rgba(155,108,240,.5), rgba(155,108,240,0) 70%); filter:blur(4px);"></span>
+      <span style="position:absolute; inset:0; border-radius:50%; overflow:hidden; background:#7d5bd6; box-shadow: inset -30px -26px 70px rgba(0,0,0,.72), inset 20px 17px 46px rgba(225,205,255,.2), 0 0 48px rgba(155,108,240,.4);">
+        <span data-spin style="position:absolute; inset:-30%; background:repeating-linear-gradient(0deg, rgba(52,34,104,.55) 0 12px, rgba(205,185,255,.14) 12px 22px, rgba(84,58,152,.42) 22px 35px, rgba(160,140,235,.12) 35px 45px); animation:spin 120s linear infinite;"></span>
+      </span>
+      <span style="position:absolute; top:50%; left:50%; width:162%; height:48%; transform:translate(-50%,-50%) rotate(-17deg); border-radius:50%; border:6px solid rgba(190,165,255,.34); box-shadow:0 0 24px rgba(155,108,240,.4); pointer-events:none;"></span>
+    </a>
+
+    <!-- PLANET 4 · CONTACT -->
+    <a data-planet data-index="3" href="#" onClick="{{ enter }}" style="position:absolute; top:50%; left:50%; width:320px; height:320px; transform:translate(-50%,-50%) scale(.15); opacity:0; will-change:transform,opacity;">
+      <span style="position:absolute; inset:-30%; border-radius:50%; background:radial-gradient(circle, rgba(57,201,138,.5), rgba(57,201,138,0) 70%); filter:blur(4px);"></span>
+      <span style="position:absolute; inset:0; border-radius:50%; overflow:hidden; background:#2fae7a; box-shadow: inset -30px -26px 70px rgba(0,0,0,.7), inset 20px 17px 46px rgba(200,255,225,.2), 0 0 46px rgba(57,201,138,.36);">
+        <span data-spin style="position:absolute; inset:-30%; background:repeating-linear-gradient(150deg, rgba(10,70,46,.4) 0 14px, rgba(160,255,210,.1) 14px 29px, rgba(6,52,34,.28) 29px 47px); animation:spin 100s linear infinite;"></span>
+        <span data-spin style="position:absolute; inset:-30%; background:radial-gradient(circle at 35% 30%, rgba(210,255,235,.28), rgba(0,0,0,0) 45%); mix-blend-mode:screen; animation:spin 145s linear infinite reverse;"></span>
+      </span>
+    </a>
+
+  </div>
+
+  <!-- ═══ HUD ═══ -->
+
+  <!-- CORNERS -->
+  <div data-hud="corners" style="position:fixed; inset:0; z-index:30; pointer-events:none;">
+    <div style="position:absolute; top:18px; left:18px; width:26px; height:26px; border-top:1.5px solid rgba(87,230,196,.45); border-left:1.5px solid rgba(87,230,196,.45);"></div>
+    <div style="position:absolute; top:18px; right:18px; width:26px; height:26px; border-top:1.5px solid rgba(87,230,196,.45); border-right:1.5px solid rgba(87,230,196,.45);"></div>
+    <div style="position:absolute; bottom:18px; left:18px; width:26px; height:26px; border-bottom:1.5px solid rgba(87,230,196,.45); border-left:1.5px solid rgba(87,230,196,.45);"></div>
+    <div style="position:absolute; bottom:18px; right:18px; width:26px; height:26px; border-bottom:1.5px solid rgba(87,230,196,.45); border-right:1.5px solid rgba(87,230,196,.45);"></div>
+  </div>
+
+  <!-- TOP BAR -->
+  <div style="position:fixed; top:0; left:0; right:0; z-index:40; display:flex; align-items:center; justify-content:space-between; padding:22px 40px; pointer-events:none;">
+    <div style="display:flex; align-items:center; gap:14px; pointer-events:auto;">
+      <span style="width:13px; height:13px; background:#57e6c4; transform:rotate(45deg); box-shadow:0 0 12px rgba(87,230,196,.7);"></span>
+      <div style="line-height:1.2;">
+        <div style="font:700 15px 'Space Grotesk'; letter-spacing:.14em; color:#f2f5fc;">LAITH ASSAF</div>
+        <div data-topsub style="font:500 10px 'IBM Plex Mono'; letter-spacing:.22em; color:rgba(87,230,196,.8); margin-top:2px;">NAV-COMPUTER · CS / 2027 · MICHIGAN STATE</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:18px; pointer-events:auto;">
+      <span style="font:500 10px 'IBM Plex Mono'; letter-spacing:.2em; color:rgba(87,230,196,.75);">◉ SYS ONLINE</span>
+      <a data-resume href="#" onClick="{{ resumeClick }}" style="font:600 11px 'IBM Plex Mono'; letter-spacing:.18em; color:#ffb35c; border:1px solid rgba(255,179,92,.5); background:rgba(255,179,92,.07); padding:9px 16px; border-radius:2px;">◈ REQUEST DOSSIER</a>
+    </div>
+  </div>
+
+  <!-- WAYPOINT NAV -->
+  <div data-hud="nav" style="position:fixed; top:50%; right:34px; transform:translateY(-50%); z-index:40; display:flex; flex-direction:column; gap:10px;">
+    <a data-nav data-index="0" href="#" onClick="{{ navClick }}" style="display:flex; align-items:center; justify-content:flex-end; gap:11px; border:1px solid rgba(120,140,170,.18); padding:8px 12px; border-radius:2px; background:rgba(10,14,24,.5); backdrop-filter:blur(6px); color:rgba(210,225,240,.55); min-width:158px;">
+      <span style="font:400 12px 'IBM Plex Mono'; letter-spacing:.06em;"><span style="opacity:.6;">01</span>&nbsp;&nbsp;ABOUT</span>
+      <span data-tick style="width:7px; height:7px; border:1px solid currentColor; border-radius:50%;"></span>
+    </a>
+    <a data-nav data-index="1" href="#" onClick="{{ navClick }}" style="display:flex; align-items:center; justify-content:flex-end; gap:11px; border:1px solid rgba(120,140,170,.18); padding:8px 12px; border-radius:2px; background:rgba(10,14,24,.5); backdrop-filter:blur(6px); color:rgba(210,225,240,.55); min-width:158px;">
+      <span style="font:400 12px 'IBM Plex Mono'; letter-spacing:.06em;"><span style="opacity:.6;">02</span>&nbsp;&nbsp;PROJECTS</span>
+      <span data-tick style="width:7px; height:7px; border:1px solid currentColor; border-radius:50%;"></span>
+    </a>
+    <a data-nav data-index="2" href="#" onClick="{{ navClick }}" style="display:flex; align-items:center; justify-content:flex-end; gap:11px; border:1px solid rgba(120,140,170,.18); padding:8px 12px; border-radius:2px; background:rgba(10,14,24,.5); backdrop-filter:blur(6px); color:rgba(210,225,240,.55); min-width:158px;">
+      <span style="font:400 12px 'IBM Plex Mono'; letter-spacing:.06em;"><span style="opacity:.6;">03</span>&nbsp;&nbsp;EXPERIENCE</span>
+      <span data-tick style="width:7px; height:7px; border:1px solid currentColor; border-radius:50%;"></span>
+    </a>
+    <a data-nav data-index="3" href="#" onClick="{{ navClick }}" style="display:flex; align-items:center; justify-content:flex-end; gap:11px; border:1px solid rgba(120,140,170,.18); padding:8px 12px; border-radius:2px; background:rgba(10,14,24,.5); backdrop-filter:blur(6px); color:rgba(210,225,240,.55); min-width:158px;">
+      <span style="font:400 12px 'IBM Plex Mono'; letter-spacing:.06em;"><span style="opacity:.6;">04</span>&nbsp;&nbsp;CONTACT</span>
+      <span data-tick style="width:7px; height:7px; border:1px solid currentColor; border-radius:50%;"></span>
+    </a>
+  </div>
+
+  <!-- TARGET CARD (focused planet) -->
+  <div data-target style="position:fixed; bottom:104px; left:40px; z-index:40; width:330px; background:rgba(10,14,24,.6); backdrop-filter:blur(10px); border:1px solid rgba(87,230,196,.28); border-radius:4px; padding:18px 20px; opacity:0; transition:opacity .3s ease;">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span data-target-dot style="width:9px; height:9px; border-radius:50%; background:#d98a52; box-shadow:0 0 10px #d98a52;"></span>
+      <span data-target-wp style="font:600 10px 'IBM Plex Mono'; letter-spacing:.3em; color:#57e6c4;">WAYPOINT 01</span>
+    </div>
+    <div data-target-name style="font:600 30px 'Space Grotesk'; color:#f2f5fc; margin-top:8px; line-height:1;">About</div>
+    <div data-target-teaser style="font:400 12.5px 'IBM Plex Mono'; color:rgba(213,224,240,.72); margin-top:10px; line-height:1.55;">Origin world — CS at Michigan State, Econ minor, building toward software.</div>
+    <a data-target-open href="#" onClick="{{ openFocused }}" style="display:inline-block; margin-top:14px; font:600 10px 'IBM Plex Mono'; letter-spacing:.22em; color:#06070e; background:#57e6c4; padding:8px 14px; border-radius:2px;">OPEN PORTAL ▸</a>
+  </div>
+
+  <!-- TELEMETRY -->
+  <div style="position:fixed; bottom:0; left:0; right:0; z-index:40; pointer-events:none;">
+    <div style="display:flex; justify-content:center; padding:0 40px 20px;">
+      <div style="display:flex; gap:34px; background:rgba(10,14,24,.55); backdrop-filter:blur(8px); border:1px solid rgba(87,230,196,.2); border-radius:3px; padding:12px 26px;">
+        <div>
+          <div style="font:500 9px 'IBM Plex Mono'; letter-spacing:.24em; color:rgba(150,168,190,.7);">WAYPOINT</div>
+          <div data-readout="waypoint" style="font:600 15px 'IBM Plex Mono'; color:#57e6c4; margin-top:3px;">01 / 04</div>
+        </div>
+        <div style="width:1px; background:rgba(120,140,170,.2);"></div>
+        <div>
+          <div style="font:500 9px 'IBM Plex Mono'; letter-spacing:.24em; color:rgba(150,168,190,.7);">DESTINATION</div>
+          <div data-readout="dest" style="font:600 15px 'Space Grotesk'; color:#f2f5fc; margin-top:3px;">ABOUT</div>
+        </div>
+        <div style="width:1px; background:rgba(120,140,170,.2);"></div>
+        <div>
+          <div style="font:500 9px 'IBM Plex Mono'; letter-spacing:.24em; color:rgba(150,168,190,.7);">VELOCITY</div>
+          <div data-readout="vel" style="font:600 15px 'IBM Plex Mono'; color:#f2f5fc; margin-top:3px;">180 M/S</div>
+        </div>
+        <div style="width:1px; background:rgba(120,140,170,.2);"></div>
+        <div>
+          <div style="font:500 9px 'IBM Plex Mono'; letter-spacing:.24em; color:rgba(150,168,190,.7);">ROUTE</div>
+          <div data-readout="route" style="font:600 15px 'IBM Plex Mono'; color:#f2f5fc; margin-top:3px;">0%</div>
+        </div>
+      </div>
+    </div>
+    <div style="height:2px; background:rgba(87,230,196,.1);">
+      <div data-progline style="height:100%; width:0%; background:#57e6c4; box-shadow:0 0 10px #57e6c4;"></div>
+    </div>
+  </div>
+
+  <!-- INTRO PROMPT -->
+  <div data-intro style="position:fixed; bottom:150px; left:50%; transform:translateX(-50%); z-index:45; text-align:center; pointer-events:none; transition:opacity .5s ease;">
+    <div style="font:600 12px 'IBM Plex Mono'; letter-spacing:.34em; color:#f2f5fc;">SCROLL TO ENGAGE FLIGHT</div>
+    <div style="margin-top:10px; font-size:20px; color:#57e6c4; animation:chev 1.6s ease-in-out infinite;">▼</div>
+  </div>
+
+  <!-- PORTAL OVERLAY -->
+  <div data-enter-overlay style="position:fixed; inset:0; z-index:80; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .5s ease; background:rgba(4,5,12,.96);">
+    <div style="text-align:center;">
+      <div data-enter-label style="font:700 15px 'IBM Plex Mono'; letter-spacing:.34em; color:#fff;">ENGAGING PORTAL</div>
+      <div style="margin-top:14px; font:400 12px 'IBM Plex Mono'; letter-spacing:.26em; color:rgba(255,255,255,.6);">STANDBY · DOCKING SEQUENCE</div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;showRoute&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Flight&quot;, &quot;label&quot;: &quot;Flight route line&quot; },
+  &quot;parallax&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Flight&quot;, &quot;label&quot;: &quot;Starfield warp&quot; },
+  &quot;planetSpin&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Flight&quot;, &quot;label&quot;: &quot;Planet rotation&quot; }
+}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+
+  componentDidMount() {
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.sections = [
+      { name: 'ABOUT', color: '#d98a52', teaser: 'Origin world \u2014 CS at Michigan State, Econ minor, building toward software.' },
+      { name: 'PROJECTS', color: '#39c2cf', teaser: 'Constructed worlds \u2014 Bonfire party platform, a rack-mounted home lab, an RL Pok\u00e9mon agent.' },
+      { name: 'EXPERIENCE', color: '#9b6cf0', teaser: 'Mission log \u2014 Delta Dental IT support, MSU AI Club workshops for 500+.' },
+      { name: 'CONTACT', color: '#39c98a', teaser: 'Open a channel \u2014 reach Laith to talk software, systems, or ship something.' },
+    ];
+    // world layout: base X/Y offset (at scale 1) + depth Z. increasing Z = further away.
+    this.layout = [
+      { x: -380, y: -70, z: 720 },
+      { x: 440, y: 60, z: 1980 },
+      { x: -460, y: -40, z: 3240 },
+      { x: 400, y: 90, z: 4500 },
+    ];
+    this.FOCAL = 780;      // perspective focal length
+    this.FOCUS_Z = 170;    // relZ at which a planet is "in focus"
+    this.MAX_Z = 4500;
+    this.camZmax = this.MAX_Z - this.FOCUS_Z;
+
+    const r = this.rootRef.current;
+    if (!r) return;
+    this.r = r;
+    this.stars = [...r.querySelectorAll('[data-star-layer]')];
+    this.planets = [...r.querySelectorAll('[data-planet]')];
+    this.baseSize = this.planets.map(p => parseFloat(p.style.width));
+    this.navItems = [...r.querySelectorAll('[data-nav]')];
+    this.routeBg = r.querySelector('[data-route-bg]');
+    this.routeFg = r.querySelector('[data-route-fg]');
+    this.routeSvg = r.querySelector('[data-route]');
+    this.reticle = r.querySelector('[data-reticle]');
+    this.progLine = r.querySelector('[data-progline]');
+    this.intro = r.querySelector('[data-intro]');
+    this.enterOv = r.querySelector('[data-enter-overlay]');
+    this.enterLabel = r.querySelector('[data-enter-label]');
+    this.target = r.querySelector('[data-target]');
+    this.tEls = {
+      dot: r.querySelector('[data-target-dot]'),
+      wp: r.querySelector('[data-target-wp]'),
+      name: r.querySelector('[data-target-name]'),
+      teaser: r.querySelector('[data-target-teaser]'),
+    };
+    this.rd = {
+      waypoint: r.querySelector('[data-readout="waypoint"]'),
+      dest: r.querySelector('[data-readout="dest"]'),
+      vel: r.querySelector('[data-readout="vel"]'),
+      route: r.querySelector('[data-readout="route"]'),
+    };
+
+    if (this.props.planetSpin === false) {
+      r.querySelectorAll('[data-spin]').forEach(e => { e.style.animation = 'none'; });
+    }
+
+    this.scroller = this.findScroller(r);
+    this.lastY = this.getScrollTop();
+    this.vsm = 0;
+    this.focused = -1;
+    this.makeStars();
+    this.tick = () => { this.ticking = false; this.frame(); };
+    this.onScroll = () => { if (!this.ticking) { this.ticking = true; requestAnimationFrame(this.tick); } };
+    this._resize = () => { this.makeStars(); this.frame(); };
+    // capture phase catches scroll from ANY scrolling element (scroll doesn't bubble)
+    window.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
+    document.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
+    window.addEventListener('resize', this._resize);
+
+    // Content is entirely position:fixed, so the wheel has no in-flow scrollable
+    // element under the cursor. Drive scroll manually to guarantee reaction.
+    this.onWheel = (e) => {
+      const sc = this.activeScroller();
+      const max = sc.scrollHeight - sc.clientHeight;
+      if (max <= 0) return;
+      let d = e.deltaY;
+      if (e.deltaMode === 1) d *= 16;        // lines -> px
+      else if (e.deltaMode === 2) d *= sc.clientHeight; // pages
+      const next = Math.max(0, Math.min(max, sc.scrollTop + d));
+      if (next !== sc.scrollTop) { e.preventDefault(); sc.scrollTop = next; this.onScroll(); }
+    };
+    this.onKey = (e) => {
+      const sc = this.activeScroller();
+      const max = sc.scrollHeight - sc.clientHeight;
+      if (max <= 0) return;
+      const page = sc.clientHeight * 0.9, step = 90;
+      const map = { ArrowDown: step, ArrowUp: -step, PageDown: page, PageUp: -page, ' ': page, Home: -1e9, End: 1e9 };
+      if (!(e.key in map)) return;
+      const next = Math.max(0, Math.min(max, sc.scrollTop + map[e.key]));
+      e.preventDefault(); sc.scrollTop = next; this.onScroll();
+    };
+    this.onTouchStart = (e) => { this.touchY = e.touches[0].clientY; };
+    this.onTouchMove = (e) => {
+      if (this.touchY == null) return;
+      const sc = this.activeScroller();
+      const max = sc.scrollHeight - sc.clientHeight;
+      if (max <= 0) return;
+      const y = e.touches[0].clientY, d = this.touchY - y;
+      this.touchY = y;
+      const next = Math.max(0, Math.min(max, sc.scrollTop + d));
+      if (next !== sc.scrollTop) { e.preventDefault(); sc.scrollTop = next; this.onScroll(); }
+    };
+    window.addEventListener('wheel', this.onWheel, { passive: false, capture: true });
+    window.addEventListener('keydown', this.onKey);
+    window.addEventListener('touchstart', this.onTouchStart, { passive: true });
+    window.addEventListener('touchmove', this.onTouchMove, { passive: false });
+
+    this.frame();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll, { capture: true });
+    document.removeEventListener('scroll', this.onScroll, { capture: true });
+    window.removeEventListener('wheel', this.onWheel, { capture: true });
+    window.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('touchstart', this.onTouchStart);
+    window.removeEventListener('touchmove', this.onTouchMove);
+    window.removeEventListener('resize', this._resize);
+    clearTimeout(this._et);
+  }
+
+  // pick whichever candidate actually has a scroll range, biggest wins
+  activeScroller() {
+    const cands = [this.scroller, document.scrollingElement, document.documentElement, document.body].filter(Boolean);
+    let best = null, bestRange = 0;
+    for (const el of cands) {
+      const range = el.scrollHeight - el.clientHeight;
+      if (range > bestRange) { bestRange = range; best = el; }
+    }
+    return best || document.scrollingElement || document.documentElement;
+  }
+
+  findScroller(el) {
+    let node = el.parentElement;
+    while (node && node !== document.documentElement) {
+      const s = getComputedStyle(node);
+      if ((s.overflowY === 'auto' || s.overflowY === 'scroll') && node.scrollHeight > node.clientHeight + 1) return node;
+      node = node.parentElement;
+    }
+    return document.scrollingElement || document.documentElement;
+  }
+  getScrollTop() {
+    return this.activeScroller().scrollTop;
+  }
+  getScrollMax() {
+    const sc = this.activeScroller();
+    return sc.scrollHeight - sc.clientHeight;
+  }
+  scrollToTop(top) {
+    this.activeScroller().scrollTo({ top, behavior: this.reduced ? 'auto' : 'smooth' });
+  }
+
+  makeStars() {
+    if (!this.stars) return;
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const specs = [{ n: 150, op: 0.5, tw: false }, { n: 90, op: 0.72, tw: false }, { n: 46, op: 0.95, tw: true }];
+    this.stars.forEach((layer, li) => {
+      const S = specs[li];
+      layer.innerHTML = '';
+      const sh = [];
+      for (let i = 0; i < S.n; i++) {
+        const x = Math.random() * vw, y = Math.random() * vh;
+        const blur = (Math.random() * 0.6).toFixed(1);
+        const a = (S.op * (0.5 + Math.random() * 0.5)).toFixed(2);
+        sh.push(`${x.toFixed(0)}px ${y.toFixed(0)}px 0 ${blur}px rgba(222,236,255,${a})`);
+      }
+      const size = 1 + li * 0.7;
+      const dot = document.createElement('div');
+      dot.style.cssText = `position:absolute;top:0;left:0;width:${size}px;height:${size}px;border-radius:50%;background:#dfeaff;box-shadow:${sh.join(',')};`;
+      layer.appendChild(dot);
+      if (S.tw && !this.reduced) {
+        for (let i = 0; i < 16; i++) {
+          const t = document.createElement('div');
+          t.style.cssText = `position:absolute;left:${(Math.random() * vw).toFixed(0)}px;top:${(Math.random() * vh).toFixed(0)}px;width:2.4px;height:2.4px;border-radius:50%;background:#fff;animation:tw ${(2.2 + Math.random() * 3).toFixed(1)}s ease-in-out ${(Math.random() * 3).toFixed(1)}s infinite;`;
+          layer.appendChild(t);
+        }
+      }
+    });
+  }
+
+  smoothPath(pts) {
+    if (pts.length < 2) return '';
+    let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`;
+    for (let i = 1; i < pts.length; i++) {
+      const a = pts[i - 1], b = pts[i];
+      const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      d += ` Q ${a.x.toFixed(1)} ${a.y.toFixed(1)} ${mx.toFixed(1)} ${my.toFixed(1)}`;
+    }
+    const last = pts[pts.length - 1];
+    d += ` L ${last.x.toFixed(1)} ${last.y.toFixed(1)}`;
+    return d;
+  }
+
+  frame() {
+    if (!this.r) return;
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const cx = vw / 2, cy = vh * 0.45;
+    const y = this.getScrollTop();
+    const max = this.getScrollMax();
+    const prog = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+    const camZ = prog * this.camZmax;
+    const F = this.FOCAL;
+    const k = Math.max(0.5, Math.min(1.12, vw / 1300)); // responsive world scale
+
+    // starfield warp (subtle push from center while moving)
+    if (this.props.parallax !== false && !this.reduced) {
+      const warp = Math.min(this.vsm * 0.0016, 0.09);
+      this.stars.forEach(l => {
+        const rate = parseFloat(l.dataset.rate) || 1;
+        l.style.transform = `scale(${(1 + warp * rate).toFixed(4)})`;
+      });
+    }
+
+    // project planets
+    const proj = [];
+    this.planets.forEach((el, i) => {
+      const L = this.layout[i];
+      const relZ = L.z - camZ;
+      const eff = Math.max(relZ, -(F - 130));
+      const scale = F / (F + eff);
+      const sx = cx + L.x * k * scale;
+      const sy = cy + L.y * k * scale;
+
+      let op;
+      if (relZ < -70) op = 0;
+      else {
+        op = Math.max(0.28, Math.min(1, 1 - (relZ - 500) / 4400));
+        if (relZ < 260) op *= Math.max(0, Math.min(1, (relZ + 70) / 330));
+      }
+
+      const px = sx - vw / 2, py = sy - vh / 2; // offset from centre-anchored element
+      el.style.transform = `translate(-50%,-50%) translate(${px.toFixed(1)}px, ${py.toFixed(1)}px) scale(${(scale * k).toFixed(3)})`;
+      el.style.opacity = op.toFixed(3);
+      el.style.zIndex = Math.round(Math.max(0, Math.min(1, (3400 - relZ) / 3400)) * 12) + 6;
+      proj.push({ i, sx, sy, relZ, scale: scale * k, op });
+    });
+
+    // focused planet = smallest |relZ - FOCUS_Z| among not-yet-passed
+    let focused = 0, best = Infinity;
+    proj.forEach(p => {
+      if (p.relZ < -40) return;
+      const d = Math.abs(p.relZ - this.FOCUS_Z);
+      if (d < best) { best = d; focused = p.i; }
+    });
+
+    // route line (SVG coords are viewBox 0..1920 x 0..1080 -> scale to viewport)
+    const rvw = 1920, rvh = 1080;
+    const toVB = p => ({ x: p.sx / vw * rvw, y: p.sy / vh * rvh });
+    const nose = { x: rvw / 2, y: rvh * 0.9 };
+    const visible = proj.filter(p => p.relZ > -70).sort((a, b) => a.relZ - b.relZ).map(toVB);
+    if (this.props.showRoute !== false) {
+      this.routeSvg.style.display = '';
+      this.routeBg.setAttribute('d', this.smoothPath([nose, ...visible]));
+      const fpi = proj.findIndex(p => p.i === focused);
+      const ahead = proj.filter(p => p.relZ > -70 && p.relZ <= (proj[fpi] ? proj[fpi].relZ + 1 : Infinity)).sort((a, b) => a.relZ - b.relZ).map(toVB);
+      this.routeFg.setAttribute('d', this.smoothPath([nose, ...ahead]));
+    } else {
+      this.routeSvg.style.display = 'none';
+    }
+
+    // reticle follows focused planet
+    const fp = proj.find(p => p.i === focused);
+    if (fp && this.reticle) {
+      const size = this.baseSize[focused] * fp.scale * 1.16;
+      this.reticle.style.opacity = (fp.op > 0.35 ? 0.9 : 0).toFixed(2);
+      this.reticle.style.width = size.toFixed(0) + 'px';
+      this.reticle.style.height = size.toFixed(0) + 'px';
+      this.reticle.style.transform = `translate(${(fp.sx - size / 2).toFixed(1)}px, ${(fp.sy - size / 2).toFixed(1)}px)`;
+    }
+
+    // nav highlight
+    this.navItems.forEach((n, i) => {
+      const on = i === focused;
+      n.style.color = on ? '#57e6c4' : 'rgba(210,225,240,.55)';
+      n.style.borderColor = on ? 'rgba(87,230,196,.6)' : 'rgba(120,140,170,.18)';
+      n.style.background = on ? 'rgba(87,230,196,.1)' : 'rgba(10,14,24,.5)';
+      const tick = n.querySelector('[data-tick]');
+      if (tick) {
+        tick.style.background = on ? '#57e6c4' : 'transparent';
+        tick.style.boxShadow = on ? '0 0 12px #57e6c4' : 'none';
+      }
+    });
+
+    // target card (update only on change)
+    if (focused !== this.focused) {
+      this.focused = focused;
+      const s = this.sections[focused];
+      if (this.tEls.wp) this.tEls.wp.textContent = `WAYPOINT 0${focused + 1}`;
+      if (this.tEls.name) this.tEls.name.textContent = s.name.charAt(0) + s.name.slice(1).toLowerCase();
+      if (this.tEls.teaser) this.tEls.teaser.textContent = s.teaser;
+      if (this.tEls.dot) { this.tEls.dot.style.background = s.color; this.tEls.dot.style.boxShadow = `0 0 10px ${s.color}`; }
+    }
+
+    // telemetry
+    const dv = Math.abs(y - this.lastY);
+    this.lastY = y;
+    this.vsm = this.vsm * 0.82 + dv * 0.18;
+    const vel = Math.min(999, Math.round(180 + prog * 130 + this.vsm * 5));
+    if (this.rd.waypoint) this.rd.waypoint.textContent = `0${focused + 1} / 04`;
+    if (this.rd.dest) this.rd.dest.textContent = this.sections[focused].name;
+    if (this.rd.vel) this.rd.vel.textContent = `${vel} M/S`;
+    if (this.rd.route) this.rd.route.textContent = `${Math.round(prog * 100)}%`;
+    if (this.progLine) this.progLine.style.width = `${(prog * 100).toFixed(1)}%`;
+    if (this.intro) this.intro.style.opacity = prog < 0.015 ? '1' : '0';
+    if (this.target) { this.target.style.opacity = prog < 0.015 ? '0' : '1'; this.target.style.pointerEvents = prog < 0.015 ? 'none' : 'auto'; }
+  }
+
+  goTo(i) {
+    const targetCam = this.layout[i].z - this.FOCUS_Z;
+    const prog = Math.max(0, Math.min(1, targetCam / this.camZmax));
+    this.scrollToTop(prog * this.getScrollMax());
+  }
+
+  navClick = (e) => { e.preventDefault(); this.goTo(+e.currentTarget.dataset.index); };
+
+  enterPortal(i) {
+    const s = this.sections[i];
+    if (!this.enterOv) return;
+    this.enterOv.style.background = `radial-gradient(circle at 50% 44%, ${s.color}dd, ${s.color}22 40%, rgba(4,5,12,0.97) 72%)`;
+    if (this.enterLabel) this.enterLabel.textContent = `ENGAGING PORTAL // ${s.name} SECTOR`;
+    this.enterOv.style.opacity = '1';
+    this.enterOv.style.pointerEvents = 'auto';
+    clearTimeout(this._et);
+    this._et = setTimeout(() => {
+      this.enterOv.style.opacity = '0';
+      this.enterOv.style.pointerEvents = 'none';
+    }, this.reduced ? 500 : 1300);
+  }
+
+  enter = (e) => { e.preventDefault(); this.enterPortal(+e.currentTarget.dataset.index); };
+  openFocused = (e) => { e.preventDefault(); this.enterPortal(this.focused < 0 ? 0 : this.focused); };
+
+  resumeClick = (e) => {
+    e.preventDefault();
+    const b = e.currentTarget;
+    if (b._busy) return;
+    b._busy = true;
+    const orig = b.textContent;
+    b.textContent = '// LINK ESTABLISHED';
+    setTimeout(() => { b.textContent = orig; b._busy = false; }, 1600);
+  };
+
+  renderVals() {
+    return {
+      rootRef: this.rootRef,
+      enter: this.enter,
+      navClick: this.navClick,
+      openFocused: this.openFocused,
+      resumeClick: this.resumeClick,
+    };
+  }
+}
+</script>
+</body>
+</html>
