@@ -1,0 +1,78 @@
+/* src/components/site/space-navigator/space-navigator.css
+   Styles for the Space Navigator landing page. Everything is scoped under
+   .sn-root so it cannot leak into the rest of the site. */
+
+.sn-root {
+  position: relative;
+  width: 100%;
+  min-height: 640vh;
+  background: #06070e;
+  color: #eaf0fb;
+  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+}
+
+.sn-root a {
+  color: #57e6c4;
+  text-decoration: none;
+}
+
+.sn-root a:hover {
+  color: #8ff3dc;
+}
+
+/* `sn-spin` (planet surface rotation) lives in components/hud/hud.css, which
+   PlanetBody imports — the section pages need it too. */
+
+@keyframes sn-twinkle {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes sn-chevron {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sn-root *,
+  .sn-root *::before,
+  .sn-root *::after {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .sn-nav {
+    display: none !important;
+  }
+
+  .sn-topsub {
+    display: none !important;
+  }
+
+  .sn-dossier {
+    padding: 8px 12px !important;
+    font-size: 10px !important;
+  }
+
+  .sn-target {
+    left: 16px !important;
+    right: 16px !important;
+    width: auto !important;
+    bottom: 120px !important;
+  }
+}
