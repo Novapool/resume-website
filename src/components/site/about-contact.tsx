@@ -40,7 +40,12 @@ export default function AboutContact() {
     {
       title: "Taking Leadership",
       date: "2025",
-      description: "<ul class='list-disc pl-5 space-y-1'><li>Won MHacks 2025 with SoundSense (300+ participants)</li><li>Built Nexus server management platform with FastAPI and WebSockets</li><li>Appointed to AI Club board as Workshop Coordinator</li><li>Led 8+ workshops reaching 500+ attendees</li></ul>"
+      description: "<ul class='list-disc pl-5 space-y-1'><li>Won MHacks 2025 with SoundSense (300+ participants)</li><li>Appointed to AI Club board as Workshop Coordinator, leading 8+ workshops for 500+ attendees</li><li>Led a 4-student team building GradeScape with the GPT-4 API</li><li>Began building the open-source Ember framework and Bonfire party-game platform</li></ul>"
+    },
+    {
+      title: "Going Enterprise",
+      date: "2026",
+      description: "<ul class='list-disc pl-5 space-y-1'><li>Joined Delta Dental as a PC Technician Intern on the Onsite Support Team</li><li>Deployed and configured 150+ workstations across a new corporate office buildout</li><li>Building an automated ticket-creation workflow in Power Automate to streamline IT ops</li><li>Continued scaling Bonfire and Ember toward production</li></ul>"
     },
     {
       title: "Future Aspirations",
@@ -78,10 +83,10 @@ export default function AboutContact() {
               <Card className="mb-4">
                 <CardContent className="p-6">
                   <p className="mb-3">
-                    Hi, I&apos;m Laith Assaf, a Computer Science student at Michigan State University, MHacks 2025 winner, and Workshop Coordinator for MSU AI Club. I specialize in building real-time AI systems and high-performance backend infrastructure.
+                    Hi, I&apos;m Laith Assaf, an AI/ML Computer Science student at Michigan State University, MHacks 2025 winner, and Workshop Coordinator for MSU AI Club. I specialize in building real-time AI systems and high-performance backend infrastructure, and I currently work in IT at Delta Dental.
                   </p>
                   <p>
-                  My journey started with Python and AI experimentation. I&apos;ve since focused on real-time systems with FastAPI and WebSockets, ML inference pipelines, and server infrastructure. I build intelligent applications that operate at scale with minimal latency.
+                  My journey started with Python and AI experimentation. I&apos;ve since focused on real-time systems with FastAPI, Socket.io, and WebSockets, ML inference pipelines, and open-source tooling — most recently the Ember framework and Bonfire party-game platform. I build intelligent applications that operate at scale with minimal latency.
                   </p>
                 </CardContent>
               </Card>

@@ -110,3 +110,11 @@ Uses shadcn/ui pattern:
 - `suppressHydrationWarning` on `<html>` element for theme system
 - Loading animations have configurable timing (minDisplayTime, duration props)
 - SessionStorage used for tracking first-time loading animation display
+
+## Obsidian
+
+Companion note: `/Users/laithassaf/Documents/Obsidian/nebula/1 Projects/resume-website.md`
+
+When you make a large/architectural change or complete a milestone, update that
+note's **Summary / Status / Next** sections to match (keep it concise). See the
+"Obsidian Vault Sync" convention in `~/.claude/CLAUDE.md`.
