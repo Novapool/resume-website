@@ -25,8 +25,8 @@ const pressStart2P = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "My Resume Website",
-  description: "Personal resume and portfolio",
+  title: "Laith Assaf | AI/ML Software Engineer",
+  description: "Portfolio of Laith Assaf — AI/ML Computer Science student at Michigan State University, MHacks 2025 winner, and builder of real-time AI systems and open-source developer tooling.",
 };
 
 export default function RootLayout({

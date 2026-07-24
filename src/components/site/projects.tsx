@@ -36,7 +36,16 @@ export default function Projects() {
     orange: { primary: "oklch(0.75 0.26 35)", secondary: "oklch(0.70 0.28 45)" },
   };
 
-  const projects = [
+  type Project = {
+    title: string;
+    description: string;
+    tags: string[];
+    color: { primary: string; secondary: string };
+    github?: string;
+    icon: string;
+  };
+
+  const projects: Project[] = [
     {
       title: "SoundSense",
       description: "MHacks 2025 Winner (300+ participants). Real-time audio classification for hearing-impaired users. YAMNet CNN with 95% accuracy, <50ms latency, Flask/WebSocket backend.",
@@ -44,6 +53,22 @@ export default function Projects() {
       color: spaceColors.purple,
       github: "https://github.com/Novapool/sound_sense",
       icon: "🏆",
+    },
+    {
+      title: "Bonfire & Ember Framework",
+      description: "Open-source TypeScript framework (\"Rails for party games\") published to npm. Phase state machine, Socket.io room orchestration, and a 5-hook API driving 80%+ code reuse. Powers a Next.js platform hosting 1,000+ concurrent rooms on Express + Firebase, deployed across Vercel and Railway.",
+      tags: ["TypeScript", "Node.js", "Socket.io", "Next.js", "Firebase"],
+      color: spaceColors.green,
+      github: "https://github.com/Novapool/ember",
+      icon: "🔥",
+    },
+    {
+      title: "Pokémon Showdown RL Agent",
+      description: "Reinforcement-learning agent trained to play competitive Pokémon through high-throughput parallel simulation. PPO/DQN plus inference-time MCTS over a transformer policy, with behavior cloning on human replays. Python ML stack bridged to the JS battle sim via a vectorized gym.",
+      tags: ["Python", "PyTorch", "Reinforcement Learning", "MCTS"],
+      color: spaceColors.yellow,
+      github: "https://github.com/Novapool/pokemon-showdown-ai",
+      icon: "🎯",
     },
     {
       title: "Nexus",
@@ -245,11 +270,13 @@ export default function Projects() {
               >
                 <div className="flex justify-between items-start">
                   <div className="text-4xl mb-4">{project.icon}</div>
-                  <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Button variant="ghost" size="icon">
-                      <Github className="h-5 w-5" />
-                    </Button>
-                  </Link>
+                  {project.github && (
+                    <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Button variant="ghost" size="icon">
+                        <Github className="h-5 w-5" />
+                      </Button>
+                    </Link>
+                  )}
                 </div>
                 
                 <h3 className="text-xl sm:text-2xl font-bold mb-2">{project.title}</h3>
@@ -263,11 +290,17 @@ export default function Projects() {
                   ))}
                 </div>
                 
-                <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full">
-                    View Project <ExternalLink className="ml-2 h-4 w-4" />
+                {project.github ? (
+                  <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                    <Button className="w-full">
+                      View Project <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button className="w-full" variant="secondary" disabled>
+                    Private Repository
                   </Button>
-                </Link>
+                )}
               </motion.div>
             </motion.div>
           );

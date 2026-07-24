@@ -13,9 +13,9 @@ export default function Home() {
   // Skills organized by category
   const skillCategories = [
     { category: "Languages", skills: ["Python", "C++", "C#", "SQL", "TypeScript"] },
-    { category: "AI/ML", skills: ["PyTorch", "TensorFlow", "OpenAI API", "ML-Agents", "YAMNet", "OpenCV", "Ollama"] },
-    { category: "Web & Backend", skills: ["FastAPI", "Flask", "React", "REST APIs", "WebSockets", "Firebase", "Supabase"] },
-    { category: "Infrastructure", skills: ["Unity", "Git", "Linux", "Docker", "SSH", "AsyncIO", "Streamlit"] }
+    { category: "AI/ML", skills: ["PyTorch", "OpenAI API", "YAMNet", "Ollama", "TensorFlow", "OpenCV"] },
+    { category: "Web & Backend", skills: ["FastAPI", "Flask", "React", "Node.js", "Express", "Socket.io", "REST APIs", "WebSockets", "Firebase"] },
+    { category: "Infrastructure & IT", skills: ["Git", "Linux", "Docker", "Railway", "Vercel", "Active Directory", "Intune", "Power Automate"] }
   ];
 
   return (
@@ -27,7 +27,7 @@ export default function Home() {
             Laith Assaf
           </h1>
           <h2 className="text-xl md:text-2xl text-muted-foreground mb-6">
-            CS Student | MHacks Winner | AI Club Workshop Coordinator
+            AI/ML CS Student @ MSU | MHacks 2025 Winner | IT @ Delta Dental
           </h2>
           <div className="flex gap-4 mb-8">
             <Link href="https://github.com/Novapool" target="_blank" rel="noopener noreferrer">
@@ -42,8 +42,9 @@ export default function Home() {
             </Link>
           </div>
           <p className="max-w-2xl text-muted-foreground mb-8">
-            I&apos;m a Computer Science student at Michigan State University, MHacks 2025 winner, and Workshop Coordinator
-            for MSU AI Club. I specialize in real-time AI systems and high-performance backend development with FastAPI and WebSockets.
+            I&apos;m an AI/ML Computer Science student at Michigan State University and MHacks 2025 winner. I build real-time
+            AI systems and high-performance backends, currently developing the open-source Ember framework and Bonfire party-game
+            platform. Alongside school I work in IT at Delta Dental and coordinate workshops for the MSU AI Club.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/projects">
@@ -51,7 +52,7 @@ export default function Home() {
                 View My Projects <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Link href="/contact">
+            <Link href="/about">
               <Button variant="outline">
                 Contact Me
               </Button>
@@ -116,7 +117,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Building server management platforms with Docker, SSH, and Linux. Automating infrastructure and reducing admin overhead.
+                    Deploying and managing systems at enterprise scale with Active Directory, Intune, and Power Automate, plus cloud infra on Docker, Railway, and Vercel.
                   </p>
                 </CardContent>
               </Card>
@@ -162,13 +163,14 @@ export default function Home() {
             >
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle>Nexus - AI Server Management</CardTitle>
-                  <CardDescription>WebSocket-based SSH platform with GPT integration</CardDescription>
+                  <CardTitle>Bonfire & Ember Framework</CardTitle>
+                  <CardDescription>Open-source TypeScript framework for party games</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="mb-4">
-                    Web-based SSH terminal using FastAPI and AsyncSSH. Real-time WebSocket streaming with sub-10ms latency,
-                    GPT-powered command assistance, reducing server admin time by 70%.
+                    A &quot;Rails for party games&quot; framework published to npm, with a phase state machine and Socket.io room
+                    orchestration driving 80%+ code reuse. Powers a Next.js platform hosting 1,000+ concurrent rooms on
+                    Express + Firebase, deployed across Vercel and Railway.
                   </p>
                   <Link href="/projects">
                     <Button variant="outline" size="sm">
