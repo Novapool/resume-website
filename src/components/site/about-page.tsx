@@ -12,7 +12,14 @@ import {
   Section,
 } from "@/components/hud/panels";
 import { PLANET } from "@/lib/planets";
-import { BEYOND_TECH, BIO, PROFILE, WORKING_STYLE } from "@/data/profile";
+import {
+  BEYOND_TECH,
+  BIO,
+  BOULDERING_CLIPS,
+  GAMES,
+  PROFILE,
+  WORKING_STYLE,
+} from "@/data/profile";
 
 const planet = PLANET.about;
 
@@ -113,6 +120,54 @@ export default function AboutPage() {
               <LabeledPanel key={entry.label} label={`// ${entry.label}`}>
                 <p className="hud-body">{entry.body}</p>
               </LabeledPanel>
+            ))}
+          </div>
+        </Section>
+      </div>
+
+      <div className="hud-reveal" style={{ animationDelay: ".28s" }}>
+        <Section label="// FIELD FOOTAGE" title="Bouldering">
+          <div className="hud-videos">
+            {BOULDERING_CLIPS.map((clip) => (
+              <Panel key={clip.src}>
+                <div className="hud-video-frame">
+                  <video
+                    src={clip.src}
+                    poster={clip.poster}
+                    controls
+                    playsInline
+                    preload="metadata"
+                  />
+                </div>
+                <p className="hud-body" style={{ marginTop: 12 }}>
+                  {clip.caption}
+                </p>
+              </Panel>
+            ))}
+          </div>
+        </Section>
+      </div>
+
+      <div className="hud-reveal" style={{ animationDelay: ".3s" }}>
+        <Section label="// GAME SHELF" title="What I'm playing">
+          <div className="hud-games">
+            {GAMES.map((game) => (
+              <div key={game.title}>
+                <div className="hud-game-cover">
+                  <Image
+                    src={game.cover}
+                    alt={game.title}
+                    fill
+                    sizes="(max-width: 700px) 45vw, 200px"
+                  />
+                </div>
+                <div className="hud-h3" style={{ marginTop: 10, fontSize: "1rem" }}>
+                  {game.title}
+                </div>
+                <p className="hud-body" style={{ marginTop: 4 }}>
+                  {game.blurb}
+                </p>
+              </div>
             ))}
           </div>
         </Section>

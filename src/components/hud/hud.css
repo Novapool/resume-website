@@ -639,6 +639,55 @@ body:has(.hud-root) {
   gap: 18px;
 }
 
+/* ── bouldering clips ─────────────────────────────────────────────────── */
+
+.hud-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
+  gap: 18px;
+}
+
+.hud-video-frame {
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+  max-height: min(80vh, 620px);
+  aspect-ratio: 9 / 16;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid rgba(var(--planet-rgb), 0.4);
+  background: rgba(4, 6, 12, 0.6);
+  margin: 0 auto;
+}
+
+.hud-video-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── game shelf ────────────────────────────────────────────────────────── */
+
+.hud-games {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 18px;
+}
+
+.hud-game-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 2px;
+  overflow: hidden;
+  border: 1px solid rgba(var(--planet-rgb), 0.4);
+}
+
+.hud-game-cover img {
+  object-fit: cover;
+}
+
 /* ── project catalogue ────────────────────────────────────────────────── */
 
 .hud-catalogue {

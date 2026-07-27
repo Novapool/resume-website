@@ -91,6 +91,81 @@ export const SKILLS: SkillGroup[] = [
   },
 ];
 
+export interface BoulderingClip {
+  src: string;
+  poster: string;
+  caption: string;
+}
+
+export const BOULDERING_CLIPS: BoulderingClip[] = [
+  {
+    src: "/videos/bouldering-1.mp4",
+    poster: "/images/bouldering-1-poster.jpg",
+    caption: "Me totally crushing this climb.",
+  },
+];
+
+export interface Game {
+  title: string;
+  cover: string;
+  blurb: string;
+}
+
+export const GAMES: Game[] = [
+  {
+    title: "Baldur's Gate 3",
+    cover: "/images/games/bg3.jpg",
+    blurb:
+      "Really interesting gameplay — I like the top-down view, the story is phenomenal, and you basically have infinite choices in how you play.",
+  },
+  {
+    title: "Clair Obscur: Expedition 33",
+    cover: "/images/games/clair-obscur.png",
+    blurb:
+      "One of the most interesting and fantastic art styles I've seen, with an amazingly compelling story.",
+  },
+  {
+    title: "Cities: Skylines II",
+    cover: "/images/games/cs2.webp",
+    blurb:
+      "One of my ADHD architect automation addictions — hits that sweet spot of automating and building a large-scale system.",
+  },
+  {
+    title: "Cyberpunk 2077",
+    cover: "/images/games/cyberpunk-2077.jpg",
+    blurb: "Just an overall really great story with good gameplay and beautiful graphics.",
+  },
+  {
+    title: "Dota 2",
+    cover: "/images/games/dota-2.jpg",
+    blurb:
+      "My guilty pleasure and the game I have the most hours on — really fun to play with friends.",
+  },
+  {
+    title: "Elden Ring",
+    cover: "/images/games/elden-ring.jpg",
+    blurb:
+      "Amazing soundtrack and fantastic gameplay. The story is a little confusing, but playing with different builds makes it a blast.",
+  },
+  {
+    title: "God of War Ragnarök",
+    cover: "/images/games/god-of-war-ragnarok.jpg",
+    blurb:
+      "The best story in any game I've ever played — beautiful storytelling and amazing character development. A fantastic finish to Kratos's story.",
+  },
+  {
+    title: "Marvel Rivals",
+    cover: "/images/games/marvel-rivals.jpg",
+    blurb: "Just a fun game to play with friends that hits that competitive itch.",
+  },
+  {
+    title: "Satisfactory",
+    cover: "/images/games/satisfactory.jpg",
+    blurb:
+      "Like Cities: Skylines, it hits that automation and large-scale systems itch.",
+  },
+];
+
 export interface Specialization {
   title: string;
   body: string;

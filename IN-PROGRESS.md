@@ -9,6 +9,23 @@ planets are defined once and consumed by both the landing scene and each page.
 No active implementation plan.
 
 ## Recently Completed
+- **About page: Bouldering + Game Shelf sections (2026-07-27):**
+  - Added two new `Section`s to `/about` after "Beyond tech": a bouldering
+    video gallery (`BOULDERING_CLIPS` in `src/data/profile.ts`) and a game
+    shelf grid with covers + blurbs (`GAMES` in the same file).
+  - New CSS: `.hud-videos`/`.hud-video-frame` (9:16 video panels) and
+    `.hud-games`/`.hud-game-cover` (2:3 cover grid) in `hud.css`.
+  - Source video (`media/IMG_3562.mov`, 16.8MB H.264/portrait) transcoded to
+    `public/videos/bouldering-1.mp4` (720x1280, ~1.3MB) with a poster frame at
+    `public/images/bouldering-1-poster.jpg`. The system's `ffmpeg` came from an
+    untrusted third-party tap and had a broken dylib chain — replaced with the
+    standard `homebrew/core` ffmpeg formula to fix it.
+  - 9 game covers copied to `public/images/games/`; real blurbs filled in for
+    all 9 (2026-07-27). Video panel was shrunk from full-width 9:16 (which ran
+    off the viewport) to a capped 220px-wide frame, `.hud-video-frame` in
+    `hud.css`.
+  - Verified via `npm run build` + headless Chrome screenshots (no Chrome
+    extension connected this session).
 - **Section pages themed to the landing (2026-07-24):**
   - `src/lib/planets.ts` is the single source of truth for the four worlds —
     colour, sphere texture, world position, teaser, route, and the section
@@ -46,8 +63,10 @@ No active implementation plan.
   renders as `asaflai@msu.edu`. Confirm which is correct.
 
 ## Next Steps
-1. Eyeball `/` and the four section pages on a real phone and with reduced
+1. Laith to fill in the bouldering clip caption in `BOULDERING_CLIPS`
+   (`src/data/profile.ts`) — still a `TODO` placeholder. Game blurbs are done.
+2. Eyeball `/` and the four section pages on a real phone and with reduced
    motion enabled.
-2. Decide whether the boot loader gets a HUD-styled rewrite or stays retired.
-3. (M4) Wire the contact form to a real backend.
-4. (M4) Open Graph tags, favicon, sitemap.
+3. Decide whether the boot loader gets a HUD-styled rewrite or stays retired.
+4. (M4) Wire the contact form to a real backend.
+5. (M4) Open Graph tags, favicon, sitemap.
