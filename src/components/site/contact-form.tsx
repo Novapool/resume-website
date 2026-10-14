@@ -47,7 +47,7 @@ export default function ContactForm() {
             {"// MESSAGE RECEIVED"}
           </div>
           <p style={{ marginTop: 8 }}>
-            Thanks for reaching out — I&apos;ll get back to you soon.
+            Thanks for reaching out. I&apos;ll get back to you soon.
           </p>
         </div>
       ) : (
@@ -108,7 +108,7 @@ export default function ContactForm() {
 
           {status === "error" && (
             <p className="hud-body" style={{ color: "#ff9a8c" }}>
-              {"// TRANSMISSION FAILED — please try again."}
+              {"// TRANSMISSION FAILED. Please try again."}
             </p>
           )}
         </form>

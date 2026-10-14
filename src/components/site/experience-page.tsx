@@ -24,38 +24,67 @@ export default function ExperiencePage() {
         <LandingHeader
           planet={planet}
           title="Experience"
-          intro="Mission log. Enterprise IT at Delta Dental, an earlier post at the MSU College of Osteopathic Medicine, and 8+ AI Club workshops delivered to 500+ attendees."
+          intro="Mission log. LLM agents and endpoint support at Delta Dental, three years of IT at the MSU College of Osteopathic Medicine, and 8+ AI Club workshops delivered to 500+ attendees."
         />
       </div>
 
       <div className="hud-reveal" style={{ animationDelay: ".08s" }}>
-        <Section label="// CURRENT POSTING" title="Delta Dental — PC Technician Intern">
+        <Section label="// CURRENT POSTING" title="Delta Dental · PC Technician Intern">
           <div className="hud-grid2">
-            <LabeledPanel label="// ONSITE SUPPORT TEAM" meta={<span className="hud-label">2026 — PRESENT</span>}>
+            <LabeledPanel label="// ONSITE SUPPORT TEAM · OKEMOS, MI" meta={<span className="hud-label">MAY 2026 – PRESENT</span>}>
               <div className="hud-body">
                 <ul>
                   <li>
-                    Deployed and configured 150+ workstations across a new
-                    corporate office buildout
+                    Built LLM agents in Copilot Studio and AI Builder across 3
+                    Power Automate workflows, converting natural-language
+                    requests into structured records using live Ivanti asset
+                    and user data retrieved via API
                   </li>
                   <li>
-                    Building an automated ticket-creation workflow in Power
-                    Automate to streamline IT operations
+                    Shipped an asset management workflow saving 5 minutes per
+                    run and $11K annually, and am piloting an agent that parses
+                    incoming emails to update tickets, coordinating both
+                    rollouts across multiple IT teams
                   </li>
                   <li>
-                    Day-to-day endpoint support across Active Directory and
-                    Intune
+                    Imaged and configured 100+ endpoints through Ivanti,
+                    enrolling each device in Active Directory and Intune so it
+                    reached its user with policy applied, and backing up and
+                    wiping each drive at the end of the device lifecycle
+                  </li>
+                  <li>
+                    Resolved 100+ tickets spanning laptop upgrades and hardware
+                    faults, restoring locked-out users through Azure BitLocker
+                    recovery and CyberArk credential access, and tracing
+                    network port issues with Cisco DDI
+                  </li>
+                  <li>
+                    Set up 400+ workstations (desks, monitors, docking
+                    stations, and peripherals) after a corporate office
+                    renovation
                   </li>
                 </ul>
               </div>
             </LabeledPanel>
-            <LabeledPanel label="// MSU AI CLUB" meta={<span className="hud-label">2025 — PRESENT</span>}>
+            <LabeledPanel label="// MSU AI CLUB · WORKSHOP COORDINATOR" meta={<span className="hud-label">JAN 2025 – PRESENT</span>}>
               <div className="hud-body">
                 <ul>
-                  <li>Workshop Coordinator on the club board</li>
-                  <li>8+ workshops delivered to a combined 500+ attendees</li>
                   <li>
-                    Won MHacks 2025 with SoundSense against 300+ participants
+                    Delivered 8+ technical workshops on local LLM deployment
+                    (Ollama, LM Studio), AI ethics, and ML fundamentals
+                    (PyTorch) to 500+ attendees across 15 sessions, recording
+                    90% retention and a 4.8/5 satisfaction score
+                  </li>
+                  <li>
+                    Built and taught a multi-agent orchestrator demo
+                    coordinating Scope, Architecture, Builder, and Reviewer
+                    agents to plan and generate a web application from a
+                    one-line idea, used as live workshop material
+                  </li>
+                  <li>
+                    As Project Lead (Jan to May 2025), led a 4-student team
+                    building an Academic Performance Predictor on the GPT-4
+                    API, shipping course-level predictions across 50+ courses
                   </li>
                 </ul>
               </div>

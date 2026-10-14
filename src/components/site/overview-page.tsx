@@ -20,9 +20,9 @@ export default function OverviewPage() {
         </div>
         <h1 className="hud-hero-title">{PROFILE.name}</h1>
         <div className="hud-hero-teaser">
-          {PROFILE.tagline}. I build real-time AI systems and high-performance
-          backends — currently the open-source Ember framework and the Bonfire
-          party-game platform.
+          {PROFILE.tagline}. I build LLM agents, reinforcement learning
+          systems, and real-time backends. Graduating May 2027 and looking for
+          full-time AI/ML and software engineering roles.
         </div>
         <div style={{ display: "flex", gap: 10, marginTop: 22, flexWrap: "wrap" }}>
           <Link href="/" className="hud-btn hud-btn-solid">

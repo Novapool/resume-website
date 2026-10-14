@@ -42,7 +42,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: "Laith Assaf | AI/ML Software Engineer",
-  description: "Portfolio of Laith Assaf — AI/ML Computer Science student at Michigan State University, MHacks 2025 winner, and builder of real-time AI systems and open-source developer tooling.",
+  description: "Portfolio of Laith Assaf, a Computer Science (AI/ML) student at Michigan State University building LLM agents, reinforcement learning systems, and open-source developer tooling.",
 };
 
 export default function RootLayout({

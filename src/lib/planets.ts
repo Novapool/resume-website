@@ -95,7 +95,7 @@ const about: Planet = {
   color: "#a8c47f",
   colorRgb: "168,196,127",
   teaser:
-    "Origin world — CS at Michigan State, Econ minor, building toward software.",
+    "Origin world. CS (AI/ML) at Michigan State, Econ minor, class of 2027.",
   world: { x: -380, y: -70, z: 720 },
   size: 330,
   sphere: {
@@ -171,7 +171,7 @@ const projects: Planet = {
   color: "#7fb6ff",
   colorRgb: "127,182,255",
   teaser:
-    "Constructed worlds — Bonfire party platform, a rack-mounted home lab, an RL Pokémon agent.",
+    "Constructed worlds. An RL Pokémon agent, an audio classifier, a party-game framework.",
   world: { x: 440, y: 60, z: 1980 },
   size: 340,
   sphere: {
@@ -248,7 +248,7 @@ const experience: Planet = {
   color: "#d9743f",
   colorRgb: "217,116,63",
   teaser:
-    "Mission log — Delta Dental IT support, MSU AI Club workshops for 500+.",
+    "Mission log. LLM agents at Delta Dental, AI Club workshops for 500+.",
   world: { x: -460, y: -40, z: 3240 },
   size: 350,
   sphere: {
@@ -361,7 +361,7 @@ const contact: Planet = {
   color: "#c79bf0",
   colorRgb: "199,155,240",
   teaser:
-    "Open a channel — reach Laith to talk software, systems, or ship something.",
+    "Open a channel. Reach Laith to talk software, systems, or ship something.",
   world: { x: 400, y: 90, z: 4500 },
   size: 215,
   sphere: {

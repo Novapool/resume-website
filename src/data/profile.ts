@@ -4,7 +4,7 @@
 
 export const PROFILE = {
   name: "Laith Assaf",
-  tagline: "AI/ML CS Student @ MSU · MHacks 2025 Winner · IT @ Delta Dental",
+  tagline: "CS (AI/ML) @ Michigan State · MHacks 2025 2nd Place · IT @ Delta Dental",
   email: "assaflai@msu.edu",
   github: "https://github.com/Novapool",
   linkedin: "https://www.linkedin.com/in/laith-assaf-/",
@@ -13,8 +13,8 @@ export const PROFILE = {
 } as const;
 
 export const BIO = [
-  "I'm an AI/ML Computer Science student at Michigan State University, MHacks 2025 winner, and Workshop Coordinator for the MSU AI Club. I specialize in building real-time AI systems and high-performance backend infrastructure, and I currently work in IT at Delta Dental.",
-  "My journey started with Python and AI experimentation. I've since focused on real-time systems with FastAPI, Socket.io, and WebSockets, ML inference pipelines, and open-source tooling — most recently the Ember framework and the Bonfire party-game platform. I build intelligent applications that operate at scale with minimal latency.",
+  "I'm a senior at Michigan State University studying Computer Science with a concentration in AI/ML and a minor in Economics, graduating in May 2027. I'm looking for full-time entry-level roles in AI/ML and software engineering.",
+  "I'm a PC Technician Intern at Delta Dental, where I build LLM agents in Copilot Studio and Power Automate. On my own time I train a reinforcement learning agent for Pokémon battles and build agent orchestration tooling on Claude Code. I'm also Workshop Coordinator for the MSU AI Club.",
 ];
 
 export interface Dossier {
@@ -36,7 +36,7 @@ export const WORKING_STYLE: Dossier[] = [
 export const BEYOND_TECH: Dossier[] = [
   {
     label: "HOBBIES & INTERESTS",
-    body: "Outside of programming I enjoy traveling, video games, and tinkering with hardware. I'm also an avid cook, preferring ingredients and techniques I've never encountered before — that curiosity even inspired an app that creates fusion recipes by blending elements of different cuisines.",
+    body: "Outside of programming I enjoy traveling, video games, and tinkering with hardware. I'm also an avid cook, preferring ingredients and techniques I've never encountered before. That curiosity even inspired FusionFeast, an app that creates fusion recipes by blending elements of different cuisines.",
   },
   {
     label: "INSPIRATION",
@@ -44,7 +44,7 @@ export const BEYOND_TECH: Dossier[] = [
   },
   {
     label: "COMMUNITY",
-    body: "I compete in hackathons across Michigan — winning MHacks 2025 with SoundSense among 300+ participants. As Workshop Coordinator for the MSU AI Club I've led 8+ workshops reaching 500+ attendees, helping members build real projects.",
+    body: "I compete in hackathons, and placed 2nd of 300+ participants at MHacks 2025 with a real-time audio classifier. As Workshop Coordinator for the MSU AI Club I've delivered 8+ technical workshops to 500+ attendees.",
   },
 ];
 
@@ -55,39 +55,39 @@ export interface SkillGroup {
 
 export const SKILLS: SkillGroup[] = [
   {
-    category: "Languages",
-    skills: ["Python", "C++", "C#", "SQL", "TypeScript"],
+    category: "Machine Learning",
+    skills: ["PyTorch", "NumPy", "pandas", "scikit-learn", "Reinforcement Learning", "CNNs"],
   },
   {
-    category: "AI / ML",
-    skills: ["PyTorch", "OpenAI API", "YAMNet", "Ollama", "TensorFlow", "OpenCV"],
-  },
-  {
-    category: "Web & Backend",
+    category: "LLMs & Agents",
     skills: [
+      "LLM APIs (Anthropic, OpenAI)",
+      "Copilot Studio",
+      "Power Automate",
+      "MCP",
+      "Agent Orchestration",
+      "Ollama",
+      "Evaluation",
+    ],
+  },
+  {
+    category: "Languages & Backend",
+    skills: [
+      "Python",
+      "TypeScript",
+      "SQL",
+      "C++",
+      "C#",
       "FastAPI",
       "Flask",
-      "React",
-      "Node.js",
-      "Express",
-      "Socket.io",
+      "PostgreSQL",
       "REST APIs",
       "WebSockets",
-      "Firebase",
     ],
   },
   {
-    category: "Infrastructure & IT",
-    skills: [
-      "Git",
-      "Linux",
-      "Docker",
-      "Railway",
-      "Vercel",
-      "Active Directory",
-      "Intune",
-      "Power Automate",
-    ],
+    category: "Infrastructure",
+    skills: ["Docker", "Linux", "Git", "GitHub Actions CI", "MLflow", "Railway", "Vercel"],
   },
 ];
 
@@ -116,7 +116,7 @@ export const GAMES: Game[] = [
     title: "Baldur's Gate 3",
     cover: "/images/games/bg3.jpg",
     blurb:
-      "Really interesting gameplay — I like the top-down view, the story is phenomenal, and you basically have infinite choices in how you play.",
+      "Really interesting gameplay. I like the top-down view, the story is phenomenal, and you basically have infinite choices in how you play.",
   },
   {
     title: "Clair Obscur: Expedition 33",
@@ -128,7 +128,7 @@ export const GAMES: Game[] = [
     title: "Cities: Skylines II",
     cover: "/images/games/cs2.webp",
     blurb:
-      "One of my ADHD architect automation addictions — hits that sweet spot of automating and building a large-scale system.",
+      "One of my ADHD architect automation addictions. It hits that sweet spot of automating and building a large-scale system.",
   },
   {
     title: "Cyberpunk 2077",
@@ -139,7 +139,7 @@ export const GAMES: Game[] = [
     title: "Dota 2",
     cover: "/images/games/dota-2.jpg",
     blurb:
-      "My guilty pleasure and the game I have the most hours on — really fun to play with friends.",
+      "My guilty pleasure and the game I have the most hours on, and really fun to play with friends.",
   },
   {
     title: "Elden Ring",
@@ -151,7 +151,7 @@ export const GAMES: Game[] = [
     title: "God of War Ragnarök",
     cover: "/images/games/god-of-war-ragnarok.jpg",
     blurb:
-      "The best story in any game I've ever played — beautiful storytelling and amazing character development. A fantastic finish to Kratos's story.",
+      "The best story in any game I've ever played, with beautiful storytelling and amazing character development. A fantastic finish to Kratos's story.",
   },
   {
     title: "Marvel Rivals",
@@ -174,14 +174,14 @@ export interface Specialization {
 export const SPECIALIZATIONS: Specialization[] = [
   {
     title: "AI & Machine Learning",
-    body: "Real-time inference systems with PyTorch, YAMNet, and the OpenAI API. Specialized in sub-50ms latency ML pipelines.",
+    body: "Reinforcement learning and imitation learning in PyTorch, real-time audio classification with on-device inference, and experiment tracking in MLflow.",
   },
   {
-    title: "Backend Development",
-    body: "High-performance backends with FastAPI, WebSockets, and AsyncIO. Real-time streaming with sub-10ms response times.",
+    title: "LLM Agents & Automation",
+    body: "LLM agents in Copilot Studio and Power Automate, a multi-agent development pipeline on Claude Code, and local LLMs served with Ollama.",
   },
   {
-    title: "Systems & Infrastructure",
-    body: "Enterprise deployment and management with Active Directory, Intune, and Power Automate, plus cloud infra on Docker, Railway, and Vercel.",
+    title: "Backend & Infrastructure",
+    body: "FastAPI, Flask, and Express backends over WebSockets, containerized with Docker and deployed on Linux, Railway, and Vercel.",
   },
 ];

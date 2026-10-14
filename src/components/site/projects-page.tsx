@@ -14,7 +14,7 @@ export default function ProjectsPage() {
         <LandingHeader
           planet={planet}
           title="Projects"
-          intro="Constructed worlds. Real-time AI systems, backend infrastructure, and machine learning — award-winning hackathon builds alongside production-shaped tooling."
+          intro="Constructed worlds. Reinforcement learning, LLM agents, real-time systems, and the hackathon builds along the way."
         />
       </div>
 

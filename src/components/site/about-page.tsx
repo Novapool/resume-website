@@ -32,7 +32,7 @@ export default function AboutPage() {
         <LandingHeader
           planet={planet}
           title="About"
-          intro="Origin world. Computer Science at Michigan State with an Economics minor, an IT desk at Delta Dental, and a long-running habit of building things that run in real time."
+          intro="Origin world. Computer Science at Michigan State with an AI/ML concentration and an Economics minor, graduating May 2027, plus an IT internship at Delta Dental."
         />
       </div>
 

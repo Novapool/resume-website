@@ -36,7 +36,7 @@ export default function ContactPage() {
         <LandingHeader
           planet={planet}
           title="Contact"
-          intro="A small, quiet moon at the end of the route. Say hello about software, systems, or shipping something together — no formality required."
+          intro="A small, quiet moon at the end of the route. Say hello about software, systems, or shipping something together. No formality required."
         />
       </div>
 
