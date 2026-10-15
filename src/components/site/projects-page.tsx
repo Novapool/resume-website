@@ -3,7 +3,7 @@
 import HudPage from "@/components/hud/HudPage";
 import { LandingHeader, Panel, Section, Tags } from "@/components/hud/panels";
 import { PLANET } from "@/lib/planets";
-import { PROJECTS } from "@/data/projects";
+import { HACKATHONS, PROJECTS, type Project } from "@/data/projects";
 
 const planet = PLANET.projects;
 
@@ -25,50 +25,69 @@ export default function ProjectsPage() {
         >
           <div className="hud-catalogue">
             {PROJECTS.map((project) => (
-              <Panel key={project.code} className="hud-project">
-                <div className="hud-panel-head">
-                  <span className="hud-label">{project.code}</span>
-                  {project.featured && (
-                    <span className="hud-label" style={{ color: "var(--planet)" }}>
-                      ◆ FEATURED
-                    </span>
-                  )}
-                </div>
-                <h3 className="hud-h3">{project.title}</h3>
-                <div
-                  className="hud-label"
-                  style={{ marginTop: 6, letterSpacing: ".14em" }}
-                >
-                  {project.kind}
-                </div>
-                <p className="hud-body" style={{ marginTop: 12 }}>
-                  {project.description}
-                </p>
-                <div style={{ marginTop: 16 }}>
-                  <Tags items={project.tags} />
-                </div>
-                {/* margin-top:auto in .hud-project keeps these aligned */}
-                <div>
-                  {project.github ? (
-                    <a
-                      className="hud-btn"
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      VIEW SOURCE ▸
-                    </a>
-                  ) : (
-                    <button className="hud-btn" disabled>
-                      PRIVATE REPOSITORY
-                    </button>
-                  )}
-                </div>
-              </Panel>
+              <ProjectCard key={project.code} project={project} />
+            ))}
+          </div>
+        </Section>
+      </div>
+
+      <div className="hud-reveal" style={{ animationDelay: ".14s" }}>
+        <Section
+          label={`// HACKATHONS · ${HACKATHONS.length} ENTRIES`}
+          title="Built against the clock"
+        >
+          <div className="hud-catalogue">
+            {HACKATHONS.map((project) => (
+              <ProjectCard key={project.code} project={project} />
             ))}
           </div>
         </Section>
       </div>
     </HudPage>
+  );
+}
+
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <Panel className="hud-project">
+      <div className="hud-panel-head">
+        <span className="hud-label">{project.code}</span>
+        {project.featured && (
+          <span className="hud-label" style={{ color: "var(--planet)" }}>
+            ◆ FEATURED
+          </span>
+        )}
+      </div>
+      <h3 className="hud-h3">{project.title}</h3>
+      <div
+        className="hud-label"
+        style={{ marginTop: 6, letterSpacing: ".14em" }}
+      >
+        {project.kind}
+      </div>
+      <p className="hud-body" style={{ marginTop: 12 }}>
+        {project.description}
+      </p>
+      <div style={{ marginTop: 16 }}>
+        <Tags items={project.tags} />
+      </div>
+      {/* margin-top:auto in .hud-project keeps these aligned */}
+      <div>
+        {project.github ? (
+          <a
+            className="hud-btn"
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            VIEW SOURCE ▸
+          </a>
+        ) : (
+          <button className="hud-btn" disabled>
+            PRIVATE REPOSITORY
+          </button>
+        )}
+      </div>
+    </Panel>
   );
 }
