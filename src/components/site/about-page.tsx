@@ -131,13 +131,22 @@ export default function AboutPage() {
             {BOULDERING_CLIPS.map((clip) => (
               <Panel key={clip.src}>
                 <div className="hud-video-frame">
-                  <video
-                    src={clip.src}
-                    poster={clip.poster}
-                    controls
-                    playsInline
-                    preload="metadata"
-                  />
+                  {clip.kind === "video" ? (
+                    <video
+                      src={clip.src}
+                      poster={clip.poster}
+                      controls
+                      playsInline
+                      preload="metadata"
+                    />
+                  ) : (
+                    <Image
+                      src={clip.src}
+                      alt={clip.alt}
+                      fill
+                      sizes="350px"
+                    />
+                  )}
                 </div>
                 <p className="hud-body" style={{ marginTop: 12 }}>
                   {clip.caption}

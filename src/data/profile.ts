@@ -91,17 +91,22 @@ export const SKILLS: SkillGroup[] = [
   },
 ];
 
-export interface BoulderingClip {
-  src: string;
-  poster: string;
-  caption: string;
-}
+export type BoulderingClip =
+  | { kind: "video"; src: string; poster: string; caption: string }
+  | { kind: "photo"; src: string; alt: string; caption: string };
 
 export const BOULDERING_CLIPS: BoulderingClip[] = [
   {
+    kind: "video",
     src: "/videos/bouldering-1.mp4",
     poster: "/images/bouldering-1-poster.jpg",
     caption: "Me totally crushing this climb.",
+  },
+  {
+    kind: "photo",
+    src: "/images/bouldering-bat-hang.webp",
+    alt: "Laith hanging upside down by his feet from a bouldering wall, grinning",
+    caption: "Bat hang — hanging around between sends.",
   },
 ];
 

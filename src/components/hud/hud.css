@@ -660,7 +660,8 @@ body:has(.hud-root) {
   margin: 0 auto;
 }
 
-.hud-video-frame video {
+.hud-video-frame video,
+.hud-video-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
