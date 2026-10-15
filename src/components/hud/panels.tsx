@@ -3,7 +3,7 @@
 // translucent, thin-bordered, mono-labelled surfaces the landing page uses for
 // its target card and telemetry strip.
 
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import PlanetBody from "./PlanetBody";
 import { waypointNo, type Planet } from "@/lib/planets";
 import "./hud.css";
@@ -11,11 +11,17 @@ import "./hud.css";
 export function Panel({
   children,
   className = "",
+  style,
 }: {
   children: ReactNode;
   className?: string;
+  style?: CSSProperties;
 }) {
-  return <div className={`hud-panel ${className}`.trim()}>{children}</div>;
+  return (
+    <div className={`hud-panel ${className}`.trim()} style={style}>
+      {children}
+    </div>
+  );
 }
 
 /** Panel with a mono label across the top, e.g. `// WORKING STYLE`. */

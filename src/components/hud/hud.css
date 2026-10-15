@@ -700,12 +700,82 @@ body:has(.hud-root) {
 .hud-project {
   display: flex;
   flex-direction: column;
-  transition: border-color 0.25s ease, transform 0.25s ease;
+  /* each card carries its own --planet (set inline), so it glows in its own
+     colour from the top edge down */
+  background:
+    radial-gradient(120% 60% at 0% 0%, rgba(var(--planet-rgb), 0.13), transparent 60%),
+    var(--hud-panel);
+  border-top: 2px solid rgba(var(--planet-rgb), 0.7);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hud-project:hover {
   border-color: rgba(var(--planet-rgb), 0.6);
+  border-top-color: var(--planet);
+  box-shadow: 0 10px 40px -12px rgba(var(--planet-rgb), 0.45);
   transform: translateY(-3px);
+}
+
+.hud-project .hud-h3 {
+  font-size: 18px;
+}
+
+.hud-project-pitch {
+  margin: 14px 0 0;
+  font-family: var(--hud-display);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--hud-text);
+}
+
+.hud-project-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.hud-project-stat-value {
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--planet);
+  text-shadow: 0 0 18px rgba(var(--planet-rgb), 0.45);
+}
+
+.hud-debrief {
+  margin-top: 16px;
+}
+
+.hud-debrief summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--planet);
+  list-style: none;
+}
+
+.hud-debrief summary::-webkit-details-marker {
+  display: none;
+}
+
+.hud-debrief summary::before {
+  content: "▸";
+  transition: transform 0.2s ease;
+}
+
+.hud-debrief[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.hud-debrief summary:hover {
+  color: var(--hud-text);
+}
+
+.hud-debrief .hud-body {
+  margin-top: 10px;
 }
 
 /* push the source button to the bottom so cards line up */

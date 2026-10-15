@@ -25,11 +25,11 @@ export interface Dossier {
 export const WORKING_STYLE: Dossier[] = [
   {
     label: "WORKING STYLE & VALUES",
-    body: "I thrive in collaborative environments where I can contribute technical expertise while learning from others. I value clean, well-documented code and approach problems methodically, focusing on solutions that are both efficient and maintainable.",
+    body: "I do my best work when I get to architect the solution, not just implement it, and I like code that's efficient and documented well enough for someone else to pick up cold. I'm a big believer in open source: I love that people share software for anyone to use, and I like giving back by publishing my own.",
   },
   {
     label: "PROBLEM-SOLVING APPROACH",
-    body: "When tackling complex problems, I break them into manageable components, research thoroughly, and test continuously. I'm not afraid to dive deep into documentation or explore new technologies to find the best solution.",
+    body: "Evidence-based trial and error. I decide what \"working\" means before I build, then test, measure, and iterate until the numbers say it's done. Every attempt gets written down, including the dead ends, so each round starts from what the last one actually proved instead of what I remember.",
   },
 ];
 
@@ -39,7 +39,7 @@ export const BEYOND_TECH: Dossier[] = [
     body: "Outside of programming I enjoy traveling, video games, and tinkering with hardware. I'm also an avid cook, preferring ingredients and techniques I've never encountered before. That curiosity even inspired FusionFeast, an app that creates fusion recipes by blending elements of different cuisines.",
   },
   {
-    label: "INSPIRATION",
+    label: "INSPIRATION IN AI",
     body: "My interest in AI was sparked by DALL·E and deepened through exploring ChatGPT. I'm captivated by how these technologies tackle complex problems and open new possibilities across domains.",
   },
   {

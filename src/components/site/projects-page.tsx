@@ -1,5 +1,6 @@
 // src/components/site/projects-page.tsx
 // Waypoint 02 — the crystalline world. Everything here was constructed.
+import type { CSSProperties } from "react";
 import HudPage from "@/components/hud/HudPage";
 import { LandingHeader, Panel, Section, Tags } from "@/components/hud/panels";
 import { PLANET } from "@/lib/planets";
@@ -48,8 +49,15 @@ export default function ProjectsPage() {
 }
 
 function ProjectCard({ project }: { project: Project }) {
+  // Each card wears its project's own colour: the HUD panel, tags and button
+  // all read --planet, so overriding it here re-tints the whole card.
+  const accent = {
+    "--planet": `rgb(${project.accent})`,
+    "--planet-rgb": project.accent,
+  } as CSSProperties;
+
   return (
-    <Panel className="hud-project">
+    <Panel className="hud-project" style={accent}>
       <div className="hud-panel-head">
         <span className="hud-label">{project.code}</span>
         {project.featured && (
@@ -65,9 +73,17 @@ function ProjectCard({ project }: { project: Project }) {
       >
         {project.kind}
       </div>
-      <p className="hud-body" style={{ marginTop: 12 }}>
-        {project.description}
-      </p>
+      <p className="hud-project-pitch">{project.tagline}</p>
+      {project.stat && (
+        <div className="hud-project-stat">
+          <span className="hud-project-stat-value">{project.stat.value}</span>
+          <span className="hud-label">{project.stat.label}</span>
+        </div>
+      )}
+      <details className="hud-debrief">
+        <summary className="hud-label">Full debrief</summary>
+        <p className="hud-body">{project.description}</p>
+      </details>
       <div style={{ marginTop: 16 }}>
         <Tags items={project.tags} />
       </div>

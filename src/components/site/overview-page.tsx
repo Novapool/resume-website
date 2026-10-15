@@ -108,9 +108,7 @@ export default function OverviewPage() {
                 <div className="hud-label" style={{ marginTop: 6 }}>
                   {project.kind}
                 </div>
-                <p className="hud-body" style={{ marginTop: 12 }}>
-                  {project.description}
-                </p>
+                <p className="hud-project-pitch">{project.tagline}</p>
                 <div style={{ marginTop: 16 }}>
                   <Link href="/projects" className="hud-btn">
                     FULL CATALOGUE ▸

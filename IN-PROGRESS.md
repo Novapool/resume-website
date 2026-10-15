@@ -9,6 +9,14 @@ planets are defined once and consumed by both the landing scene and each page.
 No active implementation plan.
 
 ## Recently Completed
+- **Projects page: taglines + per-project colour (2026-10-15):**
+  - Each project in `src/data/projects.ts` gained a `tagline` (elevator pitch,
+    the only copy shown by default), an `accent` (`r,g,b`) and an optional
+    headline `stat`. The full `description` sits behind a "Full debrief"
+    `<details>` toggle on the card.
+  - `ProjectCard` overrides `--planet`/`--planet-rgb` inline, so the panel,
+    tags and button re-tint per project; `Panel` now accepts `style`.
+  - Build + lint pass; not yet eyeballed in a browser.
 - **About page: Bouldering + Game Shelf sections (2026-07-27):**
   - Added two new `Section`s to `/about` after "Beyond tech": a bouldering
     video gallery (`BOULDERING_CLIPS` in `src/data/profile.ts`) and a game
@@ -51,8 +59,6 @@ No active implementation plan.
   - Verified: `npm run lint` clean, `npm run build` succeeds, all six routes
     return 200, and the four pages were eyeballed via headless screenshots at
     1280 and 1440.
-- **Space Navigator landing (2026-07-24):** scroll-driven flythrough at `/`.
-- **Content Refresh (2026-07-24):** synced the site to the updated resume (M1).
 
 ## Blockers
 - **Not yet verified on a real device / small viewport.** The Chrome extension
