@@ -1,9 +1,13 @@
 # In Progress
 
 ## Current Work
-**M2 — Frontend / Visual Refresh.** Complete for the interior pages: all four
-section pages now share the Space Navigator's nav-computer HUD language, and the
-planets are defined once and consumed by both the landing scene and each page.
+**M5 — De-slopify, pass 1** is next (see `MILESTONES.md`). On 2026-10-16 an
+Impeccable audit scored the site 10/20 and a critique scored it 18/32. Verdict:
+the planets are authored, the HUD chrome around them is generic. The steps are
+colorize → distill → typeset → harden → polish, P0/P1 findings only. M6
+(worlds style their own pages, via init + shape) follows.
+Note: `localhost:3000` is usually another project (`power-util-sim`), so start
+this repo on its own port (`npm run dev -- -p 3100`) before any visual checks.
 
 ## Active Plan
 No active implementation plan.
@@ -69,6 +73,8 @@ No active implementation plan.
   renders as `asaflai@msu.edu`. Confirm which is correct.
 
 ## Next Steps
+0. Run M5 in order: `/impeccable colorize` → `distill` → `typeset` →
+   `harden` → `polish`, then re-run audit + critique against the M5 Gate.
 1. Laith to fill in the bouldering clip caption in `BOULDERING_CLIPS`
    (`src/data/profile.ts`) — still a `TODO` placeholder. Game blurbs are done.
 2. Eyeball `/` and the four section pages on a real phone and with reduced
