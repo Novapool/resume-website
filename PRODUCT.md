@@ -52,8 +52,7 @@ every surface should be built to prove.
   LinkedIn, on desktop and on phones.
 - The résumé PDF (`public/documents/resume.pdf`) is the artefact that gets
   forwarded internally. The site has to be consistent with it.
-- The site is deployed on Vercel. It is a static Next.js app with no backend
-  yet.
+- The site is deployed on Vercel. It is a static Next.js app with no backend.
 
 ## Capabilities and Constraints
 
@@ -64,11 +63,13 @@ every surface should be built to prove.
   - a themed 404 for unknown routes.
 - **Content source of truth:** all copy lives in `src/data/` (`profile.ts`,
   `projects.ts`, `timeline.ts`); worlds live in `src/lib/planets.ts`.
-- **Contact form:** unmounted. Its backend is undecided (M4), and nothing may
-  claim a message was sent until one exists.
-- **Contact email:** `assaflai@msu.edu` stays for now. It expires after
-  graduation and must be swapped before then. Open question: the résumé PDF
-  renders it as `asaflai@msu.edu`; confirm which spelling is right.
+- **Contact:** email-only, by Laith's decision in M4. The form component
+  stays unmounted, and nothing may claim a message was sent unless one was.
+- **Contact email:** `assaflai@msu.edu`, matching the résumé PDF. It expires
+  after graduation, so the site and the PDF must swap together before
+  May 2027.
+- **Domain:** `https://resume-website-eight-psi.vercel.app`, set once as
+  `SITE_URL` in `src/lib/seo.ts`.
 - **Private repositories:** some projects have no public source. They show
   "private repository" and no link.
 

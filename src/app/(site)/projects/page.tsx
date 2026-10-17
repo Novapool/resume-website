@@ -1,10 +1,7 @@
 import ProjectsPage from "@/components/site/projects-page";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Projects | Laith Assaf",
-  description:
-    "Constructed worlds: reinforcement learning, LLM agents, and real-time systems.",
-};
+export const metadata = pageMetadata("projects");
 
 export default function Page() {
   return <ProjectsPage />;

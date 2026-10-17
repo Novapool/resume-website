@@ -1,10 +1,7 @@
 import ExperiencePage from "@/components/site/experience-page";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Experience | Laith Assaf",
-  description:
-    "Mission log: Delta Dental, the MSU AI Club, and the route so far.",
-};
+export const metadata = pageMetadata("experience");
 
 export default function Page() {
   return <ExperiencePage />;

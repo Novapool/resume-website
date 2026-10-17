@@ -16,7 +16,9 @@
   (`npm run dev -- -p 3100`). Stop dev before `npm run build`.
 
 ## Current Work
-None. M7 is closed and the phone check passed; next is M4.
+- **M4 Functional Gaps:** built and verified locally on the prod build (see
+  the M4 Gate status in MILESTONES). Left: push, then check an OG preview
+  tool and the favicon in a tab on the deployed site, then close M4.
 
 ## Active Plan
 No active implementation plan.
@@ -45,16 +47,15 @@ No active implementation plan.
 ## Blockers
 - **Device check:** Laith checked the site on a real phone (2026-10-17) and
   it looks good. A pass with reduced motion turned on is still unchecked.
-- **Email spelling:** the site uses `assaflai@msu.edu`; the résumé PDF text
-  renders as `asaflai@msu.edu`. Laith to confirm.
+- **Email expiry:** `assaflai@msu.edu` (matches the PDF) expires after May
+  2027; swap the site and the résumé PDF together before then.
 
 ## Next Steps
 1. Quick reduced-motion pass on `/` and the four worlds.
-2. (M4) Open Graph tags, favicon, sitemap; confirm the email.
-3. (M4) Wire the contact form to a real backend, then re-mount it
-   (`contact-form.tsx` already posts to `/api/contact`).
-4. Content decisions for Laith:
+2. (M4) After push: OG preview check on the deployed URL and favicon in a
+   tab, then close M4.
+3. Content decisions for Laith:
    - a real project artefact for the Pokémon agent;
    - the About personal band. It is trimmed to one clip and four games;
      the full list stays in `GAMES`.
-5. Decide whether the boot loader gets a HUD rewrite or stays retired.
+4. Decide whether the boot loader gets a HUD rewrite or stays retired.

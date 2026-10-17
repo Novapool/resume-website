@@ -32,7 +32,9 @@ section pages, each a "Descent" onto that world.
   and React state holds only the focused waypoint).
 - `src/lib/planets.ts`: the single source of each world (colour, sphere, air,
   sky, horizon, altitude). The landing and the section pages both read it.
-- `src/data/`: all copy (`profile.ts`, `projects.ts`, `timeline.ts`).
+- `src/data/`: all copy (`profile.ts`, `projects.ts`, `timeline.ts`,
+  `pages.ts` for per-route <head> and OG copy). `src/lib/seo.ts` and
+  `og.tsx` turn it into metadata and the per-route OG images.
 - `src/components/loaders/`, `ui/`, `theme/`: retired boot loader, plus
   shadcn/Tailwind bits for legacy pieces. HUD pages are always dark.
 
@@ -40,7 +42,7 @@ section pages, each a "Descent" onto that world.
 - Each stat has one home, where it happened. Per-project colour stays on
   Projects. Shared chrome takes the world's tint; cyan only on the landing,
   /overview and the 404.
-- The contact form stays unmounted until M4 gives it a real endpoint.
+- Contact is email-only by Laith's decision; the form stays unmounted.
 - Every animation is off under `prefers-reduced-motion`. Controls are 44px or
   taller with the 2px tint focus ring.
 

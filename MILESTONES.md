@@ -34,10 +34,35 @@ Reduce duplication so future updates touch one place.
 - ✅ De-duplicate featured-project content (`FEATURED_PROJECTS` in `src/data/projects.ts`)
 - ✅ De-duplicate social/contact links (`PROFILE` in `src/data/profile.ts`)
 
-## ⬜ M4 — Functional Gaps
-- ⬜ Wire the contact form to a real backend/email endpoint (currently simulated)
-- ⬜ Confirm the correct MSU email (site uses `assaflai@msu.edu`)
-- ⬜ SEO/social: Open Graph tags, favicon, sitemap
+## 🔄 M4 — Functional Gaps
+Make the site complete as a shippable product. Decisions (Laith, 2026-10-17):
+- **Domain:** `https://resume-website-eight-psi.vercel.app`. It is held in
+  one constant, so a custom domain later is a one-line change.
+- **Email:** `assaflai@msu.edu` is correct. The résumé PDF renders the same
+  spelling; the "asaflai" note was wrong. Keep MSU until graduation, and swap
+  the site and the PDF together before May 2027.
+- **Contact:** email-only. The form stays unmounted by Laith's decision.
+
+Scope (built 2026-10-17, prod build, lint clean):
+- ✅ Per-route title, description, canonical, Open Graph and Twitter
+  metadata from `src/data/pages.ts` via `pageMetadata()` in `src/lib/seo.ts`.
+  One 1200×630 OG image per route (`src/lib/og.tsx`): the top-bar ident,
+  headline and the world's limb in its tint (cyan on home and /overview).
+  Fonts are committed woff files in `src/assets/fonts/` (OFL).
+- ✅ Favicon set from the cyan diamond on a deep-space tile: `icon.svg`,
+  `favicon.ico` (16/32/48) and `apple-icon.png` (180).
+- ✅ `/sitemap.xml` (6 routes) and `/robots.txt`; the 404 is `noindex`.
+- **Gate:**
+  - every route has a correct title, description and OG image, checked in
+    the rendered `<head>` and with an OG preview;
+  - the favicon shows in a browser tab;
+  - `/sitemap.xml` and `/robots.txt` resolve;
+  - the email matches the résumé;
+  - the form stays unmounted by Laith's decision (email-only contact).
+- **Gate status:** ✅ `<head>` checked on all 6 routes plus the 404 (title,
+  description, og:image 200 image/png) · ✅ sitemap and robots resolve ·
+  ✅ email matches the PDF · ✅ form unmounted by decision · ⬜ OG preview
+  tool and favicon-in-tab, both on the deployed site after push.
 
 ## ✅ M5 — De-slopify, pass 1: template chrome + P0/P1 fixes (2026-10-16)
 Kept the concept and removed the generated-looking defaults, via colorize →

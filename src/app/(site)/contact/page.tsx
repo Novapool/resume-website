@@ -1,9 +1,7 @@
 import ContactPage from "@/components/site/contact-page";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Contact | Laith Assaf",
-  description: "Open a channel to reach Laith Assaf about software and systems.",
-};
+export const metadata = pageMetadata("contact");
 
 export default function Page() {
   return <ContactPage />;

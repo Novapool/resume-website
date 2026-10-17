@@ -9,6 +9,8 @@ import {
 import "./globals.css";
 import "../styles/animations.css"; // Import our animation styles
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { PAGES } from "@/data/pages";
+import { SITE_URL } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,9 +35,12 @@ const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
 });
 
+// Fallbacks only (the 404 uses them). Each route sets its own title,
+// description, canonical and OG fields via pageMetadata() in src/lib/seo.ts.
 export const metadata: Metadata = {
-  title: "Laith Assaf | AI/ML Software Engineer",
-  description: "Portfolio of Laith Assaf, a Computer Science (AI/ML) student at Michigan State University building LLM agents, reinforcement learning systems, and open-source developer tooling.",
+  metadataBase: new URL(SITE_URL),
+  title: PAGES.home.title,
+  description: PAGES.home.description,
 };
 
 export default function RootLayout({

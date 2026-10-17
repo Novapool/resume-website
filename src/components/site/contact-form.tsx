@@ -1,7 +1,8 @@
 // src/components/site/contact-form.tsx
-// Comms console on the contact moon. NOT MOUNTED until M4 (see MILESTONES.md)
-// gives it a real endpoint: it posts to /api/contact, which doesn't exist yet,
-// so it can only ever report a failure — never a send that didn't happen.
+// Comms console on the contact moon. NOT MOUNTED: contact is email-only by
+// Laith's decision (M4, MILESTONES.md). It posts to /api/contact, which
+// doesn't exist, so it can only ever report a failure — never a send that
+// didn't happen. Mount it only once that endpoint really delivers.
 "use client";
 
 import { useState } from "react";
