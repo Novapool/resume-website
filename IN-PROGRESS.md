@@ -16,7 +16,7 @@
   (`npm run dev -- -p 3100`). Stop dev before `npm run build`.
 
 ## Current Work
-None. M7 is closed; next is the real-device check, then M4.
+None. M7 is closed and the phone check passed; next is M4.
 
 ## Active Plan
 No active implementation plan.
@@ -43,14 +43,13 @@ No active implementation plan.
   - Themed 404, landing pitch card, mobile waypoint strip.
 
 ## Blockers
-- **No real-device check yet.** Playwright phone emulation and WebKit pass.
-  Nothing has been checked on a physical phone, in iOS Safari, or with
-  reduced motion turned on.
+- **Device check:** Laith checked the site on a real phone (2026-10-17) and
+  it looks good. A pass with reduced motion turned on is still unchecked.
 - **Email spelling:** the site uses `assaflai@msu.edu`; the résumé PDF text
   renders as `asaflai@msu.edu`. Laith to confirm.
 
 ## Next Steps
-1. Real phone + iOS Safari + reduced-motion pass on `/` and the four worlds.
+1. Quick reduced-motion pass on `/` and the four worlds.
 2. (M4) Open Graph tags, favicon, sitemap; confirm the email.
 3. (M4) Wire the contact form to a real backend, then re-mount it
    (`contact-form.tsx` already posts to `/api/contact`).

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-16T22:09:24.696344+00:00",
+  "generatedAt": "2026-10-17T18:17:57.251389+00:00",
   "title": "Design System: Laith Assaf, Space Navigator",
   "extensions": {
     "colorMeta": {
@@ -303,7 +303,12 @@
       {
         "name": "phone",
         "value": "760px",
-        "purpose": "Gutter collapses to a thin edge with a vertical readout; grids go single-column; corner brackets hide."
+        "purpose": "Gutter collapses to a thin edge with a vertical readout; band marks hide; grids go single-column; proof rows stay three across, top-aligned; the game shelf goes two-up; the landing gets a four-up waypoint strip."
+      },
+      {
+        "name": "resume-link",
+        "value": "700px",
+        "purpose": "The résumé PDF iframe and its expand control give way to the Résumé link (PDF iframes fail on phones)."
       }
     ]
   },
@@ -379,6 +384,14 @@
       "description": "Sticky readout on the altitude rule: km counting down, current zone beneath.",
       "html": "<div class=\"ds-axis\"><div class=\"ds-ro\"><span class=\"ds-alt\">ALT 260 KM</span><span class=\"ds-zone\">CLOUD DECK</span></div></div>",
       "css": ".ds-axis{--planet:#7fb6ff;--planet-rgb:127,182,255;position:relative;height:160px;width:150px;background:#07101f}.ds-axis::before{content:'';position:absolute;top:0;bottom:0;right:24px;width:1px;background:linear-gradient(180deg,rgba(var(--planet-rgb),.12),rgba(var(--planet-rgb),.7))}.ds-ro{position:absolute;top:40px;right:14px;display:flex;flex-direction:column;align-items:flex-end;gap:4px;padding:8px 10px;background:#06070e;border:1px solid rgba(var(--planet-rgb),.35);font-variant-numeric:tabular-nums;font-family:'IBM Plex Mono',ui-monospace,monospace;}.ds-alt{font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--planet)}.ds-zone{font-size:11px;letter-spacing:.12em;color:#9aa8ba}"
+    },
+    {
+      "name": "Arrival Card",
+      "kind": "custom",
+      "refersTo": "touchdown",
+      "description": "Touchdown card on the planet's horizon, drawn in the next world's tint: Next: <world>, its teaser, a mono landed line and a quiet link to the overview.",
+      "html": "<div class=\"ds-arrival\"><a class=\"ds-arr-next\" href=\"#\">Next: Experience <svg viewBox=\"0 0 12 12\" width=\"12\" height=\"12\" aria-hidden=\"true\"><path d=\"M4 2.5 7.5 6 4 9.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a><p class=\"ds-arr-teaser\">Mission log. LLM agents at Delta Dental and three years of IT at MSU.</p><div class=\"ds-arr-mark\">LANDED ON PROJECTS · 0 KM</div><a class=\"ds-arr-alt\" href=\"#\">Every section on one page</a></div>",
+      "css": ".ds-arrival{--t:217,116,63;max-width:520px;padding:24px 26px;background:rgba(6,7,14,.82);border-top:1px solid rgba(var(--t),.6);font-family:'Space Grotesk',system-ui,sans-serif} .ds-arr-next{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:28px;font-weight:600;color:rgb(var(--t));text-decoration:none} .ds-arr-next:hover{color:#f2f5fc} .ds-arr-next:focus-visible,.ds-arr-alt:focus-visible{outline:2px solid rgb(var(--t));outline-offset:3px} .ds-arr-teaser{margin:8px 0 0;font-size:16px;line-height:1.55;color:#b9c3d2} .ds-arr-mark{margin-top:8px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.12em;color:#9aa8ba} .ds-arr-alt{display:inline-flex;align-items:center;min-height:44px;margin-top:6px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;color:#b9c3d2;text-decoration:underline;text-decoration-color:rgba(var(--t),.5);text-underline-offset:4px} .ds-arr-alt:hover{color:#f2f5fc}"
     }
   ],
   "narrative": {
@@ -394,7 +407,7 @@
     "rules": [
       {
         "name": "The One Tint Rule",
-        "body": "A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it.",
+        "body": "A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it. The per-project colour is a confirmed product decision (Laith, 2026-10-17), kept even though a critique argued it fights the crystal palette.",
         "section": "colors"
       },
       {
