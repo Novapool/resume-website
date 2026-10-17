@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "src/components/hud/hud.css"
+        ],
+        "createdAt": "2026-10-16T21:42:31.985Z",
+        "reason": "model: rust plate rule sets border-radius: 0 (hud.css experience .hud-panel); static scan merges the base 4px radius, and the rendered URL scan of /experience at 1280 and 390 reports 0 border-accent-on-rounded"
+      }
+    ]
+  }
+}

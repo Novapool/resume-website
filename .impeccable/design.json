@@ -1,0 +1,437 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T22:09:24.696344+00:00",
+  "title": "Design System: Laith Assaf, Space Navigator",
+  "extensions": {
+    "colorMeta": {
+      "deep-space": {
+        "role": "neutral",
+        "displayName": "Deep Space",
+        "canonical": "oklch(13.1% 0.016 276)",
+        "tonalRamp": [
+          "oklch(15% 0.010 276)",
+          "oklch(25% 0.016 276)",
+          "oklch(35% 0.016 276)",
+          "oklch(48% 0.016 276)",
+          "oklch(60% 0.016 276)",
+          "oklch(72% 0.016 276)",
+          "oklch(84% 0.016 276)",
+          "oklch(95% 0.010 276)"
+        ]
+      },
+      "control-base": {
+        "role": "neutral",
+        "displayName": "Control Base",
+        "canonical": "oklch(14.8% 0.017 278)",
+        "tonalRamp": [
+          "oklch(15% 0.010 278)",
+          "oklch(25% 0.017 278)",
+          "oklch(35% 0.017 278)",
+          "oklch(48% 0.017 278)",
+          "oklch(60% 0.017 278)",
+          "oklch(72% 0.017 278)",
+          "oklch(84% 0.017 278)",
+          "oklch(95% 0.010 278)"
+        ]
+      },
+      "hud-cyan": {
+        "role": "primary",
+        "displayName": "Instrument Cyan",
+        "canonical": "oklch(83.9% 0.132 174)",
+        "tonalRamp": [
+          "oklch(15% 0.079 174)",
+          "oklch(25% 0.132 174)",
+          "oklch(35% 0.132 174)",
+          "oklch(48% 0.132 174)",
+          "oklch(60% 0.132 174)",
+          "oklch(72% 0.132 174)",
+          "oklch(84% 0.132 174)",
+          "oklch(95% 0.079 174)"
+        ]
+      },
+      "dossier-amber": {
+        "role": "secondary",
+        "displayName": "Dossier Amber",
+        "canonical": "oklch(82.3% 0.136 68)",
+        "tonalRamp": [
+          "oklch(15% 0.081 68)",
+          "oklch(25% 0.136 68)",
+          "oklch(35% 0.136 68)",
+          "oklch(48% 0.136 68)",
+          "oklch(60% 0.136 68)",
+          "oklch(72% 0.136 68)",
+          "oklch(84% 0.136 68)",
+          "oklch(95% 0.081 68)"
+        ]
+      },
+      "starlight-text": {
+        "role": "neutral",
+        "displayName": "Starlight",
+        "canonical": "oklch(97.0% 0.010 267)",
+        "tonalRamp": [
+          "oklch(15% 0.006 267)",
+          "oklch(25% 0.010 267)",
+          "oklch(35% 0.010 267)",
+          "oklch(48% 0.010 267)",
+          "oklch(60% 0.010 267)",
+          "oklch(72% 0.010 267)",
+          "oklch(84% 0.010 267)",
+          "oklch(95% 0.006 267)"
+        ]
+      },
+      "haze-muted": {
+        "role": "neutral",
+        "displayName": "Haze",
+        "canonical": "oklch(81.4% 0.024 258)",
+        "tonalRamp": [
+          "oklch(15% 0.014 258)",
+          "oklch(25% 0.024 258)",
+          "oklch(35% 0.024 258)",
+          "oklch(48% 0.024 258)",
+          "oklch(60% 0.024 258)",
+          "oklch(72% 0.024 258)",
+          "oklch(84% 0.024 258)",
+          "oklch(95% 0.014 258)"
+        ]
+      },
+      "instrument-label": {
+        "role": "neutral",
+        "displayName": "Instrument Label",
+        "canonical": "oklch(72.6% 0.031 255)",
+        "tonalRamp": [
+          "oklch(15% 0.018 255)",
+          "oklch(25% 0.031 255)",
+          "oklch(35% 0.031 255)",
+          "oklch(48% 0.031 255)",
+          "oklch(60% 0.031 255)",
+          "oklch(72% 0.031 255)",
+          "oklch(84% 0.031 255)",
+          "oklch(95% 0.018 255)"
+        ]
+      },
+      "placeholder-slate": {
+        "role": "neutral",
+        "displayName": "Placeholder Slate",
+        "canonical": "oklch(65.8% 0.033 256)",
+        "tonalRamp": [
+          "oklch(15% 0.020 256)",
+          "oklch(25% 0.033 256)",
+          "oklch(35% 0.033 256)",
+          "oklch(48% 0.033 256)",
+          "oklch(60% 0.033 256)",
+          "oklch(72% 0.033 256)",
+          "oklch(84% 0.033 256)",
+          "oklch(95% 0.020 256)"
+        ]
+      },
+      "panel-glass": {
+        "role": "neutral",
+        "displayName": "Panel Glass",
+        "canonical": "rgba(10, 14, 24, 0.55)",
+        "tonalRamp": [
+          "oklch(15% 0.013 267)",
+          "oklch(25% 0.022 267)",
+          "oklch(35% 0.022 267)",
+          "oklch(48% 0.022 267)",
+          "oklch(60% 0.022 267)",
+          "oklch(72% 0.022 267)",
+          "oklch(84% 0.022 267)",
+          "oklch(95% 0.013 267)"
+        ],
+        "note": "Ramp derived from the opaque base #0a0e18."
+      },
+      "lush-moss": {
+        "role": "tertiary",
+        "displayName": "Lush Moss (About)",
+        "canonical": "oklch(78.3% 0.097 127)",
+        "tonalRamp": [
+          "oklch(15% 0.058 127)",
+          "oklch(25% 0.097 127)",
+          "oklch(35% 0.097 127)",
+          "oklch(48% 0.097 127)",
+          "oklch(60% 0.097 127)",
+          "oklch(72% 0.097 127)",
+          "oklch(84% 0.097 127)",
+          "oklch(95% 0.058 127)"
+        ]
+      },
+      "crystal-blue": {
+        "role": "tertiary",
+        "displayName": "Crystal Blue (Projects)",
+        "canonical": "oklch(76.7% 0.120 256)",
+        "tonalRamp": [
+          "oklch(15% 0.072 256)",
+          "oklch(25% 0.120 256)",
+          "oklch(35% 0.120 256)",
+          "oklch(48% 0.120 256)",
+          "oklch(60% 0.120 256)",
+          "oklch(72% 0.120 256)",
+          "oklch(84% 0.120 256)",
+          "oklch(95% 0.072 256)"
+        ]
+      },
+      "rust-ember": {
+        "role": "tertiary",
+        "displayName": "Rust Ember (Experience)",
+        "canonical": "oklch(66.4% 0.143 47)",
+        "tonalRamp": [
+          "oklch(15% 0.086 47)",
+          "oklch(25% 0.143 47)",
+          "oklch(35% 0.143 47)",
+          "oklch(48% 0.143 47)",
+          "oklch(60% 0.143 47)",
+          "oklch(72% 0.143 47)",
+          "oklch(84% 0.143 47)",
+          "oklch(95% 0.086 47)"
+        ]
+      },
+      "moon-violet": {
+        "role": "tertiary",
+        "displayName": "Moon Violet (Contact)",
+        "canonical": "oklch(76.1% 0.127 307)",
+        "tonalRamp": [
+          "oklch(15% 0.076 307)",
+          "oklch(25% 0.127 307)",
+          "oklch(35% 0.127 307)",
+          "oklch(48% 0.127 307)",
+          "oklch(60% 0.127 307)",
+          "oklch(72% 0.127 307)",
+          "oklch(84% 0.127 307)",
+          "oklch(95% 0.076 307)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The page title in the orbit block, beside the small planet body."
+      },
+      "proof": {
+        "displayName": "Proof",
+        "purpose": "Headline figures in the orbit proof row, in the world tint. 28px under 760px; the lead featured stat goes to 64px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "One per band, in the world tint softened 72% toward starlight."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Panel headings; 21px on featured cards, 28px on the lead build, 17px in index rows."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The one-line who under the page title, max 52ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All paragraphs, in haze, max 68ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Mono uppercase captions, dates, proof labels, zone names."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Buttons, pills and the altitude readout."
+      }
+    },
+    "shadows": [
+      {
+        "name": "leaf-lift",
+        "value": "0 24px 46px -30px rgba(0,0,0,0.9), inset 0 1px 0 rgba(214,232,178,0.1)",
+        "purpose": "Lush (About) panels."
+      },
+      {
+        "name": "plate-lift",
+        "value": "0 16px 32px -20px rgba(0,0,0,0.85)",
+        "purpose": "Rust (Experience) plates."
+      },
+      {
+        "name": "crystal-edge",
+        "value": "inset 0 2px 0 rgb(var(--accent-rgb, 127,182,255)), inset 0 0 0 1px rgba(127,182,255,0.14)",
+        "purpose": "Crystal (Projects) cells: cold top edge in the project's colour."
+      },
+      {
+        "name": "moonlight",
+        "value": "inset 1px 1px 0 rgba(236,222,255,0.2), inset -1px -1px 0 rgba(0,0,0,0.45)",
+        "purpose": "Moon (Contact) panels, lit from the upper left."
+      },
+      {
+        "name": "tint-glow",
+        "value": "0 0 10px var(--planet)",
+        "purpose": "Status dots, active waypoint tick (12px), scroll fill only."
+      },
+      {
+        "name": "panel-glass-blur",
+        "value": "backdrop-filter: blur(10px)",
+        "purpose": "Landing target card and telemetry bar (8px) over the open scene."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-change",
+        "value": "0.2s ease",
+        "purpose": "Colour, border and background changes on controls, links and rows."
+      },
+      {
+        "name": "band-handover",
+        "value": "opacity 0.25s ease",
+        "purpose": "A band mark fades as the sticky readout reaches it; the readout fades at touchdown."
+      },
+      {
+        "name": "launch-fade",
+        "value": "opacity 0.55s ease, route at 650ms",
+        "purpose": "Full-screen radial fade in the destination world's colour before routing; skipped for keyboard activation and reduced motion."
+      },
+      {
+        "name": "sky-drift",
+        "value": "translateY(calc(var(--descent) * -45vh)); opacity: calc(1 - var(--descent) * 0.9)",
+        "purpose": "Scroll-bound sky parallax, driven by one rAF-throttled loop. Reduced motion keeps the fade, drops the movement."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "rail-clearance",
+        "value": "981px-1640px",
+        "purpose": "Content reserves 210px on the right for the waypoint rail (176px at 1180px and below)."
+      },
+      {
+        "name": "tablet",
+        "value": "980px",
+        "purpose": "Rail moves into the top bar as a four-up strip; gutter narrows to 112px."
+      },
+      {
+        "name": "phone",
+        "value": "760px",
+        "purpose": "Gutter collapses to a thin edge with a vertical readout; grids go single-column; corner brackets hide."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Solid Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled action per block, in the world tint.",
+      "html": "<a class=\"ds-btn ds-btn-solid\" href=\"#\">WRITE AN EMAIL</a>",
+      "css": ".ds-btn{--planet:#7fb6ff;--planet-rgb:127,182,255;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border:1px solid rgba(var(--planet-rgb),.45);border-radius:2px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.12em;text-decoration:none;cursor:pointer;transition:background .2s ease,color .2s ease}.ds-btn-solid{background:var(--planet);border-color:var(--planet);color:#06070e}.ds-btn-solid:hover{background:#fff;border-color:#fff}.ds-btn:focus-visible{outline:2px solid var(--planet);outline-offset:3px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary action: tint wash over an opaque base so it reads on any air.",
+      "html": "<button class=\"ds-btn-o\">COPY ADDRESS</button>",
+      "css": ".ds-btn-o{--planet:#7fb6ff;--planet-rgb:127,182,255;display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border:1px solid rgba(var(--planet-rgb),.45);border-radius:2px;background:linear-gradient(rgba(var(--planet-rgb),.08),rgba(var(--planet-rgb),.08)),#090a12;color:color-mix(in oklab,var(--planet) 85%,#fff);font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.12em;cursor:pointer;transition:background .2s ease,color .2s ease}.ds-btn-o:hover{background:linear-gradient(rgba(var(--planet-rgb),.2),rgba(var(--planet-rgb),.2)),#090a12;color:#f2f5fc}.ds-btn-o:focus-visible{outline:2px solid var(--planet);outline-offset:3px}"
+    },
+    {
+      "name": "Waypoint Rail",
+      "kind": "nav",
+      "refersTo": "waypoint-pill",
+      "description": "The four-world rail; the current world is a marker, not a link.",
+      "html": "<nav class=\"ds-rail\"><a class=\"ds-pill\" href=\"#\"><span><span class=\"ds-idx\">01&nbsp;&nbsp;</span>ABOUT</span><span class=\"ds-tick\"></span></a><span class=\"ds-pill ds-on\" aria-current=\"page\"><span><span class=\"ds-idx\">02&nbsp;&nbsp;</span>PROJECTS</span><span class=\"ds-tick\"></span></span><a class=\"ds-pill\" href=\"#\"><span><span class=\"ds-idx\">03&nbsp;&nbsp;</span>EXPERIENCE</span><span class=\"ds-tick\"></span></a></nav>",
+      "css": ".ds-rail{--planet:#7fb6ff;--planet-rgb:127,182,255;display:flex;flex-direction:column;gap:10px;width:158px;background:#06070e;padding:12px}.ds-pill{display:inline-flex;align-items:center;justify-content:flex-end;gap:11px;min-height:44px;padding:8px 12px;border:1px solid rgba(120,140,170,.18);border-radius:2px;background:rgba(10,14,24,.82);color:#b9c3d2;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;transition:color .2s,border-color .2s,background .2s}.ds-pill:hover{color:#57e6c4;border-color:rgba(87,230,196,.5);background:rgba(87,230,196,.08)}.ds-pill:focus-visible{outline:2px solid var(--planet);outline-offset:3px}.ds-idx{color:#9aa8ba}.ds-tick{width:7px;height:7px;border:1px solid currentColor;border-radius:50%}.ds-on{color:var(--planet);border-color:rgba(var(--planet-rgb),.6);background:rgba(var(--planet-rgb),.1)}.ds-on .ds-tick{background:var(--planet);box-shadow:0 0 12px var(--planet)}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Stack tags on project and posting panels.",
+      "html": "<div class=\"ds-tags\"><span class=\"ds-tag\">Python</span><span class=\"ds-tag\">PPO</span><span class=\"ds-tag\">MCTS</span></div>",
+      "css": ".ds-tags{--planet:#7fb6ff;--planet-rgb:127,182,255;display:flex;flex-wrap:wrap;gap:7px}.ds-tag{display:inline-block;padding:4px 9px;border:1px solid rgba(var(--planet-rgb),.3);border-radius:2px;background:rgba(var(--planet-rgb),.06);color:#d8e0ec;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.04em}"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Text field (built for the comms form, which is not yet mounted).",
+      "html": "<label class=\"ds-fl\"><span>RETURN ADDRESS</span><input class=\"ds-field\" placeholder=\"you@company.com\"></label>",
+      "css": ".ds-fl{--planet:#7fb6ff;--planet-rgb:127,182,255;display:flex;flex-direction:column;gap:6px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;font-weight:500;letter-spacing:.12em;color:#9aa8ba}.ds-field{padding:10px 12px;border:1px solid rgba(120,140,170,.24);border-radius:2px;background:rgba(4,6,12,.55);color:#f2f5fc;font-family:'Space Grotesk',system-ui,sans-serif;font-size:16px;letter-spacing:0}.ds-field::placeholder{color:#8593a6}.ds-field:focus{outline:none;border-color:var(--planet)}.ds-field:focus-visible{outline:2px solid var(--planet);outline-offset:2px}"
+    },
+    {
+      "name": "Crystal Cell",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Projects world panel: cut-corner facets, internal light planes, a cold top edge in the project's colour.",
+      "html": "<article class=\"ds-crystal\"><h3>Pokémon Battle Agent</h3><p>Imitation learning plus PPO, with MCTS at decision time.</p><div class=\"ds-stat\"><b>93%</b><span>WIN RATE</span></div></article>",
+      "css": ".ds-crystal{--accent-rgb:127,182,255;padding:26px 24px 24px;clip-path:polygon(0 16px,16px 0,calc(100% - 38px) 0,100% 38px,100% 100%,0 100%);background:linear-gradient(116deg,rgba(168,220,255,.08) 0 34%,transparent 34.2%),linear-gradient(64deg,transparent 0 58%,rgba(168,220,255,.05) 58.2% 79%,transparent 79.2%),linear-gradient(158deg,rgba(127,182,255,.15),rgba(8,14,28,.95) 52%);box-shadow:inset 0 2px 0 rgb(var(--accent-rgb)),inset 0 0 0 1px rgba(127,182,255,.14);color:#b9c3d2;font-family:'Space Grotesk',system-ui,sans-serif;}.ds-crystal h3{margin:0;color:#f2f5fc;font-size:21px;font-weight:600}.ds-crystal p{font-size:15px;line-height:1.5;color:#f2f5fc}.ds-stat{display:flex;align-items:baseline;gap:10px}.ds-stat b{font-size:28px;font-weight:600;color:rgb(var(--accent-rgb))}.ds-stat span{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.12em;color:#9aa8ba}"
+    },
+    {
+      "name": "Rust Plate",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Experience world panel: square plate, rust border, heavy top band.",
+      "html": "<article class=\"ds-plate\"><div class=\"ds-ph\"><h3>Delta Dental · PC Technician Intern</h3><span>MAY 2026 – NOW</span></div><p>LLM agents inside three Power Automate workflows.</p></article>",
+      "css": ".ds-plate{padding:22px 24px;border:1px solid rgba(217,116,63,.3);border-top:3px solid #d9743f;border-radius:0;background:rgba(30,16,10,.92);box-shadow:0 16px 32px -20px rgba(0,0,0,.85);font-family:'Space Grotesk',system-ui,sans-serif;color:#b9c3d2}.ds-ph{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px;margin-bottom:12px}.ds-ph h3{margin:0;font-size:16px;font-weight:600;color:#f2f5fc}.ds-ph span{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.12em;color:#9aa8ba}.ds-plate p{margin:0;font-size:16px;line-height:1.65}"
+    },
+    {
+      "name": "Leaf Sheet",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "About world panel: borderless pressed leaf with curled opposite corners.",
+      "html": "<article class=\"ds-leaf\"><h3>Working style &amp; values</h3><p>I do my best work when I get to architect the solution, not just implement it.</p></article>",
+      "css": ".ds-leaf{padding:22px 24px;border-radius:30px 6px 30px 6px;background:radial-gradient(140% 110% at 0% 0%,rgba(168,196,127,.18),transparent 58%),linear-gradient(180deg,rgba(24,40,24,.9),rgba(12,22,14,.92));box-shadow:0 24px 46px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(214,232,178,.1);font-family:'Space Grotesk',system-ui,sans-serif;color:#b9c3d2}.ds-leaf h3{margin:0 0 12px;font-size:16px;font-weight:600;color:#f2f5fc}.ds-leaf p{margin:0;font-size:16px;line-height:1.65}"
+    },
+    {
+      "name": "Altitude Readout",
+      "kind": "custom",
+      "refersTo": "altitude-readout",
+      "description": "Sticky readout on the altitude rule: km counting down, current zone beneath.",
+      "html": "<div class=\"ds-axis\"><div class=\"ds-ro\"><span class=\"ds-alt\">ALT 260 KM</span><span class=\"ds-zone\">CLOUD DECK</span></div></div>",
+      "css": ".ds-axis{--planet:#7fb6ff;--planet-rgb:127,182,255;position:relative;height:160px;width:150px;background:#07101f}.ds-axis::before{content:'';position:absolute;top:0;bottom:0;right:24px;width:1px;background:linear-gradient(180deg,rgba(var(--planet-rgb),.12),rgba(var(--planet-rgb),.7))}.ds-ro{position:absolute;top:40px;right:14px;display:flex;flex-direction:column;align-items:flex-end;gap:4px;padding:8px 10px;background:#06070e;border:1px solid rgba(var(--planet-rgb),.35);font-variant-numeric:tabular-nums;font-family:'IBM Plex Mono',ui-monospace,monospace;}.ds-alt{font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--planet)}.ds-zone{font-size:11px;letter-spacing:.12em;color:#9aa8ba}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Descent",
+    "overview": "The site is a ship's nav-computer. The landing is the flight between worlds; every section page is a fall from orbit onto one world's surface, and the work is what the visitor passes on the way down. The page opens in deep space with a small rendition of the planet, a large title, one line of who, and a row of real numbers. As the visitor scrolls, the background thins into that world's own air, a single altitude rule runs down the left of the content with a sticky kilometre readout, and the page ends on the planet's horizon arc, where the only exit is a launch to the next world.\n\nThe chrome is one shared instrument (mono labels, thin hairline borders, a fixed top bar, a waypoint rail), and the surfaces are not. Panels are made of the world's material: pressed leaves on the lush world, faceted crystal cells on the crystalline world, hard rust plates on the rust world, a softly lit sample on the moon. One tint variable (`--planet`) colours every control, rule and readout so the instrument always reads as belonging to the world it sits on. Density is a progression: orbit is sparse and large, the cloud deck carries featured work large, lower bands hold the full record compactly.\n\nThe system is always dark, regardless of site theme. Motion is scroll-bound and cheap; nothing loops on a section page, and every transition is removed under reduced motion while the sky's fade (opacity) is kept.",
+    "keyCharacteristics": [
+      "One instrument chrome, four world materials.",
+      "Every world page is a vertical descent: orbit, deck, lower bands, touchdown.",
+      "A single per-world tint drives every accent; the cyan instrument colour is the neutral fallback.",
+      "Space Grotesk carries reading; IBM Plex Mono carries instruments.",
+      "Real numbers are the largest type on the page after the title."
+    ],
+    "rules": [
+      {
+        "name": "The One Tint Rule",
+        "body": "A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Softened Heading Rule",
+        "body": "Section headings use the world tint mixed 72% toward starlight (`color-mix(in oklab, var(--planet) 72%, var(--hud-text))`) and outline-button text mixes 85% toward white, so every world stays above 4.5:1 on its panel.",
+        "section": "colors"
+      },
+      {
+        "name": "The Instrument Voice Rule",
+        "body": "Mono is for readouts, labels and controls only. Paragraphs, headings and titles are always Space Grotesk; panel titles read in sentence case even when the data stores them in caps.",
+        "section": "typography"
+      },
+      {
+        "name": "The Numbers Lead Rule",
+        "body": "After the page title, the largest type on a world page is a real figure, never an adjective.",
+        "section": "typography"
+      },
+      {
+        "name": "The Air Is The Depth Rule",
+        "body": "A page gets deeper by scrolling through its air, never by stacking shadows. No panel gets a shadow its world's material does not explain.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do drive every accent from `--planet` / `--planet-rgb`, and read world colour, air, sky and horizon from `src/lib/planets.ts`.",
+      "Do build each world page as orbit, deck, lower bands, touchdown, with every band hung off the altitude rule.",
+      "Do make panels from their world's material: leaves, crystal cells, rust plates, the moon sample.",
+      "Do keep body text in solid haze (#b9c3d2) and soften tinted headings 72% toward starlight so every world clears 4.5:1.",
+      "Do give every control a 44px minimum target and the 2px tint focus ring.",
+      "Do disable every animation and transition under reduced motion, keeping only the sky's opacity fade."
+    ],
+    "donts": [
+      "Don't put a uniform grid of identical tinted cards on a world page; the deck leads with one large build and the record goes compact.",
+      "Don't add a background grid, vignette, ticks on panels, or `//` kicker lines to a world page.",
+      "Don't introduce a second accent hue beside the world tint, other than résumé amber and a project's own colour.",
+      "Don't set paragraphs or headings in the mono, or controls in the grotesk.",
+      "Don't fake project imagery, screenshots or figures; a panel without a real number or source shows nothing in its place."
+    ]
+  }
+}

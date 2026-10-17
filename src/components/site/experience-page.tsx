@@ -1,37 +1,33 @@
 // src/components/site/experience-page.tsx
 // Waypoint 03 — bare rust world, lit by the black hole burning off its shoulder.
-"use client";
-
-import { useState } from "react";
+// Descend past the current postings (hard rust plates) into the strata of the
+// mission log, newest layer on top. The log's lines never retell a plate.
 import HudPage from "@/components/hud/HudPage";
-import { LabeledPanel, LandingHeader, Section } from "@/components/hud/panels";
+import { Chevron, LabeledPanel, Orbit, Section } from "@/components/hud/panels";
 import { PLANET } from "@/lib/planets";
 import { MISSION_LOG } from "@/data/timeline";
 import { PROFILE } from "@/data/profile";
 
 const planet = PLANET.experience;
 
-/** How many log entries show before the visitor asks for the full record. */
-const PREVIEW = 3;
-
 export default function ExperiencePage() {
-  const [full, setFull] = useState(false);
-  const entries = full ? MISSION_LOG : MISSION_LOG.slice(0, PREVIEW);
-
   return (
     <HudPage planet={planet}>
-      <div className="hud-reveal">
-        <LandingHeader
-          planet={planet}
-          title="Experience"
-          intro="Mission log. LLM agents and endpoint support at Delta Dental, three years of IT at the MSU College of Osteopathic Medicine, and 8+ AI Club workshops delivered to 500+ attendees."
-        />
-      </div>
+      <Orbit
+        planet={planet}
+        title="Experience"
+        intro="Agents and endpoints at Delta Dental, three years of IT at MSU."
+        proof={[
+          { value: "$11K", label: "saved a year by one workflow" },
+          { value: "500+", label: "workshop attendees" },
+          { value: "100+", label: "endpoints imaged" },
+        ]}
+      />
 
-      <div className="hud-reveal" style={{ animationDelay: ".08s" }}>
-        <Section label="// CURRENT POSTING" title="Delta Dental · PC Technician Intern">
-          <div className="hud-grid2">
-            <LabeledPanel label="// ONSITE SUPPORT TEAM · OKEMOS, MI" meta={<span className="hud-label">MAY 2026 – PRESENT</span>}>
+      <Section zone="DUST LINE" title="Current postings" deck>
+        <div className="hud-plates">
+          <LabeledPanel label="Delta Dental · PC Technician Intern" meta={<span className="hud-label">MAY 2026 – NOW</span>}>
+              <div className="hud-panel-sub">Onsite support team · Okemos, MI</div>
               <div className="hud-body">
                 <ul>
                   <li>
@@ -52,21 +48,29 @@ export default function ExperiencePage() {
                     reached its user with policy applied, and backing up and
                     wiping each drive at the end of the device lifecycle
                   </li>
-                  <li>
-                    Resolved 100+ tickets spanning laptop upgrades and hardware
-                    faults, restoring locked-out users through Azure BitLocker
-                    recovery and CyberArk credential access, and tracing
-                    network port issues with Cisco DDI
-                  </li>
-                  <li>
-                    Set up 400+ workstations (desks, monitors, docking
-                    stations, and peripherals) after a corporate office
-                    renovation
-                  </li>
                 </ul>
+                <details className="hud-debrief">
+                  <summary className="hud-label">
+                    <Chevron className="hud-chevron-turn" />
+                    More from this role
+                  </summary>
+                  <ul>
+                    <li>
+                      Resolved 100+ tickets spanning laptop upgrades and hardware
+                      faults, restoring locked-out users through Azure BitLocker
+                      recovery and CyberArk credential access, and tracing
+                      network port issues with Cisco DDI
+                    </li>
+                    <li>
+                      Set up 400+ workstations (desks, monitors, docking
+                      stations, and peripherals) after a corporate office
+                      renovation
+                    </li>
+                  </ul>
+                </details>
               </div>
             </LabeledPanel>
-            <LabeledPanel label="// MSU AI CLUB · WORKSHOP COORDINATOR" meta={<span className="hud-label">JAN 2025 – PRESENT</span>}>
+            <LabeledPanel label="MSU AI Club · Workshop Coordinator" meta={<span className="hud-label">JAN 2025 – NOW</span>}>
               <div className="hud-body">
                 <ul>
                   <li>
@@ -75,32 +79,37 @@ export default function ExperiencePage() {
                     (PyTorch) to 500+ attendees across 15 sessions, recording
                     90% retention and a 4.8/5 satisfaction score
                   </li>
-                  <li>
-                    Built and taught a multi-agent orchestrator demo
-                    coordinating Scope, Architecture, Builder, and Reviewer
-                    agents to plan and generate a web application from a
-                    one-line idea, used as live workshop material
-                  </li>
-                  <li>
-                    As Project Lead (Jan to May 2025), led a 4-student team
-                    building an Academic Performance Predictor on the GPT-4
-                    API, shipping course-level predictions across 50+ courses
-                  </li>
                 </ul>
+                <details className="hud-debrief">
+                  <summary className="hud-label">
+                    <Chevron className="hud-chevron-turn" />
+                    More from this role
+                  </summary>
+                  <ul>
+                    <li>
+                      Built and taught a multi-agent orchestrator demo
+                      coordinating Scope, Architecture, Builder, and Reviewer
+                      agents to plan and generate a web application from a
+                      one-line idea, used as live workshop material
+                    </li>
+                    <li>
+                      As Project Lead (Jan to May 2025), led a 4-student team
+                      building an Academic Performance Predictor on the GPT-4
+                      API, shipping course-level predictions across 50+ courses
+                    </li>
+                  </ul>
+                </details>
               </div>
             </LabeledPanel>
           </div>
-        </Section>
-      </div>
+      </Section>
 
-      <div className="hud-reveal" style={{ animationDelay: ".16s" }}>
-        <Section label="// MISSION LOG" title="The route so far">
-          <ol className="hud-log">
-            {entries.map((entry) => (
-              <li key={entry.date + entry.title} className="hud-log-entry">
-                <div className="hud-log-marker" aria-hidden />
-                <div className="hud-log-date hud-label">{entry.date}</div>
-                <div className="hud-panel hud-log-panel">
+      <Section zone="STRATA" title="The route so far">
+          <ol className="hud-strata">
+            {MISSION_LOG.map((entry) => (
+              <li key={entry.date + entry.title} className="hud-stratum">
+                <div className="hud-stratum-date">{entry.date}</div>
+                <div className="hud-stratum-body">
                   <h3 className="hud-h3">{entry.title}</h3>
                   {entry.role && (
                     <div className="hud-label" style={{ marginTop: 6 }}>
@@ -119,39 +128,17 @@ export default function ExperiencePage() {
             ))}
           </ol>
 
-          <div style={{ marginTop: 22 }}>
-            <button
-              className="hud-btn"
-              onClick={() => setFull((v) => !v)}
-              aria-expanded={full}
+          <div className="hud-actions">
+            <a
+              className="hud-btn hud-btn-solid"
+              href={PROFILE.resume}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {full
-                ? "COLLAPSE LOG ▴"
-                : `LOAD FULL LOG · ${MISSION_LOG.length - PREVIEW} MORE ▾`}
-            </button>
+              RÉSUMÉ
+            </a>
           </div>
-        </Section>
-      </div>
-
-      <div className="hud-reveal" style={{ animationDelay: ".24s" }}>
-        <Section label="// RECORD" title="Full service record">
-          <LabeledPanel label="// RESUME.PDF">
-            <p className="hud-body">
-              Every posting, project, and credential in one file.
-            </p>
-            <div style={{ marginTop: 16 }}>
-              <a
-                className="hud-btn hud-btn-solid"
-                href={PROFILE.resume}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                DOWNLOAD DOSSIER ▸
-              </a>
-            </div>
-          </LabeledPanel>
-        </Section>
-      </div>
+      </Section>
     </HudPage>
   );
 }

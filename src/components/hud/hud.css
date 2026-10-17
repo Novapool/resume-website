@@ -11,7 +11,10 @@ body:has(.hud-root) {
   background: #06070e;
 }
 
-.hud-root {
+/* the design tokens are shared with the landing (.sn-root), which uses the
+   same top bar, rail, pills, buttons and telemetry classes */
+.hud-root,
+.sn-root {
   /* overridden per page with the focused planet's theme colour */
   --planet: #57e6c4;
   --planet-rgb: 87, 230, 196;
@@ -20,12 +23,16 @@ body:has(.hud-root) {
   --hud-accent-rgb: 87, 230, 196;
   --hud-amber: #ffb35c;
   --hud-text: #f2f5fc;
-  --hud-muted: rgba(213, 224, 240, 0.72);
-  --hud-label: rgba(150, 168, 190, 0.7);
+  /* solid, not alpha, so contrast holds on every panel tint (≥4.5:1 on the
+     brightest project-card gradient) */
+  --hud-muted: #b9c3d2;
+  --hud-label: #9aa8ba;
   --hud-panel: rgba(10, 14, 24, 0.55);
   --hud-display: var(--font-space-grotesk), system-ui, sans-serif;
   --hud-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+}
 
+.hud-root {
   position: relative;
   min-height: 100vh;
   overflow-x: clip;
@@ -89,32 +96,6 @@ body:has(.hud-root) {
   background-size: 620px 620px;
 }
 
-.hud-grid {
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(87, 230, 196, 0.022) 0 1px,
-      transparent 1px 74px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(87, 230, 196, 0.022) 0 1px,
-      transparent 1px 74px
-    );
-}
-
-.hud-vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    120% 95% at 50% 45%,
-    transparent 52%,
-    rgba(3, 4, 10, 0.9) 100%
-  );
-}
-
 .hud-wash {
   position: absolute;
   inset: 0;
@@ -155,7 +136,7 @@ body:has(.hud-root) {
   position: absolute;
   width: 26px;
   height: 26px;
-  border: 0 solid rgba(87, 230, 196, 0.45);
+  border: 0 solid rgba(var(--planet-rgb), 0.45);
 }
 
 .hud-corner-tl {
@@ -183,6 +164,45 @@ body:has(.hud-root) {
   border-right-width: 1.5px;
 }
 
+/* focus and in-page jumps never land under the fixed top bar */
+html:has(.hud-root) {
+  scroll-padding-top: 112px;
+}
+
+@media (max-width: 980px) {
+  html:has(.hud-root) {
+    scroll-padding-top: 140px;
+  }
+}
+
+/* keyboard users skip the bar and the waypoint rail straight to the page */
+.hud-skip {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  background: var(--planet);
+  color: #06070e;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.hud-skip:focus-visible {
+  transform: none;
+}
+
+.hud-content:focus {
+  outline: none;
+}
+
 /* ══ TOP BAR ════════════════════════════════════════════════════════════ */
 
 .hud-topbar {
@@ -196,13 +216,20 @@ body:has(.hud-root) {
   justify-content: space-between;
   gap: 16px;
   padding: 18px 40px;
-  background: linear-gradient(
-    180deg,
-    rgba(6, 7, 14, 0.92) 0%,
-    rgba(6, 7, 14, 0.72) 62%,
-    rgba(6, 7, 14, 0) 100%
-  );
+  /* opaque behind the controls so content scrolls cleanly under the bar,
+     with a short fade below instead of text showing through the name plate */
+  background: #06070e;
   pointer-events: none;
+}
+
+.hud-topbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 24px;
+  background: linear-gradient(180deg, #06070e, rgba(6, 7, 14, 0));
 }
 
 .hud-topbar > * {
@@ -220,12 +247,13 @@ body:has(.hud-root) {
   flex: none;
   width: 13px;
   height: 13px;
-  background: var(--hud-accent);
+  background: var(--planet);
   transform: rotate(45deg);
-  box-shadow: 0 0 12px rgba(87, 230, 196, 0.7);
 }
 
 .hud-ident-name {
+  margin: 0;
+  white-space: nowrap;
   font-family: var(--hud-display);
   font-weight: 700;
   font-size: 15px;
@@ -236,10 +264,10 @@ body:has(.hud-root) {
 
 .hud-ident-sub {
   margin-top: 2px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.22em;
-  color: rgba(87, 230, 196, 0.8);
+  letter-spacing: 0.12em;
+  color: var(--planet);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -251,18 +279,13 @@ body:has(.hud-root) {
   gap: 14px;
 }
 
-.hud-sys {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  color: rgba(87, 230, 196, 0.75);
-  white-space: nowrap;
-}
-
 .hud-dossier {
-  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   color: var(--hud-amber);
   border: 1px solid rgba(255, 179, 92, 0.5);
   background: rgba(255, 179, 92, 0.07);
@@ -283,26 +306,35 @@ body:has(.hud-root) {
   display: inline-flex;
   align-items: center;
   gap: 11px;
+  min-height: 44px;
   padding: 8px 12px;
   border: 1px solid rgba(120, 140, 170, 0.18);
   border-radius: 2px;
-  background: rgba(10, 14, 24, 0.5);
-  backdrop-filter: blur(6px);
-  color: rgba(210, 225, 240, 0.55);
+  background: #090a12;
+  color: var(--hud-muted);
+  font-family: inherit;
   font-size: 12px;
   letter-spacing: 0.06em;
   white-space: nowrap;
+  cursor: pointer;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .hud-pill:hover {
-  color: var(--hud-accent);
-  border-color: rgba(87, 230, 196, 0.5);
-  background: rgba(87, 230, 196, 0.08);
+  color: var(--planet);
+  border-color: rgba(var(--planet-rgb), 0.5);
+  background:
+    linear-gradient(rgba(var(--planet-rgb), 0.08), rgba(var(--planet-rgb), 0.08)),
+    #090a12;
 }
 
 .hud-pill-index {
-  opacity: 0.6;
+  color: var(--hud-label);
+}
+
+/* the rail shows the world's name; the narrow strip shows the short label */
+.hud-pill-label {
+  display: none;
 }
 
 .hud-tick {
@@ -316,7 +348,9 @@ body:has(.hud-root) {
 .hud-pill-on {
   color: var(--planet);
   border-color: rgba(var(--planet-rgb), 0.6);
-  background: rgba(var(--planet-rgb), 0.1);
+  background:
+    linear-gradient(rgba(var(--planet-rgb), 0.1), rgba(var(--planet-rgb), 0.1)),
+    #090a12;
 }
 
 .hud-pill-on .hud-tick {
@@ -340,17 +374,18 @@ body:has(.hud-root) {
   justify-content: flex-end;
 }
 
-/* the same rail, inlined at the end of the content on small screens */
-.hud-rail-inline {
-  display: none;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 40px;
+/* the landing's bar floats over open space, so it stays transparent */
+.hud-topbar-clear {
+  background: none;
 }
 
-/* ══ BOTTOM STRIP ═══════════════════════════════════════════════════════ */
+.hud-topbar-clear::after {
+  display: none;
+}
 
-.hud-bottom {
+/* ══ LANDING TELEMETRY + TARGET CARD (Space Navigator) ═════════════════ */
+
+.hud-telemetry {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -359,35 +394,29 @@ body:has(.hud-root) {
   pointer-events: none;
 }
 
-.hud-telemetry {
-  display: flex;
-  justify-content: center;
-  padding: 0 40px 18px;
-}
-
 .hud-telemetry-bar {
   display: flex;
-  align-items: stretch;
-  gap: 26px;
-  padding: 10px 24px;
-  border: 1px solid rgba(var(--planet-rgb), 0.22);
+  gap: 34px;
+  width: fit-content;
+  margin: 0 auto 20px;
+  padding: 12px 26px;
+  border: 1px solid rgba(var(--planet-rgb), 0.2);
   border-radius: 3px;
-  background: rgba(10, 14, 24, 0.55);
+  background: var(--hud-panel);
   backdrop-filter: blur(8px);
-  pointer-events: auto;
 }
 
 .hud-readout-label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.12em;
   color: var(--hud-label);
   white-space: nowrap;
 }
 
 .hud-readout-value {
   margin-top: 3px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--hud-text);
   white-space: nowrap;
@@ -397,6 +426,10 @@ body:has(.hud-root) {
   color: var(--planet);
 }
 
+.hud-readout-display {
+  font-family: var(--hud-display);
+}
+
 .hud-divider {
   width: 1px;
   background: rgba(120, 140, 170, 0.2);
@@ -404,7 +437,7 @@ body:has(.hud-root) {
 
 .hud-scrolltrack {
   height: 2px;
-  background: rgba(87, 230, 196, 0.1);
+  background: rgba(var(--planet-rgb), 0.1);
 }
 
 .hud-scrollfill {
@@ -414,6 +447,93 @@ body:has(.hud-root) {
   box-shadow: 0 0 10px var(--planet);
 }
 
+.hud-target {
+  position: fixed;
+  bottom: 104px;
+  left: 40px;
+  z-index: 40;
+  width: 330px;
+  padding: 18px 20px;
+  border: 1px solid rgba(var(--planet-rgb), 0.28);
+  border-radius: 4px;
+  background: rgba(10, 14, 24, 0.6);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.hud-target-title {
+  margin-top: 8px;
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--hud-text);
+}
+
+.hud-target-teaser {
+  margin: 10px 0 14px;
+  font-family: var(--hud-display);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--hud-muted);
+}
+
+@media (max-width: 760px) {
+  .hud-target {
+    left: 16px;
+    right: 16px;
+    bottom: 120px;
+    width: auto;
+  }
+
+  .hud-telemetry-bar {
+    gap: 16px;
+    margin-bottom: 14px;
+    padding: 8px 14px;
+  }
+}
+
+/* ══ END OF SECTOR ══════════════════════════════════════════════════════ */
+
+.hud-endcap {
+  margin-top: 72px;
+}
+
+.hud-endcap-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--planet-rgb), 0.6),
+    rgba(var(--planet-rgb), 0.08)
+  );
+}
+
+.hud-endcap-next {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 24px;
+  color: var(--hud-text);
+  text-decoration: none;
+}
+
+.hud-endcap-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--planet);
+  transition: color 0.2s ease;
+}
+
+.hud-endcap-next:hover .hud-endcap-name {
+  color: var(--hud-text);
+}
+
 /* ══ CONTENT ════════════════════════════════════════════════════════════ */
 
 .hud-content {
@@ -421,7 +541,7 @@ body:has(.hud-root) {
   z-index: 20;
   max-width: 1060px;
   margin: 0 auto;
-  padding: 128px 40px 132px;
+  padding: 128px 40px 96px;
 }
 
 /* landing pad: the page title block over the planet's horizon */
@@ -443,36 +563,14 @@ body:has(.hud-root) {
   margin: 12px 0 0;
 }
 
-.hud-hero-teaser {
-  max-width: 46ch;
-  margin-top: 18px;
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: var(--hud-muted);
-}
-
-.hud-hero-row {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  min-width: 0;
-}
-
-.hud-hero-planet {
-  position: relative;
-  width: 96px;
-  height: 96px;
-  flex: none;
-}
-
 .hud-eyebrow {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.14em;
   color: var(--planet);
 }
 
@@ -485,25 +583,14 @@ body:has(.hud-root) {
   flex: none;
 }
 
-.hud-section {
-  margin-top: 64px;
-}
-
-.hud-section-head {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(var(--planet-rgb), 0.18);
-}
-
 .hud-h2 {
   font-family: var(--hud-display);
   font-weight: 600;
   font-size: 24px;
   letter-spacing: 0.01em;
-  color: var(--hud-text);
+  /* section headings carry the world's colour, softened toward white so
+     every planet's tint stays well above 4.5:1 on the panel fill */
+  color: color-mix(in oklab, var(--planet) 72%, var(--hud-text));
   margin: 0;
 }
 
@@ -517,16 +604,18 @@ body:has(.hud-root) {
 }
 
 .hud-label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.12em;
   color: var(--hud-label);
   text-transform: uppercase;
 }
 
 .hud-body {
-  font-size: 13px;
-  line-height: 1.75;
+  max-width: 68ch;
+  font-family: var(--hud-display);
+  font-size: 16px;
+  line-height: 1.65;
   color: var(--hud-muted);
 }
 
@@ -547,26 +636,13 @@ body:has(.hud-root) {
 }
 
 .hud-body li::before {
-  content: "▸";
+  content: "";
   position: absolute;
   left: 0;
-  color: rgba(var(--planet-rgb), 0.7);
-}
-
-/* one-shot entrance for top-level blocks; killed under reduced motion */
-.hud-reveal {
-  animation: hud-reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes hud-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  top: 0.8em;
+  width: 9px;
+  height: 1px;
+  background: rgba(var(--planet-rgb), 0.8);
 }
 
 /* ── dossier panels ───────────────────────────────────────────────────── */
@@ -577,39 +653,14 @@ body:has(.hud-root) {
   border: 1px solid rgba(var(--planet-rgb), 0.26);
   border-radius: 4px;
   background: var(--hud-panel);
-  backdrop-filter: blur(10px);
-}
-
-/* panel corner ticks, echoing the HUD brackets */
-.hud-panel::before,
-.hud-panel::after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border: 0 solid rgba(var(--planet-rgb), 0.6);
-  pointer-events: none;
-}
-
-.hud-panel::before {
-  top: -1px;
-  left: -1px;
-  border-top-width: 1px;
-  border-left-width: 1px;
-}
-
-.hud-panel::after {
-  bottom: -1px;
-  right: -1px;
-  border-bottom-width: 1px;
-  border-right-width: 1px;
 }
 
 .hud-panel-head {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
+  gap: 6px 16px;
   margin-bottom: 12px;
 }
 
@@ -617,20 +668,6 @@ body:has(.hud-root) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 18px;
-}
-
-/* personnel file: portrait beside the bio */
-.hud-identity {
-  display: grid;
-  grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-}
-
-@media (max-width: 700px) {
-  .hud-identity {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 
 .hud-grid3 {
@@ -691,35 +728,6 @@ body:has(.hud-root) {
 
 /* ── project catalogue ────────────────────────────────────────────────── */
 
-.hud-catalogue {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 18px;
-}
-
-.hud-project {
-  display: flex;
-  flex-direction: column;
-  /* each card carries its own --planet (set inline), so it glows in its own
-     colour from the top edge down */
-  background:
-    radial-gradient(120% 60% at 0% 0%, rgba(var(--planet-rgb), 0.13), transparent 60%),
-    var(--hud-panel);
-  border-top: 2px solid rgba(var(--planet-rgb), 0.7);
-  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.hud-project:hover {
-  border-color: rgba(var(--planet-rgb), 0.6);
-  border-top-color: var(--planet);
-  box-shadow: 0 10px 40px -12px rgba(var(--planet-rgb), 0.45);
-  transform: translateY(-3px);
-}
-
-.hud-project .hud-h3 {
-  font-size: 18px;
-}
-
 .hud-project-pitch {
   margin: 14px 0 0;
   font-family: var(--hud-display);
@@ -740,8 +748,7 @@ body:has(.hud-root) {
   font-weight: 600;
   font-size: 28px;
   line-height: 1;
-  color: var(--planet);
-  text-shadow: 0 0 18px rgba(var(--planet-rgb), 0.45);
+  color: rgb(var(--accent-rgb, var(--planet-rgb)));
 }
 
 .hud-debrief {
@@ -752,6 +759,7 @@ body:has(.hud-root) {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-height: 44px;
   cursor: pointer;
   color: var(--planet);
   list-style: none;
@@ -761,13 +769,22 @@ body:has(.hud-root) {
   display: none;
 }
 
-.hud-debrief summary::before {
-  content: "▸";
+/* ── the chevron: one stroked mark for disclosure and direction ────────── */
+
+.hud-chevron {
+  flex: none;
+  display: inline-block;
+  vertical-align: -1px;
   transition: transform 0.2s ease;
 }
 
-.hud-debrief[open] summary::before {
+details[open] > summary .hud-chevron-turn,
+.hud-chevron-down {
   transform: rotate(90deg);
+}
+
+.hud-chevron-up {
+  transform: rotate(-90deg);
 }
 
 .hud-debrief summary:hover {
@@ -779,17 +796,6 @@ body:has(.hud-root) {
 }
 
 /* push the source button to the bottom so cards line up */
-.hud-project > :last-child {
-  margin-top: auto;
-  padding-top: 18px;
-}
-
-@media (max-width: 700px) {
-  .hud-catalogue {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
 /* ── comms ────────────────────────────────────────────────────────────── */
 
 .hud-channel {
@@ -822,86 +828,35 @@ a:hover > .hud-channel {
 
 /* ── mission log rail ─────────────────────────────────────────────────── */
 
-.hud-log {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.hud-log-entry {
-  position: relative;
-  display: grid;
-  grid-template-columns: 104px minmax(0, 1fr);
-  gap: 16px;
-  padding-bottom: 22px;
-}
-
 /* connecting line down the rail */
-.hud-log-entry::before {
-  content: "";
-  position: absolute;
-  left: 7px;
-  top: 18px;
-  bottom: 0;
-  width: 1px;
-  background: rgba(var(--planet-rgb), 0.28);
-}
-
-.hud-log-entry:last-child::before {
-  display: none;
-}
-
-.hud-log-marker {
-  position: absolute;
-  left: 2px;
-  top: 8px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  border: 1px solid var(--planet);
-  background: rgba(var(--planet-rgb), 0.25);
-  box-shadow: 0 0 10px rgba(var(--planet-rgb), 0.55);
-}
-
-.hud-log-date {
-  padding-left: 26px;
-  padding-top: 9px;
-}
-
-@media (max-width: 700px) {
-  .hud-log-entry {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
-    padding-left: 26px;
-  }
-
-  .hud-log-date {
-    padding-left: 0;
-    padding-top: 8px;
-  }
-}
-
 /* ── controls ─────────────────────────────────────────────────────────── */
 
 .hud-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 16px;
+  min-height: 44px;
+  padding: 10px 18px;
   border: 1px solid rgba(var(--planet-rgb), 0.45);
   border-radius: 2px;
-  background: rgba(var(--planet-rgb), 0.07);
-  color: var(--planet);
-  font-size: 10px;
+  /* tinted, over an opaque base, so the label holds contrast on any air */
+  background:
+    linear-gradient(rgba(var(--planet-rgb), 0.08), rgba(var(--planet-rgb), 0.08)),
+    #090a12;
+  color: color-mix(in oklab, var(--planet) 85%, #ffffff);
+  font-family: var(--hud-mono);
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.12em;
   white-space: nowrap;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
 .hud-btn:hover:not(:disabled) {
-  background: rgba(var(--planet-rgb), 0.16);
+  background:
+    linear-gradient(rgba(var(--planet-rgb), 0.2), rgba(var(--planet-rgb), 0.2)),
+    #090a12;
   color: var(--hud-text);
 }
 
@@ -928,9 +883,9 @@ a:hover > .hud-channel {
   border: 1px solid rgba(var(--planet-rgb), 0.3);
   border-radius: 2px;
   background: rgba(var(--planet-rgb), 0.06);
-  color: rgba(226, 234, 248, 0.8);
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  color: #d8e0ec;
+  font-size: 11px;
+  letter-spacing: 0.04em;
 }
 
 .hud-tags {
@@ -956,31 +911,824 @@ a:hover > .hud-channel {
   border-radius: 2px;
   background: rgba(4, 6, 12, 0.55);
   color: var(--hud-text);
-  font-family: var(--hud-mono);
-  font-size: 13px;
+  font-family: var(--hud-display);
+  font-size: 16px;
 }
 
 .hud-field:focus {
   outline: none;
-  border-color: rgba(var(--planet-rgb), 0.7);
-  box-shadow: 0 0 0 1px rgba(var(--planet-rgb), 0.35);
+  border-color: var(--planet);
+}
+
+/* keyboard focus gets the same 2px ring as every other HUD control */
+.hud-field:focus-visible {
+  outline: 2px solid var(--planet);
+  outline-offset: 2px;
 }
 
 .hud-field::placeholder {
-  color: rgba(150, 168, 190, 0.45);
+  color: #8593a6;
 }
 
 /* focus-visible ring for every interactive HUD element */
 .hud-root a:focus-visible,
-.hud-root button:focus-visible {
+.hud-root video:focus-visible,
+.hud-root button:focus-visible,
+.hud-root summary:focus-visible {
   outline: 2px solid var(--planet);
   outline-offset: 3px;
+}
+
+/* ══ DESCENT ════════════════════════════════════════════════════════════
+   A world page is a fall from orbit to the surface. The page background is
+   the world's air (planets.ts → descent.air, set inline on .hud-root); the
+   fixed sky drifts up and fades as --descent goes 0 → 1; the content hangs
+   off one altitude rule; the planet's horizon is the ground at the end. */
+
+.hud-sky-drift {
+  position: absolute;
+  inset: 0;
+  /* the lower edge fades out, so as the sky slides up its bottom never
+     shows as a hard seam across the page */
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  transform: translateY(calc(var(--descent, 0) * -45vh));
+  opacity: calc(1 - var(--descent, 0) * 0.9);
+}
+
+.hud-stars {
+  opacity: calc(1 - var(--descent, 0) * 0.85);
+}
+
+/* the content column gains a gutter on its left for the altitude rule */
+.hud-descent {
+  --gutter: 150px;
+  max-width: calc(1060px + var(--gutter));
+  padding-left: calc(40px + var(--gutter));
+  padding-bottom: 0;
+}
+
+.hud-axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 40px;
+  width: var(--gutter);
+  pointer-events: none;
+}
+
+.hud-axis::before {
+  content: "";
+  position: absolute;
+  top: 120px;
+  bottom: 0;
+  right: 24px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(var(--planet-rgb), 0.12),
+    rgba(var(--planet-rgb), 0.7)
+  );
+}
+
+.hud-readout {
+  position: sticky;
+  top: 132px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  margin: 132px 14px 0 0;
+  padding: 8px 10px;
+  background: #06070e;
+  border: 1px solid rgba(var(--planet-rgb), 0.35);
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-readout {
+  transition: opacity 0.25s ease;
+}
+
+.hud-readout[data-landed] {
+  opacity: 0;
+}
+
+.hud-readout-alt {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--planet);
+  white-space: nowrap;
+}
+
+.hud-readout-zone {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--hud-label);
+  white-space: nowrap;
+}
+
+/* a band: one stop on the way down */
+.hud-band {
+  position: relative;
+  margin-top: 112px;
+}
+
+.hud-band-body > .hud-h2 {
+  margin-bottom: 24px;
+}
+
+/* the band's zone and altitude, set on the rule beside its heading */
+.hud-band-mark {
+  position: absolute;
+  top: 6px;
+  right: calc(100% + 38px);
+  width: calc(var(--gutter) - 52px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  text-align: right;
+}
+
+.hud-band-mark {
+  transition: opacity 0.25s ease;
+}
+
+.hud-band[data-reached] .hud-band-mark {
+  opacity: 0;
+}
+
+.hud-band-mark::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: -20px;
+  width: 13px;
+  height: 1px;
+  background: var(--planet);
+}
+
+.hud-band-zone {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--planet);
+}
+
+/* ── orbit: the top of the page ──────────────────────────────────────── */
+
+.hud-orbit {
+  padding-top: 28px;
+}
+
+.hud-orbit-row {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.hud-orbit-planet {
+  position: relative;
+  flex: none;
+  width: 84px;
+  height: 84px;
+}
+
+/* the overview and 404 hero intro (world pages use .hud-orbit-intro) */
+.hud-hero-teaser,
+.hud-orbit-intro {
+  max-width: 52ch;
+  margin: 18px 0 0;
+  font-family: var(--hud-display);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--hud-muted);
+}
+
+.hud-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 44px;
+  margin: 30px 0 0;
+}
+
+.hud-proof > div {
+  display: flex;
+  flex-direction: column-reverse;
+  /* reversed, so flex-end is the top: values line up when captions wrap */
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.hud-proof dd {
+  margin: 0;
+}
+
+.hud-proof-value {
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--planet);
+}
+
+/* ── touchdown: the planet's horizon as the ground the page lands on ──── */
+
+.hud-ground {
+  position: relative;
+  z-index: 10;
+  height: 62vh;
+  min-height: 460px;
+  margin-top: 72px;
+  overflow: hidden;
+}
+
+.hud-ground .hud-limb,
+.hud-ground .hud-limb-rim {
+  top: 10vh;
+}
+
+/* a crisp horizon line, not just a glow */
+.hud-ground .hud-limb-rim {
+  border: 1.5px solid rgba(var(--planet-rgb), 0.75);
+}
+
+/* surface grain, so the ground reads as terrain rather than blur */
+.hud-ground .hud-limb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* the way on, drawn in the next world's material */
+.hud-arrival {
+  position: absolute;
+  left: 50%;
+  top: calc(10vh + 72px);
+  transform: translateX(-50%);
+  width: min(520px, calc(100% - 36px));
+  padding: 24px 26px 22px;
+  text-align: left;
+}
+
+.hud-arrival-teaser {
+  margin: 10px 0 0;
+  font-family: var(--hud-display);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--hud-muted);
+}
+
+.hud-ground-mark {
+  margin-top: 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hud-label);
+}
+
+/* the flat view, offered at every touchdown as the quiet second way on */
+.hud-arrival-alt {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--hud-muted);
+  text-decoration: underline;
+  text-decoration-color: rgba(var(--planet-rgb), 0.5);
+  text-underline-offset: 4px;
+}
+
+.hud-arrival-alt:hover {
+  color: var(--hud-text);
+}
+
+.hud-arrival-alts {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 22px;
+}
+
+.hud-launch-link {
+  display: inline-flex;
+  margin: -6px 0 0 -2px;
+  padding: 6px 2px;
+  text-decoration: none;
+}
+
+.hud-launch-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--planet);
+  transition: color 0.2s ease;
+}
+
+.hud-launch-link:hover .hud-launch-name {
+  color: var(--hud-text);
+}
+
+/* the docking fade, tinted to the destination world */
+.hud-launch {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at 50% 72%,
+    var(--to),
+    color-mix(in oklab, var(--to) 18%, transparent) 42%,
+    rgba(4, 5, 12, 0.97) 74%
+  );
+  transition: opacity 0.55s ease;
+}
+
+.hud-launch-on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ══ WORLD MATERIALS — each world's panels are made of that world ═══════ */
+
+/* lush: leaves pressed flat. No border; light falls across the blade from
+   the upper left and the curl of each corner carries the shape. */
+.hud-root[data-world="about"] .hud-panel:not([data-world]),
+.hud-panel[data-world="about"] {
+  border: 0;
+  border-radius: 30px 6px 30px 6px;
+  background:
+    radial-gradient(140% 110% at 0% 0%, rgba(168, 196, 127, 0.18), transparent 58%),
+    linear-gradient(180deg, rgba(24, 40, 24, 0.9), rgba(12, 22, 14, 0.92));
+  box-shadow:
+    0 24px 46px -30px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(214, 232, 178, 0.1);
+}
+
+/* crystalline: faceted cells, cut corners, a cold top edge */
+.hud-root[data-world="projects"] .hud-panel:not([data-world]),
+.hud-panel[data-world="projects"] {
+  border: 0;
+  border-radius: 0;
+  clip-path: polygon(0 16px, 16px 0, calc(100% - 38px) 0, 100% 38px, 100% 100%, 0 100%);
+  /* internal facet planes: two hard-stopped sheets of light over the body */
+  background:
+    linear-gradient(116deg, rgba(168, 220, 255, 0.08) 0 34%, transparent 34.2%),
+    linear-gradient(64deg, transparent 0 58%, rgba(168, 220, 255, 0.05) 58.2% 79%, transparent 79.2%),
+    linear-gradient(158deg, rgba(127, 182, 255, 0.15), rgba(8, 14, 28, 0.95) 52%),
+    /* opaque body under the light, so bright terrain never shows through */
+    #0a1222;
+  box-shadow:
+    inset 0 2px 0 rgb(var(--accent-rgb, 127, 182, 255)),
+    inset 0 0 0 1px rgba(127, 182, 255, 0.14);
+}
+
+/* every crystal cell breaks along its own lines */
+.hud-root[data-world="projects"] .hud-feature:nth-child(2) {
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 40px 100%, 0 calc(100% - 40px));
+  background:
+    linear-gradient(72deg, rgba(168, 220, 255, 0.07) 0 41%, transparent 41.2%),
+    linear-gradient(150deg, transparent 0 63%, rgba(168, 220, 255, 0.05) 63.2%),
+    linear-gradient(200deg, rgba(127, 182, 255, 0.14), rgba(8, 14, 28, 0.95) 55%);
+}
+
+.hud-root[data-world="projects"] .hud-feature:nth-child(3) {
+  clip-path: polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
+  background:
+    linear-gradient(132deg, transparent 0 22%, rgba(168, 220, 255, 0.07) 22.2% 48%, transparent 48.2%),
+    linear-gradient(28deg, rgba(168, 220, 255, 0.04) 0 30%, transparent 30.2%),
+    linear-gradient(170deg, rgba(127, 182, 255, 0.15), rgba(8, 14, 28, 0.95) 50%);
+}
+
+/* rust: hard plates, square, heavy top band */
+.hud-root[data-world="experience"] .hud-panel:not([data-world]),
+.hud-panel[data-world="experience"] {
+  border: 1px solid rgba(217, 116, 63, 0.3);
+  border-top: 3px solid #d9743f;
+  border-radius: 0;
+  background: rgba(30, 16, 10, 0.92);
+  box-shadow: 0 16px 32px -20px rgba(0, 0, 0, 0.85);
+}
+
+/* moon: a soft, lit sample in an airless dark */
+.hud-root[data-world="contact"] .hud-panel:not([data-world]),
+.hud-panel[data-world="contact"] {
+  border: 1px solid rgba(199, 155, 240, 0.22);
+  border-radius: 20px;
+  background:
+    radial-gradient(120% 100% at 15% 0%, rgba(199, 155, 240, 0.16), transparent 62%),
+    rgba(17, 13, 27, 0.9);
+  /* lit from the upper left, falling off to shadow at the lower right */
+  box-shadow:
+    inset 1px 1px 0 rgba(236, 222, 255, 0.2),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* ── projects: featured trio + compact index ──────────────────────────── */
+
+.hud-featured {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 20px;
+}
+
+/* the lead build takes the full deck: copy and proof side by side */
+.hud-feature:first-child {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  column-gap: 40px;
+  align-content: start;
+}
+
+.hud-feature:first-child > * {
+  grid-column: 1;
+}
+
+.hud-feature:first-child .hud-h3 {
+  font-size: 28px;
+}
+
+.hud-feature:first-child .hud-project-stat {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  align-self: start;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 0;
+}
+
+.hud-feature:first-child .hud-project-stat-value {
+  font-size: 64px;
+}
+
+.hud-feature:first-child .hud-debrief,
+.hud-feature:first-child .hud-feature-foot {
+  grid-column: 1 / -1;
+}
+
+/* rust plates stack: one posting per plate, never half-empty columns */
+.hud-plates {
+  display: grid;
+  gap: 20px;
+}
+
+.hud-feature {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 24px 24px;
+}
+
+.hud-feature .hud-h3 {
+  font-size: 21px;
+}
+
+.hud-kind {
+  margin-top: 6px;
+}
+
+/* a catalogue code never breaks across lines */
+.hud-code {
+  white-space: nowrap;
+}
+
+.hud-feature-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.hud-private {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--hud-label);
+}
+
+.hud-index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(var(--planet-rgb), 0.22);
+}
+
+.hud-index-row {
+  border-bottom: 1px solid rgba(var(--planet-rgb), 0.16);
+  /* the index sits on open air, which brightens lower down; a dark backing
+     keeps every row's colour above 4.5:1 at any altitude */
+  background: rgba(6, 10, 22, 0.62);
+}
+
+.hud-index-row summary {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) 190px 12px;
+  align-items: baseline;
+  gap: 18px;
+  min-height: 44px;
+  padding: 16px 8px;
+  cursor: pointer;
+  list-style: none;
+  transition: background 0.2s ease;
+}
+
+.hud-index-row summary::-webkit-details-marker {
+  display: none;
+}
+
+.hud-index-row summary:hover,
+.hud-index-row details[open] summary {
+  background: rgba(var(--planet-rgb), 0.06);
+}
+
+/* the project's own colour, as one small facet */
+.hud-index-mark {
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg) translateY(-2px);
+  background: rgb(var(--accent-rgb, var(--planet-rgb)));
+}
+
+.hud-index-row .hud-chevron {
+  color: var(--planet);
+}
+
+.hud-index-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.hud-index-title {
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--hud-text);
+}
+
+.hud-index-tagline {
+  font-family: var(--hud-display);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--hud-muted);
+}
+
+.hud-index-stat {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--hud-label);
+  text-align: right;
+}
+
+.hud-index-stat b {
+  font-family: var(--hud-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: color-mix(in oklab, rgb(var(--accent-rgb, var(--planet-rgb))) 72%, #ffffff);
+}
+
+.hud-index-detail {
+  padding: 4px 8px 22px calc(10px + 26px);
+}
+
+.hud-index-detail .hud-body {
+  margin-top: 10px;
+}
+
+/* ── experience: the mission log as rock strata ───────────────────────── */
+
+.hud-strata {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hud-stratum {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px 22px;
+  border-top: 1px solid rgba(var(--planet-rgb), 0.3);
+  background: rgba(10, 14, 24, 0.55);
+}
+
+.hud-stratum:nth-child(even) {
+  background: rgba(6, 8, 16, 0.7);
+}
+
+/* on the rust world the log is rock: each older layer a shade deeper */
+.hud-root[data-world="experience"] .hud-stratum {
+  border-top-color: rgba(217, 116, 63, 0.3);
+  background: rgba(30, 16, 10, 0.55);
+}
+
+.hud-root[data-world="experience"] .hud-stratum:nth-child(even) {
+  background: rgba(18, 10, 6, 0.7);
+}
+
+.hud-stratum-date {
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--planet);
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-panel-sub {
+  margin: -4px 0 12px;
+  font-family: var(--hud-display);
+  font-size: 14px;
+  color: var(--hud-muted);
+}
+
+/* ── the deck: a band painted as a visible stratum of the world's air ──── */
+
+.hud-deck::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -72px;
+  bottom: -72px;
+  left: -100vw;
+  right: -100vw;
+  pointer-events: none;
+}
+
+/* crystal: a lit refraction layer */
+.hud-root[data-world="projects"] .hud-deck::before {
+  background:
+    repeating-linear-gradient(62deg, transparent 0 22px, rgba(190, 228, 255, 0.07) 22px 23px, transparent 23px 44px),
+    linear-gradient(180deg, transparent, rgba(127, 182, 255, 0.17) 22%, rgba(127, 182, 255, 0.11) 78%, transparent);
+}
+
+/* lush: canopy haze */
+.hud-root[data-world="about"] .hud-deck::before {
+  background:
+    radial-gradient(40% 60% at 22% 50%, rgba(150, 190, 110, 0.15), transparent 70%),
+    radial-gradient(34% 55% at 76% 38%, rgba(196, 214, 150, 0.1), transparent 70%),
+    linear-gradient(180deg, transparent, rgba(60, 92, 50, 0.24) 24%, rgba(60, 92, 50, 0.18) 76%, transparent);
+}
+
+/* rust: the dust line */
+.hud-root[data-world="experience"] .hud-deck::before {
+  background:
+    repeating-linear-gradient(174deg, transparent 0 34px, rgba(217, 116, 63, 0.1) 34px 70px, transparent 70px 120px),
+    linear-gradient(180deg, transparent, rgba(160, 70, 30, 0.2) 24%, rgba(160, 70, 30, 0.15) 76%, transparent);
+}
+
+/* moon: no air to haze, so the stratum is the ground's own glow, pooled
+   bioluminescence on dark regolith */
+.hud-root[data-world="contact"] .hud-deck::before {
+  background:
+    radial-gradient(28% 46% at 18% 62%, rgba(199, 155, 240, 0.16), transparent 70%),
+    radial-gradient(22% 38% at 82% 40%, rgba(150, 120, 230, 0.12), transparent 70%),
+    radial-gradient(circle at 50% 50%, rgba(220, 200, 255, 0.07) 0 1px, transparent 1.5px) 0 0 / 26px 26px,
+    linear-gradient(180deg, transparent, rgba(40, 24, 66, 0.4) 24%, rgba(40, 24, 66, 0.32) 76%, transparent);
+}
+
+/* ── about: leaves of unequal size that still close up without voids ──── */
+
+.hud-sheets {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 22px;
+}
+
+/* the second leaf of a pair curls the other way */
+.hud-root[data-world="about"] .hud-sheets > :nth-child(even) {
+  border-radius: 6px 30px 6px 30px;
+}
+
+/* three leaves: one broad blade across the band, two below it */
+.hud-sheets-3 {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.hud-sheets-3 > :first-child {
+  grid-column: 1 / -1;
+}
+
+.hud-sheets-3 > :first-child .hud-body {
+  max-width: none;
+  column-count: 2;
+  column-gap: 40px;
+}
+
+/* ── about ─────────────────────────────────────────────────────────────── */
+
+.hud-identity {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  margin-top: 40px;
+}
+
+.hud-portrait {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 40% 12% 40% 12%;
+  border: 1px solid rgba(var(--planet-rgb), 0.35);
+}
+
+.hud-subhead {
+  margin: 44px 0 16px;
+}
+
+.hud-game-title {
+  margin-top: 10px;
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--hud-text);
+}
+
+.hud-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ── contact: the finale ──────────────────────────────────────────────── */
+
+.hud-finale {
+  padding: 34px 32px;
+}
+
+.hud-email-address {
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.2vw, 52px);
+  line-height: 1.1;
+  color: var(--hud-text);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease;
+}
+
+.hud-email-address:hover {
+  color: var(--planet);
+}
+
+.hud-email-status {
+  font-family: var(--hud-display);
+  font-size: 14px;
+  color: var(--hud-muted);
+}
+
+.hud-channels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 24px;
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+}
+
+.hud-channel-link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 44px;
+  padding: 16px 4px;
+  border-top: 1px solid rgba(var(--planet-rgb), 0.25);
+  text-decoration: none;
+}
+
+.hud-channel-value {
+  font-family: var(--hud-display);
+  font-size: 17px;
+  color: var(--hud-text);
+  transition: color 0.2s ease;
+}
+
+.hud-channel-link:hover .hud-channel-value {
+  color: var(--planet);
 }
 
 /* ══ RESPONSIVE ═════════════════════════════════════════════════════════ */
 
 /* keep the content column clear of the waypoint rail before it drops out */
-@media (min-width: 981px) and (max-width: 1420px) {
+@media (min-width: 981px) and (max-width: 1640px) {
   .hud-content {
     padding-right: 210px;
   }
@@ -1005,12 +1753,41 @@ a:hover > .hud-channel {
     display: none;
   }
 
-  .hud-rail-inline {
-    display: flex;
+  /* the section rail becomes a strip under the top bar, so "where am I /
+     where can I go" never scrolls away on phones */
+  .hud-topbar {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+
+  .hud-topbar .hud-rail {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    position: static;
+    transform: none;
+    flex-basis: 100%;
+  }
+
+  .hud-topbar .hud-rail .hud-pill {
+    min-width: 0;
+    justify-content: center;
+    padding: 8px 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .hud-topbar .hud-rail .hud-pill-index,
+  .hud-topbar .hud-rail .hud-tick,
+  .hud-topbar .hud-rail .hud-pill-name {
+    display: none;
+  }
+
+  .hud-topbar .hud-rail .hud-pill-label {
+    display: inline;
   }
 
   .hud-content {
-    padding: 112px 24px 124px;
+    padding: 172px 24px 80px;
   }
 }
 
@@ -1029,13 +1806,7 @@ a:hover > .hud-channel {
     letter-spacing: 0.1em;
   }
 
-  .hud-ident-sub,
-  .hud-sys {
-    display: none;
-  }
-
-  /* "◂ RETURN TO NAV" collapses to "◂ NAV" so the bar still fits */
-  .hud-return-long {
+  .hud-ident-sub {
     display: none;
   }
 
@@ -1044,36 +1815,29 @@ a:hover > .hud-channel {
   }
 
   .hud-topright .hud-pill {
-    padding: 8px 10px;
-    font-size: 11px;
+    padding: 8px 12px;
   }
 
   .hud-dossier {
-    padding: 8px 10px;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-  }
-
-  .hud-hero-row {
-    gap: 14px;
-  }
-
-  .hud-hero-planet {
-    width: 64px;
-    height: 64px;
-  }
-
-  .hud-telemetry {
-    padding: 0 16px 14px;
-  }
-
-  .hud-telemetry-bar {
-    gap: 16px;
-    padding: 8px 14px;
+    padding: 8px 12px;
+    letter-spacing: 0.08em;
   }
 
   .hud-content {
-    padding: 104px 18px 116px;
+    padding: 156px 18px 64px;
+  }
+
+  /* the screen brackets collide with the bar's controls on phones */
+  .hud-corners {
+    display: none;
+  }
+
+  /* the Experience black hole sits over the page title at phone widths;
+     lift it into the sky above the hero */
+  .hud-sky-experience {
+    top: 17% !important;
+    left: 82% !important;
+    opacity: 0.75;
   }
 
   .hud-hero {
@@ -1081,11 +1845,176 @@ a:hover > .hud-channel {
   }
 }
 
+/* ── descent at narrower widths ───────────────────────────────────────── */
+
+@media (max-width: 980px) {
+  .hud-descent {
+    --gutter: 112px;
+    padding-left: calc(24px + var(--gutter));
+  }
+
+  .hud-axis {
+    left: 24px;
+  }
+}
+
+@media (max-width: 760px) {
+  /* the rule becomes a thin left edge; its readout runs up it vertically */
+  .hud-descent {
+    --gutter: 0px;
+    padding-left: 34px;
+  }
+
+  .hud-axis {
+    left: 0;
+    width: 22px;
+  }
+
+  .hud-axis::before {
+    right: 10px;
+    top: 150px;
+  }
+
+  .hud-readout {
+    top: 170px;
+    margin: 170px 0 0;
+    padding: 8px 2px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hud-band-mark {
+    display: none;
+  }
+
+  .hud-band {
+    margin-top: 80px;
+  }
+
+  .hud-proof {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .hud-proof-value {
+    font-size: 28px;
+  }
+
+  .hud-identity {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .hud-sheets,
+  .hud-sheets-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hud-sheets-3 > :first-child .hud-body {
+    column-count: 1;
+  }
+
+  /* the shelf stays a shelf on phones: small covers, titles only */
+  .hud-games {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .hud-games .hud-body {
+    display: none;
+  }
+
+  .hud-game-title {
+    font-size: 13px;
+  }
+
+  .hud-portrait {
+    width: 160px;
+  }
+
+  .hud-index-row summary {
+    grid-template-columns: 10px minmax(0, 1fr) 12px;
+    gap: 6px 12px;
+  }
+
+  .hud-index-row .hud-index-stat {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .hud-featured,
+  .hud-feature:first-child {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hud-feature:first-child .hud-project-stat {
+    grid-column: 1;
+    grid-row: auto;
+    flex-direction: row;
+    margin-top: 16px;
+  }
+
+  .hud-feature:first-child .hud-project-stat-value {
+    font-size: 40px;
+  }
+
+  .hud-index-stat {
+    text-align: left;
+  }
+
+  .hud-index-detail {
+    padding-left: 8px;
+  }
+
+  .hud-stratum {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    padding: 20px 16px;
+  }
+
+  .hud-finale {
+    padding: 26px 20px;
+  }
+
+  .hud-ground {
+    height: 70vh;
+    min-height: 460px;
+  }
+}
+
+/* Reduced motion drops movement and keeps meaning: colour and opacity fades
+   (hover states, the band marks handing over, the launch fade) still run;
+   spatial movement (the sky's drift, spinning and breathing planets, the
+   chevron's rotation) stops or snaps to its end state. */
 @media (prefers-reduced-motion: reduce) {
+  .hud-sky-drift {
+    transform: none;
+  }
+
   .hud-root *,
   .hud-root *::before,
   .hud-root *::after {
     animation: none !important;
-    transition: none !important;
+  }
+
+  .hud-chevron {
+    transition: none;
+  }
+}
+
+/* phones: a PDF in an iframe renders blank or as one frozen page, so the
+   résumé band keeps only its link */
+@media (max-width: 700px) {
+  .hud-resume-frame,
+  .hud-resume-expand {
+    display: none;
+  }
+
+  .hud-resume-frame + .hud-actions {
+    margin-top: 0;
   }
 }

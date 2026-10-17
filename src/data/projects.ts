@@ -1,7 +1,8 @@
 // src/data/projects.ts
 // Constructed worlds, rendered on /projects in two sections (builds, then
 // hackathons); the featured three are also surfaced on /overview. Featured
-// order mirrors the AI/ML resume.
+// order leads with the agent systems (the positioning), then the hackathon
+// win, on every page that shows them.
 
 export interface Project {
   /** Catalogue designation shown in the HUD, e.g. `PRJ-001`. */
@@ -32,7 +33,7 @@ export const PROJECTS: Project[] = [
     description:
       "Trained a battle agent by imitating human replay data, then fine-tuned it with reinforcement learning (PPO) and added MCTS at decision time to plan several moves ahead, reaching a 93% win rate against scripted baselines. Built a parallel battle-simulation and evaluation harness on the Pokémon Showdown engine, tracked every run in MLflow, and gated the shipping checkpoint in GitHub Actions CI on 5,000 evaluation battles per push against a pre-registered threshold.",
     accent: "255,214,74",
-    stat: { value: "93%", label: "win rate" },
+    stat: { value: "93%", label: "win rate vs scripted bots" },
     tags: ["Python", "PyTorch", "PPO", "MCTS", "MLflow"],
     github: "https://github.com/Novapool/pokemon-showdown-ai",
     featured: true,
@@ -72,7 +73,6 @@ export const PROJECTS: Project[] = [
     description:
       "A phone-based party game for 2–10 players that inverts small talk, starting with the most vulnerable questions and working back to the weather. All game logic lives in PostgreSQL (triggers, RPC functions, and server-side validation) and reaches every device through Supabase Realtime change-data-capture, with session-based reconnection, per-level question rerolls, and automatic cleanup of idle rooms.",
     accent: "92,200,220",
-    stat: { value: "2–10", label: "players" },
     tags: ["React", "PostgreSQL", "Supabase Realtime", "Tailwind"],
     github: "https://github.com/Novapool/LOI",
   },
@@ -98,7 +98,6 @@ export const PROJECTS: Project[] = [
     description:
       "A multi-server SSH management platform pairing live terminal access with a locally hosted LLM (Ollama, gpt-oss:20b). Natural-language requests stream into suggested shell commands behind a safety validation layer, so no generated command executes unreviewed. Real-time terminal I/O runs over WebSockets with a FastAPI backend and Svelte 5 frontend, handling multi-server connection state and session lifecycle; containerized with Docker.",
     accent: "110,240,150",
-    stat: { value: "0", label: "unreviewed commands" },
     tags: ["FastAPI", "Svelte", "Ollama", "WebSockets", "Docker"],
     github: "https://github.com/Novapool/Nexus",
   },
@@ -123,7 +122,6 @@ export const PROJECTS: Project[] = [
     description:
       "A SwiftUI iOS app that finds restaurants within a 10-mile radius using Core Location, backed by Supabase Edge Functions on Deno that query Google Places and generate AI restaurant analysis and recommendations, filterable by rating and sorted by distance.",
     accent: "255,110,96",
-    stat: { value: "10 mi", label: "search radius" },
     tags: ["Swift", "SwiftUI", "Supabase", "Deno", "Google Places"],
     github: "https://github.com/Novapool/food-review",
   },
@@ -257,6 +255,6 @@ export const HACKATHONS: Project[] = [
   },
 ];
 
-export const FEATURED_PROJECTS = [...HACKATHONS, ...PROJECTS].filter(
+export const FEATURED_PROJECTS = [...PROJECTS, ...HACKATHONS].filter(
   (p) => p.featured,
 );

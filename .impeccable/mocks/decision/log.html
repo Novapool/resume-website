@@ -1,0 +1,49 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1440px;height:900px;overflow:hidden;background:#06070e;color:#eaf0fb;font-family:"Space Grotesk",sans-serif}
+.mono{font-family:"IBM Plex Mono",monospace}
+.bar{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;border-bottom:1px solid rgba(127,182,255,.14)}
+.bar b{font-size:15px;letter-spacing:.14em}
+.bar .r{display:flex;gap:12px}.bar .r span{font-size:12px;letter-spacing:.12em;padding:12px 14px;border:1px solid rgba(127,182,255,.3);color:#b9c3d2}
+.bar .r span.am{color:#ffb35c;border-color:rgba(255,179,92,.5)}
+/* the log is etched into one tall crystal slab that IS the page ground */
+.slab{position:absolute;left:220px;top:64px;width:900px;bottom:0;
+ background:repeating-linear-gradient(62deg,transparent 0 40px,rgba(168,220,255,.07) 40px 41px,transparent 41px 80px),linear-gradient(180deg,rgba(26,44,80,.85),rgba(8,12,24,.95));
+ border-left:1px solid rgba(127,182,255,.5);border-right:1px solid rgba(127,182,255,.15)}
+.title{position:absolute;left:260px;top:100px}
+.title .k{font-size:11px;letter-spacing:.14em;color:#9aa8ba}
+.title h1{font-size:52px;font-weight:600;margin-top:6px}
+.time{position:absolute;left:150px;top:220px;bottom:0;width:1px;background:rgba(127,182,255,.35)}
+.entry{position:absolute;left:96px;width:1000px;display:grid;grid-template-columns:110px 1fr;gap:54px}
+.entry .d{font-size:12px;letter-spacing:.1em;color:#9aa8ba;text-align:right;padding-top:6px}
+.entry .d::after{content:"";position:absolute;left:150px;top:10px;width:9px;height:9px;margin-left:-4px;background:#7fb6ff;transform:rotate(45deg)}
+.entry h3{font-size:26px;font-weight:600}
+.entry p{margin-top:8px;font-size:16px;line-height:1.55;color:#c9d2df;max-width:62ch}
+.entry .m{margin-top:10px;font-size:12px;letter-spacing:.08em;color:#7fb6ff}
+.entry.small h3{font-size:17px;font-weight:500}.entry.small .d::after{background:transparent;border:1px solid #7fb6ff}
+.rail{position:absolute;right:40px;top:300px;display:flex;flex-direction:column;gap:8px}
+.rail span{font-size:12px;letter-spacing:.06em;color:#b9c3d2;padding:13px 14px;border:1px solid rgba(120,140,170,.2);min-width:150px;text-align:right}
+.rail span.on{color:#7fb6ff;border-color:rgba(127,182,255,.6)}
+</style></head><body>
+<div class="slab"></div>
+<div class="bar"><b>LAITH ASSAF</b><div class="r mono"><span>◂ RETURN TO NAV</span><span class="am">RÉSUMÉ</span></div></div>
+<div class="title"><div class="k mono">LOG · CRYSTALLINE WORLD · 18 ENTRIES</div><h1>Projects</h1></div>
+<div class="time"></div>
+<div class="entry" style="top:236px"><div class="d mono">2026 · NOW</div><div>
+ <h3>Pokémon Battle Agent</h3><p>An AI that learned Pokémon battling by watching human replays, then sharpened up with RL and look-ahead search.</p>
+ <div class="m mono">93% WIN RATE · PYTHON · PYTORCH · PPO · MCTS · SOURCE ▸</div></div></div>
+<div class="entry" style="top:400px"><div class="d mono">2026</div><div>
+ <h3>Agentic Development System</h3><p>A ten-agent dev team that lives in my terminal: it plans, builds, reviews, and tests its own work.</p>
+ <div class="m mono">44 REPOS · CLAUDE CODE · HOOKS · MCP · PRIVATE</div></div></div>
+<div class="entry" style="top:556px"><div class="d mono">2025</div><div>
+ <h3>Multiplayer Party Game Framework</h3><p>The engine under every party game I make. Write five hooks, get a multiplayer game.</p>
+ <div class="m mono">80%+ CODE REUSE · TYPESCRIPT · SOCKET.IO · NPM ▸</div></div></div>
+<div class="entry small" style="top:708px"><div class="d mono">2025</div><div><h3>Reverse-Depth Party Game — 2–10 players</h3></div></div>
+<div class="entry small" style="top:756px"><div class="d mono">2025</div><div><h3>Raspberry Pi TV Launcher — 27.8 → 59.7 fps at 4K</h3></div></div>
+<div class="entry small" style="top:804px"><div class="d mono">2024</div><div><h3>AI-Powered SSH Terminal Manager — 0 unreviewed commands</h3></div></div>
+<div class="entry small" style="top:852px"><div class="d mono">2024</div><div><h3>Universal File Converter</h3></div></div>
+<div class="rail mono"><span>01 ABOUT</span><span class="on">02 PROJECTS</span><span>03 EXPERIENCE</span><span>04 CONTACT</span></div>
+</body></html>

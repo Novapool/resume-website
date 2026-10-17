@@ -7,40 +7,45 @@ import HudPage from "@/components/hud/HudPage";
 import PlanetBody from "@/components/hud/PlanetBody";
 import { LabeledPanel, Panel, Section, Tags } from "@/components/hud/panels";
 import { PLANETS, waypointNo } from "@/lib/planets";
-import { FEATURED_PROJECTS } from "@/data/projects";
+import { FEATURED_PROJECTS, HACKATHONS, PROJECTS } from "@/data/projects";
 import { PROFILE, SKILLS, SPECIALIZATIONS } from "@/data/profile";
+import { MISSION_LOG } from "@/data/timeline";
+
+// every role on the record, newest first, with its outcome in one line
+const ROLES = MISSION_LOG.filter((entry) => entry.role && entry.summary);
 
 export default function OverviewPage() {
   return (
     <HudPage>
-      <header className="hud-hero hud-reveal">
-        <div className="hud-eyebrow">
-          <span className="hud-dot" />
-          SYSTEM OVERVIEW · 04 WORLDS CHARTED
-        </div>
+      <header className="hud-hero">
         <h1 className="hud-hero-title">{PROFILE.name}</h1>
         <div className="hud-hero-teaser">
-          {PROFILE.tagline}. I build LLM agents, reinforcement learning
-          systems, and real-time backends. Graduating May 2027 and looking for
-          full-time AI/ML and software engineering roles.
+          <p>{PROFILE.pitch}</p>
+          <p className="hud-label" style={{ marginTop: 10 }}>
+            {PROFILE.tagline}
+          </p>
         </div>
+        <dl className="hud-proof">
+          {PROFILE.proof.map((p) => (
+            <div key={p.label}>
+              <dt className="hud-label">{p.label}</dt>
+              <dd className="hud-proof-value">{p.value}</dd>
+            </div>
+          ))}
+        </dl>
         <div style={{ display: "flex", gap: 10, marginTop: 22, flexWrap: "wrap" }}>
-          <Link href="/" className="hud-btn hud-btn-solid">
-            ENGAGE FLIGHT ▸
+          {/* the bar already carries Home and Résumé; these are the two
+              things a reader of the flat view came to do */}
+          <Link href="/projects" className="hud-btn hud-btn-solid">
+            SEE THE PROJECTS
           </Link>
-          <a
-            className="hud-btn"
-            href={PROFILE.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            DOSSIER ▸
+          <a className="hud-btn" href={`mailto:${PROFILE.email}`}>
+            EMAIL ME
           </a>
         </div>
       </header>
 
-      <div className="hud-reveal" style={{ animationDelay: ".08s" }}>
-        <Section label="// CHART" title="The four worlds">
+        <Section title="The four worlds">
           <div className="hud-grid2">
             {PLANETS.map((planet) => (
               <Link
@@ -82,58 +87,77 @@ export default function OverviewPage() {
             ))}
           </div>
         </Section>
-      </div>
 
-      <div className="hud-reveal" style={{ animationDelay: ".16s" }}>
-        <Section label="// SPECIALIZATION" title="What I build">
+        <Section title="What I build">
           <div className="hud-grid3">
             {SPECIALIZATIONS.map((entry) => (
               <LabeledPanel
                 key={entry.title}
-                label={`// ${entry.title.toUpperCase()}`}
+                label={entry.title}
               >
                 <p className="hud-body">{entry.body}</p>
               </LabeledPanel>
             ))}
           </div>
         </Section>
-      </div>
 
-      <div className="hud-reveal" style={{ animationDelay: ".24s" }}>
-        <Section label="// FEATURED" title="Selected work">
-          <div className="hud-grid2">
+        <Section title="Selected work">
+          <div className="hud-grid3">
             {FEATURED_PROJECTS.map((project) => (
-              <LabeledPanel key={project.code} label={`// ${project.code}`}>
-                <h3 className="hud-h3">{project.title}</h3>
+              <LabeledPanel key={project.code} label={project.title}>
                 <div className="hud-label" style={{ marginTop: 6 }}>
                   {project.kind}
                 </div>
+                {project.stat && (
+                  <div className="hud-project-stat">
+                    <span className="hud-project-stat-value">{project.stat.value}</span>
+                    <span className="hud-label">{project.stat.label}</span>
+                  </div>
+                )}
                 <p className="hud-project-pitch">{project.tagline}</p>
-                <div style={{ marginTop: 16 }}>
-                  <Link href="/projects" className="hud-btn">
-                    FULL CATALOGUE ▸
-                  </Link>
-                </div>
               </LabeledPanel>
             ))}
           </div>
+          <div className="hud-actions">
+            <Link href="/projects" className="hud-btn">
+              {`ALL ${PROJECTS.length + HACKATHONS.length} BUILDS`}
+            </Link>
+          </div>
         </Section>
-      </div>
 
-      <div className="hud-reveal" style={{ animationDelay: ".32s" }}>
-        <Section label="// LOADOUT" title="Technical skills">
+        <Section title="Where I've worked">
+          <ol className="hud-strata">
+            {ROLES.map((entry) => (
+              <li key={entry.date} className="hud-stratum">
+                <div className="hud-stratum-date">{entry.date}</div>
+                <div className="hud-stratum-body">
+                  <h3 className="hud-h3">{entry.role}</h3>
+                  <p className="hud-body" style={{ marginTop: 6 }}>
+                    {entry.summary}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div className="hud-actions">
+            <Link href="/experience" className="hud-btn">
+              THE FULL RECORD
+            </Link>
+          </div>
+        </Section>
+
+        <Section title="Technical skills">
           <div className="hud-grid2">
             {SKILLS.map((group) => (
               <LabeledPanel
                 key={group.category}
-                label={`// ${group.category.toUpperCase()}`}
+                label={group.category}
               >
                 <Tags items={group.skills} />
               </LabeledPanel>
             ))}
           </div>
         </Section>
-      </div>
     </HudPage>
   );
 }

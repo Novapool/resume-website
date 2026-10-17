@@ -4,7 +4,6 @@ import {
   Geist,
   Geist_Mono,
   IBM_Plex_Mono,
-  Press_Start_2P,
   Space_Grotesk,
 } from "next/font/google";
 import "./globals.css";
@@ -18,12 +17,6 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const pressStart2P = Press_Start_2P({
-  variable: "--font-pixel",
-  weight: "400",
   subsets: ["latin"],
 });
 
@@ -53,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <ThemeProvider>{children}</ThemeProvider>
       </body>

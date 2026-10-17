@@ -1,0 +1,52 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1440px;height:900px;overflow:hidden;color:#eaf0fb;font-family:"Space Grotesk",sans-serif;
+ /* orbit black at the top thinning into the crystal world's cold, refracting air */
+ background:linear-gradient(180deg,#06070e 0%,#07101f 34%,#0d2140 62%,#1a3a66 100%)}
+.mono{font-family:"IBM Plex Mono",monospace}
+.bar{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px}
+.bar b{font-size:15px;letter-spacing:.14em}
+.bar .r{display:flex;gap:12px}.bar .r span{font-size:12px;letter-spacing:.12em;padding:12px 14px;border:1px solid rgba(127,182,255,.3);color:#b9c3d2}
+.bar .r span.am{color:#ffb35c;border-color:rgba(255,179,92,.5)}
+/* the one altitude axis: every block hangs off it */
+.axis{position:absolute;left:96px;top:96px;bottom:0;width:1px;background:linear-gradient(180deg,rgba(127,182,255,.15),rgba(127,182,255,.7))}
+.tick{position:absolute;left:60px;font-size:11px;letter-spacing:.1em;color:#9aa8ba}
+.alt{position:absolute;left:112px;top:104px;font-size:12px;letter-spacing:.12em;color:#7fb6ff}
+.orbit{position:absolute;left:150px;top:150px;width:900px}
+.orbit h1{font-size:64px;font-weight:600;letter-spacing:-.01em}
+.orbit p{margin-top:12px;font-size:20px;line-height:1.45;color:#c9d2df;max-width:44ch}
+.proof{margin-top:22px;display:flex;gap:34px}
+.proof div b{display:block;font-size:30px;color:#7fb6ff;font-weight:600}.proof div span{font-size:11px;letter-spacing:.12em;color:#9aa8ba}
+/* cloud deck: a refraction band the featured work rides on */
+.deck{position:absolute;left:0;right:0;top:470px;height:300px;
+ background:repeating-linear-gradient(62deg,transparent 0 30px,rgba(190,228,255,.09) 30px 31px,transparent 31px 60px),linear-gradient(180deg,rgba(127,182,255,0),rgba(127,182,255,.16) 30%,rgba(127,182,255,.08))}
+.deckl{position:absolute;left:112px;top:478px;font-size:11px;letter-spacing:.14em;color:#9aa8ba}
+.feat{position:absolute;left:150px;top:510px;display:grid;grid-template-columns:repeat(3,360px);gap:24px}
+.feat div{padding:20px 22px;background:rgba(6,10,22,.72);border-top:1px solid #7fb6ff}
+.feat h3{font-size:21px;font-weight:600}.feat p{margin-top:8px;font-size:15px;line-height:1.5;color:#c9d2df}
+.feat .s{margin-top:12px;font-size:12px;letter-spacing:.1em;color:#7fb6ff}
+.ground{position:absolute;left:-10%;right:-10%;top:820px;height:400px;border-radius:50%/30%;
+ background:repeating-linear-gradient(62deg,transparent 0 22px,rgba(168,220,255,.5) 22px 23px,transparent 23px 44px),linear-gradient(180deg,#5d8fd0,#10203d 30%)}
+.rail{position:absolute;right:40px;top:300px;display:flex;flex-direction:column;gap:8px}
+.rail span{font-size:12px;letter-spacing:.06em;color:#b9c3d2;padding:13px 14px;border:1px solid rgba(120,140,170,.2);min-width:150px;text-align:right;background:rgba(6,7,14,.6)}
+.rail span.on{color:#7fb6ff;border-color:rgba(127,182,255,.6)}
+</style></head><body>
+<div class="bar"><b>LAITH ASSAF</b><div class="r mono"><span>◂ RETURN TO NAV</span><span class="am">RÉSUMÉ</span></div></div>
+<div class="axis"></div>
+<div class="tick mono" style="top:150px">400</div><div class="tick mono" style="top:470px">40</div><div class="tick mono" style="top:800px">0</div>
+<div class="alt mono">ALT 400 KM · ORBIT</div>
+<div class="orbit"><h1>Projects</h1>
+ <p>Things I built that actually run. Descend for the work; the deeper you go, the more detail.</p>
+ <div class="proof mono"><div><b>93%</b><span>RL AGENT WIN RATE</span></div><div><b>44</b><span>REPOS ON MY AGENT PIPELINE</span></div><div><b>2nd</b><span>OF 300+ AT MHACKS</span></div></div></div>
+<div class="deck"></div><div class="deckl mono">CLOUD DECK · 40 KM · FEATURED</div>
+<div class="feat">
+ <div><h3>Pokémon Battle Agent</h3><p>Learned battling from human replays, then sharpened with RL and look-ahead search.</p><div class="s mono">93% WIN RATE ▸</div></div>
+ <div><h3>Agentic Development System</h3><p>A ten-agent dev team in my terminal that plans, builds, reviews and tests.</p><div class="s mono">44 REPOS ▸</div></div>
+ <div><h3>Party Game Framework</h3><p>The engine under every party game I make. Five hooks, one multiplayer game.</p><div class="s mono">80%+ REUSE ▸</div></div>
+</div>
+<div class="ground"></div>
+<div class="rail mono"><span>01 ABOUT</span><span class="on">02 PROJECTS</span><span>03 EXPERIENCE</span><span>04 CONTACT</span></div>
+</body></html>

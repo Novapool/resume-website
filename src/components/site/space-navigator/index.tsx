@@ -2,13 +2,15 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import type { CSSProperties, MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Starfield from "./Starfield";
 import type { StarfieldHandle } from "./Starfield";
 import PlanetBody from "@/components/hud/PlanetBody";
+import { Chevron } from "@/components/hud/panels";
 import { PLANETS } from "@/lib/planets";
+import { PROFILE } from "@/data/profile";
 import { ACCENT, CAM_Z_MAX, FOCAL, FOCUS_Z } from "./constants";
 import "./space-navigator.css";
 
@@ -25,42 +27,7 @@ interface Projected {
   opacity: number;
 }
 
-const display = { fontFamily: "var(--font-space-grotesk), sans-serif" };
-const mono = { fontFamily: "var(--font-ibm-plex-mono), ui-monospace, monospace" };
-
-const label: CSSProperties = {
-  ...mono,
-  fontWeight: 500,
-  fontSize: 9,
-  letterSpacing: ".24em",
-  color: "rgba(150,168,190,.7)",
-};
-
-const readout: CSSProperties = {
-  ...mono,
-  fontWeight: 600,
-  fontSize: 15,
-  color: "#f2f5fc",
-  marginTop: 3,
-};
-
-const divider: CSSProperties = { width: 1, background: "rgba(120,140,170,.2)" };
-
-const reticleEdge = `2px solid ${ACCENT}`;
-const RETICLE_CORNERS: CSSProperties[] = [
-  { top: -2, left: -2, borderTop: reticleEdge, borderLeft: reticleEdge },
-  { top: -2, right: -2, borderTop: reticleEdge, borderRight: reticleEdge },
-  { bottom: -2, left: -2, borderBottom: reticleEdge, borderLeft: reticleEdge },
-  { bottom: -2, right: -2, borderBottom: reticleEdge, borderRight: reticleEdge },
-];
-
-const hudEdge = "1.5px solid rgba(87,230,196,.45)";
-const HUD_CORNERS: CSSProperties[] = [
-  { top: 18, left: 18, borderTop: hudEdge, borderLeft: hudEdge },
-  { top: 18, right: 18, borderTop: hudEdge, borderRight: hudEdge },
-  { bottom: 18, left: 18, borderBottom: hudEdge, borderLeft: hudEdge },
-  { bottom: 18, right: 18, borderBottom: hudEdge, borderRight: hudEdge },
-];
+const CORNERS = ["tl", "tr", "bl", "br"] as const;
 
 /** Quadratic smoothing through segment midpoints. */
 function smoothPath(points: { x: number; y: number }[]) {
@@ -85,7 +52,6 @@ export default function SpaceNavigator() {
   const router = useRouter();
   const [focused, setFocused] = useState(0);
   const [portal, setPortal] = useState<number | null>(null);
-  const [dossierLabel, setDossierLabel] = useState("◈ REQUEST DOSSIER");
 
   const starfieldRef = useRef<StarfieldHandle | null>(null);
   const planetRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -94,8 +60,8 @@ export default function SpaceNavigator() {
   const routeFgRef = useRef<SVGPathElement | null>(null);
   const progLineRef = useRef<HTMLDivElement | null>(null);
   const introRef = useRef<HTMLDivElement | null>(null);
+  const pitchRef = useRef<HTMLDivElement | null>(null);
   const targetRef = useRef<HTMLDivElement | null>(null);
-  const velRef = useRef<HTMLDivElement | null>(null);
   const routePctRef = useRef<HTMLDivElement | null>(null);
 
   const focusedRef = useRef(0);
@@ -115,8 +81,11 @@ export default function SpaceNavigator() {
     const prog = max > 0 ? clamp(y / max, 0, 1) : 0;
     const camZ = prog * CAM_Z_MAX;
     const k = clamp(vw / 1300, 0.5, 1.12); // responsive world scale
+    // horizontal spread narrows faster than size, so a planet in focus stays
+    // inside the viewport on phones and clear of the rail on desktop
+    const kx = clamp((vw - 560) / 1000, 0.3, 1.12);
 
-    // smoothed scroll velocity — drives the readout and the starfield warp
+    // smoothed scroll velocity — drives the starfield warp
     const delta = Math.abs(y - lastYRef.current);
     lastYRef.current = y;
     vsmRef.current = vsmRef.current * 0.82 + delta * 0.18;
@@ -131,7 +100,7 @@ export default function SpaceNavigator() {
       const el = planetRefs.current[i];
       const relZ = wp.world.z - camZ;
       const scale = FOCAL / (FOCAL + Math.max(relZ, -(FOCAL - 130)));
-      const sx = cx + wp.world.x * k * scale;
+      const sx = cx + wp.world.x * kx * scale;
       const sy = cy + wp.world.y * k * scale;
 
       let opacity: number;
@@ -143,6 +112,17 @@ export default function SpaceNavigator() {
       }
 
       if (el) {
+        // a planet behind the camera is invisible, so it leaves the tab order
+        // and the a11y tree; a distant one is still seen and clickable, but
+        // too small to take keyboard focus (the rail flies there instead)
+        const passed = opacity < 0.02;
+        const focusable = !passed && wp.size * scale * k >= 44;
+        if (el.getAttribute("aria-hidden") !== String(passed)) {
+          el.setAttribute("aria-hidden", String(passed));
+        }
+        if (el.tabIndex !== (focusable ? 0 : -1)) {
+          el.tabIndex = focusable ? 0 : -1;
+        }
         el.style.transform = `translate(-50%,-50%) translate(${(sx - cx).toFixed(1)}px, ${(sy - vh / 2).toFixed(1)}px) scale(${(scale * k).toFixed(3)})`;
         el.style.opacity = opacity.toFixed(3);
         el.style.zIndex = String(
@@ -202,11 +182,6 @@ export default function SpaceNavigator() {
     }
 
     // telemetry
-    const velocity = Math.min(
-      999,
-      Math.round(180 + prog * 130 + vsmRef.current * 5),
-    );
-    if (velRef.current) velRef.current.textContent = `${velocity} M/S`;
     if (routePctRef.current)
       routePctRef.current.textContent = `${Math.round(prog * 100)}%`;
     if (progLineRef.current)
@@ -214,9 +189,17 @@ export default function SpaceNavigator() {
 
     const atRest = prog < 0.015;
     if (introRef.current) introRef.current.style.opacity = atRest ? "1" : "0";
+    // the pitch owns the card slot at rest; the target card takes it in flight
+    if (pitchRef.current) {
+      pitchRef.current.style.opacity = atRest ? "1" : "0";
+      pitchRef.current.style.pointerEvents = atRest ? "auto" : "none";
+      pitchRef.current.toggleAttribute("inert", !atRest);
+    }
     if (targetRef.current) {
       targetRef.current.style.opacity = atRest ? "0" : "1";
       targetRef.current.style.pointerEvents = atRest ? "none" : "auto";
+      // hidden at rest, so it must leave the tab order and the a11y tree too
+      targetRef.current.toggleAttribute("inert", atRest);
     }
   }, []);
 
@@ -269,7 +252,13 @@ export default function SpaceNavigator() {
     });
   };
 
-  const openPortal = (index: number) => {
+  // `detail === 0` means the click came from the keyboard (Enter), not a
+  // pointer: skip the docking animation and go straight to the section.
+  const openPortal = (index: number, e?: MouseEvent) => {
+    if (e && e.detail === 0) {
+      router.push(PLANETS[index].href);
+      return;
+    }
     if (portalTimer.current) return; // docking already in progress
     setPortal(index);
     portalTimer.current = setTimeout(
@@ -278,53 +267,98 @@ export default function SpaceNavigator() {
     );
   };
 
-  const flashDossier = () => {
-    setDossierLabel("// LINK ESTABLISHED");
-    setTimeout(() => setDossierLabel("◈ REQUEST DOSSIER"), 1600);
-  };
-
   const active = PLANETS[focused];
   const portalWaypoint = portal === null ? null : PLANETS[portal];
 
   return (
-    <div className="sn-root">
-      {/* ═══ FIXED FLIGHT STAGE ═══ */}
-      <div style={{ position: "fixed", inset: 0, zIndex: 5, overflow: "hidden" }}>
-        <Starfield ref={starfieldRef} reduced={reducedRef.current} />
+    <main className="sn-root">
+      {/* ═══ HUD — first in DOM so Tab reaches the header before the planets;
+          shared classes from components/hud/hud.css ═══ */}
+      <div className="hud-corners" aria-hidden>
+        {CORNERS.map((c) => (
+          <div key={c} className={`hud-corner hud-corner-${c}`} />
+        ))}
+      </div>
 
-        {/* HUD grid */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-            background:
-              "repeating-linear-gradient(0deg, rgba(87,230,196,.022) 0 1px, transparent 1px 74px), repeating-linear-gradient(90deg, rgba(87,230,196,.022) 0 1px, transparent 1px 74px)",
-          }}
-        />
-        {/* Vignette */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-            background:
-              "radial-gradient(120% 95% at 50% 45%, transparent 52%, rgba(3,4,10,.9) 100%)",
-          }}
-        />
+      <header className="hud-topbar hud-topbar-clear">
+        <div className="hud-ident">
+          <span className="hud-diamond" aria-hidden />
+          <div>
+            <div className="hud-ident-name">LAITH ASSAF</div>
+            <div className="hud-ident-sub">
+              NAV-COMPUTER · CS / 2027 · MICHIGAN STATE
+            </div>
+          </div>
+        </div>
+        <div className="hud-topright">
+          <Link href="/overview" className="hud-pill">
+            OVERVIEW
+          </Link>
+          <a
+            className="hud-dossier"
+            href="/documents/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            RÉSUMÉ
+          </a>
+        </div>
+      </header>
+
+      {/* Pitch — who this is and the proof, before the flight starts. First
+          after the header in the DOM so keyboard users reach it before the
+          rail and the planets. */}
+      <div ref={pitchRef} className="hud-target sn-pitch">
+        <h1 className="sn-pitch-name">{PROFILE.name}</h1>
+        <p className="sn-pitch-text">{PROFILE.pitch}</p>
+        <ul className="sn-pitch-figures">
+          {PROFILE.proof.map((p) => (
+            <li key={p.label}>
+              <b>{p.value}</b> {p.label}
+            </li>
+          ))}
+        </ul>
+        <Link href="/projects" className="sn-pitch-more">
+          See the projects
+          <Chevron />
+        </Link>
+        <div className="sn-pitch-hint" aria-hidden>
+          Scroll to fly the route
+          <Chevron className="hud-chevron-down" />
+        </div>
+      </div>
+
+      {/* Waypoint nav — flies the camera, so these are buttons, not links */}
+      <nav className="hud-rail sn-rail" aria-label="Waypoints">
+        {PLANETS.map((wp, i) => {
+          const on = i === focused;
+          return (
+            <button
+              key={wp.name}
+              type="button"
+              className={`hud-pill${on ? " hud-pill-on" : ""}`}
+              aria-label={`Fly to ${wp.label}`}
+              aria-current={on ? "location" : undefined}
+              onClick={() => goTo(i)}
+            >
+              <span>
+                <span className="hud-pill-index">{`0${i + 1}`}&nbsp;&nbsp;</span>
+                {wp.name}
+              </span>
+              <span className="hud-tick" />
+            </button>
+          );
+        })}
+      </nav>
+
+      {/* ═══ FIXED FLIGHT STAGE ═══ */}
+      <div className="sn-stage">
+        <Starfield ref={starfieldRef} reduced={reducedRef.current} />
+        <div className="sn-grid" />
+        <div className="sn-vignette" />
 
         {/* Flight route — recomputed every frame */}
-        <svg
-          viewBox="0 0 1920 1080"
-          preserveAspectRatio="none"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            pointerEvents: "none",
-          }}
-        >
+        <svg className="sn-route" viewBox="0 0 1920 1080" preserveAspectRatio="none">
           <path
             ref={routeBgRef}
             d=""
@@ -336,32 +370,20 @@ export default function SpaceNavigator() {
           />
           <path
             ref={routeFgRef}
+            className="sn-route-fg"
             d=""
             fill="none"
             stroke={ACCENT}
             strokeWidth="2.4"
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ filter: "drop-shadow(0 0 5px rgba(87,230,196,.8))" }}
           />
         </svg>
 
         {/* Targeting reticle */}
-        <div
-          ref={reticleRef}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: 0,
-            height: 0,
-            pointerEvents: "none",
-            opacity: 0,
-            willChange: "transform,opacity",
-          }}
-        >
-          {RETICLE_CORNERS.map((corner, i) => (
-            <div key={i} style={{ ...corner, position: "absolute", width: 22, height: 22 }} />
+        <div ref={reticleRef} className="sn-reticle">
+          {CORNERS.map((c) => (
+            <div key={c} className={`sn-reticle-corner sn-reticle-${c}`} />
           ))}
         </div>
 
@@ -370,431 +392,102 @@ export default function SpaceNavigator() {
           <Link
             key={wp.name}
             href={wp.href}
-            aria-label={`Open ${wp.name.toLowerCase()} section`}
+            className="sn-planet"
+            aria-label={`Open ${wp.label}`}
             onClick={(e) => {
               e.preventDefault();
-              openPortal(i);
+              openPortal(i, e);
             }}
             ref={(el) => {
               planetRefs.current[i] = el;
             }}
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              width: wp.size,
-              height: wp.size,
-              transform: "translate(-50%,-50%) scale(.2)",
-              opacity: 0,
-              willChange: "transform,opacity",
-            }}
+            style={{ width: wp.size, height: wp.size }}
           >
             <PlanetBody planet={wp} />
           </Link>
         ))}
       </div>
 
-      {/* ═══ HUD ═══ */}
-
-      {/* Corner brackets */}
-      <div style={{ position: "fixed", inset: 0, zIndex: 30, pointerEvents: "none" }}>
-        {HUD_CORNERS.map((corner, i) => (
-          <div key={i} style={{ ...corner, position: "absolute", width: 26, height: 26 }} />
-        ))}
-      </div>
-
-      {/* Top bar */}
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 40,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "22px 40px",
-          pointerEvents: "none",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-            pointerEvents: "auto",
-          }}
-        >
-          <span
-            style={{
-              width: 13,
-              height: 13,
-              background: ACCENT,
-              transform: "rotate(45deg)",
-              boxShadow: "0 0 12px rgba(87,230,196,.7)",
-            }}
-          />
-          <div style={{ lineHeight: 1.2 }}>
-            <div
-              style={{
-                ...display,
-                fontWeight: 700,
-                fontSize: 15,
-                letterSpacing: ".14em",
-                color: "#f2f5fc",
-              }}
-            >
-              LAITH ASSAF
-            </div>
-            <div
-              className="sn-topsub"
-              style={{
-                ...mono,
-                fontWeight: 500,
-                fontSize: 10,
-                letterSpacing: ".22em",
-                color: "rgba(87,230,196,.8)",
-                marginTop: 2,
-              }}
-            >
-              NAV-COMPUTER · CS / 2027 · MICHIGAN STATE
-            </div>
-          </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 18,
-            pointerEvents: "auto",
-          }}
-        >
-          <span
-            style={{
-              ...mono,
-              fontWeight: 500,
-              fontSize: 10,
-              letterSpacing: ".2em",
-              color: "rgba(87,230,196,.75)",
-            }}
-          >
-            ◉ SYS ONLINE
-          </span>
-          <a
-            className="sn-dossier"
-            href="/documents/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={flashDossier}
-            style={{
-              ...mono,
-              fontWeight: 600,
-              fontSize: 11,
-              letterSpacing: ".18em",
-              color: "#ffb35c",
-              border: "1px solid rgba(255,179,92,.5)",
-              background: "rgba(255,179,92,.07)",
-              padding: "9px 16px",
-              borderRadius: 2,
-              whiteSpace: "nowrap",
-            }}
-          >
-            {dossierLabel}
-          </a>
-        </div>
-      </div>
-
-      {/* Waypoint nav */}
-      <div
-        className="sn-nav"
-        style={{
-          position: "fixed",
-          top: "50%",
-          right: 34,
-          transform: "translateY(-50%)",
-          zIndex: 40,
-          display: "flex",
-          flexDirection: "column",
-          gap: 10,
-        }}
-      >
-        {PLANETS.map((wp, i) => {
-          const on = i === focused;
-          return (
-            <a
-              key={wp.name}
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                goTo(i);
-              }}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                gap: 11,
-                border: `1px solid ${on ? "rgba(87,230,196,.6)" : "rgba(120,140,170,.18)"}`,
-                padding: "8px 12px",
-                borderRadius: 2,
-                background: on ? "rgba(87,230,196,.1)" : "rgba(10,14,24,.5)",
-                backdropFilter: "blur(6px)",
-                color: on ? ACCENT : "rgba(210,225,240,.55)",
-                minWidth: 158,
-              }}
-            >
-              <span style={{ ...mono, fontSize: 12, letterSpacing: ".06em" }}>
-                <span style={{ opacity: 0.6 }}>{`0${i + 1}`}</span>
-                &nbsp;&nbsp;
-                {wp.name}
-              </span>
-              <span
-                style={{
-                  width: 7,
-                  height: 7,
-                  border: "1px solid currentColor",
-                  borderRadius: "50%",
-                  background: on ? ACCENT : "transparent",
-                  boxShadow: on ? `0 0 12px ${ACCENT}` : "none",
-                }}
-              />
-            </a>
-          );
-        })}
-      </div>
-
       {/* Target card — focused waypoint */}
+      {/* the card is about a world, so it takes that world's colour; the
+          ship's own chrome around it stays cyan */}
       <div
         ref={targetRef}
-        className="sn-target"
-        style={{
-          position: "fixed",
-          bottom: 104,
-          left: 40,
-          zIndex: 40,
-          width: 330,
-          background: "rgba(10,14,24,.6)",
-          backdropFilter: "blur(10px)",
-          border: "1px solid rgba(87,230,196,.28)",
-          borderRadius: 4,
-          padding: "18px 20px",
-          opacity: 0,
-          pointerEvents: "none",
-          transition: "opacity .3s ease",
-        }}
+        className="hud-target"
+        style={
+          {
+            "--planet": active.color,
+            "--planet-rgb": active.colorRgb,
+          } as CSSProperties
+        }
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span
-            style={{
-              width: 9,
-              height: 9,
-              borderRadius: "50%",
-              background: active.color,
-              boxShadow: `0 0 10px ${active.color}`,
-            }}
-          />
-          <span
-            style={{
-              ...mono,
-              fontWeight: 600,
-              fontSize: 10,
-              letterSpacing: ".3em",
-              color: ACCENT,
-            }}
-          >
-            {`WAYPOINT 0${focused + 1}`}
-          </span>
-        </div>
-        <div
-          style={{
-            ...display,
-            fontWeight: 600,
-            fontSize: 30,
-            color: "#f2f5fc",
-            marginTop: 8,
-            lineHeight: 1,
-          }}
-        >
-          {active.label}
-        </div>
-        <div
-          style={{
-            ...mono,
-            fontSize: 12.5,
-            color: "rgba(213,224,240,.72)",
-            marginTop: 10,
-            lineHeight: 1.55,
-          }}
-        >
-          {active.teaser}
-        </div>
+        <div className="hud-target-title">{active.label}</div>
+        <p className="hud-target-teaser">{active.teaser}</p>
         <Link
           href={active.href}
+          className="hud-btn hud-btn-solid"
           onClick={(e) => {
             e.preventDefault();
-            openPortal(focused);
-          }}
-          style={{
-            display: "inline-block",
-            marginTop: 14,
-            ...mono,
-            fontWeight: 600,
-            fontSize: 10,
-            letterSpacing: ".22em",
-            color: "#06070e",
-            background: ACCENT,
-            padding: "8px 14px",
-            borderRadius: 2,
+            openPortal(focused, e);
           }}
         >
-          OPEN PORTAL ▸
+          OPEN {active.name}
         </Link>
       </div>
 
       {/* Telemetry */}
-      <div
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 40,
-          pointerEvents: "none",
-        }}
-      >
-        <div
-          style={{ display: "flex", justifyContent: "center", padding: "0 40px 20px" }}
-        >
-          <div
-            style={{
-              display: "flex",
-              gap: 34,
-              background: "rgba(10,14,24,.55)",
-              backdropFilter: "blur(8px)",
-              border: "1px solid rgba(87,230,196,.2)",
-              borderRadius: 3,
-              padding: "12px 26px",
-            }}
-          >
-            <div>
-              <div style={label}>WAYPOINT</div>
-              <div style={{ ...readout, color: ACCENT }}>{`0${focused + 1} / 04`}</div>
-            </div>
-            <div style={divider} />
-            <div>
-              <div style={label}>DESTINATION</div>
-              <div style={{ ...readout, ...display }}>{active.name}</div>
-            </div>
-            <div style={divider} />
-            <div>
-              <div style={label}>VELOCITY</div>
-              <div ref={velRef} style={readout}>
-                180 M/S
-              </div>
-            </div>
-            <div style={divider} />
-            <div>
-              <div style={label}>ROUTE</div>
-              <div ref={routePctRef} style={readout}>
-                0%
-              </div>
+      <div className="hud-telemetry">
+        <div className="hud-telemetry-bar">
+          <div>
+            <div className="hud-readout-label">WAYPOINT</div>
+            <div className="hud-readout-value hud-accented">{`0${focused + 1} / 04`}</div>
+          </div>
+          <div className="hud-divider" />
+          <div>
+            <div className="hud-readout-label">DESTINATION</div>
+            <div className="hud-readout-value hud-readout-display">{active.name}</div>
+          </div>
+          <div className="hud-divider" />
+          <div>
+            <div className="hud-readout-label">ROUTE</div>
+            <div ref={routePctRef} className="hud-readout-value">
+              0%
             </div>
           </div>
         </div>
-        <div style={{ height: 2, background: "rgba(87,230,196,.1)" }}>
-          <div
-            ref={progLineRef}
-            style={{
-              height: "100%",
-              width: "0%",
-              background: ACCENT,
-              boxShadow: `0 0 10px ${ACCENT}`,
-            }}
-          />
+        <div className="hud-scrolltrack">
+          <div ref={progLineRef} className="hud-scrollfill" />
         </div>
       </div>
 
       {/* Intro prompt */}
-      <div
-        ref={introRef}
-        style={{
-          position: "fixed",
-          bottom: 150,
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 45,
-          textAlign: "center",
-          pointerEvents: "none",
-          transition: "opacity .5s ease",
-        }}
-      >
-        <div
-          style={{
-            ...mono,
-            fontWeight: 600,
-            fontSize: 12,
-            letterSpacing: ".34em",
-            color: "#f2f5fc",
-          }}
-        >
-          SCROLL TO ENGAGE FLIGHT
-        </div>
-        <div
-          style={{
-            marginTop: 10,
-            fontSize: 20,
-            color: ACCENT,
-            animation: "sn-chevron 1.6s ease-in-out infinite",
-          }}
-        >
-          ▼
+      <div ref={introRef} className="sn-intro">
+        <div className="sn-intro-text">SCROLL TO FLY THE ROUTE</div>
+        <div className="sn-intro-chevron" aria-hidden>
+          <Chevron className="hud-chevron-down" />
         </div>
       </div>
 
       {/* Portal overlay — docking sequence, then routes to the section */}
       <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 80,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: portalWaypoint ? 1 : 0,
-          pointerEvents: portalWaypoint ? "auto" : "none",
-          transition: "opacity .5s ease",
-          background: portalWaypoint
-            ? `radial-gradient(circle at 50% 44%, ${portalWaypoint.color}dd, ${portalWaypoint.color}22 40%, rgba(4,5,12,0.97) 72%)`
-            : "rgba(4,5,12,.96)",
-        }}
+        className={`sn-portal${portalWaypoint ? " sn-portal-on" : ""}`}
+        style={
+          portalWaypoint
+            ? {
+                background: `radial-gradient(circle at 50% 44%, ${portalWaypoint.color}dd, ${portalWaypoint.color}22 40%, rgba(4,5,12,0.97) 72%)`,
+              }
+            : undefined
+        }
       >
-        <div style={{ textAlign: "center" }}>
-          <div
-            style={{
-              ...mono,
-              fontWeight: 700,
-              fontSize: 15,
-              letterSpacing: ".34em",
-              color: "#fff",
-            }}
-          >
+        <div>
+          <div className="sn-portal-title">
             {portalWaypoint
-              ? `ENGAGING PORTAL // ${portalWaypoint.name} SECTOR`
-              : "ENGAGING PORTAL"}
+              ? `LANDING ON ${portalWaypoint.name}`
+              : "LANDING"}
           </div>
-          <div
-            style={{
-              marginTop: 14,
-              ...mono,
-              fontSize: 12,
-              letterSpacing: ".26em",
-              color: "rgba(255,255,255,.6)",
-            }}
-          >
-            STANDBY · DOCKING SEQUENCE
-          </div>
+          <div className="sn-portal-sub">DOCKING</div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

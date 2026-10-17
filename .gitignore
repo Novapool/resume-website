@@ -137,3 +137,6 @@ dist
 
 # raw source photos/videos (web-ready copies live in public/)
 media/
+
+# Impeccable review screenshots (transient)
+.impeccable/review/

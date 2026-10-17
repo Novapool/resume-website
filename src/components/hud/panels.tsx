@@ -1,11 +1,11 @@
 // src/components/hud/panels.tsx
-// Dossier-panel primitives shared by every section page. These are the same
-// translucent, thin-bordered, mono-labelled surfaces the landing page uses for
-// its target card and telemetry strip.
+// Page primitives shared by every section page. On a world page each surface
+// takes that world's material (see the `[data-world]` rules in hud.css), and
+// every Section is a band on the descent, hanging off the altitude rule.
 
 import type { CSSProperties, ReactNode } from "react";
 import PlanetBody from "./PlanetBody";
-import { waypointNo, type Planet } from "@/lib/planets";
+import type { Planet } from "@/lib/planets";
 import "./hud.css";
 
 export function Panel({
@@ -24,7 +24,23 @@ export function Panel({
   );
 }
 
-/** Panel with a mono label across the top, e.g. `// WORKING STYLE`. */
+/** Acronyms that stay in caps when a label is sentence-cased. */
+const ACRONYMS = new Set(["AI", "ML", "IT", "LLM", "RL", "MSU"]);
+
+/** Data labels are stored in caps; panel titles read in sentence case. */
+export const sentence = (text: string) =>
+  text
+    .split(" ")
+    .map((word, i) =>
+      ACRONYMS.has(word)
+        ? word
+        : i === 0
+          ? word.charAt(0) + word.slice(1).toLowerCase()
+          : word.toLowerCase(),
+    )
+    .join(" ");
+
+/** Panel titled by its own heading, with optional trailing meta (a date). */
 export function LabeledPanel({
   label,
   meta,
@@ -37,7 +53,7 @@ export function LabeledPanel({
   return (
     <Panel>
       <div className="hud-panel-head">
-        <span className="hud-label">{label}</span>
+        <h3 className="hud-h3">{label}</h3>
         {meta}
       </div>
       {children}
@@ -45,23 +61,56 @@ export function LabeledPanel({
   );
 }
 
-/** A titled content block with a hairline rule, used to break up a page. */
+/** The one disclosure/direction mark: a 1.5px stroked chevron. */
+export function Chevron({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={`hud-chevron ${className}`.trim()}
+      viewBox="0 0 12 12"
+      width="12"
+      height="12"
+      aria-hidden
+    >
+      <path
+        d="M4 2.5 7.5 6 4 9.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/**
+ * A band of the page. With a `zone` it is a stop on the descent: the zone
+ * name sits on the altitude rule beside the heading. The km lives only in
+ * HudPage's sticky readout, so the page never shows two altitudes at once.
+ */
 export function Section({
-  label,
+  zone,
   title,
+  deck = false,
   children,
 }: {
-  label: string;
+  zone?: string;
   title: string;
+  /** Paint this band as a visible stratum of the world's air. */
+  deck?: boolean;
   children: ReactNode;
 }) {
   return (
-    <section className="hud-section">
-      <div className="hud-section-head">
-        <span className="hud-label">{label}</span>
+    <section className={`hud-band${deck ? " hud-deck" : ""}`} data-zone={zone}>
+      {zone && (
+        <div className="hud-band-mark" aria-hidden>
+          <span className="hud-band-zone">{zone}</span>
+        </div>
+      )}
+      <div className="hud-band-body">
         <h2 className="hud-h2">{title}</h2>
+        {children}
       </div>
-      {children}
     </section>
   );
 }
@@ -78,34 +127,50 @@ export function Tags({ items }: { items: string[] }) {
   );
 }
 
+/** One headline number with its caption, e.g. 93% / RL agent win rate. */
+export interface Proof {
+  value: string;
+  label: string;
+}
+
 /**
- * "You have landed" header: the waypoint readout, the page title, and a small
- * rendition of the same planet the visitor just flew to.
+ * Orbit: the top of the descent. The world below (a small rendition of the
+ * planet the visitor just docked at), the title, one line of who, and the
+ * page's headline proof.
  */
-export function LandingHeader({
+export function Orbit({
   planet,
   title,
   intro,
+  proof,
+  children,
 }: {
   planet: Planet;
   title: string;
   intro: ReactNode;
+  proof?: Proof[];
+  children?: ReactNode;
 }) {
   return (
-    <header className="hud-hero">
-      <div className="hud-hero-row">
-        <div className="hud-hero-planet" aria-hidden>
+    <header className="hud-orbit">
+      <div className="hud-orbit-row">
+        <div className="hud-orbit-planet" aria-hidden>
           <PlanetBody planet={planet} backdrop={false} />
         </div>
-        <div style={{ minWidth: 0 }}>
-          <div className="hud-eyebrow">
-            <span className="hud-dot" />
-            {`WAYPOINT ${waypointNo(planet)} · ${planet.worldClass}`}
-          </div>
-          <h1 className="hud-hero-title">{title}</h1>
-        </div>
+        <h1 className="hud-hero-title">{title}</h1>
       </div>
-      <div className="hud-hero-teaser">{intro}</div>
+      <p className="hud-orbit-intro">{intro}</p>
+      {proof && (
+        <dl className="hud-proof">
+          {proof.map((p) => (
+            <div key={p.label}>
+              <dt className="hud-label">{p.label}</dt>
+              <dd className="hud-proof-value">{p.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {children}
     </header>
   );
 }

@@ -1,10 +1,12 @@
 // src/components/site/contact-form.tsx
-// Comms console on the contact moon. Submission is still simulated — see M4 in
-// MILESTONES.md for wiring it to a real endpoint.
+// Comms console on the contact moon. NOT MOUNTED until M4 (see MILESTONES.md)
+// gives it a real endpoint: it posts to /api/contact, which doesn't exist yet,
+// so it can only ever report a failure — never a send that didn't happen.
 "use client";
 
 import { useState } from "react";
 import { LabeledPanel } from "@/components/hud/panels";
+import { PROFILE } from "@/data/profile";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
@@ -17,9 +19,14 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setStatus(null);
     try {
-      // Placeholder for the real transmit call.
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setStatus("success");
       setName("");
       setEmail("");
@@ -34,7 +41,7 @@ export default function ContactForm() {
 
   return (
     <LabeledPanel
-      label="// TRANSMIT"
+      label="Send a message"
       meta={
         <span className="hud-label" style={{ color: "var(--planet)" }}>
           ◉ CHANNEL OPEN
@@ -42,9 +49,14 @@ export default function ContactForm() {
       }
     >
       {status === "success" ? (
-        <div className="hud-body" style={{ padding: "18px 0" }}>
+        <div
+          className="hud-body"
+          style={{ padding: "18px 0" }}
+          role="status"
+          aria-live="polite"
+        >
           <div className="hud-h3" style={{ color: "var(--planet)" }}>
-            {"// MESSAGE RECEIVED"}
+            Message received
           </div>
           <p style={{ marginTop: 8 }}>
             Thanks for reaching out. I&apos;ll get back to you soon.
@@ -103,14 +115,25 @@ export default function ContactForm() {
             disabled={isSubmitting}
             style={{ justifyContent: "center" }}
           >
-            {isSubmitting ? "TRANSMITTING…" : "SEND TRANSMISSION ▸"}
+            {isSubmitting ? "TRANSMITTING…" : "SEND TRANSMISSION"}
           </button>
 
-          {status === "error" && (
-            <p className="hud-body" style={{ color: "#ff9a8c" }}>
-              {"// TRANSMISSION FAILED. Please try again."}
-            </p>
-          )}
+          <p
+            className="hud-body"
+            style={{ color: "#ff9a8c" }}
+            role="alert"
+            aria-live="assertive"
+          >
+            {status === "error" && (
+              <>
+                Your message didn&apos;t send. Email me directly at{" "}
+                <a className="hud-link" href={`mailto:${PROFILE.email}`}>
+                  {PROFILE.email}
+                </a>{" "}
+                instead.
+              </>
+            )}
+          </p>
         </form>
       )}
     </LabeledPanel>

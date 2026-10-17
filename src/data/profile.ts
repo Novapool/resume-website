@@ -5,11 +5,20 @@
 export const PROFILE = {
   name: "Laith Assaf",
   tagline: "CS (AI/ML) @ Michigan State · MHacks 2025 2nd Place · IT @ Delta Dental",
+  /** The two-sentence pitch: the landing's first screen and /overview's hero. */
+  pitch:
+    "I build LLM agents, reinforcement learning systems, and real-time backends. Graduating May 2027 and looking for full-time AI/ML and software engineering roles.",
   email: "assaflai@msu.edu",
   github: "https://github.com/Novapool",
   linkedin: "https://www.linkedin.com/in/laith-assaf-/",
   resume: "/documents/resume.pdf",
   photo: "/images/profile.jpg",
+  /** The landing's proof line: one number per positioning claim. */
+  proof: [
+    { value: "93%", label: "RL agent win rate vs scripted bots" },
+    { value: "44", label: "repos on my agent pipeline" },
+    { value: "3", label: "Delta Dental workflows running my agents" },
+  ],
 } as const;
 
 export const BIO = [
@@ -29,7 +38,7 @@ export const WORKING_STYLE: Dossier[] = [
   },
   {
     label: "PROBLEM-SOLVING APPROACH",
-    body: "Evidence-based trial and error. I decide what \"working\" means before I build, then test, measure, and iterate until the numbers say it's done. Every attempt gets written down, including the dead ends, so each round starts from what the last one actually proved instead of what I remember.",
+    body: "Evidence-based trial and error. I decide what “working” means before I build, then test, measure, and iterate until the numbers say it's done. Every attempt gets written down, including the dead ends, so each round starts from what the last one actually proved instead of what I remember.",
   },
 ];
 
@@ -114,14 +123,18 @@ export interface Game {
   title: string;
   cover: string;
   blurb: string;
+  /** One-line blurb; games with one make the About shelf (one row). */
+  line?: string;
 }
 
+// The full list stays here; About shows only the games with a `line`.
 export const GAMES: Game[] = [
   {
     title: "Baldur's Gate 3",
     cover: "/images/games/bg3.jpg",
     blurb:
       "Really interesting gameplay. I like the top-down view, the story is phenomenal, and you basically have infinite choices in how you play.",
+    line: "A phenomenal story with near-infinite ways to play it.",
   },
   {
     title: "Clair Obscur: Expedition 33",
@@ -145,6 +158,7 @@ export const GAMES: Game[] = [
     cover: "/images/games/dota-2.jpg",
     blurb:
       "My guilty pleasure and the game I have the most hours on, and really fun to play with friends.",
+    line: "The game I have the most hours in, best with friends.",
   },
   {
     title: "Elden Ring",
@@ -157,6 +171,7 @@ export const GAMES: Game[] = [
     cover: "/images/games/god-of-war-ragnarok.jpg",
     blurb:
       "The best story in any game I've ever played, with beautiful storytelling and amazing character development. A fantastic finish to Kratos's story.",
+    line: "The best story I've played in any game.",
   },
   {
     title: "Marvel Rivals",
@@ -168,6 +183,7 @@ export const GAMES: Game[] = [
     cover: "/images/games/satisfactory.jpg",
     blurb:
       "Like Cities: Skylines, it hits that automation and large-scale systems itch.",
+    line: "Automation and large-scale systems, as a game.",
   },
 ];
 

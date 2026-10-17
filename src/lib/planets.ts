@@ -43,6 +43,17 @@ export interface PlanetSphere {
  * limb is a horizon arc many viewports wide. Its layers are tiled in `vmax`
  * so the surface keeps the same grain at any screen size.
  */
+/**
+ * The section page is a descent from orbit to this world's surface. `air` is
+ * painted down the whole page, so scrolling literally moves through the
+ * world's atmosphere; `altitude` is where the readout starts, in km.
+ */
+export interface PlanetDescent {
+  altitude: number;
+  /** Background for the full page height: orbit black at the top → this air. */
+  air: string;
+}
+
 export interface PlanetHero {
   /** Wash tint layered over the page background. */
   wash: string;
@@ -80,6 +91,7 @@ export interface Planet {
   size: number;
   sphere: PlanetSphere;
   hero: PlanetHero;
+  descent: PlanetDescent;
 }
 
 /* ── 01 · ABOUT — lush world ─────────────────────────────────────────────
@@ -91,7 +103,7 @@ const about: Planet = {
   href: "/about",
   name: "ABOUT",
   label: "About",
-  worldClass: "LUSH · CLASS M",
+  worldClass: "LUSH WORLD",
   color: "#a8c47f",
   colorRgb: "168,196,127",
   teaser:
@@ -135,6 +147,11 @@ const about: Planet = {
       },
     ],
   },
+  descent: {
+    // thick, humid air: a long descent through green haze and canopy
+    altitude: 120,
+    air: "linear-gradient(180deg, #06070e 0%, #08100b 28%, #0f1e13 58%, #1b3020 84%, #26402a 100%)",
+  },
   hero: {
     wash:
       "radial-gradient(120% 80% at 50% 96%, rgba(139,168,102,.22), rgba(0,0,0,0) 62%)",
@@ -167,11 +184,11 @@ const projects: Planet = {
   href: "/projects",
   name: "PROJECTS",
   label: "Projects",
-  worldClass: "CRYSTALLINE · CLASS K",
+  worldClass: "CRYSTALLINE WORLD",
   color: "#7fb6ff",
   colorRgb: "127,182,255",
   teaser:
-    "Constructed worlds. An RL Pokémon agent, an audio classifier, a party-game framework.",
+    "Constructed worlds. An RL Pokémon agent, a 10-agent dev pipeline, a hackathon-winning audio classifier.",
   world: { x: 440, y: 60, z: 1980 },
   size: 340,
   sphere: {
@@ -209,6 +226,11 @@ const projects: Planet = {
       },
     ],
   },
+  descent: {
+    // thin, cold air that refracts: the highest orbit, the clearest fall
+    altitude: 400,
+    air: "repeating-linear-gradient(62deg, rgba(0,0,0,0) 0 46px, rgba(168,220,255,.035) 46px 47px, rgba(0,0,0,0) 47px 92px), linear-gradient(180deg, #06070e 0%, #07101f 30%, #0b1b36 62%, #12294d 86%, #183460 100%)",
+  },
   hero: {
     wash:
       "radial-gradient(120% 80% at 50% 96%, rgba(127,182,255,.2), rgba(0,0,0,0) 62%)",
@@ -244,11 +266,11 @@ const experience: Planet = {
   href: "/experience",
   name: "EXPERIENCE",
   label: "Experience",
-  worldClass: "BARREN · TIDALLY LOCKED",
+  worldClass: "RUST WORLD",
   color: "#d9743f",
   colorRgb: "217,116,63",
   teaser:
-    "Mission log. LLM agents at Delta Dental, AI Club workshops for 500+.",
+    "Mission log. LLM agents at Delta Dental and three years of IT at MSU.",
   world: { x: -460, y: -40, z: 3240 },
   size: 350,
   sphere: {
@@ -305,6 +327,11 @@ const experience: Planet = {
       },
     ],
   },
+  descent: {
+    // dust-storm bands lower down, under the black hole's light
+    altitude: 250,
+    air: "repeating-linear-gradient(176deg, rgba(0,0,0,0) 0 90px, rgba(217,116,63,.045) 90px 150px, rgba(0,0,0,0) 150px 260px), linear-gradient(180deg, #06070e 0%, #0e0907 30%, #1d100a 62%, #2c160c 86%, #34190d 100%)",
+  },
   hero: {
     wash:
       "radial-gradient(90% 70% at 82% 12%, rgba(255,140,60,.16), rgba(0,0,0,0) 60%), radial-gradient(120% 80% at 50% 98%, rgba(217,116,63,.16), rgba(0,0,0,0) 60%)",
@@ -357,11 +384,11 @@ const contact: Planet = {
   href: "/contact",
   name: "CONTACT",
   label: "Contact",
-  worldClass: "MOON · BIOLUMINESCENT",
+  worldClass: "GLOWING MOON",
   color: "#c79bf0",
   colorRgb: "199,155,240",
   teaser:
-    "Open a channel. Reach Laith to talk software, systems, or ship something.",
+    "Open a channel. Write to me about software, systems, or shipping something.",
   world: { x: 400, y: 90, z: 4500 },
   size: 215,
   sphere: {
@@ -393,6 +420,11 @@ const contact: Planet = {
           "radial-gradient(circle, rgba(0,0,0,0) 58%, rgba(199,155,240,.16) 78%, rgba(0,0,0,0) 100%)",
       },
     ],
+  },
+  descent: {
+    // no atmosphere: a short drop straight onto the surface
+    altitude: 12,
+    air: "linear-gradient(180deg, #06070e 0%, #07060d 60%, #100c1a 100%)",
   },
   hero: {
     wash:

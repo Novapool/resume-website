@@ -1,84 +1,61 @@
 # In Progress
 
+## Where we are
+- **Site:** `/` is the flythrough with four planet portals. Each section page
+  is a Descent (orbit → the world's air → touchdown on its horizon). The
+  system lives in `src/components/hud/`, worlds in `src/lib/planets.ts`, copy
+  in `src/data/`.
+- **Status:** M5, M6 and M7 are closed and documented. M7 ended the critique
+  loop at 22–25/32 (H8 = 3). Further rounds were measuring assessor noise, so
+  **no more critique rounds** unless content changes.
+- **Score movers left** (content, not chrome):
+  - one real project artefact (eval curve or battle log; none exists yet,
+    don't fake one);
+  - the About personal band.
+- **Ports:** `localhost:3000` is another project. Run this repo on 3100
+  (`npm run dev -- -p 3100`). Stop dev before `npm run build`.
+
 ## Current Work
-**M5 — De-slopify, pass 1** is next (see `MILESTONES.md`). On 2026-10-16 an
-Impeccable audit scored the site 10/20 and a critique scored it 18/32. Verdict:
-the planets are authored, the HUD chrome around them is generic. The steps are
-colorize → distill → typeset → harden → polish, P0/P1 findings only. M6
-(worlds style their own pages, via init + shape) follows.
-Note: `localhost:3000` is usually another project (`power-util-sim`), so start
-this repo on its own port (`npm run dev -- -p 3100`) before any visual checks.
+None. M7 is closed; next is the real-device check, then M4.
 
 ## Active Plan
 No active implementation plan.
 
 ## Recently Completed
-- **Projects page: taglines + per-project colour (2026-10-15):**
-  - Each project in `src/data/projects.ts` gained a `tagline` (elevator pitch,
-    the only copy shown by default), an `accent` (`r,g,b`) and an optional
-    headline `stat`. The full `description` sits behind a "Full debrief"
-    `<details>` toggle on the card.
-  - `ProjectCard` overrides `--planet`/`--planet-rgb` inline, so the panel,
-    tags and button re-tint per project; `Panel` now accepts `style`.
-  - Build + lint pass; not yet eyeballed in a browser.
-- **About page: Bouldering + Game Shelf sections (2026-07-27):**
-  - Added two new `Section`s to `/about` after "Beyond tech": a bouldering
-    video gallery (`BOULDERING_CLIPS` in `src/data/profile.ts`) and a game
-    shelf grid with covers + blurbs (`GAMES` in the same file).
-  - New CSS: `.hud-videos`/`.hud-video-frame` (9:16 video panels) and
-    `.hud-games`/`.hud-game-cover` (2:3 cover grid) in `hud.css`.
-  - Source video (`media/IMG_3562.mov`, 16.8MB H.264/portrait) transcoded to
-    `public/videos/bouldering-1.mp4` (720x1280, ~1.3MB) with a poster frame at
-    `public/images/bouldering-1-poster.jpg`. The system's `ffmpeg` came from an
-    untrusted third-party tap and had a broken dylib chain — replaced with the
-    standard `homebrew/core` ffmpeg formula to fix it.
-  - 9 game covers copied to `public/images/games/`; real blurbs filled in for
-    all 9 (2026-07-27). Video panel was shrunk from full-width 9:16 (which ran
-    off the viewport) to a capped 220px-wide frame, `.hud-video-frame` in
-    `hud.css`.
-  - Verified via `npm run build` + headless Chrome screenshots (no Chrome
-    extension connected this session).
-- **Section pages themed to the landing (2026-07-24):**
-  - `src/lib/planets.ts` is the single source of truth for the four worlds —
-    colour, sphere texture, world position, teaser, route, and the section
-    page's sky/horizon. The landing scene and every page hero read from it.
-  - New per-world identities (landing planets updated to match): About = lush
-    moss/bark world, Projects = crystalline fractured-mineral world, Experience
-    = bare rust world with a black hole burning off its shoulder, Contact =
-    small bioluminescent moon.
-  - New shared design system in `src/components/hud/` — `HudPage` (corner
-    brackets, top bar, `◂ RETURN TO NAV`, waypoint rail, telemetry strip, HUD
-    grid, vignette, planet horizon), `panels.tsx` (dossier panels), `PlanetBody`
-    (renders a world at any size), `hud.css`.
-  - **Experience and Contact are now real routes** (`/experience`, `/contact`)
-    instead of anchors on `/about`; `about-contact.tsx` was split accordingly.
-  - `/overview` restyled with the same chrome on the neutral cyan accent.
-  - Page copy extracted to `src/data/` (`profile.ts`, `projects.ts`,
-    `timeline.ts`) — closes most of M3's de-duplication.
-  - Removed `navbar.tsx`, `home.tsx`, `projects.tsx`, `about-contact.tsx`
-    (superseded); navigation is now the HUD waypoint rail.
-  - **Terminal boot loader unmounted.** `src/components/loaders/` is kept in the
-    repo but `LoadingManager` is no longer rendered — the green-CRT aesthetic
-    clashed with the HUD and delayed every deep link by ~6s.
-  - Verified: `npm run lint` clean, `npm run build` succeeds, all six routes
-    return 200, and the four pages were eyeballed via headless screenshots at
-    1280 and 1440.
+- **M7 critique gaps (closed 2026-10-17, critique 22–25/32, H8 = 3):**
+  - Landing pitch leads with the name and three proof figures.
+  - One plain control vocabulary. One altitude figure per screen.
+  - About opens with the person; Projects shows outcomes; Experience
+    outcomes come first.
+  - Contact ends on "Write to me". /overview has proof, stats and work
+    history.
+  - Phone landing strip. Skip link and scroll padding.
+  - Details in the MILESTONES M7 entry and the `docs/ARCHIVE.md` run log.
+- **M6 Descent (closed 2026-10-17, critique 22/32):**
+  - Per-world air, a drifting sky, the altitude rule and readout, world
+    materials under `[data-world]`, and a horizon touchdown with the next
+    world's arrival card.
+  - Smooth at 4× CPU throttle and in WebKit.
+  - PRODUCT.md and DESIGN.md written.
+- **M5 de-slopify pass 1 (closed 2026-10-16, critique 23/32, audit 15/20):**
+  - Removed the legacy pixel font and glow; 11px solid labels.
+  - The contact form is unmounted until M4.
+  - Themed 404, landing pitch card, mobile waypoint strip.
 
 ## Blockers
-- **Not yet verified on a real device / small viewport.** The Chrome extension
-  wasn't connected, and headless Chrome clamps its viewport to 500px wide, so
-  nothing below 500px has actually been rendered. The ≤760px rules (compact top
-  bar, `◂ NAV`, inline waypoint pills) are unverified.
-- **Email verification:** site uses `assaflai@msu.edu`; the resume PDF text
-  renders as `asaflai@msu.edu`. Confirm which is correct.
+- **No real-device check yet.** Playwright phone emulation and WebKit pass.
+  Nothing has been checked on a physical phone, in iOS Safari, or with
+  reduced motion turned on.
+- **Email spelling:** the site uses `assaflai@msu.edu`; the résumé PDF text
+  renders as `asaflai@msu.edu`. Laith to confirm.
 
 ## Next Steps
-0. Run M5 in order: `/impeccable colorize` → `distill` → `typeset` →
-   `harden` → `polish`, then re-run audit + critique against the M5 Gate.
-1. Laith to fill in the bouldering clip caption in `BOULDERING_CLIPS`
-   (`src/data/profile.ts`) — still a `TODO` placeholder. Game blurbs are done.
-2. Eyeball `/` and the four section pages on a real phone and with reduced
-   motion enabled.
-3. Decide whether the boot loader gets a HUD-styled rewrite or stays retired.
-4. (M4) Wire the contact form to a real backend.
-5. (M4) Open Graph tags, favicon, sitemap.
+1. Real phone + iOS Safari + reduced-motion pass on `/` and the four worlds.
+2. (M4) Open Graph tags, favicon, sitemap; confirm the email.
+3. (M4) Wire the contact form to a real backend, then re-mount it
+   (`contact-form.tsx` already posts to `/api/contact`).
+4. Content decisions for Laith:
+   - a real project artefact for the Pokémon agent;
+   - the About personal band. It is trimmed to one clip and four games;
+     the full list stays in `GAMES`.
+5. Decide whether the boot loader gets a HUD rewrite or stays retired.
