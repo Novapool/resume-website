@@ -5,9 +5,10 @@
   is a Descent (orbit → the world's air → touchdown on its horizon). The
   system lives in `src/components/hud/`, worlds in `src/lib/planets.ts`, copy
   in `src/data/`.
-- **Status:** M5, M6 and M7 are closed and documented. M7 ended the critique
-  loop at 22–25/32 (H8 = 3). Further rounds were measuring assessor noise, so
-  **no more critique rounds** unless content changes.
+- **Status:** M1–M7 are all closed. M4 made it shippable: per-route
+  metadata and OG images, favicon, sitemap; contact is email-only. M7 ended
+  the critique loop at 22–25/32 (H8 = 3); **no more critique rounds**
+  unless content changes.
 - **Score movers left** (content, not chrome):
   - one real project artefact (eval curve or battle log; none exists yet,
     don't fake one);
@@ -16,14 +17,18 @@
   (`npm run dev -- -p 3100`). Stop dev before `npm run build`.
 
 ## Current Work
-- **M4 Functional Gaps:** built and verified locally on the prod build (see
-  the M4 Gate status in MILESTONES). Left: push, then check an OG preview
-  tool and the favicon in a tab on the deployed site, then close M4.
+M4 is closed; the next work is content (see Next Steps).
 
 ## Active Plan
 No active implementation plan.
 
 ## Recently Completed
+- **M4 Functional Gaps (closed 2026-10-17, live on `8fb6f37`):**
+  - Per-route titles, descriptions, canonical and OG/Twitter tags from
+    `src/data/pages.ts`; one world-tinted OG image per route.
+  - Cyan-diamond favicon set; `/sitemap.xml` and `/robots.txt`.
+  - Email confirmed (`assaflai@msu.edu` matches the PDF). Contact is
+    email-only by decision.
 - **M7 critique gaps (closed 2026-10-17, critique 22–25/32, H8 = 3):**
   - Landing pitch leads with the name and three proof figures.
   - One plain control vocabulary. One altitude figure per screen.
@@ -39,10 +44,6 @@ No active implementation plan.
     world's arrival card.
   - Smooth at 4× CPU throttle and in WebKit.
   - PRODUCT.md and DESIGN.md written.
-- **M5 de-slopify pass 1 (closed 2026-10-16, critique 23/32, audit 15/20):**
-  - Removed the legacy pixel font and glow; 11px solid labels.
-  - The contact form is unmounted until M4.
-  - Themed 404, landing pitch card, mobile waypoint strip.
 
 ## Blockers
 - **Device check:** Laith checked the site on a real phone (2026-10-17) and
@@ -52,10 +53,8 @@ No active implementation plan.
 
 ## Next Steps
 1. Quick reduced-motion pass on `/` and the four worlds.
-2. (M4) After push: OG preview check on the deployed URL and favicon in a
-   tab, then close M4.
-3. Content decisions for Laith:
+2. Content decisions for Laith:
    - a real project artefact for the Pokémon agent;
    - the About personal band. It is trimmed to one clip and four games;
      the full list stays in `GAMES`.
-4. Decide whether the boot loader gets a HUD rewrite or stays retired.
+3. Decide whether the boot loader gets a HUD rewrite or stays retired.

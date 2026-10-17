@@ -34,7 +34,7 @@ Reduce duplication so future updates touch one place.
 - ✅ De-duplicate featured-project content (`FEATURED_PROJECTS` in `src/data/projects.ts`)
 - ✅ De-duplicate social/contact links (`PROFILE` in `src/data/profile.ts`)
 
-## 🔄 M4 — Functional Gaps
+## ✅ M4 — Functional Gaps (2026-10-17)
 Make the site complete as a shippable product. Decisions (Laith, 2026-10-17):
 - **Domain:** `https://resume-website-eight-psi.vercel.app`. It is held in
   one constant, so a custom domain later is a one-line change.
@@ -59,10 +59,14 @@ Scope (built 2026-10-17, prod build, lint clean):
   - `/sitemap.xml` and `/robots.txt` resolve;
   - the email matches the résumé;
   - the form stays unmounted by Laith's decision (email-only contact).
-- **Gate status:** ✅ `<head>` checked on all 6 routes plus the 404 (title,
-  description, og:image 200 image/png) · ✅ sitemap and robots resolve ·
-  ✅ email matches the PDF · ✅ form unmounted by decision · ⬜ OG preview
-  tool and favicon-in-tab, both on the deployed site after push.
+- **Gate result (live deploy of `8fb6f37`):** ✅ `<head>` correct on all 6
+  routes plus the 404, each og:image a 200 PNG · ✅ opengraph.xyz renders the
+  per-route card with 0 errors (warnings: descriptions of 144–146 chars may
+  truncate on mobile; "no call to action" in the image) · ✅ `/sitemap.xml`
+  and `/robots.txt` resolve · ✅ email matches the PDF · ✅ form unmounted by
+  decision · ✅ favicon.ico, icon.svg and apple-icon.png served with the
+  right types and linked in every `<head>`. The tab icon itself is for
+  Laith to eyeball, since screenshots don't capture the tab strip.
 
 ## ✅ M5 — De-slopify, pass 1: template chrome + P0/P1 fixes (2026-10-16)
 Kept the concept and removed the generated-looking defaults, via colorize →
