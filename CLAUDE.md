@@ -45,7 +45,3 @@ section pages, each a "Descent" onto that world.
 - Contact is email-only by Laith's decision; the form stays unmounted.
 - Every animation is off under `prefers-reduced-motion`. Controls are 44px or
   taller with the 2px tint focus ring.
-
-## Obsidian
-Companion note: `/Users/laithassaf/Documents/Obsidian/nebula/1 Projects/resume-website.md`.
-On a milestone or architectural change, update its Summary / Status / Next.
