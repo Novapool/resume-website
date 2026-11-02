@@ -4,19 +4,27 @@
 // context, denied permission) it says so and the link still works.
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CopyEmail({ email }: { email: string }) {
   const [state, setState] = useState<"idle" | "copied" | "failed">("idle");
+  const reset = useRef<number | undefined>(undefined);
+
+  useEffect(() => () => window.clearTimeout(reset.current), []);
 
   const copy = async () => {
+    // a new click always starts from a clean slate, so an earlier timer
+    // never cuts this one's message short
+    window.clearTimeout(reset.current);
     try {
       await navigator.clipboard.writeText(email);
       setState("copied");
+      reset.current = window.setTimeout(() => setState("idle"), 2400);
     } catch {
+      // the recovery hint stays until the next click: it has to be read
+      // and acted on, not just glimpsed
       setState("failed");
     }
-    window.setTimeout(() => setState("idle"), 2400);
   };
 
   return (

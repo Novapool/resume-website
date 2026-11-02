@@ -1933,6 +1933,10 @@ a:hover > .hud-channel {
 }
 
 .hud-email-address {
+  /* a 44px target even at the 28px phone size */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--hud-display);
   font-weight: 600;
   font-size: clamp(28px, 4.2vw, 52px);
