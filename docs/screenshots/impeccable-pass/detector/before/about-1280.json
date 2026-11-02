@@ -1,0 +1,181 @@
+[
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-wash\" (#8ba866 a0.22 → transparent) on 1280x800 surface",
+    "selector": "div.hud-wash"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#d6e8b2) on dark background",
+    "selector": "div.hud-orbit-planet > span:nth-of-type(2)"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "Zero-offset box-shadow glow (#b2d68a)",
+    "selector": "div.hud-orbit-planet > span:nth-of-type(3)"
+  },
+  {
+    "antipattern": "straggler",
+    "name": "Straggler",
+    "description": "The last line of this paragraph holds one word, which leaves a hole under the block. Set text-wrap: pretty on body copy (Chrome, Safari) to pull a word down beside it. Where a browser ignores it, edit the last sentence or bind the last two words with a no-break space. Keep it if the break is intended.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "\"engineering.\" alone on the last of 4 lines (17% of the measure)",
+    "advisory": true,
+    "selector": "div.hud-body > p:nth-of-type(1)"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-panel\" (#a8c47f a0.18 → transparent) on 460x318 surface",
+    "selector": "section.hud-band.hud-deck > div.hud-band-body > div.hud-sheets > div.hud-panel:nth-of-type(1)"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-panel\" (#a8c47f a0.18 → transparent) on 328x318 surface",
+    "selector": "section.hud-band.hud-deck > div.hud-band-body > div.hud-sheets > div.hud-panel:nth-of-type(2)"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-panel\" (#a8c47f a0.18 → transparent) on 810x568 surface",
+    "selector": "div.hud-band-body > div.hud-panel"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-panel\" (#a8c47f a0.18 → transparent) on 810x186 surface",
+    "selector": "div.hud-sheets.hud-sheets-3 > div.hud-panel:nth-of-type(1)"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-panel\" (#a8c47f a0.18 → transparent) on 394x238 surface",
+    "selector": "div.hud-sheets.hud-sheets-3 > div.hud-panel:nth-of-type(2)"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-panel\" (#a8c47f a0.18 → transparent) on 394x238 surface",
+    "selector": "div.hud-sheets.hud-sheets-3 > div.hud-panel:nth-of-type(3)"
+  },
+  {
+    "antipattern": "straggler",
+    "name": "Straggler",
+    "description": "The last line of this paragraph holds one word, which leaves a hole under the block. Set text-wrap: pretty on body copy (Chrome, Safari) to pull a word down beside it. Where a browser ignores it, edit the last sentence or bind the last two words with a no-break space. Keep it if the break is intended.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "\"attendees.\" alone on the last of 6 lines (24% of the measure)",
+    "advisory": true,
+    "selector": "div.hud-panel:nth-of-type(3) > p.hud-body"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-panel\" (#a8c47f a0.18 → transparent) on 350x619 surface",
+    "selector": "div.hud-videos > div.hud-panel"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#c6e49e) on dark background",
+    "selector": "div.hud-limb"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "Zero-offset box-shadow glow (#96be6e)",
+    "selector": "div.hud-limb-rim"
+  },
+  {
+    "antipattern": "radial-halo",
+    "name": "Radial-gradient background halo",
+    "description": "A chromatic radial-gradient wash — saturated at the center, fading to transparent — used as a decorative background glow on a dark page. Same tell as glowing shadows, drawn with a gradient instead of a shadow. Ground the surface with a solid or subtly shifted background instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "radial-gradient halo (#607840 → transparent) on dark page",
+    "selector": "body"
+  },
+  {
+    "antipattern": "repeating-stripes-gradient",
+    "name": "Repeating-gradient stripes",
+    "description": "Repeating-gradient stripes used as surface decoration are a recurring generated-UI signature. Reach for a deliberate texture or leave the surface plain.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "repeating-gradient decorative stripes",
+    "advisory": true,
+    "selector": "body"
+  }
+]
