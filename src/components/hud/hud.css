@@ -1648,6 +1648,10 @@ a:hover > .hud-channel {
 }
 
 .hud-eval-table td .hud-eval-note {
+  display: block;
+  /* the link keeps its 44px target; its count sits right under the figure
+     instead of a full target-height below it */
+  margin-top: -10px;
   white-space: nowrap;
 }
 
@@ -1706,6 +1710,8 @@ a:hover > .hud-channel {
 }
 
 .hud-private {
+  /* stays at the foot's right edge even when the tags wrap */
+  margin-left: auto;
   font-size: 12px;
   letter-spacing: 0.08em;
   color: var(--hud-label);
@@ -1770,6 +1776,15 @@ a:hover > .hud-channel {
   font-weight: 600;
   font-size: 17px;
   color: var(--hud-text);
+}
+
+.hud-index-kind {
+  margin-bottom: 2px;
+}
+
+/* no figure: the copy takes the stat column too */
+.hud-index-row-nostat .hud-index-main {
+  grid-column: 2 / 4;
 }
 
 .hud-index-tagline {
@@ -2241,6 +2256,10 @@ a:hover > .hud-channel {
     grid-row: 2;
   }
 
+  .hud-index-row-nostat .hud-index-main {
+    grid-column: 2;
+  }
+
   .hud-featured,
   .hud-feature:first-child {
     grid-template-columns: minmax(0, 1fr);
@@ -2261,8 +2280,9 @@ a:hover > .hud-channel {
     text-align: left;
   }
 
+  /* under the title, not the row edge: 8px pad + 10px mark + 12px gap */
   .hud-index-detail {
-    padding-left: 8px;
+    padding-left: 30px;
   }
 
   .hud-stratum {
