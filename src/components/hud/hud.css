@@ -774,12 +774,34 @@ html:has(.hud-root) {
   display: block;
 }
 
-/* ── game shelf ────────────────────────────────────────────────────────── */
+/* ── personal row: the clip beside a compact game shelf ───────────────── */
+
+.hud-personal {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: 0 40px;
+  align-items: start;
+}
+
+.hud-personal .hud-video-frame {
+  max-width: 300px;
+  margin: 0;
+}
 
 .hud-games {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 18px;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* small cover, then title and line: a shelf you read, not a poster wall */
+.hud-game {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
 }
 
 .hud-game-cover {
@@ -1995,7 +2017,7 @@ a:hover > .hud-channel {
 }
 
 .hud-game-title {
-  margin-top: 10px;
+  margin-top: 2px;
   font-family: var(--hud-display);
   font-weight: 600;
   font-size: 15px;
@@ -2264,18 +2286,18 @@ a:hover > .hud-channel {
     column-count: 1;
   }
 
-  /* the shelf stays a shelf on phones: small covers, titles only */
-  .hud-games {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+  /* phones: the clip, then the shelf as the same compact list */
+  .hud-personal {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .hud-games .hud-body {
-    display: none;
+  .hud-personal .hud-video-frame {
+    margin: 0 auto;
   }
 
-  .hud-game-title {
-    font-size: 13px;
+  .hud-game {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 14px;
   }
 
   .hud-portrait {
@@ -2337,6 +2359,33 @@ a:hover > .hud-channel {
   }
 }
 
+/* the résumé preview: a labelled dark plate behind the PDF, so a browser
+   with no PDF viewer shows what belongs there instead of an empty box */
+.hud-resume-preview {
+  position: relative;
+  border-radius: 2px;
+  background: rgba(4, 6, 12, 0.6);
+}
+
+.hud-resume-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--hud-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hud-label);
+}
+
+.hud-resume-frame {
+  position: relative;
+  display: block;
+}
+
 /* the résumé preview grows when expanded (height is set inline) */
 .hud-resume-frame {
   transition: height 0.3s ease;
@@ -2367,12 +2416,12 @@ a:hover > .hud-channel {
 /* phones: a PDF in an iframe renders blank or as one frozen page, so the
    résumé band keeps only its link */
 @media (max-width: 700px) {
-  .hud-resume-frame,
+  .hud-resume-preview,
   .hud-resume-expand {
     display: none;
   }
 
-  .hud-resume-frame + .hud-actions {
+  .hud-resume-preview + .hud-actions {
     margin-top: 0;
   }
 }
