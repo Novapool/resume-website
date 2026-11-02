@@ -265,18 +265,6 @@ export const PROJECTS: Project[] = [
     accent: "87,230,196",
     tags: ["Python", "TensorFlow", "OpenCV"],
   },
-  {
-    code: "PRJ-013",
-    title: "RPG Life Stat Tracker",
-    kind: "LifeQuest · Python prototype",
-    tagline:
-      "Life as an RPG: raise four character stats and level up on an XP curve.",
-    description:
-      "An early desktop prototype from my first year. Four character stats (strength, charisma, agility, intelligence) go up and down with buttons in a Tkinter window and persist to an Excel sheet through pandas; their total is XP, and each level needs 1.5× the last.",
-    accent: "180,240,90",
-    tags: ["Python", "Tkinter", "pandas"],
-    github: "https://github.com/Novapool/LifeQuest",
-  },
 ];
 
 export const HACKATHONS: Project[] = [

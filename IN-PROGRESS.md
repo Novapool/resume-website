@@ -100,9 +100,8 @@ No active implementation plan.
      (Plates now come from `ROLES` in `timeline.ts`, including the MSU IT
      role from the résumé, 2026-11-02.)
    - Projects: Sign Language Detector has no repo, so its one-line debrief
-     stays (link removed). Decide whether the LifeQuest prototype (a small
-     2023 Tkinter app, now described as such) stays on the index. A public
-     artefact for the Agentic Development System. Plainer orbit captions
+     stays (link removed). LifeQuest is off the index. A public artefact
+     for the Agentic Development System. Plainer orbit captions
      ("eval battles gate each CI push"). AIForge and the Unity Combat Agent
      debriefs were rewritten from their repos (2026-11-02).
    - Contact: a permanent email before May 2027; location, relocation and
