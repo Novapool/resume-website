@@ -30,7 +30,7 @@ No active implementation plan.
   then a fix round, then a fresh blind re-critique. A second fix round
   followed on routes whose score stayed flat.
   - **Scores (/32):** / 24→25, /about 23→23, /projects 25→25,
-    /experience 23→25, /contact 27→28, /overview 23→(see PR), 404 24→(see PR).
+    /experience 23→25, /contact 27→28, /overview 23→24, 404 24→25.
   - **Detector:** 112 primary URL findings went to 0. The remaining primaries
     are world rendering, ignored with written, route-scoped reasons in
     `.impeccable/config.json`. Static scan exit 0.

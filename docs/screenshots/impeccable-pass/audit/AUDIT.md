@@ -23,19 +23,25 @@ this file: `axe-before.json` / `axe-after.json`, `lighthouse-before.json` /
   every route at both widths, before and after.
 - **Lighthouse accessibility:** 100 on every route, mobile and desktop.
   Best practices 100, SEO 100.
-- **Lighthouse performance (after):**
+- **Lighthouse performance (after, single runs):**
 
-  | Route | Mobile | Desktop |
+  | Route | Mobile (before → after) | Desktop (before → after) |
   |---|---|---|
-  | `/` | 93 | 100 |
-  | `/about` | 83 | 96 |
-  | `/experience` | 75 | 96 |
-  | `/projects` | 74 | 96 |
-  | `/contact` | 84 | 88 |
-  | `/overview` | 83 | 99 |
+  | `/` | 93 → 96 | 100 → 100 |
+  | `/about` | 78 → 87 | 85 → 97 |
+  | `/experience` | 75 → 78 | 89 → 92 |
+  | `/projects` | 76 → 77 | 95 → 79 |
+  | `/contact` | 76 → 83 | 92 → 95 |
+  | `/overview` | 82 → 83 | 96 → 100 |
 
-  Baseline was 93/78/75/76/76/82 (mobile) and 100/85/89/95/92/96 (desktop).
-  Single runs, so allow ±5 for noise.
+  **Open regression: /projects desktop.** Back-to-back runs of the
+  baseline build gave 98/98/86 (TBT 110–320ms). This branch gives 79–88
+  (TBT 310–480ms). Traces put the extra time in the compositor commit at
+  first paint (~420–460ms vs ~210–290ms). Layout and script are flat, and
+  disabling `text-wrap`, the selection rule or the root scrollbar colour
+  did not recover it. The page's long task is bimodal (some loads have
+  none), which made the commit bisect unreliable. It needs a proper trace
+  bisect. Mobile /projects is unchanged (76 → 77).
 - **Playwright probes:**
   - No console or page errors.
   - No horizontal overflow.
