@@ -66,7 +66,7 @@ function SourceLink({ project }: { project: Project }) {
       href={project.github}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`View source: ${project.title}`}
+      aria-label={`View source: ${project.title} (opens in a new tab)`}
     >
       VIEW SOURCE
     </a>

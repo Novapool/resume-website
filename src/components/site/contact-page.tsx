@@ -2,7 +2,7 @@
 // Waypoint 04 — the small bioluminescent moon, and the end of the route. No
 // atmosphere, so the descent is short: orbit drops straight onto the finale.
 import HudPage from "@/components/hud/HudPage";
-import { Orbit, Section } from "@/components/hud/panels";
+import { Orbit, Section, NewTab } from "@/components/hud/panels";
 import CopyEmail from "@/components/site/copy-email";
 import { PLANET } from "@/lib/planets";
 import { PROFILE } from "@/data/profile";
@@ -33,6 +33,7 @@ export default function ContactPage() {
             >
               <span className="hud-channel-value">Message me on LinkedIn</span>
               <span className="hud-label">LinkedIn</span>
+              <NewTab />
             </a>
           </li>
           <li>
@@ -44,6 +45,7 @@ export default function ContactPage() {
             >
               <span className="hud-channel-value">github.com/Novapool</span>
               <span className="hud-label">GitHub</span>
+              <NewTab />
             </a>
           </li>
           <li>
@@ -55,6 +57,7 @@ export default function ContactPage() {
             >
               <span className="hud-channel-value">The full record, as a PDF</span>
               <span className="hud-label">Résumé</span>
+              <NewTab />
             </a>
           </li>
         </ul>

@@ -4,7 +4,7 @@
 // value and sample size. Static (no motion), one hue (the project's own), and
 // the full numbers with their source lines sit one click away as a table.
 import { useId } from "react";
-import { Chevron } from "@/components/hud/panels";
+import { Chevron, NewTab } from "@/components/hud/panels";
 import type { Evaluation, WinRate } from "@/data/projects";
 
 const OPPONENTS = [
@@ -102,6 +102,7 @@ export default function ProjectEvaluation({ evaluation }: { evaluation: Evaluati
                       <td key={o.key}>
                         <a href={sourceUrl(r)} target="_blank" rel="noopener noreferrer">
                           {fmtPct(r)}
+                          <NewTab />
                         </a>
                         <span className="hud-eval-note">
                           {r.wins !== undefined

@@ -3,7 +3,7 @@
 // Descend past the current postings (hard rust plates) into the strata of the
 // mission log, newest layer on top. The log's lines never retell a plate.
 import HudPage from "@/components/hud/HudPage";
-import { Chevron, LabeledPanel, Orbit, Section } from "@/components/hud/panels";
+import { Chevron, LabeledPanel, Orbit, Section, NewTab } from "@/components/hud/panels";
 import { PLANET } from "@/lib/planets";
 import { MISSION_LOG } from "@/data/timeline";
 import { PROFILE } from "@/data/profile";
@@ -138,6 +138,7 @@ export default function ExperiencePage() {
               rel="noopener noreferrer"
             >
               RÉSUMÉ
+              <NewTab />
             </a>
           </div>
       </Section>

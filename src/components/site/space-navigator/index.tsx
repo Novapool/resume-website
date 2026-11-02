@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Starfield from "./Starfield";
 import type { StarfieldHandle } from "./Starfield";
 import PlanetBody from "@/components/hud/PlanetBody";
-import { Chevron } from "@/components/hud/panels";
+import { Chevron, NewTab } from "@/components/hud/panels";
 import { PLANETS } from "@/lib/planets";
 import { PROFILE } from "@/data/profile";
 import { ACCENT, CAM_Z_MAX, FOCAL, FOCUS_Z } from "./constants";
@@ -353,6 +353,7 @@ export default function SpaceNavigator() {
             rel="noopener noreferrer"
           >
             RÉSUMÉ
+            <NewTab />
           </a>
         </div>
       </header>

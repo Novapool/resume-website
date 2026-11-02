@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { PLANETS, nextPlanet, waypointNo, type Planet } from "@/lib/planets";
 import { PROFILE } from "@/data/profile";
-import { Chevron } from "./panels";
+import { Chevron, NewTab } from "./panels";
 import "./hud.css";
 
 const ACCENT = { color: "#57e6c4", rgb: "87,230,196" };
@@ -237,6 +237,7 @@ export default function HudPage({
             rel="noopener noreferrer"
           >
             RÉSUMÉ
+            <NewTab />
           </a>
         </div>
 

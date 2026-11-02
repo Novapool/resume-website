@@ -14,6 +14,7 @@ import {
   Panel,
   Section,
   sentence,
+  NewTab,
 } from "@/components/hud/panels";
 import { PLANET } from "@/lib/planets";
 import {
@@ -63,6 +64,7 @@ export default function AboutPage() {
                 rel="noopener noreferrer"
               >
                 GITHUB
+                <NewTab />
               </a>
               <a
                 className="hud-btn"
@@ -71,6 +73,7 @@ export default function AboutPage() {
                 rel="noopener noreferrer"
               >
                 LINKEDIN
+                <NewTab />
               </a>
               <a className="hud-btn" href={`mailto:${PROFILE.email}`}>
                 EMAIL ME
@@ -124,6 +127,7 @@ export default function AboutPage() {
                 rel="noopener noreferrer"
               >
                 RÉSUMÉ
+                <NewTab />
               </a>
               <button
                 className="hud-btn hud-resume-expand"
