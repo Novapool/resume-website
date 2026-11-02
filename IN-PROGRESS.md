@@ -93,13 +93,12 @@ No active implementation plan.
 
 ## Next Steps
 1. Content decisions for Laith (from the Impeccable pass; full list in its PR):
-   - About's Community leaf repeats 2nd of 300+ (home: Projects) and
-     8+ workshops / 500+ attendees (home: Experience). It needs a version
-     without the figures. The "Inspiration in AI" leaf is generic.
-   - Experience: the three-year MSU IT role has no plate. Plate copy is
-     hard-coded in the page and should move to `timeline.ts`. Decide whether
-     "100+ endpoints imaged" stays a proof figure. The strata chapter titles
-     ("Going Enterprise"…) are generic.
+   - About: the "Inspiration in AI" leaf is generic. (Community no longer
+     repeats figures, 2026-11-02.)
+   - Experience: decide whether "100+ endpoints imaged" stays a proof
+     figure. The strata chapter titles ("Going Enterprise"…) are generic.
+     (Plates now come from `ROLES` in `timeline.ts`, including the MSU IT
+     role from the résumé, 2026-11-02.)
    - Projects: one-sentence debriefs for AIForge, Adaptive Combat AI, Sign
      Language Detector and LifeQuest. A public artefact for the Agentic
      Development System. Plainer orbit captions ("eval battles gate each CI
