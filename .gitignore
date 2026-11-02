@@ -140,3 +140,6 @@ media/
 
 # Impeccable review screenshots (transient)
 .impeccable/review/
+
+# macOS
+.DS_Store
