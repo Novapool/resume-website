@@ -600,7 +600,7 @@ html:has(.hud-root) {
 
 /* the 404's readout of the address that failed */
 .hud-lost-path {
-  margin: 0 0 14px;
+  margin: 14px 0 0;
   overflow-wrap: anywhere;
 }
 
