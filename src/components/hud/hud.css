@@ -1383,6 +1383,252 @@ a:hover > .hud-channel {
   grid-column: 1 / -1;
 }
 
+/* ── project evaluation: small multiples, one hue, real logs only ────── */
+
+.hud-eval {
+  margin: 22px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(var(--planet-rgb), 0.22);
+}
+
+.hud-feature:first-child .hud-eval {
+  grid-column: 1 / -1;
+}
+
+.hud-eval-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+}
+
+.hud-eval-title {
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: var(--hud-text);
+}
+
+.hud-eval-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 40px;
+  margin-top: 14px;
+}
+
+.hud-eval-opp {
+  margin-bottom: 8px;
+}
+
+.hud-eval-rows {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hud-eval-row,
+.hud-eval-scale {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) 84px;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.hud-eval-stage {
+  font-family: var(--hud-display);
+  font-size: 14px;
+  color: var(--hud-muted);
+}
+
+/* the track is the 0–100% scale; a hairline marks the 50% coin flip */
+.hud-eval-track {
+  position: relative;
+  height: 10px;
+  background: rgba(var(--planet-rgb), 0.1);
+  border-radius: 2px;
+}
+
+.hud-eval-track::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  left: 50%;
+  width: 1px;
+  background: rgba(242, 245, 252, 0.28);
+}
+
+.hud-eval-bar {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: rgb(var(--accent-rgb, var(--planet-rgb)));
+}
+
+.hud-eval-value {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-eval-value b {
+  font-family: var(--hud-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--hud-text);
+}
+
+.hud-eval-n,
+.hud-eval-scale {
+  font-family: var(--hud-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--hud-label);
+}
+
+.hud-eval-scale {
+  margin-top: 6px;
+}
+
+.hud-eval-scale span:first-child {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start;
+}
+
+.hud-eval-scale span:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+}
+
+.hud-eval-scale span:last-child {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.hud-eval-sources {
+  margin-top: 10px;
+}
+
+/* the debrief toggle follows the chart's own toggle without a second gap */
+.hud-eval + .hud-debrief {
+  margin-top: 0;
+}
+
+.hud-eval-caveats {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 68ch;
+}
+
+.hud-eval-caveats li {
+  position: relative;
+  padding-left: 18px;
+  margin-top: 6px;
+  font-family: var(--hud-display);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--hud-muted);
+}
+
+.hud-eval-caveats li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 9px;
+  height: 1px;
+  background: var(--planet);
+}
+
+.hud-eval-table-wrap {
+  margin-top: 14px;
+  overflow-x: auto;
+}
+
+.hud-eval-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--hud-display);
+  font-size: 14px;
+  color: var(--hud-muted);
+}
+
+.hud-eval-table caption {
+  text-align: left;
+  padding-bottom: 6px;
+}
+
+.hud-eval-table th,
+.hud-eval-table td {
+  padding: 6px 12px 6px 0;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid rgba(var(--planet-rgb), 0.18);
+}
+
+.hud-eval-table thead th {
+  font-family: var(--hud-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hud-label);
+  border-top: 0;
+}
+
+.hud-eval-table tbody th {
+  font-weight: 600;
+  color: var(--hud-text);
+}
+
+.hud-eval-table a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+  color: var(--hud-text);
+  text-decoration: underline;
+  text-decoration-color: rgba(var(--planet-rgb), 0.6);
+  text-underline-offset: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-eval-table a:hover {
+  text-decoration-color: currentColor;
+}
+
+.hud-eval-table td .hud-eval-note {
+  white-space: nowrap;
+}
+
+.hud-eval-note {
+  display: block;
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--hud-label);
+}
+
+@media (max-width: 760px) {
+  .hud-eval-groups {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hud-eval-row,
+  .hud-eval-scale {
+    grid-template-columns: 96px minmax(0, 1fr) 70px;
+    column-gap: 10px;
+  }
+}
+
 /* rust plates stack: one posting per plate, never half-empty columns */
 .hud-plates {
   display: grid;
@@ -1990,6 +2236,11 @@ a:hover > .hud-channel {
   }
 }
 
+/* the résumé preview grows when expanded (height is set inline) */
+.hud-resume-frame {
+  transition: height 0.3s ease;
+}
+
 /* Reduced motion drops movement and keeps meaning: colour and opacity fades
    (hover states, the band marks handing over, the launch fade) still run;
    spatial movement (the sky's drift, spinning and breathing planets, the
@@ -2005,7 +2256,8 @@ a:hover > .hud-channel {
     animation: none !important;
   }
 
-  .hud-chevron {
+  .hud-chevron,
+  .hud-resume-frame {
     transition: none;
   }
 }

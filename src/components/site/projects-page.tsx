@@ -4,6 +4,7 @@
 import type { CSSProperties } from "react";
 import HudPage from "@/components/hud/HudPage";
 import { Chevron, Orbit, Section, Tags } from "@/components/hud/panels";
+import ProjectEvaluation from "@/components/site/project-evaluation";
 import { PLANET } from "@/lib/planets";
 import {
   FEATURED_PROJECTS,
@@ -86,6 +87,7 @@ function FeaturedProject({ project }: { project: Project }) {
         </div>
       )}
       <p className="hud-project-pitch">{project.tagline}</p>
+      {project.evaluation && <ProjectEvaluation evaluation={project.evaluation} />}
       <details className="hud-debrief">
         <summary className="hud-label">
           <Chevron className="hud-chevron-turn" />
