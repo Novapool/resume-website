@@ -11,6 +11,65 @@
         ],
         "createdAt": "2026-10-16T21:42:31.985Z",
         "reason": "model: rust plate rule sets border-radius: 0 (hud.css experience .hud-panel); static scan merges the base 4px radius, and the rendered URL scan of /experience at 1280 and 390 reports 0 border-accent-on-rounded"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "http*://*/",
+          "http*://*/about",
+          "http*://*/projects",
+          "http*://*/experience",
+          "http*://*/contact",
+          "http*://*/overview"
+        ],
+        "createdAt": "2026-11-02T19:54:22.000Z",
+        "reason": "model: celestial light, not UI glow. Every hit (verified in Playwright, 2026-11-02) is a planet's inset terminator/atmosphere shading (PlanetBody, planets.ts sphere), the horizon limb and rim at touchdown (.hud-limb, .hud-limb-rim), or the rust world's sun (.hud-sky-experience). DESIGN.md Elevation: celestial bodies carry their own light; no control or panel glows. The rule has no extractable value, so it is scoped to the routes that render a planet."
+      },
+      {
+        "rule": "radial-spotlight-glow",
+        "value": "*",
+        "files": [
+          "http*://*/",
+          "http*://*/about",
+          "http*://*/projects",
+          "http*://*/experience",
+          "http*://*/contact"
+        ],
+        "createdAt": "2026-11-02T19:54:22.000Z",
+        "reason": "model: world light, not a spotlight. Hits are the sky wash (.hud-wash, the horizon/sun light from planets.ts hero.wash), the lush leaf's upper-left light and the moon sample's lit edge (World materials in DESIGN.md), and a planet's specular highlight on the landing. Verified in Playwright, 2026-11-02."
+      },
+      {
+        "rule": "ai-color-palette",
+        "value": "*",
+        "files": [
+          "http*://*/",
+          "http*://*/experience",
+          "http*://*/contact",
+          "http*://*/overview"
+        ],
+        "createdAt": "2026-11-02T19:54:22.000Z",
+        "reason": "model: Moon Violet (#c79bf0) is the Contact world's tint from planets.ts (One Tint Rule). Hits are the Contact sky wash, planet, horizon, moon panels, the Softened Heading mix (#d3b5f4), the moon on the landing and /overview, and the moon-material arrival card on Experience (documented next-world exception). Verified 2026-11-02."
+      },
+      {
+        "rule": "radial-halo",
+        "value": "*",
+        "files": [
+          "http*://*/",
+          "http*://*/about",
+          "http*://*/projects",
+          "http*://*/experience",
+          "http*://*/contact",
+          "http*://*/overview"
+        ],
+        "createdAt": "2026-11-02T19:54:22.000Z",
+        "reason": "model: misattributed to body. The halos (#607840, #3a2e54) are the About planet's surface spots (planets.ts) and the moon's craters inside the small PlanetBody spheres; body has no background-image. Verified in Playwright, 2026-11-02."
+      },
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "createdAt": "2026-11-02T19:54:22.000Z",
+        "reason": "model: Space Grotesk is the binding reading face (DESIGN.md Typography, The Instrument Voice Rule), paired with IBM Plex Mono for instruments."
       }
     ]
   }
