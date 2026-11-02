@@ -2061,6 +2061,13 @@ a:hover > .hud-channel {
   color: var(--planet);
 }
 
+/* COPIED is shorter than COPY ADDRESS; the button keeps its width so the
+   status line beside it doesn't jump */
+.hud-email .hud-btn:not(.hud-btn-solid) {
+  min-width: 152px;
+  justify-content: center;
+}
+
 .hud-email-status {
   font-family: var(--hud-display);
   font-size: 14px;
