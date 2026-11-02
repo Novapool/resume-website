@@ -53,7 +53,7 @@ export const BEYOND_TECH: Dossier[] = [
   },
   {
     label: "COMMUNITY",
-    body: "I compete in hackathons, and placed 2nd of 300+ participants at MHacks 2025 with a real-time audio classifier. As Workshop Coordinator for the MSU AI Club I've delivered 8+ technical workshops to 500+ attendees.",
+    body: "I compete in hackathons (my MHacks 2025 audio classifier is on Projects), and as Workshop Coordinator for the MSU AI Club I teach hands-on workshops on local LLMs, agent orchestration, and PyTorch.",
   },
 ];
 
