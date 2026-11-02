@@ -173,6 +173,10 @@
 }
 
 .sn-intro-text {
+  /* a deep-space plate, so the route line passes behind the words */
+  padding: 6px 12px;
+  border-radius: 2px;
+  background: rgba(6, 7, 14, 0.85);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.2em;

@@ -150,7 +150,10 @@ export default function SpaceNavigator() {
         // and the a11y tree; a distant one is still seen and clickable, but
         // too small to take keyboard focus (the rail flies there instead)
         const passed = opacity < 0.02;
-        const focusable = !passed && wp.size * scale * k >= 44;
+        // only the focused world and the next one take focus: a planet
+        // further out can sit behind a nearer one, where its ring is hidden
+        const focusable =
+          !passed && wp.size * scale * k >= 44 && i <= focusedRef.current + 1;
         if (el.getAttribute("aria-hidden") !== String(passed)) {
           el.setAttribute("aria-hidden", String(passed));
         }
