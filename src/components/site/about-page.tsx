@@ -99,7 +99,7 @@ export default function AboutPage() {
             {/* shown only where the browser draws no PDF (viewer off or
                 blocked); a rendered page covers it */}
             <span className="hud-resume-fallback" aria-hidden>
-              Résumé preview · PDF
+              Preview unavailable · open the PDF below
             </span>
             <iframe
               className="hud-resume-frame"
@@ -192,7 +192,8 @@ export default function AboutPage() {
                 <div className="hud-game-cover">
                   <Image
                     src={game.cover}
-                    alt={game.title}
+                    // the title is right beside it; the cover adds no words
+                    alt=""
                     fill
                     sizes="72px"
                   />

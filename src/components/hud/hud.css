@@ -1974,7 +1974,10 @@ a:hover > .hud-channel {
 
 .hud-sheets {
   display: grid;
+  /* uneven on purpose: the first (longer) leaf takes the wider column, and
+     each leaf is sized to its own text rather than stretched to its pair */
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: start;
   gap: 22px;
 }
 
@@ -1993,9 +1996,8 @@ a:hover > .hud-channel {
 }
 
 .hud-sheets-3 > :first-child .hud-body {
-  max-width: none;
-  column-count: 2;
-  column-gap: 40px;
+  /* one measure: two columns split the paragraph mid-thought */
+  max-width: 68ch;
 }
 
 /* ── about ─────────────────────────────────────────────────────────────── */
@@ -2297,16 +2299,15 @@ a:hover > .hud-channel {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .hud-sheets-3 > :first-child .hud-body {
-    column-count: 1;
-  }
-
-  /* phones: the clip, then the shelf as the same compact list */
+  /* phones: the clip, then the shelf as the same compact list; the clip
+     stays under half a screen */
   .hud-personal {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .hud-personal .hud-video-frame {
+    max-height: 48vh;
+    width: auto;
     margin: 0 auto;
   }
 
@@ -2431,12 +2432,9 @@ a:hover > .hud-channel {
 /* phones: a PDF in an iframe renders blank or as one frozen page, so the
    résumé band keeps only its link */
 @media (max-width: 700px) {
-  .hud-resume-preview,
-  .hud-resume-expand {
+  /* the preview can't render here, and the band's one remaining control
+     repeated the amber Résumé in the bar, so the band steps aside */
+  .hud-band:has(.hud-resume-preview) {
     display: none;
-  }
-
-  .hud-resume-preview + .hud-actions {
-    margin-top: 0;
   }
 }
