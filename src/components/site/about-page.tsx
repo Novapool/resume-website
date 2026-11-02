@@ -105,7 +105,6 @@ export default function AboutPage() {
                 border: "1px solid rgba(var(--planet-rgb),.24)",
                 borderRadius: 2,
                 background: "rgba(4,6,12,.6)",
-                transition: "height .3s ease",
               }}
             />
             <div className="hud-actions">

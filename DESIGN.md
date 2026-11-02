@@ -285,6 +285,7 @@ At rest the card slot holds the pitch: "Laith Assaf" as the display h1 (clamp 34
 - **Do** keep body text in solid haze (#b9c3d2) and soften tinted headings 72% toward starlight so every world clears 4.5:1.
 - **Do** give every control a 44px minimum target and the 2px tint focus ring.
 - **Do** disable every animation and transition under reduced motion, keeping only the sky's opacity fade.
+- **Do** keep the landing flythrough still under reduced motion: the camera holds each world fully lit and cuts to the next stop as scroll crosses into it, rather than dollying or zooming.
 
 ### Don't:
 - **Don't** put a uniform grid of identical tinted cards on a world page; the deck leads with one large build and the record goes compact.

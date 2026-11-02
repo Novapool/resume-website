@@ -2232,6 +2232,11 @@ a:hover > .hud-channel {
   }
 }
 
+/* the résumé preview grows when expanded (height is set inline) */
+.hud-resume-frame {
+  transition: height 0.3s ease;
+}
+
 /* Reduced motion drops movement and keeps meaning: colour and opacity fades
    (hover states, the band marks handing over, the launch fade) still run;
    spatial movement (the sky's drift, spinning and breathing planets, the
@@ -2247,7 +2252,8 @@ a:hover > .hud-channel {
     animation: none !important;
   }
 
-  .hud-chevron {
+  .hud-chevron,
+  .hud-resume-frame {
     transition: none;
   }
 }

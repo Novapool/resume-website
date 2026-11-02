@@ -29,6 +29,9 @@ interface Projected {
 
 const CORNERS = ["tl", "tr", "bl", "br"] as const;
 
+/** Reduced motion: relative z the camera holds each world at. */
+const REDUCED_HOLD_Z = 260;
+
 /** Quadratic smoothing through segment midpoints. */
 function smoothPath(points: { x: number; y: number }[]) {
   if (points.length < 2) return "";
@@ -52,6 +55,7 @@ export default function SpaceNavigator() {
   const router = useRouter();
   const [focused, setFocused] = useState(0);
   const [portal, setPortal] = useState<number | null>(null);
+  const [reduced, setReduced] = useState(false);
 
   const starfieldRef = useRef<StarfieldHandle | null>(null);
   const planetRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -79,7 +83,29 @@ export default function SpaceNavigator() {
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - vh;
     const prog = max > 0 ? clamp(y / max, 0, 1) : 0;
-    const camZ = prog * CAM_Z_MAX;
+    const atRest = prog < 0.015;
+    let camZ = prog * CAM_Z_MAX;
+    // Reduced motion: no continuous dolly. The camera holds at the rest
+    // frame or at the focused world's stop, and cuts (no tween) to the next
+    // stop when scroll crosses into it, so scrolling never zooms the scene.
+    if (reducedRef.current) {
+      let stop = 0;
+      let best = Infinity;
+      PLANETS.forEach((wp, i) => {
+        const relZ = wp.world.z - camZ;
+        if (relZ < -40) return;
+        const d = Math.abs(relZ - FOCUS_Z);
+        if (d < best) {
+          best = d;
+          stop = i;
+        }
+      });
+      // held a little short of FOCUS_Z, where the world is still fully lit
+      // (closer in, the pass-by fade has begun)
+      camZ = atRest
+        ? 0
+        : clamp(PLANETS[stop].world.z - REDUCED_HOLD_Z, 0, CAM_Z_MAX);
+    }
     const k = clamp(vw / 1300, 0.5, 1.12); // responsive world scale
     // horizontal spread narrows faster than size, so a planet in focus stays
     // inside the viewport on phones and clear of the rail on desktop
@@ -187,7 +213,6 @@ export default function SpaceNavigator() {
     if (progLineRef.current)
       progLineRef.current.style.width = `${(prog * 100).toFixed(1)}%`;
 
-    const atRest = prog < 0.015;
     if (introRef.current) introRef.current.style.opacity = atRest ? "1" : "0";
     // the pitch owns the card slot at rest; the target card takes it in flight
     if (pitchRef.current) {
@@ -207,6 +232,9 @@ export default function SpaceNavigator() {
     reducedRef.current = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    // the starfield builds its twinkling stars once per value, so it needs
+    // the real preference, not the ref's server-render default
+    setReduced(reducedRef.current);
     lastYRef.current = window.scrollY;
 
     // The nav computer is the intro sequence now, so portals shouldn't drop
@@ -353,7 +381,7 @@ export default function SpaceNavigator() {
 
       {/* ═══ FIXED FLIGHT STAGE ═══ */}
       <div className="sn-stage">
-        <Starfield ref={starfieldRef} reduced={reducedRef.current} />
+        <Starfield ref={starfieldRef} reduced={reduced} />
         <div className="sn-grid" />
         <div className="sn-vignette" />
 
@@ -471,6 +499,8 @@ export default function SpaceNavigator() {
       {/* Portal overlay — docking sequence, then routes to the section */}
       <div
         className={`sn-portal${portalWaypoint ? " sn-portal-on" : ""}`}
+        // invisible until docking, so screen readers shouldn't read it
+        aria-hidden={!portalWaypoint}
         style={
           portalWaypoint
             ? {
