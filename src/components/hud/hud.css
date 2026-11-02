@@ -54,6 +54,26 @@ html:has(.sn-root) {
   font-family: var(--hud-mono);
 }
 
+/* Reading copy breaks for the reader: paragraphs and list items avoid
+   one-word last lines, headings balance their lines. */
+.hud-root p,
+.hud-root li,
+.hud-body,
+.hud-project-pitch,
+.hud-arrival-teaser,
+.hud-index-tagline,
+.hud-target-teaser,
+.sn-pitch-text {
+  text-wrap: pretty;
+}
+
+.hud-root h1,
+.hud-root h2,
+.hud-root h3,
+.sn-root h1 {
+  text-wrap: balance;
+}
+
 /* ── shared keyframes (also used by the landing scene) ─────────────────── */
 
 @keyframes sn-spin {
