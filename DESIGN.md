@@ -139,7 +139,7 @@ The site is a ship's nav-computer. The landing is the flight between worlds; eve
 
 The chrome is one shared instrument (mono labels, thin hairline borders, a fixed top bar, a waypoint rail), and the surfaces are not. Panels are made of the world's material: pressed leaves on the lush world, faceted crystal cells on the crystalline world, hard rust plates on the rust world, a softly lit sample on the moon. One tint variable (`--planet`) colours every control, rule and readout so the instrument always reads as belonging to the world it sits on. Density is a progression: orbit is sparse and large, the cloud deck carries featured work large, lower bands hold the full record compactly.
 
-The system is always dark, regardless of site theme. Motion is scroll-bound and cheap; nothing loops on a section page, and every transition is removed under reduced motion while the sky's fade (opacity) is kept.
+The system is always dark, regardless of site theme. Motion is scroll-bound and cheap; nothing loops on a section page, and every transition is removed under reduced motion; the scroll-bound sky fade still tracks the descent, and the docking fade on launch is the one transition kept (opacity only, shortened), since a hard cut to a full-screen colour is harsher.
 
 **Key Characteristics:**
 - One instrument chrome, four world materials.
@@ -284,7 +284,7 @@ At rest the card slot holds the pitch: "Laith Assaf" as the display h1 (clamp 34
 - **Do** make panels from their world's material: leaves, crystal cells, rust plates, the moon sample.
 - **Do** keep body text in solid haze (#b9c3d2) and soften tinted headings 72% toward starlight so every world clears 4.5:1.
 - **Do** give every control a 44px minimum target and the 2px tint focus ring.
-- **Do** disable every animation and transition under reduced motion, keeping only the sky's opacity fade.
+- **Do** disable every animation and transition under reduced motion, keeping only the scroll-bound sky fade and the short opacity docking fade on launch.
 - **Do** keep the landing flythrough still under reduced motion: the camera holds each world fully lit and cuts to the next stop as scroll crosses into it, rather than dollying or zooming.
 
 ### Don't:

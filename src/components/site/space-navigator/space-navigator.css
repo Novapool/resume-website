@@ -65,6 +65,13 @@
   .sn-root *::before,
   .sn-root *::after {
     animation: none !important;
+    transition: none !important;
+  }
+
+  /* the docking fade stays (opacity only): a hard cut to the overlay is
+     harsher than a short fade */
+  .sn-root .sn-portal {
+    transition: opacity 0.3s ease !important;
   }
 }
 

@@ -2249,10 +2249,11 @@ a:hover > .hud-channel {
   transition: height 0.3s ease;
 }
 
-/* Reduced motion drops movement and keeps meaning: colour and opacity fades
-   (hover states, the band marks handing over, the launch fade) still run;
-   spatial movement (the sky's drift, spinning and breathing planets, the
-   chevron's rotation) stops or snaps to its end state. */
+/* Reduced motion: every animation and transition is off, and state changes
+   snap (hover colours, band marks handing over, the chevron, the readout).
+   The sky's fade is scroll-bound, not a transition, so it still tracks the
+   descent. The one transition kept is the docking fade on launch: without it
+   a full-screen colour would cut in, which is harsher than a short fade. */
 @media (prefers-reduced-motion: reduce) {
   .hud-sky-drift {
     transform: none;
@@ -2262,11 +2263,11 @@ a:hover > .hud-channel {
   .hud-root *::before,
   .hud-root *::after {
     animation: none !important;
+    transition: none !important;
   }
 
-  .hud-chevron,
-  .hud-resume-frame {
-    transition: none;
+  .hud-root .hud-launch {
+    transition: opacity 0.3s ease !important;
   }
 }
 
