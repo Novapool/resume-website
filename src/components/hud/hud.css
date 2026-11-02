@@ -590,6 +590,36 @@ html:has(.hud-root) {
   margin-bottom: 56px;
 }
 
+.hud-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+/* the 404's readout of the address that failed */
+.hud-lost-path {
+  margin: 0 0 14px;
+  overflow-wrap: anywhere;
+}
+
+/* paths are case-sensitive, so the address keeps its own case */
+.hud-lost-path-url {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  color: var(--hud-text);
+}
+
+.hud-hero-email {
+  margin-left: 8px;
+  font-family: var(--hud-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--hud-label);
+  user-select: all;
+}
+
 .hud-hero-title {
   font-family: var(--hud-display);
   font-weight: 600;
@@ -844,6 +874,12 @@ details[open] > summary .hud-chevron-turn,
 .hud-channel {
   height: 100%;
   transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+/* a whole panel as one link (overview cards) */
+.hud-card-link {
+  display: block;
+  text-decoration: none;
 }
 
 a:hover > .hud-channel {

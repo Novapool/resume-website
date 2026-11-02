@@ -33,7 +33,7 @@ export default function OverviewPage() {
             </div>
           ))}
         </dl>
-        <div style={{ display: "flex", gap: 10, marginTop: 22, flexWrap: "wrap" }}>
+        <div className="hud-hero-actions">
           {/* the bar already carries Home and Résumé; these are the two
               things a reader of the flat view came to do */}
           <Link href="/projects" className="hud-btn hud-btn-solid">
@@ -42,6 +42,8 @@ export default function OverviewPage() {
           <a className="hud-btn" href={`mailto:${PROFILE.email}`}>
             EMAIL ME
           </a>
+          {/* the address itself, for machines with no mail handler */}
+          <span className="hud-hero-email">{PROFILE.email}</span>
         </div>
       </header>
 
@@ -51,7 +53,9 @@ export default function OverviewPage() {
               <Link
                 key={planet.id}
                 href={planet.href}
-                style={{ textDecoration: "none", display: "block" }}
+                className="hud-card-link"
+                // the card's text is a teaser; the link's name is its action
+                aria-label={`Open ${planet.label}`}
               >
                 <Panel className="hud-channel">
                   <div
@@ -103,19 +107,22 @@ export default function OverviewPage() {
 
         <Section title="Selected work">
           <div className="hud-grid3">
+            {/* the figures already lead this page's proof row, so each card
+                is the way into its build instead of a second telling */}
             {FEATURED_PROJECTS.map((project) => (
-              <LabeledPanel key={project.code} label={project.title}>
-                <div className="hud-label" style={{ marginTop: 6 }}>
-                  {project.kind}
-                </div>
-                {project.stat && (
-                  <div className="hud-project-stat">
-                    <span className="hud-project-stat-value">{project.stat.value}</span>
-                    <span className="hud-label">{project.stat.label}</span>
+              <Link
+                key={project.code}
+                href={`/projects#${project.code.toLowerCase()}`}
+                className="hud-card-link"
+              >
+                <Panel className="hud-channel">
+                  <h3 className="hud-h3">{project.title}</h3>
+                  <div className="hud-label" style={{ marginTop: 6 }}>
+                    {project.kind}
                   </div>
-                )}
-                <p className="hud-project-pitch">{project.tagline}</p>
-              </LabeledPanel>
+                  <p className="hud-project-pitch">{project.tagline}</p>
+                </Panel>
+              </Link>
             ))}
           </div>
           <div className="hud-actions">
