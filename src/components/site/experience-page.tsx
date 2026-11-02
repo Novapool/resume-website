@@ -3,7 +3,7 @@
 // Descend past the current postings (hard rust plates) into the strata of the
 // mission log, newest layer on top. The log's lines never retell a plate.
 import HudPage from "@/components/hud/HudPage";
-import { Chevron, LabeledPanel, Orbit, Section } from "@/components/hud/panels";
+import { Chevron, LabeledPanel, Orbit, Section, NewTab } from "@/components/hud/panels";
 import { PLANET } from "@/lib/planets";
 import { MISSION_LOG } from "@/data/timeline";
 import { PROFILE } from "@/data/profile";
@@ -24,7 +24,7 @@ export default function ExperiencePage() {
         ]}
       />
 
-      <Section zone="DUST LINE" title="Current postings" deck>
+      <Section zone="DUST LINE" title="Where I work now" deck>
         <div className="hud-plates">
           <LabeledPanel label="Delta Dental · PC Technician Intern" meta={<span className="hud-label">MAY 2026 – NOW</span>}>
               <div className="hud-panel-sub">Onsite support team · Okemos, MI</div>
@@ -128,14 +128,17 @@ export default function ExperiencePage() {
             ))}
           </ol>
 
+          {/* outline, not solid: the touchdown below is the page's ending,
+              and the bar's amber Résumé is always on screen */}
           <div className="hud-actions">
             <a
-              className="hud-btn hud-btn-solid"
+              className="hud-btn"
               href={PROFILE.resume}
               target="_blank"
               rel="noopener noreferrer"
             >
               RÉSUMÉ
+              <NewTab />
             </a>
           </div>
       </Section>

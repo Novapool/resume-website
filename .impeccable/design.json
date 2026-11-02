@@ -281,7 +281,7 @@
       {
         "name": "launch-fade",
         "value": "opacity 0.55s ease, route at 650ms",
-        "purpose": "Full-screen radial fade in the destination world's colour before routing; skipped for keyboard activation and reduced motion."
+        "purpose": "Full-screen radial fade in the destination world's colour before routing; skipped for keyboard activation and modifier clicks; shortened to an opacity-only fade under reduced motion."
       },
       {
         "name": "sky-drift",
@@ -396,7 +396,7 @@
   ],
   "narrative": {
     "northStar": "The Descent",
-    "overview": "The site is a ship's nav-computer. The landing is the flight between worlds; every section page is a fall from orbit onto one world's surface, and the work is what the visitor passes on the way down. The page opens in deep space with a small rendition of the planet, a large title, one line of who, and a row of real numbers. As the visitor scrolls, the background thins into that world's own air, a single altitude rule runs down the left of the content with a sticky kilometre readout, and the page ends on the planet's horizon arc, where the only exit is a launch to the next world.\n\nThe chrome is one shared instrument (mono labels, thin hairline borders, a fixed top bar, a waypoint rail), and the surfaces are not. Panels are made of the world's material: pressed leaves on the lush world, faceted crystal cells on the crystalline world, hard rust plates on the rust world, a softly lit sample on the moon. One tint variable (`--planet`) colours every control, rule and readout so the instrument always reads as belonging to the world it sits on. Density is a progression: orbit is sparse and large, the cloud deck carries featured work large, lower bands hold the full record compactly.\n\nThe system is always dark, regardless of site theme. Motion is scroll-bound and cheap; nothing loops on a section page, and every transition is removed under reduced motion while the sky's fade (opacity) is kept.",
+    "overview": "The site is a ship's nav-computer. The landing is the flight between worlds; every section page is a fall from orbit onto one world's surface, and the work is what the visitor passes on the way down. The page opens in deep space with a small rendition of the planet, a large title, one line of who, and a row of real numbers. As the visitor scrolls, the background thins into that world's own air, a single altitude rule runs down the left of the content with a sticky kilometre readout, and the page ends on the planet's horizon arc, where the only exit is a launch to the next world.\n\nThe chrome is one shared instrument (mono labels, thin hairline borders, a fixed top bar, a waypoint rail), and the surfaces are not. Panels are made of the world's material: pressed leaves on the lush world, faceted crystal cells on the crystalline world, hard rust plates on the rust world, a softly lit sample on the moon. One tint variable (`--planet`) colours every control, rule and readout so the instrument always reads as belonging to the world it sits on. Density is a progression: orbit is sparse and large, the cloud deck carries featured work large, lower bands hold the full record compactly.\n\nThe system is always dark, regardless of site theme. Motion is scroll-bound and cheap; nothing loops on a section page except the small orbit planet's slow turn (130–200s) and the moon's breathing lichen, and every transition is removed under reduced motion; the scroll-bound sky fade still tracks the descent, and the docking fade on launch is the one transition kept (opacity only, shortened), since a hard cut to a full-screen colour is harsher.",
     "keyCharacteristics": [
       "One instrument chrome, four world materials.",
       "Every world page is a vertical descent: orbit, deck, lower bands, touchdown.",
@@ -407,7 +407,7 @@
     "rules": [
       {
         "name": "The One Tint Rule",
-        "body": "A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it. The per-project colour is a confirmed product decision (Laith, 2026-10-17), kept even though a critique argued it fights the crystal palette.",
+        "body": "A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it. The touchdown arrival card is the one surface that wears another world: it is drawn in the next world's material and tint, as a first look at where the launch goes (the last world's card keeps its own). The per-project colour is a confirmed product decision (Laith, 2026-10-17), kept even though a critique argued it fights the crystal palette.",
         "section": "colors"
       },
       {
@@ -437,7 +437,7 @@
       "Do make panels from their world's material: leaves, crystal cells, rust plates, the moon sample.",
       "Do keep body text in solid haze (#b9c3d2) and soften tinted headings 72% toward starlight so every world clears 4.5:1.",
       "Do give every control a 44px minimum target and the 2px tint focus ring.",
-      "Do disable every animation and transition under reduced motion, keeping only the sky's opacity fade."
+      "Do disable every animation and transition under reduced motion, keeping only the scroll-bound sky fade and the short opacity docking fade on launch."
     ],
     "donts": [
       "Don't put a uniform grid of identical tinted cards on a world page; the deck leads with one large build and the record goes compact.",

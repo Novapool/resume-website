@@ -1,0 +1,127 @@
+[
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-wash\" (#ff8c3c a0.16 → transparent) on 390x844 surface",
+    "selector": "div.hud-wash"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#ffc496) on dark background",
+    "selector": "div.hud-orbit-planet > span:nth-of-type(2)"
+  },
+  {
+    "antipattern": "straggler",
+    "name": "Straggler",
+    "description": "The last line of this paragraph holds one word, which leaves a hole under the block. Set text-wrap: pretty on body copy (Chrome, Safari) to pull a word down beside it. Where a browser ignores it, edit the last sentence or bind the last two words with a no-break space. Keep it if the break is intended.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "\"API\" alone on the last of 7 lines (9% of the measure)",
+    "advisory": true,
+    "selector": "div.hud-panel:nth-of-type(1) > div.hud-body > ul > li:nth-of-type(1)"
+  },
+  {
+    "antipattern": "straggler",
+    "name": "Straggler",
+    "description": "The last line of this paragraph holds one word, which leaves a hole under the block. Set text-wrap: pretty on body copy (Chrome, Safari) to pull a word down beside it. Where a browser ignores it, edit the last sentence or bind the last two words with a no-break space. Keep it if the break is intended.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "\"May\" alone on the last of 3 lines (11% of the measure)",
+    "advisory": true,
+    "selector": "li.hud-stratum:nth-of-type(1) > div.hud-stratum-body > div.hud-body > ul > li:nth-of-type(1)"
+  },
+  {
+    "antipattern": "straggler",
+    "name": "Straggler",
+    "description": "The last line of this paragraph holds one word, which leaves a hole under the block. Set text-wrap: pretty on body copy (Chrome, Safari) to pull a word down beside it. Where a browser ignores it, edit the last sentence or bind the last two words with a no-break space. Keep it if the break is intended.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "\"2025\" alone on the last of 3 lines (14% of the measure)",
+    "advisory": true,
+    "selector": "li.hud-stratum:nth-of-type(2) > div.hud-stratum-body > div.hud-body > ul > li:nth-of-type(2)"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#ff9646) on dark background",
+    "selector": "div.hud-limb"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "Zero-offset box-shadow glow (#ff8c3c)",
+    "selector": "div.hud-limb-rim"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "div.hud-panel.hud-arrival"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-panel\" (#c79bf0 a0.16 → transparent) on 354x255 surface",
+    "selector": "div.hud-panel.hud-arrival"
+  },
+  {
+    "antipattern": "overused-font",
+    "name": "Overused font",
+    "description": "Inter, Roboto, Fraunces, Geist, Plus Jakarta Sans, and Space Grotesk are used on so many sites they no longer feel distinctive. Each new wave of AI-generated UIs converges on the same handful of faces. Choose a face that gives your interface personality.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "Primary font: space grotesk (62% of text)",
+    "selector": "body"
+  },
+  {
+    "antipattern": "repeating-stripes-gradient",
+    "name": "Repeating-gradient stripes",
+    "description": "Repeating-gradient stripes used as surface decoration are a recurring generated-UI signature. Reach for a deliberate texture or leave the surface plain.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "http://localhost:3100/experience",
+    "line": 0,
+    "snippet": "repeating-gradient decorative stripes",
+    "advisory": true,
+    "selector": "body"
+  }
+]

@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Starfield from "./Starfield";
 import type { StarfieldHandle } from "./Starfield";
 import PlanetBody from "@/components/hud/PlanetBody";
-import { Chevron } from "@/components/hud/panels";
+import { Chevron, NewTab } from "@/components/hud/panels";
 import { PLANETS } from "@/lib/planets";
 import { PROFILE } from "@/data/profile";
 import { ACCENT, CAM_Z_MAX, FOCAL, FOCUS_Z } from "./constants";
@@ -31,6 +31,14 @@ const CORNERS = ["tl", "tr", "bl", "br"] as const;
 
 /** Reduced motion: relative z the camera holds each world at. */
 const REDUCED_HOLD_Z = 260;
+
+/** Scroll progress the pitch holds the card slot for (about 240px at
+ * 1440x900), so a reflexive first scroll doesn't take the name away. */
+const REST_PROG = 0.05;
+
+/** Relative z the pass-by fade starts at: below FOCUS_Z, so the world the
+ * camera arrives at is fully lit and only fades as the ship flies past. */
+const FADE_Z = 150;
 
 /** Quadratic smoothing through segment midpoints. */
 function smoothPath(points: { x: number; y: number }[]) {
@@ -83,7 +91,7 @@ export default function SpaceNavigator() {
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - vh;
     const prog = max > 0 ? clamp(y / max, 0, 1) : 0;
-    const atRest = prog < 0.015;
+    const atRest = prog < REST_PROG;
     let camZ = prog * CAM_Z_MAX;
     // Reduced motion: no continuous dolly. The camera holds at the rest
     // frame or at the focused world's stop, and cuts (no tween) to the next
@@ -134,7 +142,7 @@ export default function SpaceNavigator() {
         opacity = 0; // fully behind the camera
       } else {
         opacity = clamp(1 - (relZ - 500) / 4400, 0.28, 1);
-        if (relZ < 260) opacity *= clamp((relZ + 70) / 330, 0, 1);
+        if (relZ < FADE_Z) opacity *= clamp((relZ + 70) / (FADE_Z + 70), 0, 1);
       }
 
       if (el) {
@@ -142,7 +150,10 @@ export default function SpaceNavigator() {
         // and the a11y tree; a distant one is still seen and clickable, but
         // too small to take keyboard focus (the rail flies there instead)
         const passed = opacity < 0.02;
-        const focusable = !passed && wp.size * scale * k >= 44;
+        // only the focused world and the next one take focus: a planet
+        // further out can sit behind a nearer one, where its ring is hidden
+        const focusable =
+          !passed && wp.size * scale * k >= 44 && i <= focusedRef.current + 1;
         if (el.getAttribute("aria-hidden") !== String(passed)) {
           el.setAttribute("aria-hidden", String(passed));
         }
@@ -151,6 +162,8 @@ export default function SpaceNavigator() {
         }
         el.style.transform = `translate(-50%,-50%) translate(${(sx - cx).toFixed(1)}px, ${(sy - vh / 2).toFixed(1)}px) scale(${(scale * k).toFixed(3)})`;
         el.style.opacity = opacity.toFixed(3);
+        // the focus ring lives inside the scaled planet; this keeps it ~3px
+        el.style.setProperty("--sn-inv", (1 / (scale * k)).toFixed(3));
         el.style.zIndex = String(
           Math.round(clamp((3400 - relZ) / 3400, 0, 1) * 12) + 6,
         );
@@ -213,7 +226,11 @@ export default function SpaceNavigator() {
     if (progLineRef.current)
       progLineRef.current.style.width = `${(prog * 100).toFixed(1)}%`;
 
-    if (introRef.current) introRef.current.style.opacity = atRest ? "1" : "0";
+    if (introRef.current) {
+      introRef.current.style.opacity = atRest ? "1" : "0";
+      // hidden in flight, so it leaves the a11y tree too
+      introRef.current.toggleAttribute("aria-hidden", !atRest);
+    }
     // the pitch owns the card slot at rest; the target card takes it in flight
     if (pitchRef.current) {
       pitchRef.current.style.opacity = atRest ? "1" : "0";
@@ -254,8 +271,17 @@ export default function SpaceNavigator() {
       });
     };
 
+    // docking can be called off: Escape before it routes stays on the flight
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape" || !portalTimer.current) return;
+      clearTimeout(portalTimer.current);
+      portalTimer.current = null;
+      setPortal(null);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("keydown", onKey);
     frame();
 
     // the landing is always dark, regardless of the site theme
@@ -266,6 +292,7 @@ export default function SpaceNavigator() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("keydown", onKey);
       html.style.background = previousBackground;
       if (portalTimer.current) clearTimeout(portalTimer.current);
     };
@@ -329,6 +356,7 @@ export default function SpaceNavigator() {
             rel="noopener noreferrer"
           >
             RÉSUMÉ
+            <NewTab />
           </a>
         </div>
       </header>
@@ -453,16 +481,25 @@ export default function SpaceNavigator() {
       >
         <div className="hud-target-title">{active.label}</div>
         <p className="hud-target-teaser">{active.teaser}</p>
-        <Link
-          href={active.href}
-          className="hud-btn hud-btn-solid"
-          onClick={(e) => {
-            e.preventDefault();
-            openPortal(focused, e);
-          }}
-        >
-          OPEN {active.name}
-        </Link>
+        <div className="sn-target-actions">
+          <Link
+            href={active.href}
+            className="hud-btn hud-btn-solid"
+            onClick={(e) => {
+              e.preventDefault();
+              openPortal(focused, e);
+            }}
+          >
+            OPEN {active.name}
+          </Link>
+          {/* the route's last world: the flight ends on the address, not
+              only on one more door */}
+          {focused === PLANETS.length - 1 && (
+            <a className="hud-btn" href={`mailto:${PROFILE.email}`}>
+              EMAIL ME
+            </a>
+          )}
+        </div>
       </div>
 
       {/* Telemetry */}

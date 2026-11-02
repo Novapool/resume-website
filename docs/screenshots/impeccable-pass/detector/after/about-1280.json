@@ -1,0 +1,14 @@
+[
+  {
+    "antipattern": "repeating-stripes-gradient",
+    "name": "Repeating-gradient stripes",
+    "description": "Repeating-gradient stripes used as surface decoration are a recurring generated-UI signature. Reach for a deliberate texture or leave the surface plain.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "http://localhost:3100/about",
+    "line": 0,
+    "snippet": "repeating-gradient decorative stripes",
+    "advisory": true,
+    "selector": "body"
+  }
+]

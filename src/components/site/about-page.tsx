@@ -14,6 +14,7 @@ import {
   Panel,
   Section,
   sentence,
+  NewTab,
 } from "@/components/hud/panels";
 import { PLANET } from "@/lib/planets";
 import {
@@ -63,6 +64,7 @@ export default function AboutPage() {
                 rel="noopener noreferrer"
               >
                 GITHUB
+                <NewTab />
               </a>
               <a
                 className="hud-btn"
@@ -71,6 +73,7 @@ export default function AboutPage() {
                 rel="noopener noreferrer"
               >
                 LINKEDIN
+                <NewTab />
               </a>
               <a className="hud-btn" href={`mailto:${PROFILE.email}`}>
                 EMAIL ME
@@ -92,6 +95,12 @@ export default function AboutPage() {
 
       <Section zone="UNDERSTORY" title="Résumé">
           <Panel>
+            <div className="hud-resume-preview">
+            {/* shown only where the browser draws no PDF (viewer off or
+                blocked); a rendered page covers it */}
+            <span className="hud-resume-fallback" aria-hidden>
+              Preview unavailable · open the PDF below
+            </span>
             <iframe
               className="hud-resume-frame"
               // a preview only: keyboard users take the PDF link below, so
@@ -106,9 +115,10 @@ export default function AboutPage() {
                 height: expanded ? "min(1100px, 140vh)" : 460,
                 border: "1px solid rgba(var(--planet-rgb),.24)",
                 borderRadius: 2,
-                background: "rgba(4,6,12,.6)",
+                background: "transparent",
               }}
             />
+            </div>
             <div className="hud-actions">
               <a
                 className="hud-btn hud-btn-solid"
@@ -117,6 +127,7 @@ export default function AboutPage() {
                 rel="noopener noreferrer"
               >
                 RÉSUMÉ
+                <NewTab />
               </a>
               <button
                 className="hud-btn hud-resume-expand"
@@ -124,7 +135,7 @@ export default function AboutPage() {
                 aria-expanded={expanded}
               >
                 <Chevron className={expanded ? "hud-chevron-up" : "hud-chevron-down"} />
-                {expanded ? "SHOW LESS" : "SHOW THE WHOLE PAGE"}
+                {expanded ? "COLLAPSE PREVIEW" : "EXPAND PREVIEW"}
               </button>
             </div>
           </Panel>
@@ -138,6 +149,9 @@ export default function AboutPage() {
             ))}
           </div>
 
+          {/* the clip and the shelf share one row: a glimpse, not a gallery */}
+          <div className="hud-personal">
+          <div>
           <h3 className="hud-h3 hud-subhead">Bouldering</h3>
           <div className="hud-videos">
             {/* one clip: the personal band stays a glimpse, not a gallery */}
@@ -169,24 +183,31 @@ export default function AboutPage() {
             ))}
           </div>
 
+          </div>
+          <div>
           <h3 className="hud-h3 hud-subhead">What I&apos;m playing</h3>
-          <div className="hud-games">
+          <ul className="hud-games">
             {GAMES.filter((game) => game.line).map((game) => (
-              <div key={game.title}>
+              <li key={game.title} className="hud-game">
                 <div className="hud-game-cover">
                   <Image
                     src={game.cover}
-                    alt={game.title}
+                    // the title is right beside it; the cover adds no words
+                    alt=""
                     fill
-                    sizes="(max-width: 700px) 45vw, 200px"
+                    sizes="72px"
                   />
                 </div>
-                <div className="hud-game-title">{game.title}</div>
-                <p className="hud-body" style={{ marginTop: 4 }}>
-                  {game.line}
-                </p>
-              </div>
+                <div>
+                  <div className="hud-game-title">{game.title}</div>
+                  <p className="hud-body" style={{ marginTop: 4 }}>
+                    {game.line}
+                  </p>
+                </div>
+              </li>
             ))}
+          </ul>
+          </div>
           </div>
       </Section>
 

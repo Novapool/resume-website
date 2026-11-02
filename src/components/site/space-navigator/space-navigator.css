@@ -65,6 +65,13 @@
   .sn-root *::before,
   .sn-root *::after {
     animation: none !important;
+    transition: none !important;
+  }
+
+  /* the docking fade stays (opacity only): a hard cut to the overlay is
+     harsher than a short fade */
+  .sn-root .sn-portal {
+    transition: opacity 0.3s ease !important;
   }
 }
 
@@ -136,7 +143,9 @@
   content: "";
   position: absolute;
   inset: -10%;
-  border: 3px solid #57e6c4;
+  /* counter-scaled (--sn-inv is written per frame), so the ring reads about
+     3px at any planet size */
+  border: calc(3px * var(--sn-inv, 1)) solid #57e6c4;
   border-radius: 50%;
   pointer-events: none;
 }
@@ -164,6 +173,10 @@
 }
 
 .sn-intro-text {
+  /* a deep-space plate, so the route line passes behind the words */
+  padding: 6px 12px;
+  border-radius: 2px;
+  background: rgba(6, 7, 14, 0.85);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -292,6 +305,47 @@
   .sn-root .sn-rail {
     display: flex;
   }
+
+  /* tablet portrait: the centred telemetry bar reaches the card's corner,
+     so the pitch rises above it and carries the scroll hint itself */
+  .sn-pitch {
+    bottom: 104px;
+  }
+
+  .sn-pitch-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .sn-intro {
+    display: none;
+  }
+}
+
+/* short desktop windows (1280x720): a tighter pitch clears the first planet */
+@media (min-width: 981px) and (max-height: 760px) {
+  .sn-pitch {
+    bottom: 24px;
+    padding: 18px 22px;
+  }
+
+  .sn-pitch-name {
+    font-size: 36px;
+  }
+
+  .sn-pitch-text {
+    margin-top: 10px;
+    font-size: 15px;
+  }
+}
+
+/* the target card's way in, plus Email me on the route's last world */
+.sn-target-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 @media (max-width: 760px) {

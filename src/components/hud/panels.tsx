@@ -61,6 +61,12 @@ export function LabeledPanel({
   );
 }
 
+/** Said to screen readers on every link that opens a new tab; sighted
+ * users get the browser's own cue. */
+export function NewTab() {
+  return <span className="sr-only"> (opens in a new tab)</span>;
+}
+
 /** The one disclosure/direction mark: a 1.5px stroked chevron. */
 export function Chevron({ className = "" }: { className?: string }) {
   return (

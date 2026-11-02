@@ -66,7 +66,7 @@ function SourceLink({ project }: { project: Project }) {
       href={project.github}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`View source: ${project.title}`}
+      aria-label={`View source: ${project.title} (opens in a new tab)`}
     >
       VIEW SOURCE
     </a>
@@ -77,7 +77,11 @@ function SourceLink({ project }: { project: Project }) {
 
 function FeaturedProject({ project }: { project: Project }) {
   return (
-    <article className="hud-panel hud-feature" style={accentOf(project)}>
+    <article
+      id={project.code.toLowerCase()}
+      className="hud-panel hud-feature"
+      style={accentOf(project)}
+    >
       <h3 className="hud-h3">{project.title}</h3>
       <div className="hud-label hud-kind">{project.kind}</div>
       {project.stat && (
@@ -92,6 +96,8 @@ function FeaturedProject({ project }: { project: Project }) {
         <summary className="hud-label">
           <Chevron className="hud-chevron-turn" />
           How it works
+          {/* three cells share the label; the name tells them apart */}
+          <span className="sr-only">: {project.title}</span>
         </summary>
         <p className="hud-body">{project.description}</p>
       </details>
@@ -108,25 +114,30 @@ function IndexList({ projects }: { projects: Project[] }) {
   return (
     <ol className="hud-index">
       {projects.map((project) => (
-        <li key={project.code} className="hud-index-row" style={accentOf(project)}>
+        <li
+          key={project.code}
+          id={project.code.toLowerCase()}
+          className={`hud-index-row${project.stat ? "" : " hud-index-row-nostat"}`}
+          style={accentOf(project)}
+        >
           <details>
             <summary>
               <span className="hud-index-mark" aria-hidden />
               <span className="hud-index-main">
                 <span className="hud-index-title">{project.title}</span>
+                {/* what it is and what it's built in, scannable closed */}
+                <span className="hud-label hud-index-kind">{project.kind}</span>
                 <span className="hud-index-tagline">{project.tagline}</span>
               </span>
-              {project.stat ? (
+              {/* a row with no figure gives its column to the copy */}
+              {project.stat && (
                 <span className="hud-index-stat">
                   <b>{project.stat.value}</b> {project.stat.label}
                 </span>
-              ) : (
-                <span className="hud-index-stat" />
               )}
               <Chevron className="hud-chevron-turn" />
             </summary>
             <div className="hud-index-detail">
-              <div className="hud-label hud-kind">{project.kind}</div>
               <p className="hud-body">{project.description}</p>
               <div className="hud-feature-foot">
                 <Tags items={project.tags} />

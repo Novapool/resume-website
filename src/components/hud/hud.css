@@ -11,6 +11,16 @@ body:has(.hud-root) {
   background: #06070e;
 }
 
+/* the parts the browser draws carry the system too: selection takes the
+   world tint, set once on the root and inherited (a universal ::selection
+   would be resolved per element). The page scrollbar keeps the browser's
+   own, which stays on the fast scrolling path. */
+.hud-root::selection,
+.sn-root::selection {
+  background: rgba(var(--planet-rgb), 0.38);
+  color: #ffffff;
+}
+
 /* the design tokens are shared with the landing (.sn-root), which uses the
    same top bar, rail, pills, buttons and telemetry classes */
 .hud-root,
@@ -39,6 +49,26 @@ body:has(.hud-root) {
   background: #06070e;
   color: #eaf0fb;
   font-family: var(--hud-mono);
+}
+
+/* Reading copy breaks for the reader: paragraphs and list items avoid
+   one-word last lines, headings balance their lines. */
+.hud-root p,
+.hud-root li,
+.hud-body,
+.hud-project-pitch,
+.hud-arrival-teaser,
+.hud-index-tagline,
+.hud-target-teaser,
+.sn-pitch-text {
+  text-wrap: pretty;
+}
+
+.hud-root h1,
+.hud-root h2,
+.hud-root h3,
+.sn-root h1 {
+  text-wrap: balance;
 }
 
 /* ── shared keyframes (also used by the landing scene) ─────────────────── */
@@ -401,7 +431,7 @@ html:has(.hud-root) {
   margin: 0 auto 20px;
   padding: 12px 26px;
   border: 1px solid rgba(var(--planet-rgb), 0.2);
-  border-radius: 3px;
+  border-radius: 2px;
   background: var(--hud-panel);
   backdrop-filter: blur(8px);
 }
@@ -495,49 +525,6 @@ html:has(.hud-root) {
   }
 }
 
-/* ══ END OF SECTOR ══════════════════════════════════════════════════════ */
-
-.hud-endcap {
-  margin-top: 72px;
-}
-
-.hud-endcap-line {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(var(--planet-rgb), 0.6),
-    rgba(var(--planet-rgb), 0.08)
-  );
-}
-
-.hud-endcap-next {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 6px;
-  /* 6px of padding lifts the hit area past 44px; the margins give it back,
-     so the label sits exactly where it did */
-  padding: 6px 0;
-  margin-top: 18px;
-  margin-bottom: -6px;
-  color: var(--hud-text);
-  text-decoration: none;
-}
-
-.hud-endcap-name {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--hud-display);
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--planet);
-  transition: color 0.2s ease;
-}
-
-.hud-endcap-next:hover .hud-endcap-name {
-  color: var(--hud-text);
-}
-
 /* ══ CONTENT ════════════════════════════════════════════════════════════ */
 
 .hud-content {
@@ -555,6 +542,56 @@ html:has(.hud-root) {
   flex-direction: column;
   justify-content: center;
   margin-bottom: 56px;
+}
+
+.hud-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+/* the 404's readout of the address that failed */
+/* drawn like the altitude readout: the page's one instrument */
+.hud-lost-path {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  align-self: flex-start;
+  max-width: 100%;
+  margin: 20px 0 0;
+  padding: 8px 12px;
+  border: 1px solid rgba(var(--planet-rgb), 0.35);
+  border-radius: 2px;
+  background: #06070e;
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* paths are case-sensitive, so the address keeps its own case */
+.hud-lost-path-url {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--hud-text);
+}
+
+/* /overview ends on the reader's four actions */
+.hud-overview-close {
+  margin-top: 56px;
+}
+
+.hud-hero-email {
+  margin-left: 8px;
+  font-family: var(--hud-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--hud-label);
+  user-select: all;
 }
 
 .hud-hero-title {
@@ -608,6 +645,8 @@ html:has(.hud-root) {
 }
 
 .hud-label {
+  /* declared, not inherited: a label inside reading copy stays mono */
+  font-family: var(--hud-mono);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -709,12 +748,34 @@ html:has(.hud-root) {
   display: block;
 }
 
-/* ── game shelf ────────────────────────────────────────────────────────── */
+/* ── personal row: the clip beside a compact game shelf ───────────────── */
+
+.hud-personal {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: 0 40px;
+  align-items: start;
+}
+
+.hud-personal .hud-video-frame {
+  max-width: 300px;
+  margin: 0;
+}
 
 .hud-games {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 18px;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* small cover, then title and line: a shelf you read, not a poster wall */
+.hud-game {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
 }
 
 .hud-game-cover {
@@ -764,6 +825,10 @@ html:has(.hud-root) {
   align-items: center;
   gap: 8px;
   min-height: 44px;
+  /* a disclosure is a control, so it takes the control type */
+  font-family: var(--hud-mono);
+  font-size: 12px;
+  font-weight: 600;
   cursor: pointer;
   color: var(--planet);
   list-style: none;
@@ -807,7 +872,14 @@ details[open] > summary .hud-chevron-turn,
   transition: border-color 0.25s ease, background 0.25s ease;
 }
 
-a:hover > .hud-channel {
+/* a whole panel as one link (overview cards) */
+.hud-card-link {
+  display: block;
+  text-decoration: none;
+}
+
+a:hover > .hud-channel,
+a:focus-visible > .hud-channel {
   border-color: rgba(var(--planet-rgb), 0.65);
   background: rgba(var(--planet-rgb), 0.07);
 }
@@ -887,7 +959,7 @@ a:hover > .hud-channel {
   border: 1px solid rgba(var(--planet-rgb), 0.3);
   border-radius: 2px;
   background: rgba(var(--planet-rgb), 0.06);
-  color: #d8e0ec;
+  color: var(--hud-text);
   font-size: 11px;
   letter-spacing: 0.04em;
 }
@@ -1075,6 +1147,8 @@ a:hover > .hud-channel {
 }
 
 .hud-band-zone {
+  /* a zone name is one reading: SURFACE INDEX never stacks */
+  white-space: nowrap;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -1119,6 +1193,8 @@ a:hover > .hud-channel {
 }
 
 .hud-proof > div {
+  /* captions wrap inside their figure, so three figures always share a row */
+  max-width: 220px;
   display: flex;
   flex-direction: column-reverse;
   /* reversed, so flex-end is the top: values line up when captions wrap */
@@ -1420,6 +1496,9 @@ a:hover > .hud-channel {
 
 .hud-eval-opp {
   margin-bottom: 8px;
+  /* bot names are CamelCase identifiers; caps made them unreadable */
+  text-transform: none;
+  letter-spacing: 0.04em;
 }
 
 .hud-eval-rows {
@@ -1607,6 +1686,10 @@ a:hover > .hud-channel {
 }
 
 .hud-eval-table td .hud-eval-note {
+  display: block;
+  /* the link keeps its 44px target; its count sits right under the figure
+     instead of a full target-height below it */
+  margin-top: -10px;
   white-space: nowrap;
 }
 
@@ -1643,10 +1726,32 @@ a:hover > .hud-channel {
 
 .hud-feature .hud-h3 {
   font-size: 21px;
+  line-height: 1.15;
 }
 
 .hud-kind {
   margin-top: 6px;
+  text-wrap: balance;
+}
+
+/* the pair cards end the same way: tags, then the source line at the left
+   edge, whether it is a link or the private-repository note */
+.hud-feature:not(:first-child) .hud-feature-foot {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hud-feature:not(:first-child) .hud-private {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-left: 0;
+}
+
+/* an employer and title is a featured heading, not a log chapter */
+.hud-plates .hud-h3 {
+  font-size: 21px;
+  line-height: 1.2;
 }
 
 /* a catalogue code never breaks across lines */
@@ -1665,6 +1770,8 @@ a:hover > .hud-channel {
 }
 
 .hud-private {
+  /* stays at the foot's right edge even when the tags wrap */
+  margin-left: auto;
   font-size: 12px;
   letter-spacing: 0.08em;
   color: var(--hud-label);
@@ -1729,6 +1836,15 @@ a:hover > .hud-channel {
   font-weight: 600;
   font-size: 17px;
   color: var(--hud-text);
+}
+
+.hud-index-kind {
+  margin-bottom: 2px;
+}
+
+/* no figure: the copy takes the stat column too */
+.hud-index-row-nostat .hud-index-main {
+  grid-column: 2 / 4;
 }
 
 .hud-index-tagline {
@@ -1856,7 +1972,10 @@ a:hover > .hud-channel {
 
 .hud-sheets {
   display: grid;
+  /* uneven on purpose: the first (longer) leaf takes the wider column, and
+     each leaf is sized to its own text rather than stretched to its pair */
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: start;
   gap: 22px;
 }
 
@@ -1875,9 +1994,9 @@ a:hover > .hud-channel {
 }
 
 .hud-sheets-3 > :first-child .hud-body {
-  max-width: none;
-  column-count: 2;
-  column-gap: 40px;
+  /* one measure (~75 characters in this face): two columns split the
+     paragraph mid-thought */
+  max-width: 60ch;
 }
 
 /* ── about ─────────────────────────────────────────────────────────────── */
@@ -1903,7 +2022,7 @@ a:hover > .hud-channel {
 }
 
 .hud-game-title {
-  margin-top: 10px;
+  margin-top: 2px;
   font-family: var(--hud-display);
   font-weight: 600;
   font-size: 15px;
@@ -1925,6 +2044,10 @@ a:hover > .hud-channel {
 }
 
 .hud-email-address {
+  /* a 44px target even at the 28px phone size */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: var(--hud-display);
   font-weight: 600;
   font-size: clamp(28px, 4.2vw, 52px);
@@ -1937,6 +2060,13 @@ a:hover > .hud-channel {
 
 .hud-email-address:hover {
   color: var(--planet);
+}
+
+/* COPIED is shorter than COPY ADDRESS; the button keeps its width so the
+   status line beside it doesn't jump */
+.hud-email .hud-btn:not(.hud-btn-solid) {
+  min-width: 152px;
+  justify-content: center;
 }
 
 .hud-email-status {
@@ -2060,6 +2190,10 @@ a:hover > .hud-channel {
     display: none;
   }
 
+  .hud-hero-email {
+    margin-left: 0;
+  }
+
   .hud-topright {
     gap: 8px;
   }
@@ -2164,22 +2298,21 @@ a:hover > .hud-channel {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .hud-sheets-3 > :first-child .hud-body {
-    column-count: 1;
+  /* phones: the clip, then the shelf as the same compact list; the clip
+     stays under half a screen */
+  .hud-personal {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  /* the shelf stays a shelf on phones: small covers, titles only */
-  .hud-games {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+  .hud-personal .hud-video-frame {
+    max-height: 48vh;
+    width: auto;
+    margin: 0 auto;
   }
 
-  .hud-games .hud-body {
-    display: none;
-  }
-
-  .hud-game-title {
-    font-size: 13px;
+  .hud-game {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 14px;
   }
 
   .hud-portrait {
@@ -2194,6 +2327,10 @@ a:hover > .hud-channel {
   .hud-index-row .hud-index-stat {
     grid-column: 2;
     grid-row: 2;
+  }
+
+  .hud-index-row-nostat .hud-index-main {
+    grid-column: 2;
   }
 
   .hud-featured,
@@ -2216,8 +2353,9 @@ a:hover > .hud-channel {
     text-align: left;
   }
 
+  /* under the title, not the row edge: 8px pad + 10px mark + 12px gap */
   .hud-index-detail {
-    padding-left: 8px;
+    padding-left: 30px;
   }
 
   .hud-stratum {
@@ -2236,15 +2374,43 @@ a:hover > .hud-channel {
   }
 }
 
+/* the résumé preview: a labelled dark plate behind the PDF, so a browser
+   with no PDF viewer shows what belongs there instead of an empty box */
+.hud-resume-preview {
+  position: relative;
+  border-radius: 2px;
+  background: rgba(4, 6, 12, 0.6);
+}
+
+.hud-resume-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--hud-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hud-label);
+}
+
+.hud-resume-frame {
+  position: relative;
+  display: block;
+}
+
 /* the résumé preview grows when expanded (height is set inline) */
 .hud-resume-frame {
   transition: height 0.3s ease;
 }
 
-/* Reduced motion drops movement and keeps meaning: colour and opacity fades
-   (hover states, the band marks handing over, the launch fade) still run;
-   spatial movement (the sky's drift, spinning and breathing planets, the
-   chevron's rotation) stops or snaps to its end state. */
+/* Reduced motion: every animation and transition is off, and state changes
+   snap (hover colours, band marks handing over, the chevron, the readout).
+   The sky's fade is scroll-bound, not a transition, so it still tracks the
+   descent. The one transition kept is the docking fade on launch: without it
+   a full-screen colour would cut in, which is harsher than a short fade. */
 @media (prefers-reduced-motion: reduce) {
   .hud-sky-drift {
     transform: none;
@@ -2254,23 +2420,20 @@ a:hover > .hud-channel {
   .hud-root *::before,
   .hud-root *::after {
     animation: none !important;
+    transition: none !important;
   }
 
-  .hud-chevron,
-  .hud-resume-frame {
-    transition: none;
+  .hud-root .hud-launch {
+    transition: opacity 0.3s ease !important;
   }
 }
 
 /* phones: a PDF in an iframe renders blank or as one frozen page, so the
    résumé band keeps only its link */
 @media (max-width: 700px) {
-  .hud-resume-frame,
-  .hud-resume-expand {
+  /* the preview can't render here, and the band's one remaining control
+     repeated the amber Résumé in the bar, so the band steps aside */
+  .hud-band:has(.hud-resume-preview) {
     display: none;
-  }
-
-  .hud-resume-frame + .hud-actions {
-    margin-top: 0;
   }
 }

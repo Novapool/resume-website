@@ -1,0 +1,58 @@
+[
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/projects",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-wash\" (#7fb6ff a0.20 → transparent) on 1280x800 surface",
+    "selector": "div.hud-wash"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/projects",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#c8e6ff) on dark background",
+    "selector": "div.hud-orbit-planet > span:nth-of-type(2)"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/projects",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#a8dcff) on dark background",
+    "selector": "div.hud-limb"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/projects",
+    "line": 0,
+    "snippet": "Zero-offset box-shadow glow (#7fb6ff)",
+    "selector": "div.hud-limb-rim"
+  },
+  {
+    "antipattern": "repeating-stripes-gradient",
+    "name": "Repeating-gradient stripes",
+    "description": "Repeating-gradient stripes used as surface decoration are a recurring generated-UI signature. Reach for a deliberate texture or leave the surface plain.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "http://localhost:3100/projects",
+    "line": 0,
+    "snippet": "repeating-gradient decorative stripes",
+    "advisory": true,
+    "selector": "body"
+  }
+]

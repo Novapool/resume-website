@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { PLANETS, nextPlanet, waypointNo, type Planet } from "@/lib/planets";
 import { PROFILE } from "@/data/profile";
-import { Chevron } from "./panels";
+import { Chevron, NewTab } from "./panels";
 import "./hud.css";
 
 const ACCENT = { color: "#57e6c4", rgb: "87,230,196" };
@@ -70,7 +70,7 @@ export interface HudPageProps {
   planet?: Planet;
   /** Overrides the top-bar sub-label (defaults to the sector readout). */
   subLabel?: string;
-  /** Show the end-of-page exit (off for the 404). */
+  /** Show the touchdown's way on (a world page's arrival card). */
   endcap?: boolean;
   children: ReactNode;
 }
@@ -136,8 +136,9 @@ export default function HudPage({
       // sliding underneath it
       let zone = "ORBIT";
       for (const b of bands) {
+        // one threshold: the readout names a zone the moment its mark hands over
         const reached = b.top <= y + 60;
-        if (b.top <= y) zone = b.zone;
+        if (reached) zone = b.zone;
         if (reached !== b.el.hasAttribute("data-reached"))
           b.el.toggleAttribute("data-reached", reached);
       }
@@ -237,6 +238,7 @@ export default function HudPage({
             rel="noopener noreferrer"
           >
             RÉSUMÉ
+            <NewTab />
           </a>
         </div>
 
@@ -269,17 +271,6 @@ export default function HudPage({
 
         {children}
 
-        {endcap && !planet && (
-          <footer className="hud-endcap">
-            <div className="hud-endcap-line" aria-hidden />
-            <Link href={upNext.href} className="hud-endcap-next">
-              <span className="hud-endcap-name">
-                Open {upNext.label}
-                <Chevron />
-              </span>
-            </Link>
-          </footer>
-        )}
       </main>
 
       {planet && hero && (

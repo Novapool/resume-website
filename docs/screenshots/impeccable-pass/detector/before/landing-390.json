@@ -1,0 +1,80 @@
+[
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#d6e8b2) on dark background",
+    "selector": "a.sn-planet:nth-of-type(1) > span:nth-of-type(2)"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/",
+    "line": 0,
+    "snippet": "Zero-offset box-shadow glow (#b2d68a)",
+    "selector": "a.sn-planet:nth-of-type(1) > span:nth-of-type(3)"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "a.sn-planet:nth-of-type(4) > span:nth-of-type(1)"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "a.sn-planet:nth-of-type(4) > span:nth-of-type(2) > span:nth-of-type(2)"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "a.sn-planet:nth-of-type(4) > span:nth-of-type(3)"
+  },
+  {
+    "antipattern": "radial-halo",
+    "name": "Radial-gradient background halo",
+    "description": "A chromatic radial-gradient wash — saturated at the center, fading to transparent — used as a decorative background glow on a dark page. Same tell as glowing shadows, drawn with a gradient instead of a shadow. Ground the surface with a solid or subtly shifted background instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/",
+    "line": 0,
+    "snippet": "radial-gradient halo (#607840 → transparent) on dark page",
+    "selector": "body"
+  },
+  {
+    "antipattern": "repeating-stripes-gradient",
+    "name": "Repeating-gradient stripes",
+    "description": "Repeating-gradient stripes used as surface decoration are a recurring generated-UI signature. Reach for a deliberate texture or leave the surface plain.",
+    "severity": "advisory",
+    "category": "slop",
+    "file": "http://localhost:3100/",
+    "line": 0,
+    "snippet": "repeating-gradient decorative stripes",
+    "advisory": true,
+    "selector": "body"
+  }
+]

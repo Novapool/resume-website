@@ -1,0 +1,13 @@
+[
+  {
+    "antipattern": "script-error",
+    "name": "Uncaught script error on load",
+    "description": "A script threw an uncaught exception or failed to parse while the page loaded. Broken JavaScript silently kills reveals, interactions, and dynamic content, and can leave most of a page invisible. Fix the error before judging anything else.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "http://localhost:3101/404",
+    "line": 0,
+    "snippet": "Uncaught Error: Minified React error #418: Hydration failed because the initial UI does not match what was rendered on the server. (at c, http://localhost:3101/_next/static/chunks/684-0e827b39d9febd52.js:1:66956)",
+    "advisory": true
+  }
+]

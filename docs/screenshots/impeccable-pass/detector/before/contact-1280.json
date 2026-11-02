@@ -1,0 +1,178 @@
+[
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "div.hud-wash"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-wash\" (#c79bf0 a0.20 → transparent) on 1280x800 surface",
+    "selector": "div.hud-wash"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "div.hud-orbit-planet > span:nth-of-type(1)"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#e2cdff) on dark background",
+    "selector": "div.hud-orbit-planet > span:nth-of-type(2)"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "span:nth-of-type(2) > span:nth-of-type(2)"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "div.hud-orbit-planet > span:nth-of-type(3)"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Purple/violet text (#d3b5f4) on heading",
+    "selector": "h2.hud-h2"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "div.hud-panel.hud-finale"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-panel\" (#c79bf0 a0.16 → transparent) on 810x191 surface",
+    "selector": "div.hud-panel.hud-finale"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Colored box-shadow glow (#c79bf0) on dark background",
+    "selector": "div.hud-limb"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "div.hud-limb"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "div.hud-limb > div"
+  },
+  {
+    "antipattern": "dark-glow",
+    "name": "Glowing shadow accents",
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Zero-offset box-shadow glow (#c79bf0)",
+    "selector": "div.hud-limb-rim"
+  },
+  {
+    "antipattern": "ai-color-palette",
+    "name": "AI color palette",
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "Purple/violet gradient background",
+    "selector": "div.hud-panel.hud-arrival"
+  },
+  {
+    "antipattern": "radial-spotlight-glow",
+    "name": "Decorative radial spotlight glow",
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "radial-gradient spotlight glow \"hud-panel\" (#c79bf0 a0.16 → transparent) on 520x230 surface",
+    "selector": "div.hud-panel.hud-arrival"
+  },
+  {
+    "antipattern": "radial-halo",
+    "name": "Radial-gradient background halo",
+    "description": "A chromatic radial-gradient wash — saturated at the center, fading to transparent — used as a decorative background glow on a dark page. Same tell as glowing shadows, drawn with a gradient instead of a shadow. Ground the surface with a solid or subtly shifted background instead.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:3100/contact",
+    "line": 0,
+    "snippet": "radial-gradient halo (#3a2e54 → transparent) on dark page",
+    "selector": "body"
+  }
+]

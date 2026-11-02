@@ -139,7 +139,7 @@ The site is a ship's nav-computer. The landing is the flight between worlds; eve
 
 The chrome is one shared instrument (mono labels, thin hairline borders, a fixed top bar, a waypoint rail), and the surfaces are not. Panels are made of the world's material: pressed leaves on the lush world, faceted crystal cells on the crystalline world, hard rust plates on the rust world, a softly lit sample on the moon. One tint variable (`--planet`) colours every control, rule and readout so the instrument always reads as belonging to the world it sits on. Density is a progression: orbit is sparse and large, the cloud deck carries featured work large, lower bands hold the full record compactly.
 
-The system is always dark, regardless of site theme. Motion is scroll-bound and cheap; nothing loops on a section page, and every transition is removed under reduced motion while the sky's fade (opacity) is kept.
+The system is always dark, regardless of site theme. Motion is scroll-bound and cheap; nothing loops on a section page except the small orbit planet's slow turn (130–200s) and the moon's breathing lichen, and every transition is removed under reduced motion; the scroll-bound sky fade still tracks the descent, and the docking fade on launch is the one transition kept (opacity only, shortened), since a hard cut to a full-screen colour is harsher.
 
 **Key Characteristics:**
 - One instrument chrome, four world materials.
@@ -175,7 +175,7 @@ Each world also owns an **air**: a full-page vertical gradient from deep-space a
 - **Panel Glass** (panel-glass): the base panel fill before a world material overrides it (overview, 404, landing target card).
 
 ### Named Rules
-**The One Tint Rule.** A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it. The per-project colour is a confirmed product decision (Laith, 2026-10-17), kept even though a critique argued it fights the crystal palette.
+**The One Tint Rule.** A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it. The touchdown arrival card is the one surface that wears another world: it is drawn in the next world's material and tint, as a first look at where the launch goes (the last world's card keeps its own). The per-project colour is a confirmed product decision (Laith, 2026-10-17), kept even though a critique argued it fights the crystal palette.
 
 **The Softened Heading Rule.** Section headings use the world tint mixed 72% toward starlight (`color-mix(in oklab, var(--planet) 72%, var(--hud-text))`) and outline-button text mixes 85% toward white, so every world stays above 4.5:1 on its panel.
 
@@ -207,13 +207,13 @@ A single centred content column (max 1060px plus the gutter) with a 150px left g
 
 Story order is fixed: orbit (planet, title, who, three-number proof row; About is led by the person instead, Contact by the address), the deck (featured work, large), lower bands (the full record, compact), then a 78vh touchdown where the planet's horizon arc rises and a single arrival card sits on it.
 
-Grids are deliberately uneven per world: Projects runs a 2-column deck where the lead build spans the full width with copy and proof side by side; About's leaves sit in 7fr/5fr pairs or one broad leaf over two; Experience stacks one plate per posting, never half-filled columns; the mission log is a 96px date column beside the entry. Gaps are 18px in grids and 20-22px in decks.
+Grids are deliberately uneven per world: Projects runs a 2-column deck where the lead build spans the full width with copy and proof side by side; About's leaves sit in uneven 7fr/5fr pairs (the longer leaf in the wider column, each sized to its own text) or one broad leaf over two, and its bouldering clip sits beside a compact game list (72px cover, title, one line) rather than a poster wall; Experience stacks one plate per posting, never half-filled columns; the mission log is a 96px date column beside the entry. Gaps are 18px in grids and 20-22px in decks.
 
-Responsive: between 981px and 1640px the column reserves 210px on the right for the waypoint rail (176px at 1180px). At 980px the rail moves into the top bar as a four-up strip and the gutter narrows to 112px. At 760px the gutter collapses to a thin left edge, the readout runs vertically up it, band marks hide, every grid goes single-column (the game shelf goes two-up, titles only), proof rows stay three across with values top-aligned, the résumé iframe gives way to its link, and bands tighten to 80px apart. Focus and in-page jumps clear the fixed bar via `scroll-padding-top` (112px, 140px under 980px).
+Responsive: between 981px and 1640px the column reserves 210px on the right for the waypoint rail (176px at 1180px). At 980px the rail moves into the top bar as a four-up strip and the gutter narrows to 112px. At 760px the gutter collapses to a thin left edge, the readout runs vertically up it, band marks hide, every grid goes single-column (About's clip stacks above its game list), proof rows stay three across with values top-aligned, the résumé iframe gives way to its link, and bands tighten to 80px apart. Focus and in-page jumps clear the fixed bar via `scroll-padding-top` (112px, 140px under 980px).
 
 ## Elevation & Depth
 
-Depth comes from atmosphere and material, not a shadow scale. The fixed sky (stars, the world's sky layers and wash) drifts up 45vh and fades to 10% as `--descent` runs 0 to 1, while the page background brightens into the world's air; that parallax is the primary depth cue. Panels are lifted by their material: soft, very low drop shadows on the lush leaves and rust plates, and inset light edges on crystal and moon. The only glows are the small tint glows on status dots, the active waypoint tick and the scroll fill.
+Depth comes from atmosphere and material, not a shadow scale. The fixed sky (stars, the world's sky layers and wash) drifts up 45vh and fades to 10% as `--descent` runs 0 to 1, while the page background brightens into the world's air; that parallax is the primary depth cue. Panels are lifted by their material: soft, very low drop shadows on the lush leaves and rust plates, and inset light edges on crystal and moon. The only UI glows are the small tint glows on status dots, the active waypoint tick and the scroll fill. Celestial bodies carry their own light (planet atmospheres and terminators, the rust world's sun, the horizon rim); that light belongs to the world, and no control or panel borrows it.
 
 ### Shadow Vocabulary
 - **Leaf lift** (`0 24px 46px -30px rgba(0,0,0,0.9), inset 0 1px 0 rgba(214,232,178,0.1)`): lush panels.
@@ -265,13 +265,13 @@ Squared instrument controls with a 44px minimum target.
 A 1px rule down the gutter, fading from 12% to 70% tint. A sticky deep-space box with a tint hairline reads `ALT <n> KM` in tint over the current zone name in label grey, tabular figures, counting down from the world's own altitude (120, 400, 250 or 12 km) as the page scrolls. It hides at touchdown, where the ground's own "0 km" takes over.
 
 ### Touchdown and Launch (signature)
-The planet's horizon arc (220vmax circle) rises into the bottom of the page. A centred card on deep-space at 82% with a tint top hairline holds "Next: <next world>" in the destination's colour (Space Grotesk 28px), the destination's teaser, a mono "Landed on <world> · 0 km" line, and a quiet underlined link to /overview. Activating it plays a full-screen radial fade in the destination's colour, then routes. The last world ends the route instead of looping: "Write to me" (mailto) with the address in the teaser, then "Back to the start" and the overview link.
+The planet's horizon arc (220vmax circle) rises into the bottom of the page. A centred card, drawn in the next world's material and tint, holds "Next: <next world>" in the destination's colour (Space Grotesk 28px), the destination's teaser, a mono "Landed on <world> · 0 km" line, and a quiet underlined link to /overview. Activating it plays a full-screen radial fade in the destination's colour, then routes. The last world ends the route instead of looping: "Write to me" (mailto) with the address in the teaser, then "Back to the start" and the overview link.
 
 ### Orbit Block (signature)
 An 84px planet body beside the display title, a lead line, then a definition-list proof row of three figures (value above caption, 18px by 44px gaps). Each figure is an outcome with one home, where it happened; a page with no figure of its own (About, Contact) shows none rather than a fact dressed as proof.
 
 ### Control vocabulary
-One label per action on every route: **Home** (to `/`), **Open <world>** (go to a world from the landing), **Next: <world>** (touchdown), **Overview** / "Every section on one page" (to `/overview`), **Résumé** (the PDF), **Email me** (mailto). Ship flavour lives in small metadata (sub-labels, zone names, the docking overlay), never in a control's label. No eyebrows or kickers above headings.
+One label per action on every route: **Home** (to `/`), **Open <world>** (go to a world from the landing, and on a 404 whose address is a near miss for a world), **Next: <world>** (touchdown), **Overview** / "Every section on one page" (to `/overview`), **Résumé** (the PDF), **Email me** (mailto). Ship flavour lives in small metadata (sub-labels, zone names, the docking overlay), never in a control's label. No eyebrows or kickers above headings.
 
 ### Landing pitch card
 At rest the card slot holds the pitch: "Laith Assaf" as the display h1 (clamp 34–50px), the two-sentence pitch, a hairline, three proof figures (value in cyan, caption in starlight) and "See the projects". It sits low (bottom 40px, 400px wide) so it clears the first planet, and it is first after the header in tab order. Planets too small to see (<44px) leave the tab order; a focused planet shows a round 3px ring.
@@ -284,7 +284,7 @@ At rest the card slot holds the pitch: "Laith Assaf" as the display h1 (clamp 34
 - **Do** make panels from their world's material: leaves, crystal cells, rust plates, the moon sample.
 - **Do** keep body text in solid haze (#b9c3d2) and soften tinted headings 72% toward starlight so every world clears 4.5:1.
 - **Do** give every control a 44px minimum target and the 2px tint focus ring.
-- **Do** disable every animation and transition under reduced motion, keeping only the sky's opacity fade.
+- **Do** disable every animation and transition under reduced motion, keeping only the scroll-bound sky fade and the short opacity docking fade on launch.
 - **Do** keep the landing flythrough still under reduced motion: the camera holds each world fully lit and cuts to the next stop as scroll crosses into it, rather than dollying or zooming.
 
 ### Don't:

@@ -3,7 +3,8 @@
 // scripted opponent, one bar per training stage, every bar labelled with its
 // value and sample size. Static (no motion), one hue (the project's own), and
 // the full numbers with their source lines sit one click away as a table.
-import { Chevron } from "@/components/hud/panels";
+import { useId } from "react";
+import { Chevron, NewTab } from "@/components/hud/panels";
 import type { Evaluation, WinRate } from "@/data/projects";
 
 const OPPONENTS = [
@@ -16,6 +17,8 @@ const fmtN = (n: number) => n.toLocaleString("en-US");
 
 export default function ProjectEvaluation({ evaluation }: { evaluation: Evaluation }) {
   const { title, repo, commit, stages, caveats } = evaluation;
+  // unique per figure, so a second evaluation never duplicates the id
+  const titleId = useId();
   // ?plain=1 keeps GitHub's line anchors working on Markdown files too
   const sourceUrl = (r: WinRate) => {
     const [path, line] = r.source.split("#");
@@ -23,9 +26,9 @@ export default function ProjectEvaluation({ evaluation }: { evaluation: Evaluati
   };
 
   return (
-    <figure className="hud-eval" aria-labelledby="hud-eval-title">
+    <figure className="hud-eval" aria-labelledby={titleId}>
       <figcaption className="hud-eval-head">
-        <span id="hud-eval-title" className="hud-eval-title">
+        <span id={titleId} className="hud-eval-title">
           {title}
         </span>
         <span className="hud-label">Gen 1 random battles · n per bar</span>
@@ -99,6 +102,7 @@ export default function ProjectEvaluation({ evaluation }: { evaluation: Evaluati
                       <td key={o.key}>
                         <a href={sourceUrl(r)} target="_blank" rel="noopener noreferrer">
                           {fmtPct(r)}
+                          <NewTab />
                         </a>
                         <span className="hud-eval-note">
                           {r.wins !== undefined
