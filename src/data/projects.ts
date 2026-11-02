@@ -21,7 +21,98 @@ export interface Project {
   tags: string[];
   github?: string;
   featured?: boolean;
+  /** A real evaluation read straight from the project's own committed logs. */
+  evaluation?: Evaluation;
 }
+
+/** One measured win rate. `pct` is copied from the log, or computed from
+ * `wins / n` when the log gives raw counts; nothing is interpolated. */
+export interface WinRate {
+  pct: number;
+  n: number;
+  wins?: number;
+  /** Repo path and line the number comes from. */
+  source: string;
+}
+
+export interface EvalStage {
+  label: string;
+  note: string;
+  random: WinRate;
+  damageFirst: WinRate;
+}
+
+export interface Evaluation {
+  title: string;
+  /** Repo + commit the sources are pinned to. */
+  repo: string;
+  commit: string;
+  stages: EvalStage[];
+  caveats: string[];
+}
+
+/**
+ * Pokémon agent, stage by stage (Gen 1 random battles, against Showdown's
+ * scripted RandomPlayerAI and DamageFirstAI). Every number traces to a file
+ * and line in Novapool/pokemon-showdown-ai at the pinned commit.
+ */
+const POKEMON_EVALUATION: Evaluation = {
+  title: "Win rate at each stage",
+  repo: "https://github.com/Novapool/pokemon-showdown-ai",
+  commit: "efb3be249790077b51b1f2813a4a1a071a0120f9",
+  stages: [
+    {
+      label: "Imitation only",
+      note: "Behaviour cloning on human replays",
+      random: {
+        pct: 33.9,
+        wins: 1697,
+        n: 5000,
+        source: "models/checkpoints/m9p2a_ab_results.txt#L4",
+      },
+      damageFirst: {
+        pct: 28.6,
+        wins: 1429,
+        n: 5000,
+        source: "models/checkpoints/m9p2a_ab_results.txt#L12",
+      },
+    },
+    {
+      label: "+ PPO",
+      note: "The trained network on its own, no search",
+      random: {
+        pct: 69.7,
+        n: 2000,
+        source: "docs/MILESTONES-ARCHIVE.md#L2234",
+      },
+      damageFirst: {
+        pct: 59.4,
+        n: 2000,
+        source: "docs/MILESTONES-ARCHIVE.md#L2234",
+      },
+    },
+    {
+      label: "+ MCTS",
+      note: "Tuned search at decision time",
+      random: {
+        pct: 93.0,
+        wins: 465,
+        n: 500,
+        source: "models/mcts/results/m7_v3_mcts_random.log#L15",
+      },
+      damageFirst: {
+        pct: 84.2,
+        wins: 421,
+        n: 500,
+        source: "models/mcts/results/m7_v3_mcts_damagefirst.log#L15",
+      },
+    },
+  ],
+  caveats: [
+    "Each stage was measured in its own run, with its own sample size (n), so the steps are not a controlled ablation.",
+    "The raw policy sampled its moves while search plays its best one. The project's own code review found that switch accounts for part of the last step, so not all of it is search.",
+  ],
+};
 
 export const PROJECTS: Project[] = [
   {
@@ -37,6 +128,7 @@ export const PROJECTS: Project[] = [
     tags: ["Python", "PyTorch", "PPO", "MCTS", "MLflow"],
     github: "https://github.com/Novapool/pokemon-showdown-ai",
     featured: true,
+    evaluation: POKEMON_EVALUATION,
   },
   {
     code: "PRJ-002",
