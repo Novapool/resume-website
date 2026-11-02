@@ -1,0 +1,1883 @@
+[
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 24,
+    "snippet": "Undocumented color #ffffff is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#ffffff",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 292,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 333,
+    "snippet": "Undocumented color #ffd6a5 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#ffd6a5",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 344,
+    "snippet": "Undocumented color rgba(120, 140, 170, 0.18) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(120, 140, 170, 0.18)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 452,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 468,
+    "snippet": "Undocumented color rgba(120, 140, 170, 0.2) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(120, 140, 170, 0.2)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 503,
+    "snippet": "font-size: 30px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "30px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 511,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 565,
+    "snippet": "font-size: 22px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "22px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 825,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 840,
+    "snippet": "font-size: 28px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "28px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 947,
+    "snippet": "Undocumented color #ffffff is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#ffffff",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 976,
+    "snippet": "Undocumented color #fff is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#fff",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1011,
+    "snippet": "Undocumented color rgba(120, 140, 170, 0.24) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(120, 140, 170, 0.24)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1054,
+    "snippet": "Undocumented color #000 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#000",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1336,
+    "snippet": "font-size: 28px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "28px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-radius",
+    "name": "Radius outside DESIGN.md",
+    "description": "A border-radius value is outside the DESIGN.md rounded scale. Use a documented radius token or update the design system if the new shape is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1373,
+    "snippet": "border-radius: 6px is outside the DESIGN.md rounded scale",
+    "advisory": true,
+    "ignoreValue": "6px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1376,
+    "snippet": "Undocumented color rgba(24, 40, 24, 0.9) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(24, 40, 24, 0.9)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1390,
+    "snippet": "Undocumented color rgba(168, 220, 255, 0.08) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(168, 220, 255, 0.08)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1404,
+    "snippet": "Undocumented color rgba(168, 220, 255, 0.07) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(168, 220, 255, 0.07)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1412,
+    "snippet": "Undocumented color rgba(168, 220, 255, 0.07) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(168, 220, 255, 0.07)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1423,
+    "snippet": "Undocumented color rgba(30, 16, 10, 0.92) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(30, 16, 10, 0.92)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1464,
+    "snippet": "font-size: 28px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "28px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1477,
+    "snippet": "font-size: 64px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "64px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1542,
+    "snippet": "font-size: 14px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "14px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1636,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1660,
+    "snippet": "font-size: 14px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "14px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1748,
+    "snippet": "font-size: 21px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "21px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1835,
+    "snippet": "font-size: 17px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "17px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1850,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1864,
+    "snippet": "font-size: 18px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "18px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1867,
+    "snippet": "Undocumented color #ffffff is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#ffffff",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1902,
+    "snippet": "Undocumented color rgba(30, 16, 10, 0.55) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(30, 16, 10, 0.55)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1906,
+    "snippet": "Undocumented color rgba(18, 10, 6, 0.7) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(18, 10, 6, 0.7)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1912,
+    "snippet": "font-size: 22px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "22px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1920,
+    "snippet": "font-size: 14px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "14px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1940,
+    "snippet": "Undocumented color rgba(190, 228, 255, 0.07) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(190, 228, 255, 0.07)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1947,
+    "snippet": "Undocumented color rgba(150, 190, 110, 0.15) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(150, 190, 110, 0.15)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1948,
+    "snippet": "Undocumented color rgba(196, 214, 150, 0.1) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(196, 214, 150, 0.1)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1949,
+    "snippet": "Undocumented color rgba(60, 92, 50, 0.24) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(60, 92, 50, 0.24)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1956,
+    "snippet": "Undocumented color rgba(160, 70, 30, 0.2) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(160, 70, 30, 0.2)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1964,
+    "snippet": "Undocumented color rgba(150, 120, 230, 0.12) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(150, 120, 230, 0.12)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1965,
+    "snippet": "Undocumented color rgba(220, 200, 255, 0.07) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(220, 200, 255, 0.07)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1966,
+    "snippet": "Undocumented color rgba(40, 24, 66, 0.4) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(40, 24, 66, 0.4)",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-radius",
+    "name": "Radius outside DESIGN.md",
+    "description": "A border-radius value is outside the DESIGN.md rounded scale. Use a documented radius token or update the design system if the new shape is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 1979,
+    "snippet": "border-radius: 6px is outside the DESIGN.md rounded scale",
+    "advisory": true,
+    "ignoreValue": "6px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 2023,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 2048,
+    "snippet": "font-size: clamp(28px, 4.2vw, 52px) has fluid endpoints 28px and 52px off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "28px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 2062,
+    "snippet": "font-size: 14px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "14px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 2087,
+    "snippet": "font-size: 17px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "17px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 2173,
+    "snippet": "font-size: 13px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "13px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 2272,
+    "snippet": "font-size: 28px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "28px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/hud/hud.css",
+    "line": 2334,
+    "snippet": "font-size: 40px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "40px",
+    "importedBy": [
+      "HudPage.tsx",
+      "PlanetBody.tsx",
+      "panels.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-radius",
+    "name": "Radius outside DESIGN.md",
+    "description": "A border-radius value is outside the DESIGN.md rounded scale. Use a documented radius token or update the design system if the new shape is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/loaders/TerminalLoader.tsx",
+    "line": 131,
+    "snippet": "borderRadius: 6px is outside the DESIGN.md rounded scale",
+    "advisory": true,
+    "ignoreValue": "6px",
+    "importedBy": [
+      "LoadingManager.tsx",
+      "index.ts"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/contact-form.tsx",
+    "line": 124,
+    "snippet": "Undocumented color #ff9a8c is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#ff9a8c"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/Starfield.tsx",
+    "line": 110,
+    "snippet": "Undocumented color #dfeaff is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#dfeaff",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/Starfield.tsx",
+    "line": 124,
+    "snippet": "Undocumented color #fff is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#fff",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/space-navigator.css",
+    "line": 22,
+    "snippet": "Undocumented color #8ff3dc is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#8ff3dc",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/space-navigator.css",
+    "line": 208,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/space-navigator.css",
+    "line": 211,
+    "snippet": "Undocumented color #fff is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#fff",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/space-navigator.css",
+    "line": 218,
+    "snippet": "Undocumented color rgba(255, 255, 255, 0.72) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(255, 255, 255, 0.72)",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/space-navigator.css",
+    "line": 238,
+    "snippet": "font-size: clamp(34px, 4vw, 50px) has fluid endpoints 34px and 50px off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "34px",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/space-navigator.css",
+    "line": 262,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/space-navigator.css",
+    "line": 336,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/space-navigator.css",
+    "line": 382,
+    "snippet": "font-size: 15px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "15px",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-font-size",
+    "name": "Font size outside DESIGN.md",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/components/site/space-navigator/space-navigator.css",
+    "line": 390,
+    "snippet": "font-size: 14px is off the DESIGN.md type ramp",
+    "advisory": true,
+    "ignoreValue": "14px",
+    "importedBy": [
+      "index.tsx"
+    ]
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 114,
+    "snippet": "Undocumented color #3f4e33 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#3f4e33"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 123,
+    "snippet": "Undocumented color rgba(96,120,64,.85) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(96,120,64,.85)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 123,
+    "snippet": "Undocumented color rgba(78,100,52,.8) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(78,100,52,.8)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 123,
+    "snippet": "Undocumented color rgba(110,132,72,.75) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(110,132,72,.75)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 123,
+    "snippet": "Undocumented color rgba(86,74,46,.8) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(86,74,46,.8)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 123,
+    "snippet": "Undocumented color rgba(102,84,52,.7) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(102,84,52,.7)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 129,
+    "snippet": "Undocumented color rgba(74,58,34,.26) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(74,58,34,.26)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 135,
+    "snippet": "Undocumented color rgba(226,240,198,.22) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(226,240,198,.22)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 153,
+    "snippet": "Undocumented color #0f1e13 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#0f1e13"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 153,
+    "snippet": "Undocumented color #1b3020 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#1b3020"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 153,
+    "snippet": "Undocumented color #26402a is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#26402a"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 157,
+    "snippet": "Undocumented color rgba(139,168,102,.22) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(139,168,102,.22)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 163,
+    "snippet": "Undocumented color rgba(150,190,110,.1) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(150,190,110,.1)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 163,
+    "snippet": "Undocumented color rgba(196,214,150,.07) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(196,214,150,.07)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 168,
+    "snippet": "Undocumented color rgba(96,120,64,.5) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(96,120,64,.5)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 168,
+    "snippet": "Undocumented color rgba(86,74,46,.42) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(86,74,46,.42)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 168,
+    "snippet": "Undocumented color rgba(140,170,104,.22) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(140,170,104,.22)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 168,
+    "snippet": "Undocumented color rgba(126,158,92,.6) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(126,158,92,.6)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 195,
+    "snippet": "Undocumented color #1b2b4d is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#1b2b4d"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 204,
+    "snippet": "Undocumented color #26406e is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#26406e"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 204,
+    "snippet": "Undocumented color #1a2c50 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#1a2c50"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 204,
+    "snippet": "Undocumented color #2e4c80 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#2e4c80"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 204,
+    "snippet": "Undocumented color #1e3358 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#1e3358"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 204,
+    "snippet": "Undocumented color #35578f is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#35578f"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 204,
+    "snippet": "Undocumented color #1b2d52 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#1b2d52"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 204,
+    "snippet": "Undocumented color #294574 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#294574"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 204,
+    "snippet": "Undocumented color #1d3059 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#1d3059"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 216,
+    "snippet": "Undocumented color rgba(220,242,255,.34) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(220,242,255,.34)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 232,
+    "snippet": "Undocumented color #07101f is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#07101f"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 232,
+    "snippet": "Undocumented color #0b1b36 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#0b1b36"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 232,
+    "snippet": "Undocumented color #12294d is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#12294d"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 232,
+    "snippet": "Undocumented color #183460 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#183460"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 248,
+    "snippet": "Undocumented color rgba(92,140,210,.55) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(92,140,210,.55)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 277,
+    "snippet": "Undocumented color #8f4527 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#8f4527"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 286,
+    "snippet": "Undocumented color rgba(120,58,32,.7) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(120,58,32,.7)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 286,
+    "snippet": "Undocumented color rgba(168,92,54,.55) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(168,92,54,.55)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 286,
+    "snippet": "Undocumented color rgba(96,46,26,.6) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(96,46,26,.6)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 286,
+    "snippet": "Undocumented color rgba(150,80,44,.45) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(150,80,44,.45)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 286,
+    "snippet": "Undocumented color rgba(70,32,18,.2) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(70,32,18,.2)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 292,
+    "snippet": "Undocumented color rgba(56,24,12,.55) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(56,24,12,.55)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 292,
+    "snippet": "Undocumented color rgba(56,24,12,.5) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(56,24,12,.5)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 325,
+    "snippet": "Undocumented color rgba(255,214,150,.95) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(255,214,150,.95)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 333,
+    "snippet": "Undocumented color #0e0907 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#0e0907"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 333,
+    "snippet": "Undocumented color #1d100a is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#1d100a"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 333,
+    "snippet": "Undocumented color #2c160c is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#2c160c"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 333,
+    "snippet": "Undocumented color #34190d is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#34190d"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 337,
+    "snippet": "Undocumented color rgba(255,140,60,.16) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(255,140,60,.16)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 361,
+    "snippet": "Undocumented color rgba(255,220,160,.95) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(255,220,160,.95)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 368,
+    "snippet": "Undocumented color rgba(52,22,12,.6) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(52,22,12,.6)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 368,
+    "snippet": "Undocumented color rgba(196,116,70,.2) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(196,116,70,.2)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 368,
+    "snippet": "Undocumented color rgba(30,12,6,.5) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(30,12,6,.5)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 368,
+    "snippet": "Undocumented color rgba(226,132,70,.55) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(226,132,70,.55)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 395,
+    "snippet": "Undocumented color #2e2544 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#2e2544"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 403,
+    "snippet": "Undocumented color rgba(58,46,84,.9) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(58,46,84,.9)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 403,
+    "snippet": "Undocumented color rgba(46,36,68,.9) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(46,36,68,.9)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 403,
+    "snippet": "Undocumented color rgba(64,52,92,.7) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(64,52,92,.7)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 409,
+    "snippet": "Undocumented color rgba(214,168,255,.75) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(214,168,255,.75)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 409,
+    "snippet": "Undocumented color rgba(150,240,224,.6) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(150,240,224,.6)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 409,
+    "snippet": "Undocumented color rgba(198,152,255,.65) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(198,152,255,.65)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 409,
+    "snippet": "Undocumented color rgba(168,236,255,.5) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(168,236,255,.5)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 409,
+    "snippet": "Undocumented color rgba(214,168,255,.55) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(214,168,255,.55)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 437,
+    "snippet": "Undocumented color rgba(150,240,224,.06) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(150,240,224,.06)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 442,
+    "snippet": "Undocumented color rgba(70,56,102,.6) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(70,56,102,.6)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 442,
+    "snippet": "Undocumented color rgba(126,98,168,.45) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(126,98,168,.45)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 447,
+    "snippet": "Undocumented color rgba(214,168,255,.5) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(214,168,255,.5)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/lib/planets.ts",
+    "line": 447,
+    "snippet": "Undocumented color rgba(150,240,224,.28) is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "rgba(150,240,224,.28)"
+  },
+  {
+    "antipattern": "design-system-color",
+    "name": "Color outside DESIGN.md",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "/home/user/resume-website/src/styles/animations.css",
+    "line": 18,
+    "snippet": "Undocumented color #00ff00 is outside DESIGN.md colors",
+    "advisory": true,
+    "ignoreValue": "#00ff00"
+  }
+]
