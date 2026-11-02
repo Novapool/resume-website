@@ -136,8 +136,9 @@ export default function HudPage({
       // sliding underneath it
       let zone = "ORBIT";
       for (const b of bands) {
+        // one threshold: the readout names a zone the moment its mark hands over
         const reached = b.top <= y + 60;
-        if (b.top <= y) zone = b.zone;
+        if (reached) zone = b.zone;
         if (reached !== b.el.hasAttribute("data-reached"))
           b.el.toggleAttribute("data-reached", reached);
       }

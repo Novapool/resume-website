@@ -24,7 +24,7 @@ export default function ExperiencePage() {
         ]}
       />
 
-      <Section zone="DUST LINE" title="Current postings" deck>
+      <Section zone="DUST LINE" title="Where I work now" deck>
         <div className="hud-plates">
           <LabeledPanel label="Delta Dental · PC Technician Intern" meta={<span className="hud-label">MAY 2026 – NOW</span>}>
               <div className="hud-panel-sub">Onsite support team · Okemos, MI</div>

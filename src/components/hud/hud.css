@@ -1149,6 +1149,8 @@ a:hover > .hud-channel {
 }
 
 .hud-band-zone {
+  /* a zone name is one reading: SURFACE INDEX never stacks */
+  white-space: nowrap;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -1496,6 +1498,9 @@ a:hover > .hud-channel {
 
 .hud-eval-opp {
   margin-bottom: 8px;
+  /* bot names are CamelCase identifiers; caps made them unreadable */
+  text-transform: none;
+  letter-spacing: 0.04em;
 }
 
 .hud-eval-rows {
@@ -1723,10 +1728,32 @@ a:hover > .hud-channel {
 
 .hud-feature .hud-h3 {
   font-size: 21px;
+  line-height: 1.15;
 }
 
 .hud-kind {
   margin-top: 6px;
+  text-wrap: balance;
+}
+
+/* the pair cards end the same way: tags, then the source line at the left
+   edge, whether it is a link or the private-repository note */
+.hud-feature:not(:first-child) .hud-feature-foot {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hud-feature:not(:first-child) .hud-private {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-left: 0;
+}
+
+/* an employer and title is a featured heading, not a log chapter */
+.hud-plates .hud-h3 {
+  font-size: 21px;
+  line-height: 1.2;
 }
 
 /* a catalogue code never breaks across lines */
