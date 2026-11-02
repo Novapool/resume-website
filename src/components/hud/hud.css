@@ -11,6 +11,19 @@ body:has(.hud-root) {
   background: #06070e;
 }
 
+/* the parts the browser draws carry the system too. The page scrollbar sits
+   outside any world, so it is a neutral slate on deep space, never a tint. */
+html:has(.hud-root),
+html:has(.sn-root) {
+  scrollbar-color: #3a4454 #06070e;
+}
+
+.hud-root ::selection,
+.sn-root ::selection {
+  background: rgba(var(--planet-rgb), 0.38);
+  color: #ffffff;
+}
+
 /* the design tokens are shared with the landing (.sn-root), which uses the
    same top bar, rail, pills, buttons and telemetry classes */
 .hud-root,
