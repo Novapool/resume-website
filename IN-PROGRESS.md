@@ -10,8 +10,9 @@
   the critique loop at 22–25/32 (H8 = 3); **no more critique rounds**
   unless content changes.
 - **Score movers left** (content, not chrome):
-  - one real project artefact (eval curve or battle log; none exists yet,
-    don't fake one);
+  - one real project artefact: the Pokémon agent's stage-by-stage win-rate
+    chart, read from that repo's committed logs, is on Projects (pending
+    review);
   - the About personal band.
 - **Ports:** `localhost:3000` is another project. Run this repo on 3100
   (`npm run dev -- -p 3100`). Stop dev before `npm run build`.
@@ -59,7 +60,8 @@ No active implementation plan.
 
 ## Next Steps
 1. Content decisions for Laith:
-   - a real project artefact for the Pokémon agent;
+   - review the Pokémon win-rate chart (sources pinned to commit
+     `efb3be2` of pokemon-showdown-ai; update them if its logs change);
    - the About personal band. It is trimmed to one clip and four games;
      the full list stays in `GAMES`.
 2. Decide whether the boot loader gets a HUD rewrite or stays retired.
