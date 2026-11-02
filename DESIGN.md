@@ -175,7 +175,7 @@ Each world also owns an **air**: a full-page vertical gradient from deep-space a
 - **Panel Glass** (panel-glass): the base panel fill before a world material overrides it (overview, 404, landing target card).
 
 ### Named Rules
-**The One Tint Rule.** A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it. The per-project colour is a confirmed product decision (Laith, 2026-10-17), kept even though a critique argued it fights the crystal palette.
+**The One Tint Rule.** A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it. The touchdown arrival card is the one surface that wears another world: it is drawn in the next world's material and tint, as a first look at where the launch goes (the last world's card keeps its own). The per-project colour is a confirmed product decision (Laith, 2026-10-17), kept even though a critique argued it fights the crystal palette.
 
 **The Softened Heading Rule.** Section headings use the world tint mixed 72% toward starlight (`color-mix(in oklab, var(--planet) 72%, var(--hud-text))`) and outline-button text mixes 85% toward white, so every world stays above 4.5:1 on its panel.
 
@@ -213,7 +213,7 @@ Responsive: between 981px and 1640px the column reserves 210px on the right for 
 
 ## Elevation & Depth
 
-Depth comes from atmosphere and material, not a shadow scale. The fixed sky (stars, the world's sky layers and wash) drifts up 45vh and fades to 10% as `--descent` runs 0 to 1, while the page background brightens into the world's air; that parallax is the primary depth cue. Panels are lifted by their material: soft, very low drop shadows on the lush leaves and rust plates, and inset light edges on crystal and moon. The only glows are the small tint glows on status dots, the active waypoint tick and the scroll fill.
+Depth comes from atmosphere and material, not a shadow scale. The fixed sky (stars, the world's sky layers and wash) drifts up 45vh and fades to 10% as `--descent` runs 0 to 1, while the page background brightens into the world's air; that parallax is the primary depth cue. Panels are lifted by their material: soft, very low drop shadows on the lush leaves and rust plates, and inset light edges on crystal and moon. The only UI glows are the small tint glows on status dots, the active waypoint tick and the scroll fill. Celestial bodies carry their own light (planet atmospheres and terminators, the rust world's sun, the horizon rim); that light belongs to the world, and no control or panel borrows it.
 
 ### Shadow Vocabulary
 - **Leaf lift** (`0 24px 46px -30px rgba(0,0,0,0.9), inset 0 1px 0 rgba(214,232,178,0.1)`): lush panels.
@@ -265,7 +265,7 @@ Squared instrument controls with a 44px minimum target.
 A 1px rule down the gutter, fading from 12% to 70% tint. A sticky deep-space box with a tint hairline reads `ALT <n> KM` in tint over the current zone name in label grey, tabular figures, counting down from the world's own altitude (120, 400, 250 or 12 km) as the page scrolls. It hides at touchdown, where the ground's own "0 km" takes over.
 
 ### Touchdown and Launch (signature)
-The planet's horizon arc (220vmax circle) rises into the bottom of the page. A centred card on deep-space at 82% with a tint top hairline holds "Next: <next world>" in the destination's colour (Space Grotesk 28px), the destination's teaser, a mono "Landed on <world> · 0 km" line, and a quiet underlined link to /overview. Activating it plays a full-screen radial fade in the destination's colour, then routes. The last world ends the route instead of looping: "Write to me" (mailto) with the address in the teaser, then "Back to the start" and the overview link.
+The planet's horizon arc (220vmax circle) rises into the bottom of the page. A centred card, drawn in the next world's material and tint, holds "Next: <next world>" in the destination's colour (Space Grotesk 28px), the destination's teaser, a mono "Landed on <world> · 0 km" line, and a quiet underlined link to /overview. Activating it plays a full-screen radial fade in the destination's colour, then routes. The last world ends the route instead of looping: "Write to me" (mailto) with the address in the teaser, then "Back to the start" and the overview link.
 
 ### Orbit Block (signature)
 An 84px planet body beside the display title, a lead line, then a definition-list proof row of three figures (value above caption, 18px by 44px gaps). Each figure is an outcome with one home, where it happened; a page with no figure of its own (About, Contact) shows none rather than a fact dressed as proof.

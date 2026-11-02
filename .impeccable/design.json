@@ -407,7 +407,7 @@
     "rules": [
       {
         "name": "The One Tint Rule",
-        "body": "A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it. The per-project colour is a confirmed product decision (Laith, 2026-10-17), kept even though a critique argued it fights the crystal palette.",
+        "body": "A surface carries exactly one hue at a time: its world's `--planet`, or cyan when it has no world. Only the résumé amber and a project's own `--accent-rgb` (on its card edge, index mark and stat) are allowed beside it. The touchdown arrival card is the one surface that wears another world: it is drawn in the next world's material and tint, as a first look at where the launch goes (the last world's card keeps its own). The per-project colour is a confirmed product decision (Laith, 2026-10-17), kept even though a critique argued it fights the crystal palette.",
         "section": "colors"
       },
       {
