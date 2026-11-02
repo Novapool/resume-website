@@ -90,8 +90,7 @@ export const MISSION_LOG: LogEntry[] = [
     title: "Deepening Expertise",
     bullets: [
       "Began attending MSU AI Club workshops",
-      "Contributed to an ML-based Unity game development project",
-      "Created adaptive AI that responds to player fighting styles",
+      "Trained a PPO combat enemy in Unity ML-Agents for an MSU AI Club game",
     ],
   },
   {
