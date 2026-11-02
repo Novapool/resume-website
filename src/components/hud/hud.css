@@ -881,7 +881,8 @@ details[open] > summary .hud-chevron-turn,
   text-decoration: none;
 }
 
-a:hover > .hud-channel {
+a:hover > .hud-channel,
+a:focus-visible > .hud-channel {
   border-color: rgba(var(--planet-rgb), 0.65);
   background: rgba(var(--planet-rgb), 0.07);
 }

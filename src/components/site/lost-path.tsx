@@ -8,6 +8,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PLANETS, type Planet } from "@/lib/planets";
+import { PROFILE } from "@/data/profile";
+import { NewTab } from "@/components/hud/panels";
 
 /** Edit distance, for one short path segment against a world's slug. */
 function distance(a: string, b: string) {
@@ -42,9 +44,15 @@ function nearMiss(path: string): Planet | undefined {
   return bestD <= 2 && head.length >= 3 ? best : undefined;
 }
 
+/** A stale link to the résumé (/resume, /cv, /resume.pdf): the artefact that
+ * gets forwarded inside companies, so the likeliest real 404. */
+const wantsResume = (path: string) =>
+  /^\/(resume|cv|documents)\b/i.test(path);
+
 export default function LostPath() {
   const path = usePathname() ?? "";
-  const meant = nearMiss(path);
+  const resume = wantsResume(path);
+  const meant = resume ? undefined : nearMiss(path);
 
   return (
     <>
@@ -56,6 +64,17 @@ export default function LostPath() {
       {/* Home is already in the bar, so the body offers the place a stale
           link most likely meant, then the two broad ways back in */}
       <div className="hud-hero-actions">
+        {resume && (
+          <a
+            className="hud-btn hud-btn-solid"
+            href={PROFILE.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            RÉSUMÉ
+            <NewTab />
+          </a>
+        )}
         {meant && (
           <Link href={meant.href} className="hud-btn hud-btn-solid">
             OPEN {meant.name}
@@ -64,7 +83,7 @@ export default function LostPath() {
         {meant?.href !== "/projects" && (
           <Link
             href="/projects"
-            className={`hud-btn${meant ? "" : " hud-btn-solid"}`}
+            className={`hud-btn${meant || resume ? "" : " hud-btn-solid"}`}
           >
             SEE THE PROJECTS
           </Link>
