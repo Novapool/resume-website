@@ -97,6 +97,8 @@ export default function AboutPage() {
               // a preview only: keyboard users take the PDF link below, so
               // focus never gets lost inside the browser's PDF viewer
               tabIndex={-1}
+              // below the fold: don't start the PDF viewer during first load
+              loading="lazy"
               src={PROFILE.resume}
               title="Résumé preview"
               style={{

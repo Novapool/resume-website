@@ -108,7 +108,7 @@ export const BOULDERING_CLIPS: BoulderingClip[] = [
   {
     kind: "video",
     src: "/videos/bouldering-1.mp4",
-    poster: "/images/bouldering-1-poster.jpg",
+    poster: "/images/bouldering-1-poster.webp",
     caption: "Me totally crushing this climb.",
   },
   {

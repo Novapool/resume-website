@@ -514,7 +514,11 @@ html:has(.hud-root) {
   display: inline-flex;
   flex-direction: column;
   gap: 6px;
-  margin-top: 24px;
+  /* 6px of padding lifts the hit area past 44px; the margins give it back,
+     so the label sits exactly where it did */
+  padding: 6px 0;
+  margin-top: 18px;
+  margin-bottom: -6px;
   color: var(--hud-text);
   text-decoration: none;
 }
