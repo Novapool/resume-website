@@ -237,21 +237,21 @@ export const PROJECTS: Project[] = [
     tagline:
       "Model training without the boilerplate: data, training runs, and charts in one cockpit.",
     description:
-      "Simplifies model development with interfaces for data management, training, and visualization.",
+      "A Streamlit app that takes a tabular dataset from upload to a trained model. It profiles the data (column types, missing values, memory use), then preprocesses it with encoding, scaling, missing-value strategies and outlier removal, saving each step as a transformation rule that replays in order. Training runs either a configurable PyTorch network (hidden layers, dropout, batch norm, early stopping, checkpoints) or one of eight scikit-learn, XGBoost and LightGBM models behind the same interface, for classification or regression, with loss and accuracy plotted per epoch.",
     accent: "180,200,220",
-    tags: ["Python", "Streamlit", "PyTorch", "Pandas"],
+    tags: ["Python", "Streamlit", "PyTorch", "scikit-learn", "Pandas"],
     github: "https://github.com/Novapool/AIForge",
   },
   {
     code: "PRJ-011",
-    title: "Adaptive Game Combat AI",
-    kind: "Unity ML-Agents",
+    title: "Unity Combat Agent",
+    kind: "Unity ML-Agents · MSU AI Club team project",
     tagline:
-      "A Unity opponent that studies how you fight, then picks aggression or defense to counter it.",
+      "A melee enemy trained with PPO to close distance, face its target, and time light and heavy attacks.",
     description:
-      "A Unity ML agent that adapts to the player's fighting style, switching between aggression and defense based on learned patterns.",
+      "My part of an MSU AI Club Unity game: the ML-Agents enemy and its training setup. The agent sees its position, the direction and distance to its opponent, and its own health, then moves, turns, and picks a light or heavy attack. Shaped rewards pay for holding striking range, facing the target, and landing damage, and penalize taking hits, idling past 5 seconds, leaving the arena, and 30-second timeouts. It trains with PPO and a small curiosity bonus.",
     accent: "255,80,110",
-    tags: ["Unity", "ML-Agents", "C#"],
+    tags: ["Unity", "ML-Agents", "C#", "PPO"],
     github: "https://github.com/Novapool/ai-game",
   },
   {
@@ -264,18 +264,17 @@ export const PROJECTS: Project[] = [
       "Python application using TensorFlow and OpenCV to recognize hand landmarks and interpret sign language shapes.",
     accent: "87,230,196",
     tags: ["Python", "TensorFlow", "OpenCV"],
-    github: "https://github.com/Novapool/SignLanguageDetector",
   },
   {
     code: "PRJ-013",
-    title: "Gamified Task Manager",
-    kind: "LifeQuest · Flutter app",
+    title: "RPG Life Stat Tracker",
+    kind: "LifeQuest · Python prototype",
     tagline:
-      "Your to-do list, but it's an RPG. Finish tasks, earn XP, level up.",
+      "Life as an RPG: raise four character stats and level up on an XP curve.",
     description:
-      "Flutter application where users complete tasks, set goals, and progress through levels.",
+      "An early desktop prototype from my first year. Four character stats (strength, charisma, agility, intelligence) go up and down with buttons in a Tkinter window and persist to an Excel sheet through pandas; their total is XP, and each level needs 1.5× the last.",
     accent: "180,240,90",
-    tags: ["Flutter", "Dart", "Firebase", "Mobile"],
+    tags: ["Python", "Tkinter", "pandas"],
     github: "https://github.com/Novapool/LifeQuest",
   },
 ];
