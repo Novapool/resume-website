@@ -271,7 +271,7 @@ The planet's horizon arc (220vmax circle) rises into the bottom of the page. A c
 An 84px planet body beside the display title, a lead line, then a definition-list proof row of three figures (value above caption, 18px by 44px gaps). Each figure is an outcome with one home, where it happened; a page with no figure of its own (About, Contact) shows none rather than a fact dressed as proof.
 
 ### Control vocabulary
-One label per action on every route: **Home** (to `/`), **Open <world>** (go to a world from the landing), **Next: <world>** (touchdown), **Overview** / "Every section on one page" (to `/overview`), **Résumé** (the PDF), **Email me** (mailto). Ship flavour lives in small metadata (sub-labels, zone names, the docking overlay), never in a control's label. No eyebrows or kickers above headings.
+One label per action on every route: **Home** (to `/`), **Open <world>** (go to a world from the landing, and on a 404 whose address is a near miss for a world), **Next: <world>** (touchdown), **Overview** / "Every section on one page" (to `/overview`), **Résumé** (the PDF), **Email me** (mailto). Ship flavour lives in small metadata (sub-labels, zone names, the docking overlay), never in a control's label. No eyebrows or kickers above headings.
 
 ### Landing pitch card
 At rest the card slot holds the pitch: "Laith Assaf" as the display h1 (clamp 34–50px), the two-sentence pitch, a hairline, three proof figures (value in cyan, caption in starlight) and "See the projects". It sits low (bottom 40px, 400px wide) so it clears the first planet, and it is first after the header in tab order. Planets too small to see (<44px) leave the tab order; a focused planet shows a round 3px ring.

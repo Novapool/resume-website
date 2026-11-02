@@ -528,49 +528,6 @@ html:has(.hud-root) {
   }
 }
 
-/* ══ END OF SECTOR ══════════════════════════════════════════════════════ */
-
-.hud-endcap {
-  margin-top: 72px;
-}
-
-.hud-endcap-line {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(var(--planet-rgb), 0.6),
-    rgba(var(--planet-rgb), 0.08)
-  );
-}
-
-.hud-endcap-next {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 6px;
-  /* 6px of padding lifts the hit area past 44px; the margins give it back,
-     so the label sits exactly where it did */
-  padding: 6px 0;
-  margin-top: 18px;
-  margin-bottom: -6px;
-  color: var(--hud-text);
-  text-decoration: none;
-}
-
-.hud-endcap-name {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--hud-display);
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--planet);
-  transition: color 0.2s ease;
-}
-
-.hud-endcap-next:hover .hud-endcap-name {
-  color: var(--hud-text);
-}
-
 /* ══ CONTENT ════════════════════════════════════════════════════════════ */
 
 .hud-content {
@@ -599,16 +556,36 @@ html:has(.hud-root) {
 }
 
 /* the 404's readout of the address that failed */
+/* drawn like the altitude readout: the page's one instrument */
 .hud-lost-path {
-  margin: 14px 0 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  align-self: flex-start;
+  max-width: 100%;
+  margin: 20px 0 0;
+  padding: 8px 12px;
+  border: 1px solid rgba(var(--planet-rgb), 0.35);
+  border-radius: 2px;
+  background: #06070e;
+  font-size: 12px;
+  font-weight: 600;
   overflow-wrap: anywhere;
 }
 
 /* paths are case-sensitive, so the address keeps its own case */
 .hud-lost-path-url {
+  font-size: 14px;
+  font-weight: 500;
   text-transform: none;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: var(--hud-text);
+}
+
+/* /overview ends on the reader's four actions */
+.hud-overview-close {
+  margin-top: 56px;
 }
 
 .hud-hero-email {
@@ -2176,6 +2153,10 @@ a:hover > .hud-channel {
 
   .hud-ident-sub {
     display: none;
+  }
+
+  .hud-hero-email {
+    margin-left: 0;
   }
 
   .hud-topright {
