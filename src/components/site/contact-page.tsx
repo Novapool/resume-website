@@ -60,8 +60,8 @@ export default function ContactPage() {
         </ul>
       </Section>
 
-      {/* The comms form stays unmounted until M4 wires it to a real endpoint;
-          a form that drops messages is worse than no form. */}
+      {/* Contact is email-only by Laith's decision (M4): the comms form stays
+          unmounted, and nothing here claims a message was sent. */}
     </HudPage>
   );
 }

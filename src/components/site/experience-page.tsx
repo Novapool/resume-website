@@ -128,9 +128,11 @@ export default function ExperiencePage() {
             ))}
           </ol>
 
+          {/* outline, not solid: the touchdown below is the page's ending,
+              and the bar's amber Résumé is always on screen */}
           <div className="hud-actions">
             <a
-              className="hud-btn hud-btn-solid"
+              className="hud-btn"
               href={PROFILE.resume}
               target="_blank"
               rel="noopener noreferrer"
