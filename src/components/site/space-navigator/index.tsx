@@ -365,12 +365,14 @@ export default function SpaceNavigator() {
               key={wp.name}
               type="button"
               className={`hud-pill${on ? " hud-pill-on" : ""}`}
-              aria-label={`Fly to ${wp.label}`}
               aria-current={on ? "location" : undefined}
               onClick={() => goTo(i)}
             >
+              {/* the name is built from the visible label (WCAG 2.5.3), so
+                  speech users can say what they see */}
               <span>
-                <span className="hud-pill-index">{`0${i + 1}`}&nbsp;&nbsp;</span>
+                <span className="hud-pill-index" aria-hidden>{`0${i + 1}`}&nbsp;&nbsp;</span>
+                <span className="sr-only">Fly to </span>
                 {wp.name}
               </span>
               <span className="hud-tick" />

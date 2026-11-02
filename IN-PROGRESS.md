@@ -24,6 +24,13 @@ M4 is closed; the next work is content (see Next Steps).
 No active implementation plan.
 
 ## Recently Completed
+- **Lighthouse + axe audit (2026-11-02):** every route, desktop and mobile,
+  on the prod build. A11y 100 and axe clean everywhere (landing waypoint
+  names fixed; /overview endcap now 44px). Unused Geist preloads dropped,
+  About's PDF preview lazy-loads, poster is WebP, image srcsets include
+  phone widths. Pixel-identical before/after on every world. Left alone:
+  the sky's raster cost (blur + blend layers) and hydration TBT on mobile;
+  see the PR for the list.
 - **Reduced-motion pass (2026-11-02):** under `prefers-reduced-motion` the
   landing camera holds at each world and cuts between them instead of
   dollying (no scroll zoom); the About résumé preview no longer animates its

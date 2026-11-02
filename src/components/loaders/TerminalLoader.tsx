@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 // import { useTheme } from "@/components/theme/theme-provider"; // Removed unused import
 import { TypeAnimation } from "react-type-animation";
+import "@/styles/animations.css"; // terminal cursor; only this retired loader uses it
 
 interface TerminalLoaderProps {
   onLoadingComplete: () => void;

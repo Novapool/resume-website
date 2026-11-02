@@ -7,19 +7,23 @@ import {
   Space_Grotesk,
 } from "next/font/google";
 import "./globals.css";
-import "../styles/animations.css"; // Import our animation styles
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { PAGES } from "@/data/pages";
 import { SITE_URL } from "@/lib/seo";
 
+// Geist backs Tailwind's font-sans/font-mono for the legacy shadcn pieces
+// only; no HUD route renders it, so it is not preloaded (that was ~50KB of
+// font downloads competing with the critical CSS on every page).
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  preload: false,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 // Space Navigator landing page typography
