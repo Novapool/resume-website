@@ -1996,8 +1996,9 @@ a:hover > .hud-channel {
 }
 
 .hud-sheets-3 > :first-child .hud-body {
-  /* one measure: two columns split the paragraph mid-thought */
-  max-width: 68ch;
+  /* one measure (~75 characters in this face): two columns split the
+     paragraph mid-thought */
+  max-width: 60ch;
 }
 
 /* ── about ─────────────────────────────────────────────────────────────── */
